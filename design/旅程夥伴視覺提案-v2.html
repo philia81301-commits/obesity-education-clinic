@@ -1,0 +1,550 @@
+<title>旅程夥伴視覺提案</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --bg: #FAFAF3;
+    --surface: #FFFFFF;
+    --surface-2: #F1F1E6;
+    --ink: #21281F;
+    --muted: #66705F;
+    --line: #E0E0D2;
+    --diet: #E8740C;
+    --diet-soft: #FCE9D4;
+    --move: #0FA25B;
+    --move-soft: #DCF3E5;
+    --rx: #3D6FD6;
+    --rx-soft: #E1E9FB;
+    --flag: #D3311E;
+    --flag-soft: #FBE3DE;
+    --gold: #E9A00F;
+    --gold-soft: #FBF0D2;
+    --shadow: 0 10px 30px rgba(33, 40, 31, .10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #171B17;
+      --surface: #21261F;
+      --surface-2: #292F27;
+      --ink: #EAECE3;
+      --muted: #9CA396;
+      --line: #3A403A;
+      --diet: #FF9C42;
+      --diet-soft: #40301C;
+      --move: #43CE8A;
+      --move-soft: #1E3A2C;
+      --rx: #7FA3FF;
+      --rx-soft: #263250;
+      --flag: #FF7A63;
+      --flag-soft: #46261F;
+      --gold: #FFC94D;
+      --gold-soft: #3E3319;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #171B17;
+    --surface: #21261F;
+    --surface-2: #292F27;
+    --ink: #EAECE3;
+    --muted: #9CA396;
+    --line: #3A403A;
+    --diet: #FF9C42;
+    --diet-soft: #40301C;
+    --move: #43CE8A;
+    --move-soft: #1E3A2C;
+    --rx: #7FA3FF;
+    --rx-soft: #263250;
+    --flag: #FF7A63;
+    --flag-soft: #46261F;
+    --gold: #FFC94D;
+    --gold-soft: #3E3319;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    font-size: 17px;
+    line-height: 1.85;
+    margin: 0;
+    padding: 0 20px 96px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+
+  h1, h2, h3 { font-family: "LXGW WenKai TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; text-wrap: balance; line-height: 1.4; }
+  h1 { font-size: 44px; font-weight: 700; margin: 0 0 8px; }
+  h2 { font-size: 28px; margin: 0 0 4px; }
+  h3 { font-size: 20px; margin: 0 0 4px; }
+  p { margin: 0 0 1em; }
+  section { margin-top: 88px; }
+
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: .22em;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .lede { font-size: 19px; color: var(--muted); max-width: 40em; }
+  .sec-note { color: var(--muted); max-width: 42em; margin-bottom: 28px; }
+
+  /* ---------- Hero ---------- */
+  header { padding-top: 72px; }
+  .hero-quote {
+    font-family: "LXGW WenKai TC", "Noto Sans TC", serif;
+    font-size: 22px; margin: 28px 0 0; color: var(--ink);
+  }
+  .curve-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 14px; box-shadow: var(--shadow);
+    padding: 28px 24px 16px; margin-top: 36px; overflow-x: auto;
+  }
+  .curve-card svg { display: block; min-width: 620px; width: 100%; height: auto; }
+  .curve-caption { font-size: 14px; color: var(--muted); margin: 10px 6px 6px; }
+
+  /* ---------- 立場三卡 ---------- */
+  .stance { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  @media (max-width: 720px) { .stance { grid-template-columns: 1fr; } }
+  .stance-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 14px; padding: 24px 22px;
+  }
+  .stance-card h3 { margin-bottom: 10px; }
+  .stance-card p { font-size: 15px; color: var(--muted); margin: 0; }
+
+  /* ---------- 配色 ---------- */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+  .swatch {
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    background: var(--surface);
+  }
+  .swatch .chip { height: 84px; }
+  .swatch .meta { padding: 12px 14px 14px; }
+  .swatch .meta b { display: block; font-size: 15px; }
+  .swatch .meta span { font-size: 13px; color: var(--muted); }
+  .palette-note {
+    margin-top: 22px; padding: 18px 22px; border-radius: 12px;
+    background: var(--flag-soft); border: 1px solid var(--line);
+    font-size: 15px;
+  }
+  .palette-note b { color: var(--flag); }
+
+  /* ---------- 字體 ---------- */
+  .type-demo {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 14px; padding: 30px 28px; display: grid; gap: 22px;
+  }
+  .type-row { border-top: 1px dashed var(--line); padding-top: 20px; }
+  .type-row:first-child { border-top: 0; padding-top: 0; }
+  .type-label { font-size: 12px; font-weight: 700; letter-spacing: .18em; color: var(--muted); margin-bottom: 8px; }
+  .td-display { font-family: "LXGW WenKai TC", serif; font-size: 30px; font-weight: 700; line-height: 1.5; }
+  .td-body { font-size: 17px; max-width: 34em; }
+  .td-num { font-variant-numeric: tabular-nums; font-weight: 500; letter-spacing: .02em; }
+
+  /* ---------- 圖示 ---------- */
+  .icon-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 720px) { .icon-grid { grid-template-columns: repeat(2, 1fr); } }
+  .icon-cell {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 12px 16px; text-align: center;
+  }
+  .icon-cell svg { width: 52px; height: 52px; }
+  .icon-cell .icon-name { font-size: 15px; font-weight: 500; margin-top: 10px; }
+  .icon-cell .icon-code { font-size: 12px; color: var(--muted); letter-spacing: .08em; }
+  .icon-rules { margin-top: 22px; font-size: 15px; color: var(--muted); padding-left: 1.3em; }
+  .icon-rules li { margin-bottom: 6px; }
+  .ic-diet { color: var(--diet); }
+  .ic-move { color: var(--move); }
+  .ic-rx { color: var(--rx); }
+  .ic-flag { color: var(--flag); }
+
+  /* ---------- 語氣對照 ---------- */
+  .tone-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+  @media (max-width: 720px) { .tone-pair { grid-template-columns: 1fr; } }
+  .tone-card { border-radius: 12px; padding: 18px 20px; font-size: 16px; }
+  .tone-bad {
+    background: var(--surface-2); color: var(--muted);
+    border: 1px dashed var(--line);
+  }
+  .tone-good {
+    background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+    font-family: "LXGW WenKai TC", "Noto Sans TC", serif; font-size: 17px;
+  }
+  .tone-tag { display: block; font-family: "Noto Sans TC", sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .15em; margin-bottom: 6px; }
+  .tone-bad .tone-tag { color: var(--muted); }
+  .tone-good .tone-tag { color: var(--move); }
+
+  /* ---------- 一頁衛教單 mockup ---------- */
+  .sheet {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    box-shadow: var(--shadow); max-width: 640px; margin: 0 auto;
+    padding: 30px 32px 24px; font-size: 15px; line-height: 1.75;
+  }
+  .sheet-head {
+    display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline;
+    border-bottom: 2px solid var(--ink); padding-bottom: 12px; margin-bottom: 20px;
+  }
+  .sheet-head .sh-title { font-family: "LXGW WenKai TC", serif; font-size: 21px; font-weight: 700; margin-right: auto; }
+  .sheet-head .sh-meta { font-size: 13px; color: var(--muted); }
+  .sheet-head .sh-meta b { color: var(--ink); font-weight: 500; }
+  .blk { margin-bottom: 20px; }
+  .blk-head {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 700; font-size: 15px; letter-spacing: .06em;
+    padding: 4px 14px 4px 10px; border-radius: 999px; margin-bottom: 10px;
+  }
+  .blk-head svg { width: 20px; height: 20px; }
+  .blk-diet .blk-head { background: var(--diet-soft); color: var(--diet); }
+  .blk-move .blk-head { background: var(--move-soft); color: var(--move); }
+  .blk-rx .blk-head { background: var(--rx-soft); color: var(--rx); }
+  .blk ul { margin: 0; padding-left: 1.2em; }
+  .blk li { margin-bottom: 8px; }
+  .blk li b { font-weight: 700; }
+  .wins {
+    background: var(--surface-2); border-radius: 10px; padding: 14px 18px;
+    margin: 22px 0; font-size: 14px;
+  }
+  .wins .wins-title { font-weight: 700; margin-bottom: 6px; letter-spacing: .04em; }
+  .wins label { display: flex; gap: 8px; align-items: baseline; margin-bottom: 4px; cursor: pointer; }
+  .wins input { accent-color: var(--move); }
+  .streak-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 2px; }
+  .streak-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gold-soft); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 3px 12px; font-size: 13px; font-weight: 500;
+  }
+  .streak-chip svg { width: 14px; height: 14px; color: var(--gold); }
+  .streak-chip b { font-variant-numeric: tabular-nums; color: var(--gold); }
+  .level-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gold-soft); color: var(--gold);
+    border-radius: 999px; padding: 2px 12px;
+    font-size: 12.5px; font-weight: 700; letter-spacing: .06em;
+  }
+  .sheet-foot {
+    border-top: 1px solid var(--line); padding-top: 14px; font-size: 13.5px;
+    display: grid; gap: 6px;
+  }
+  .flag-line { color: var(--flag); font-weight: 500; display: flex; gap: 8px; align-items: baseline; }
+  .flag-line svg { width: 15px; height: 15px; flex-shrink: 0; position: relative; top: 2px; }
+  .next-visit { color: var(--muted); }
+  .mock-note { text-align: center; font-size: 13px; color: var(--muted); margin-top: 14px; }
+
+  /* ---------- 下一步 ---------- */
+  .next-steps { padding-left: 1.3em; }
+  .next-steps li { margin-bottom: 10px; }
+
+  a { color: var(--move); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">GLP-1 減重治療旅程衛教 · 視覺提案 v2</div>
+    <h1>旅程夥伴</h1>
+    <p class="lede">病人不是被糾正的對象，是拿到攻略、正在破關的玩家。這套視覺的每一個決定——顏色、字、圖、語氣——都在回答同一個問題：<b>怎麼讓健康管理變成一件想繼續玩的事。</b></p>
+    <p class="hero-quote">「信心來自誠實，加上一點好勝心：<br>整條路畫給你看，關卡標清楚，一關一關破。」</p>
+
+    <div class="curve-card">
+      <svg viewBox="0 0 640 240" role="img" aria-label="五關卡治療旅程地圖，停滯期為魔王關">
+        <!-- 停滯期魔王關分區底色 -->
+        <rect x="286" y="18" width="120" height="170" rx="8" fill="var(--gold-soft)"/>
+        <!-- 曲線 -->
+        <path d="M40,52 C90,55 130,68 160,88 C200,115 240,128 292,131 L400,131 C440,132 470,142 505,150 C545,158 575,159 600,159"
+              fill="none" stroke="var(--move)" stroke-width="4" stroke-linecap="round"/>
+        <!-- 關卡旗幟節點 -->
+        <g stroke="var(--move)" stroke-width="2.5" stroke-linecap="round">
+          <path d="M40,52 L40,32"/><path d="M40,33 L54,37 L40,42 Z" fill="var(--move)" stroke="none"/>
+          <path d="M160,88 L160,68"/><path d="M160,69 L174,73 L160,78 Z" fill="var(--move)" stroke="none"/>
+          <path d="M400,131 L400,111"/><path d="M400,112 L414,116 L400,121 Z" fill="var(--move)" stroke="none"/>
+          <path d="M505,150 L505,130"/><path d="M505,131 L519,135 L505,140 Z" fill="var(--move)" stroke="none"/>
+        </g>
+        <circle cx="40" cy="52" r="5.5" fill="var(--move)"/>
+        <circle cx="160" cy="88" r="5.5" fill="var(--move)"/>
+        <circle cx="292" cy="131" r="6.5" fill="var(--gold)"/>
+        <circle cx="400" cy="131" r="5.5" fill="var(--move)"/>
+        <circle cx="505" cy="150" r="5.5" fill="var(--move)"/>
+        <!-- 終點星星 -->
+        <path d="M600,159 m0,-14 l3.5,8 8.5,0.8 -6.4,5.7 1.9,8.4 -7.5,-4.5 -7.5,4.5 1.9,-8.4 -6.4,-5.7 8.5,-0.8 Z" fill="var(--gold)"/>
+        <!-- 魔王關註記 -->
+        <text x="346" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="var(--diet)">停滯期＝魔王關</text>
+        <text x="346" y="74" text-anchor="middle" font-size="12.5" fill="var(--muted)">會卡是賀爾蒙的設定，不是你不努力</text>
+        <text x="346" y="92" text-anchor="middle" font-size="12.5" fill="var(--muted)">攻略在手（S3），破關靠打法不靠意志力</text>
+        <!-- 底部關卡標籤 -->
+        <text x="95"  y="212" text-anchor="middle" font-size="13" fill="var(--ink)">第 1 關 起始期</text>
+        <text x="226" y="212" text-anchor="middle" font-size="13" fill="var(--ink)">第 2 關 減重期</text>
+        <text x="346" y="212" text-anchor="middle" font-size="13" font-weight="700" fill="var(--diet)">第 3 關 停滯期</text>
+        <text x="452" y="212" text-anchor="middle" font-size="13" fill="var(--ink)">第 4 關 維持期</text>
+        <text x="565" y="212" text-anchor="middle" font-size="13" fill="var(--ink)">第 5 關 過渡期</text>
+        <!-- 底線 -->
+        <line x1="40" y1="194" x2="600" y2="194" stroke="var(--line)" stroke-width="1.5"/>
+      </svg>
+      <p class="curve-caption">網站與衛教單共用的主視覺：一張「誠實的關卡地圖」。多數減重宣傳畫平滑下降的完美斜線；我們把停滯期直接標成魔王關——病人走到那一段時，看到的不是自己的失敗，而是「地圖早就說這關最難，而且有攻略」。每過一關插一面旗，終點不是體重數字，是拿回健康的星星。</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="eyebrow">設計立場</div>
+    <h2>信心從哪裡來</h2>
+    <p class="sec-note">四個原則，對應醫師審定的核心觀念。之後每個視覺決定，都能追溯回其中一條。</p>
+    <div class="stance">
+      <div class="stance-card">
+        <h3>誠實的關卡地圖</h3>
+        <p>不畫「保證瘦」的完美斜線。五個關卡（含魔王關停滯期）從第一頁就攤開——預告了的困難，發生時就不可怕，反而變成「我打到魔王關了」的進度感。這是「停滯期＝賀爾蒙因素、不要放棄」這條審定觀念的視覺化。</p>
+      </div>
+      <div class="stance-card">
+        <h3>玩起來的機制</h3>
+        <p>把「配合醫囑」翻譯成遊戲語言：每週三個小任務打勾得分、連續達成累積連勝紀錄、過一關拿一枚階段徽章，回診就是結算戰績的日子。行為改變研究的老原理——即時回饋比遠期目標有力——只是把它做得好玩。</p>
+      </div>
+      <div class="stance-card">
+        <h3>夥伴的語氣</h3>
+        <p>每一句禁止改寫成「原因＋做法」。不出現「必須、禁止、管住嘴」；理由講清楚，病人自己會選。字體也配合：話術用手寫感的楷體，像醫師寫給你的便條，不是公告欄的公文。</p>
+      </div>
+      <div class="stance-card">
+        <h3>紅色的紀律</h3>
+        <p>整個網站只有「紅旗症狀」用紅色，其他地方一律不用。當顏色守信用，病人看到紅色就知道「這次是真的要注意」——不會因為到處都是警告而麻痺。戰鬥力可以高飽和，但警報聲不能亂響。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">配色</div>
+    <h2>三區塊功能色＋一枚戰績金</h2>
+    <p class="sec-note">一頁衛教單本來就分「飲食／運動／藥物」三區塊，配色直接沿用這個結構：每個區塊一個高飽和的專屬色，病人拿到單子掃一眼就知道哪段講什麼。v2 全面拉高彩度——健康管理是進攻，不是療養；另外新增「戰績金」，專門給徽章、連勝、破關時刻。</p>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="chip" style="background: var(--diet);"></div>
+        <div class="meta"><b>飲食 · 烈橘</b><span>#E8740C · 食慾與火力</span></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--move);"></div>
+        <div class="meta"><b>運動 · 勝利綠</b><span>#0FA25B · 主色，前進的顏色</span></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--rx);"></div>
+        <div class="meta"><b>藥物 · 電光藍</b><span>#3D6FD6 · 精準、可信</span></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--gold);"></div>
+        <div class="meta"><b>戰績 · 成就金</b><span>#E9A00F · 徽章與連勝專用</span></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--flag);"></div>
+        <div class="meta"><b>紅旗 · 專用紅</b><span>#D3311E · 只在這裡出現</span></div>
+      </div>
+    </div>
+    <div class="palette-note">
+      <b>紅色使用規則：</b>紅只給紅旗症狀（頁尾固定欄與提前回診提醒）。體重上升、沒達標、忘記打針——都不用紅色標。做不到的那一天，病人看到的不是滿版警告，而是下一步該怎麼做。
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">字體</div>
+    <h2>公文感退場，便條感進場</h2>
+    <p class="sec-note">兩個字體、三個角色。話術與標題用 LXGW WenKai TC（霞鶩文楷）——楷體的手寫感讓「醫師對你說的話」讀起來像便條而不是公告；內文用 Noto Sans TC 保住國中閱讀程度所需的清晰；數字用等寬數字對齊，劑量與日期不會歪。</p>
+    <div class="type-demo">
+      <div class="type-row">
+        <div class="type-label">標題與話術 · LXGW WenKai TC</div>
+        <div class="td-display">覺得不太想吃，代表藥有在做事——<br>這不是考驗你的意志力。</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">內文 · NOTO SANS TC</div>
+        <div class="td-body">胃口變小後，每餐先吃蛋白質：蛋、豆腐、豆漿、魚、雞肉。先吃夠蛋白質，才不會瘦到肌肉。</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">數據 · 等寬數字</div>
+        <div class="td-body td-num">週纖達 0.25 mg／週　·　補打時限 ≤ 5 天　·　下次回診 2026-09-05</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">圖示</div>
+    <h2>畫「動作」，不畫「審判」</h2>
+    <p class="sec-note">圓角線條、單色描邊、以區塊功能色點題。每個圖示對應一個內容模組編碼，衛教單組裝時直接跟著模組走。</p>
+    <div class="icon-grid">
+      <div class="icon-cell">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="ic-diet">
+          <ellipse cx="24" cy="33" rx="16" ry="5"/>
+          <path d="M24 11 C29 11 31.5 17 31.5 21.5 C31.5 26 28 29 24 29 C20 29 16.5 26 16.5 21.5 C16.5 17 19 11 24 11 Z"/>
+        </svg>
+        <div class="icon-name">蛋白質優先吃</div>
+        <div class="icon-code">S1-D1</div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="ic-diet">
+          <path d="M15 9 L33 9 L30.5 39 L17.5 39 Z"/>
+          <path d="M17.2 21 L30.8 21"/>
+        </svg>
+        <div class="icon-name">水要喝夠</div>
+        <div class="icon-code">S1-D3</div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="ic-diet">
+          <path d="M24 39 C11 31 13 14 24 8 C35 14 37 31 24 39 Z"/>
+          <path d="M24 13 L24 34"/>
+        </svg>
+        <div class="icon-name">纖維與蔬菜</div>
+        <div class="icon-code">S1-D6</div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="ic-move">
+          <circle cx="26" cy="9" r="4"/>
+          <path d="M25 14 L22 26"/>
+          <path d="M24.5 17.5 L31 21.5 M24.5 17.5 L17 20"/>
+          <path d="M22 26 L28.5 37 M22 26 L16 37"/>
+        </svg>
+        <div class="icon-name">每天走路 30 分鐘</div>
+        <div class="icon-code">S1-E1</div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="ic-move">
+          <path d="M15 8 L15 30 M15 28 L27 28 M17 30 L17 40 M27 28 L27 40"/>
+          <circle cx="30" cy="13" r="3.6"/>
+          <path d="M29.5 17 L28 28"/>
+          <path d="M28 28 L41 24"/>
+        </svg>
+        <div class="icon-name">椅上抬腿・低衝擊</div>
+        <div class="icon-code">S1-E3</div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="ic-rx">
+          <rect x="19" y="6" width="10" height="25" rx="4"/>
+          <path d="M24 31 L24 39"/>
+          <path d="M19 14 L29 14"/>
+          <circle cx="24" cy="10" r="1.4" fill="currentColor" stroke="none"/>
+        </svg>
+        <div class="icon-name">打針的基本功</div>
+        <div class="icon-code">S1-R1</div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="ic-rx">
+          <rect x="9" y="11" width="30" height="27" rx="3"/>
+          <path d="M9 19 L39 19"/>
+          <path d="M17 7 L17 13 M31 7 L31 13"/>
+          <circle cx="24" cy="28" r="3.2" fill="currentColor" stroke="none"/>
+        </svg>
+        <div class="icon-name">固定打針日</div>
+        <div class="icon-code">S1-R1</div>
+      </div>
+      <div class="icon-cell">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="ic-flag">
+          <path d="M15 7 L15 41"/>
+          <path d="M15 9 L34 13.5 L15 20 Z" fill="currentColor" stroke="none"/>
+        </svg>
+        <div class="icon-name">紅旗症狀</div>
+        <div class="icon-code">S1-R4</div>
+      </div>
+    </div>
+    <ul class="icon-rules">
+      <li>統一 2.4px 圓角描邊、48px 網格，單色＋所屬區塊功能色。</li>
+      <li><b>不畫體重計、捲尺、瘦身前後對比身形</b>——這些是羞恥感的符號，不是行動的符號。圖示一律畫「病人可以做的動作」。</li>
+      <li>不用 emoji：印刷與跨裝置樣式不可控，也和手寫感字體的調性衝突。</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="eyebrow">語氣</div>
+    <h2>同一件事，兩種說法</h2>
+    <p class="sec-note">右欄全部取自已審定的 S1 文案——這套內容本來就是夥伴語氣，視覺提案只是把規則說破：<b>每句禁止都改寫成「原因＋做法」，每個症狀都重新框架成「藥有在作用」或「身體在調節」。</b></p>
+
+    <div class="tone-pair">
+      <div class="tone-card tone-bad"><span class="tone-tag">教條式</span>禁止油炸、甜點、喝酒。</div>
+      <div class="tone-card tone-good"><span class="tone-tag">旅程夥伴式</span>打針初期先少碰油炸、濃湯、甜點——它們在胃裡停留久，最容易讓你不舒服。</div>
+    </div>
+    <div class="tone-pair">
+      <div class="tone-card tone-bad"><span class="tone-tag">教條式</span>要有意志力，管住嘴、邁開腿。</div>
+      <div class="tone-card tone-good"><span class="tone-tag">旅程夥伴式</span>這個藥是幫你把「一直想吃」的訊號關小聲——覺得不太想吃，代表藥有在做事，不是考驗你的意志力。</div>
+    </div>
+    <div class="tone-pair">
+      <div class="tone-card tone-bad"><span class="tone-tag">教條式</span>每天必須運動 30 分鐘。</div>
+      <div class="tone-card tone-good"><span class="tone-tag">旅程夥伴式</span>走得到、走得久，比走得快重要。拆成三次、每次十分鐘，也算數。</div>
+    </div>
+    <div class="tone-pair">
+      <div class="tone-card tone-bad"><span class="tone-tag">教條式</span>體重沒下降，就是沒做好。</div>
+      <div class="tone-card tone-good"><span class="tone-tag">旅程夥伴式</span>停滯期是賀爾蒙在調控，有生理上不可抗拒的因素——不是你不努力。你已經打到魔王關了，攻略我們有，不要放棄是關鍵。</div>
+    </div>
+    <div class="tone-pair">
+      <div class="tone-card tone-bad"><span class="tone-tag">教條式</span>請認真配合治療計畫。</div>
+      <div class="tone-card tone-good"><span class="tone-tag">旅程夥伴式</span>把它當遊戲：每週三個小任務，做到就打勾，連續達成就累積連勝——下次回診，我們一起看你的戰績。</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">組裝示意</div>
+    <h2>一頁衛教單長這樣</h2>
+    <p class="sec-note">用已審定的 S1 模組實際組一張（起始期第 2 週、週纖達）。注意四件事：三區塊靠功能色分區、關卡徽章與連勝紀錄用成就金、「本週任務」把目標變成打勾而不是禁止清單、紅色只在頁尾紅旗那一行出現。</p>
+
+    <div class="sheet">
+      <div class="sheet-head">
+        <span class="sh-title">你的這一週</span>
+        <span class="level-chip">第 1 關 · 起始期</span>
+        <span class="sh-meta">王○○ · <b>第 2 週</b> · 週纖達 <b class="td-num">0.25 mg</b>／週</span>
+      </div>
+
+      <div class="blk blk-diet">
+        <span class="blk-head">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="24" cy="33" rx="16" ry="5"/><path d="M24 11 C29 11 31.5 17 31.5 21.5 C31.5 26 28 29 24 29 C20 29 16.5 26 16.5 21.5 C16.5 17 19 11 24 11 Z"/></svg>
+          飲食
+        </span>
+        <ul>
+          <li><b>每餐先吃蛋白質</b>：蛋、豆腐、豆漿、魚、雞肉。先吃夠蛋白質，才不會瘦到肌肉。</li>
+          <li><b>外食這樣選</b>：自助餐夾蛋白質＋青菜、便當去炸皮、湯麵少喝湯。含糖飲料改無糖或水——胃口變小的現在，正是戒糖飲最容易成功的時機。</li>
+        </ul>
+      </div>
+
+      <div class="blk blk-move">
+        <span class="blk-head">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="26" cy="9" r="4"/><path d="M25 14 L22 26"/><path d="M24.5 17.5 L31 21.5 M24.5 17.5 L17 20"/><path d="M22 26 L28.5 37 M22 26 L16 37"/></svg>
+          運動
+        </span>
+        <ul>
+          <li><b>每天走路 30 分鐘</b>，可以拆成 3 次、每次 10 分鐘。走得到、走得久比走得快重要。</li>
+        </ul>
+      </div>
+
+      <div class="blk blk-rx">
+        <span class="blk-head">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="19" y="6" width="10" height="25" rx="4"/><path d="M24 31 L24 39"/><path d="M19 14 L29 14"/></svg>
+          藥物
+        </span>
+        <ul>
+          <li><b>每週固定同一天打</b>，肚皮、大腿、上臂輪流換位置。打針日在手機行事曆設提醒。</li>
+          <li><b>想吐的時候</b>：吃清淡、少量、避油膩，通常會越來越輕。副作用太不舒服，回來跟醫師討論——劑量可以商量，不要自己停藥。</li>
+        </ul>
+      </div>
+
+      <div class="wins">
+        <div class="wins-title">本週三個任務——做到就打勾，回診結算戰績</div>
+        <label><input type="checkbox"> 每餐都先吃了蛋白質</label>
+        <label><input type="checkbox"> 走路 30 分鐘，達成 5 天以上</label>
+        <label><input type="checkbox"> 打針日準時，沒有漏打</label>
+        <div class="streak-row">
+          <span class="streak-chip"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M24 4 C28 14 36 16 36 28 C36 36 31 42 24 42 C17 42 12 36 12 28 C12 22 15 18 17 15 C17 21 20 23 22 23 C20 17 21 9 24 4 Z"/></svg>連續打針不中斷 <b>2 週</b></span>
+          <span class="streak-chip"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M24 4 C28 14 36 16 36 28 C36 36 31 42 24 42 C17 42 12 36 12 28 C12 22 15 18 17 15 C17 21 20 23 22 23 C20 17 21 9 24 4 Z"/></svg>戒糖飲挑戰 <b>9 天</b></span>
+        </div>
+      </div>
+
+      <div class="sheet-foot">
+        <div class="flag-line">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M15 7 L15 41"/><path d="M15 9 L34 13.5 L15 20 Z" fill="currentColor" stroke="none"/></svg>
+          <span>吐到喝不下水、上腹劇痛、皮膚眼白變黃、心悸冒冷汗手抖、小便量變少——不要等回診，直接聯絡診所。</span>
+        </div>
+        <div class="next-visit td-num">下次回診：2026-09-05（六）上午 · 有問題隨時打電話，不用等回診日</div>
+      </div>
+    </div>
+    <p class="mock-note">※ 視覺示意稿，姓名與日期為虛構占位。</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">下一步</div>
+    <h2>方向確認後</h2>
+    <ol class="next-steps">
+      <li><b>醫師定調</b>：高飽和配色的上限（診間列印效果也要試）、「關卡／魔王關／戰績」的遊戲化用語病人接受度、連勝與徽章要不要成為固定欄位。</li>
+      <li><b>樣式落地</b>：把定案的顏色與字體寫成 <code>design-tokens</code> 進 repo，之後衛教單與網站共用同一套。</li>
+      <li><b>做第一張真的</b>：用 S1 審定內容產出可列印的 A4 版與手機可讀的 HTML 版，門診實際發給病人試用，收回饋再修。</li>
+    </ol>
+  </section>
+
+</div>
