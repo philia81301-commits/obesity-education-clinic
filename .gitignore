@@ -1,0 +1,10 @@
+desktop.ini
+*.tmp
+~$*
+.env
+*.key
+credentials.*
+# 臨床/院內資料檔不進公開 repo（原始資料留在 OneDrive）
+*.xlsx
+*.csv
+*.docx
