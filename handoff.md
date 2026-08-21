@@ -30,4 +30,4 @@
 ## 🕐 最後更新
 - 時間：2026-08-22（M 冊 session 收工：M 冊審定完成＋50 歲分組分析）
 - 更新者：Claude Code（Fable 5）@ DESKTOP-LVSV9Q5
-- Git push：待推
+- Git push：✅ 已推（36eb013）
