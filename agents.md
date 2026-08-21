@@ -17,7 +17,9 @@
 obesity-education-clinic/
 ├── agents.md          # 本檔（專案藍圖）
 ├── handoff.md         # 交接檔
-├── content/           # 衛教內容體系（待建）
+├── content/
+│   ├── index.md       # 體系總覽：冊目錄、模組編碼、一頁組裝規則
+│   └── 01-起始期.md   # S1 草稿（待審）
 └── rdq/
     └── RDQ-spec-glp1-education-system-20260822.md   # 需求規格卡
 ```
