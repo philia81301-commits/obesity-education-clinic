@@ -28,4 +28,4 @@
 ## 🕐 最後更新
 - 時間：2026-08-22
 - 更新者：Claude Code（Fable 5）@ DESKTOP-LVSV9Q5
-- Git push：待推
+- Git push：✅ 已推（009a2b5）
