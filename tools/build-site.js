@@ -247,7 +247,10 @@ for (const b of [...BOOKS, ...REFS]) {
 
 // 衛教單（直接複製既有 A4 HTML）
 const SHEETS = [
-  { file: '衛教單-S1起始期-A4.html', out: 's1-a4.html', title: 'S1 起始期 A4 衛教單' },
+  { file: '衛教單-S1起始期-A4.html', out: 's1-a4.html', title: 'S1 起始期 A4 衛教單',
+    desc: '第 1 關：蛋白質優先、水分、外食選擇＋走路 30 分鐘＋打針基本功與想吐時的因應。' },
+  { file: '衛教單-S2減重期-A4.html', out: 's2-a4.html', title: 'S2 減重期 A4 衛教單',
+    desc: '第 2 關：蛋白質不鬆懈、主食減量、外食公式＋肌力訓練與「短而喘」＋升劑量與頭暈因應。' },
 ];
 const sheetLinks = [];
 for (const s of SHEETS) {
@@ -286,7 +289,7 @@ const home = page({
 
   ${sheetLinks.length ? `<div class="sec">診間可列印衛教單（A4）</div>
   <div class="cards">
-    ${sheetLinks.map(s => cardHtml('sheet', 'A4 可列印', s.title, '一頁式個人化衛教單：飲食／運動／藥物三區塊＋本週任務＋紅旗症狀。開啟後直接列印。', `sheets/${s.out}`)).join('\n    ')}
+    ${sheetLinks.map(s => cardHtml('sheet', 'A4 可列印', s.title, s.desc || '一頁式衛教單：飲食／運動／藥物三區塊＋本週任務＋紅旗症狀。開啟後直接列印。', `sheets/${s.out}`)).join('\n    ')}
   </div>` : ''}
 
   <div class="warn">
