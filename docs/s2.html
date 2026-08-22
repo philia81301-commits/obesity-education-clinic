@@ -26,10 +26,11 @@ a{color:var(--rx)}
 /* 頁首 */
 .top{border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);
   position:sticky;top:0;z-index:9;backdrop-filter:blur(6px)}
-.top .wrap{display:flex;align-items:center;gap:14px;height:56px;font-size:14px}
+.top .wrap{display:flex;align-items:center;gap:14px;height:62px;font-size:14.5px}
 .top a{color:var(--muted);text-decoration:none}
 .top a:hover{color:var(--ink)}
-.top .home{font-weight:700;color:var(--ink)}
+.top .home{font-family:"LXGW WenKai TC","DFKai-SB",serif;
+  font-weight:700;color:var(--ink);font-size:21px;letter-spacing:.02em}
 .top .sp{flex:1}
 
 /* hero */
@@ -93,7 +94,7 @@ th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 .toc-k a:hover{color:var(--move);text-decoration:underline}
 
 /* 錨點跳轉時避開黏頂的頁首 */
-article h2,article h3{scroll-margin-top:70px}
+article h2,article h3{scroll-margin-top:76px}
 
 /* 回到頂端 */
 .totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;
@@ -112,6 +113,9 @@ footer b{color:var(--ink)}
   padding:13px 17px;font-size:13.5px;margin:20px 0;color:#7A2016}
 
 @media(max-width:640px){
+  .top .wrap{height:56px;gap:10px}
+  .top .home{font-size:18px}
+  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名 */
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
@@ -125,7 +129,7 @@ footer b{color:var(--ink)}
 <nav class="top"><div class="wrap">
   <a class="home" href="./">GLP-1 減重衛教</a>
   <span class="sp"></span>
-  <a href="./">總覽</a><span style="color:#C9C9BA">/</span><span>減重期</span>
+  <span class="crumb"><a href="./">總覽</a><span style="color:#C9C9BA"> / </span>減重期</span>
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 <div class="wrap"><article><h1 id="S2減重期體重穩定下降期">S2 減重期（體重穩定下降期）</h1>
