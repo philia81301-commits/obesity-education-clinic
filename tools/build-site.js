@@ -251,6 +251,8 @@ const SHEETS = [
     desc: '第 1 關：蛋白質優先、水分、外食選擇＋走路 30 分鐘＋打針基本功與想吐時的因應。' },
   { file: '衛教單-S2減重期-A4.html', out: 's2-a4.html', title: 'S2 減重期 A4 衛教單',
     desc: '第 2 關：蛋白質不鬆懈、主食減量、外食公式＋肌力訓練與「短而喘」＋升劑量與頭暈因應。' },
+  { file: '衛教單-S3停滯期-A4.html', out: 's3-a4.html', title: 'S3 停滯期 A4 衛教單',
+    desc: '魔王關：先盤點不節食、抗餓餐盤＋每天 10 分鐘核心菜單＋飢餓感三招（劑量可談、15 分鐘法、宵夜三道防線）。' },
 ];
 const sheetLinks = [];
 for (const s of SHEETS) {

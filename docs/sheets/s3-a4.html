@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S3 停滯期衛教單（A4）</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+  /* ===== v2.1 配色（對比增強版；紅色只給紅旗） ===== */
+  :root {
+    --ink: #21281F;
+    --muted: #66705F;
+    --line: #D8D8CC;
+    /* soft 底色的明度刻意拉開（灰階 243／231／218），
+       黑白印表機才分得出飲食／運動／藥物三塊；主色不變 */
+    --diet: #C2620A;  --diet-soft: #FDF1E2;
+    --move: #0A8A4D;  --move-soft: #D7F0E0;
+    --rx:   #3563C9;  --rx-soft:   #CDDBF5;
+    --flag: #C82D1B;
+    --gold: #9A6B2A;  --gold-soft: #F5EDDD;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* 螢幕預覽：灰底置中；列印時全部歸零 */
+  body {
+    margin: 0;
+    background: #9A9A92;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ink);
+  }
+
+  /* ===== 診間列印設定 =====
+     紙張：A4 直式 210×297mm，@page margin 設 0，
+     安全邊界改由 .sheet 的 padding 控制（上下 11mm、左右 12mm），
+     一般雷射印表機（實體最小邊界約 4–5mm）都印得完整。 */
+  @page { size: A4 portrait; margin: 0; }
+
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 24px auto;
+    padding: 11mm 12mm;
+    background: #FFFFFF;
+    box-shadow: 0 12px 40px rgba(0,0,0,.35);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ===== 底紋 F：能量斜紋（右上角淡出，濃度 .085 不干擾文字） ===== */
+  .sheet::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; opacity: .085;
+    background: repeating-linear-gradient(-58deg,
+      transparent 0 26px, var(--diet) 26px 34px,
+      transparent 34px 44px, var(--rx) 44px 47px);
+    -webkit-mask-image: radial-gradient(120% 90% at 100% 0%, #000 0%, transparent 62%);
+            mask-image: radial-gradient(120% 90% at 100% 0%, #000 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .sheet > * { position: relative; z-index: 1; }
+
+  /* 旅程路徑：五關進度點（本冊亮到第 1 關） */
+  .path { height: 8.6mm; margin: 0 0 1.6mm; }
+  .path svg { width: 100%; height: 100%; display: block; }
+
+  @media print {
+    body { background: #FFFFFF; }
+    .sheet { margin: 0; box-shadow: none; width: 210mm; height: 297mm; overflow: hidden; }
+    .toolbar { display: none !important; }
+  }
+
+  /* 螢幕上的列印提示列（不會被印出來） */
+  .toolbar {
+    max-width: 210mm; margin: 16px auto 0; padding: 10px 16px;
+    background: #FFFDF5; border-radius: 8px; font-size: 13px; line-height: 1.7;
+    color: #444;
+  }
+  .toolbar b { color: #000; }
+  .toolbar button {
+    font: inherit; font-weight: 700; color: #fff; background: var(--move);
+    border: 0; border-radius: 6px; padding: 4px 18px; cursor: pointer; margin-right: 12px;
+  }
+
+  /* ===== 版面（全部 mm / pt，列印穩定） ===== */
+  h1, .kai { font-family: "LXGW WenKai TC", "DFKai-SB", "KaiTi", "Noto Sans TC", serif; }
+
+  .head {
+    display: flex; align-items: baseline; gap: 4mm; flex-wrap: wrap;
+    border-bottom: 0.7mm solid var(--ink);
+    padding-bottom: 2.5mm; margin-bottom: 4mm;
+  }
+  h1 { font-size: 17pt; font-weight: 700; margin: 0; letter-spacing: .04em; }
+  .level {
+    background: var(--gold-soft); color: var(--gold);
+    border-radius: 99px; padding: 0.5mm 4mm;
+    font-size: 9.5pt; font-weight: 700; letter-spacing: .06em;
+  }
+  .fill-row { margin-left: auto; font-size: 10pt; display: flex; gap: 4mm; }
+  .fill u {
+    text-decoration: none; border-bottom: 0.35mm solid var(--ink);
+    display: inline-block; min-width: 16mm; text-align: center; color: var(--muted);
+  }
+  .fill u.wide { min-width: 24mm; }
+
+  /* S3 模組數較多，區塊間距與行距略收緊以壓在一頁內 */
+  .blk { margin-bottom: 2.8mm; }
+  .blk-head {
+    display: inline-flex; align-items: center; gap: 2mm;
+    font-weight: 700; font-size: 11pt; letter-spacing: .08em;
+    padding: 0.8mm 4.5mm 0.8mm 3mm; border-radius: 99px; margin-bottom: 1.8mm;
+  }
+  .blk-head svg { width: 4.6mm; height: 4.6mm; }
+  .b-diet .blk-head { background: var(--diet-soft); color: var(--diet); }
+  .b-move .blk-head { background: var(--move-soft); color: var(--move); }
+  .b-rx   .blk-head { background: var(--rx-soft);   color: var(--rx); }
+
+  .blk ul { margin: 0; padding-left: 5.5mm; font-size: 10.5pt; line-height: 1.56; }
+  .blk li { margin-bottom: 1.2mm; }
+  .blk li > b { font-weight: 700; }
+
+  /* 核心菜單專區（S3 重點模組） */
+  .core {
+    border: 0.4mm solid var(--move); border-radius: 2.5mm;
+    background: var(--move-soft); padding: 2mm 4mm 2.2mm; margin: 1.5mm 0 0;
+  }
+  .core-t { font-weight: 700; font-size: 10pt; color: var(--move); margin-bottom: 1.2mm; }
+  .core-t span { font-weight: 400; font-size: 8.8pt; color: var(--muted); }
+  .core-g {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.8mm 5mm;
+    font-size: 9.3pt; line-height: 1.45;
+  }
+  .core-g b { display: inline; margin-right: 1.5mm; }
+  .core-g i { font-style: normal; color: var(--muted); font-size: 8.6pt; }
+  .core-n { font-size: 9pt; color: var(--muted); margin-top: 1.2mm; }
+
+  .quote {
+    font-family: "LXGW WenKai TC", "DFKai-SB", "KaiTi", serif;
+    font-size: 11pt; line-height: 1.6;
+    background: var(--gold-soft); border-radius: 2.5mm;
+    padding: 2.5mm 5mm; margin: 0 0 3.5mm;
+  }
+
+  .wins {
+    background: #F1F1E6; border-radius: 2.5mm;
+    padding: 2.5mm 5mm 2mm; margin-bottom: 3.5mm; font-size: 10pt;
+  }
+  .wins-title { font-weight: 700; margin-bottom: 1mm; letter-spacing: .04em; }
+  .wins-title span { font-weight: 400; color: var(--muted); font-size: 9pt; }
+  .win { display: flex; align-items: baseline; gap: 2.5mm; margin-bottom: 0.8mm; }
+  .box {
+    width: 3.6mm; height: 3.6mm; border: 0.4mm solid var(--ink);
+    border-radius: 0.8mm; flex-shrink: 0; position: relative; top: 0.5mm;
+  }
+  .streaks { display: flex; gap: 3mm; margin-top: 1.5mm; }
+  .streak {
+    display: inline-flex; align-items: baseline; gap: 1.5mm;
+    background: var(--gold-soft); border-radius: 99px;
+    padding: 0.4mm 3.5mm; font-size: 9pt;
+  }
+  .streak b { color: var(--gold); font-variant-numeric: tabular-nums; }
+  .streak u {
+    text-decoration: none; border-bottom: 0.3mm solid var(--gold);
+    min-width: 7mm; display: inline-block;
+  }
+
+  .spacer { flex: 1; }
+
+  .foot {
+    border-top: 0.4mm solid var(--line);
+    padding-top: 2.5mm; font-size: 9.5pt; line-height: 1.55;
+  }
+  .flag-line { color: var(--flag); font-weight: 500; display: flex; gap: 2mm; }
+  .flag-line svg { width: 3.8mm; height: 3.8mm; flex-shrink: 0; margin-top: 0.8mm; }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">列印</button>
+  診間列印設定：紙張 <b>A4 直式</b>、邊界 <b>無（或預設）</b>、縮放 <b>100%（實際大小）</b>、務必勾選 <b>背景圖形</b>（否則色塊印不出來）。黑白印表機也可：色塊會轉成可區分的深淺灰。
+</div>
+
+<div class="sheet">
+
+  <div class="head">
+    <h1>你的這一週</h1>
+    <span class="level">魔王關 · 停滯期</span>
+    <span class="fill-row">
+      <span class="fill">姓名 <u class="wide">　</u></span>
+      <span class="fill">第 <u style="min-width:8mm">　</u> 週</span>
+      <span class="fill">本週劑量 <u class="wide">　</u></span>
+    </span>
+  </div>
+
+  <div class="path">
+    <svg viewBox="0 0 560 32" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M8 24 C90 12 170 30 250 19 S 430 11 552 21" fill="none"
+            stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="1 7" stroke-linecap="round"/>
+      <circle cx="8"   cy="24" r="3.4" fill="var(--move)" opacity=".45"/>
+      <circle cx="144" cy="20" r="3.4" fill="var(--move)" opacity=".45"/>
+      <circle cx="280" cy="18" r="6.5" fill="var(--move)"/>
+      <circle cx="280" cy="18" r="9.5" fill="none" stroke="var(--move)" stroke-width="1.2" opacity=".5"/>
+      <circle cx="416" cy="15" r="3.4" fill="none" stroke="var(--gold)" stroke-width="1.6"/>
+      <circle cx="552" cy="21" r="3.4" fill="none" stroke="var(--gold)" stroke-width="1.6"/>
+      <text x="280" y="6" font-size="8" fill="#0A8A4D" text-anchor="middle" font-family="Noto Sans TC, sans-serif" font-weight="700">你在這裡 · 魔王關</text>
+    </svg>
+  </div>
+
+  <p class="quote">「體重卡住<b>不是你失敗，是身體的賀爾蒙在踩煞車</b>——每一個減重成功的人都經歷過這一段。數字沒動，不代表沒進步：體脂肪和腰圍常常還在降。<b>撐過停滯期的人才進得了維持期。</b>」</p>
+
+  <div class="blk b-diet">
+    <span class="blk-head">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="24" cy="33" rx="16" ry="5"/><path d="M24 11 C29 11 31.5 17 31.5 21.5 C31.5 26 28 29 24 29 C20 29 16.5 26 16.5 21.5 C16.5 17 19 11 24 11 Z"/></svg>
+      飲食
+    </span>
+    <ul>
+      <li><b>先盤點，不要先節食</b>：回想最近一個月，<b>聚餐、應酬、喝酒是不是變多了？</b>含糖飲料、宵夜是不是悄悄回來了？回診時告訴我們一週幾次聚餐就好。</li>
+      <li><b>千萬不要用「吃更少」突破</b>：吃更少會讓身體把煞車踩得更死——代謝降更多、肌肉掉更快、餓得更兇，之後反彈也更大。蛋白質照樣吃夠，熱量不要再往下砍。</li>
+      <li><b>抗餓餐盤</b>：一樣的熱量，選「佔肚子」的吃法——蛋白質先吃（手掌大）、蔬菜堆半盤、加一碗清湯（不是濃湯）。菇類、蒟蒻、大番茄、深綠蔬菜體積大熱量低。<b>菜和蛋白質先吃，飯留最後。</b></li>
+    </ul>
+  </div>
+
+  <div class="blk b-move">
+    <span class="blk-head">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="26" cy="9" r="4"/><path d="M25 14 L22 26"/><path d="M24.5 17.5 L31 21.5 M24.5 17.5 L17 20"/><path d="M22 26 L28.5 37 M22 26 L16 37"/></svg>
+      運動
+    </span>
+    <ul>
+      <li><b>肌力訓練加到每週 2–3 次</b>，而且每兩週「變強一點」：深蹲多 2 下、寶特瓶換大罐、橋式多撐 5 秒。<b>有啞鈴或壺鈴可以進階</b>：抱在胸前深蹲、壺鈴硬舉、提著走路。肌肉多一點，停滯就短一點。</li>
+      <li><b>把步數找回來</b>：停滯期身體會偷偷「省電」，不自覺少走路。看手機步數，如果比之前少，先補回原本的量。</li>
+    </ul>
+
+    <div class="core">
+      <div class="core-t">每天 10 分鐘核心菜單　<span>四個動作各 30 秒、休息 30 秒、輪 2 圈</span></div>
+      <div class="core-g">
+        <div><b>① 橋式</b>躺著、膝蓋彎、屁股抬起夾緊<br><i>進階：單腳橋式</i></div>
+        <div><b>② 死蟲式</b>躺著、對側手腳慢慢伸直再收回<br><i>腰貼地、不拱起</i></div>
+        <div><b>③ 鳥狗式</b>四足跪姿、對側手腳伸直<br><i>肚子收緊、身體不晃</i></div>
+        <div><b>④ 棒式</b>手肘撐地、身體一直線<br><i>做不來先用膝蓋著地版</i></div>
+      </div>
+      <div class="core-n">做的時候<b>正常呼吸、不要憋氣</b>；腰會痛就停下來，回診時告訴醫師。</div>
+    </div>
+  </div>
+
+  <div class="blk b-rx">
+    <span class="blk-head">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="19" y="6" width="10" height="25" rx="4"/><path d="M24 31 L24 39"/><path d="M19 14 L29 14"/></svg>
+      藥物與飢餓感
+    </span>
+    <ul>
+      <li><b>餓回來了？這是預期內的事</b>：不代表藥沒效——體重下降後飢餓賀爾蒙本來就會反撲。回診告訴醫師餓的程度和時間，<b>劑量和作法可以調整</b>；不要自己停藥或自己加藥。</li>
+      <li><b>分辨「真的餓」和「嘴饞」</b>：真餓是慢慢來的、什麼都吃得下；嘴饞是突然的、只想吃炸的甜的。分不清就用<b>「15 分鐘法」</b>——先喝水、離開廚房做別的事 15 分鐘。真餓不會消失，就吃蛋白質或低甜度水果（蓮霧、番茄、芭樂、蘋果）；嘴饞多半會過去。</li>
+      <li><b>晚上最容易破功，三道防線</b>：① 晚餐蛋白質吃夠 ② 家裡不囤零食（要吃得出門買）③ 提早半小時上床——熬夜的人餓得更兇。</li>
+    </ul>
+  </div>
+
+  <div class="wins">
+    <div class="wins-title">本週三個任務 <span>——做到就打勾，回診一起結算戰績</span></div>
+    <div class="win"><span class="box"></span>核心菜單 10 分鐘，完成 5 天以上</div>
+    <div class="win"><span class="box"></span>肌力訓練完成 2–3 次，而且比上週重一點</div>
+    <div class="win"><span class="box"></span>這週聚餐 <u style="border-bottom:.3mm solid var(--ink);min-width:9mm;display:inline-block;text-decoration:none">　</u> 次、含糖飲 <u style="border-bottom:.3mm solid var(--ink);min-width:9mm;display:inline-block;text-decoration:none">　</u> 杯、宵夜 <u style="border-bottom:.3mm solid var(--ink);min-width:9mm;display:inline-block;text-decoration:none">　</u> 次（回診帶來）</div>
+    <div class="streaks">
+      <span class="streak">連續打針不中斷 <b><u>　</u> 週</b></span>
+      <span class="streak">核心訓練連續 <b><u>　</u> 天</b></span>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="foot">
+    <div class="flag-line">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M15 7 L15 41"/><path d="M15 9 L34 13.5 L15 20 Z" fill="currentColor" stroke="none"/></svg>
+      <span><b>出現以下情況不要等回診，直接聯絡診所或就醫</b>：吐到完全喝不下水、持續上腹或右上腹劇痛（可能痛到背後）、皮膚眼白變黃、心悸冒冷汗手抖、小便量明顯變少。</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
