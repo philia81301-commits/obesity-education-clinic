@@ -50,5 +50,5 @@
 
 - 時間：2026-08-25（網站上線＋六張衛教單完成＋閱讀體驗調校）
 - 更新者：Claude Code（Fable 5）@ DESKTOP-LVSV9Q5
-- Git push：待推（收工流程回填）
+- Git push：✅ 已推（b6dfd75）
 - L3 Obsidian：✅ 已寫 `2ndBrain/obesity-education-clinic/專案工作流程.md`（完整脈絡、決策紀錄、文獻查證、踩坑筆記都在那）
