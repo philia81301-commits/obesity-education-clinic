@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>高纖低 GI 早餐指南｜GLP-1 減重衛教</title>
+<meta name="description" content="台式早餐地雷表與可選表、三場景組合、GI 機轉；含三個「假健康」陷阱。">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ink:#21281F; --muted:#66705F; --line:#DFDFD4; --paper:#FBFAF4;
+  --diet:#C2620A; --diet-soft:#FCE9D4;
+  --move:#0A8A4D; --move-soft:#DCF3E5;
+  --rx:#3563C9;   --rx-soft:#E1E9FB;
+  --flag:#C82D1B;
+  --gold:#9A6B2A; --gold-soft:#F5EDDD;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.75;
+  background-image:linear-gradient(180deg,#fff 0,var(--paper) 420px)}
+.kai{font-family:"LXGW WenKai TC","DFKai-SB",serif}
+a{color:var(--rx)}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px}
+
+/* 頁首 */
+.top{border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);
+  position:sticky;top:0;z-index:9;backdrop-filter:blur(6px)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:56px;font-size:14px}
+.top a{color:var(--muted);text-decoration:none}
+.top a:hover{color:var(--ink)}
+.top .home{font-weight:700;color:var(--ink)}
+.top .sp{flex:1}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:"LXGW WenKai TC",serif;font-size:32px;margin:0 0 10px;letter-spacing:.02em}
+.hero p{margin:0;color:var(--muted);font-size:15px;max-width:62ch}
+.pill{display:inline-block;background:var(--gold-soft);color:var(--gold);
+  border-radius:99px;padding:2px 13px;font-size:12.5px;font-weight:700;letter-spacing:.06em;margin-bottom:12px}
+
+/* 卡片 */
+.sec{margin:34px 0 10px;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:16px}
+.card{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;text-decoration:none;color:inherit;transition:.16s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.09);border-color:#C9C9BA}
+.card .lv{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--move)}
+.card.boss .lv{color:var(--flag)}
+.card.ref .lv{color:var(--gold)}
+.card h3{margin:5px 0 7px;font-size:18px;font-family:"LXGW WenKai TC",serif}
+.card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.65}
+.card::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--move)}
+.card.boss::after{background:var(--flag)}
+.card.ref::after{background:var(--gold)}
+.card.sheet::after{background:var(--diet)}
+.card.sheet .lv{color:var(--diet)}
+
+/* 內文 */
+article{background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:34px 40px 44px;margin:26px 0 40px}
+article h1{font-family:"LXGW WenKai TC",serif;font-size:27px;margin:0 0 6px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+article h2{font-family:"LXGW WenKai TC",serif;font-size:20px;margin:34px 0 10px;
+  padding-left:11px;border-left:5px solid var(--move)}
+article h3{font-size:16.5px;margin:24px 0 6px;color:var(--diet);letter-spacing:.01em}
+article h4{font-size:14.5px;margin:16px 0 4px}
+article p{margin:.5em 0}
+article ul,article ol{padding-left:1.35em;margin:.5em 0}
+article li{margin:.3em 0}
+article blockquote{margin:16px 0;padding:12px 18px;background:var(--gold-soft);
+  border-radius:8px;color:#5A4520;font-size:14px}
+article hr{border:0;border-top:1px solid var(--line);margin:30px 0}
+article code{background:#F0F0E7;border-radius:4px;padding:1px 5px;font-size:.9em}
+article strong{font-weight:700}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#F4F4EC;font-weight:700;white-space:nowrap}
+
+/* 頁尾 */
+footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0 46px;
+  font-size:13px;color:var(--muted)}
+footer b{color:var(--ink)}
+.warn{background:#FDECEA;border-left:4px solid var(--flag);border-radius:8px;
+  padding:13px 17px;font-size:13.5px;margin:20px 0;color:#7A2016}
+
+@media(max-width:640px){
+  .hero h1{font-size:26px}
+  article{padding:24px 20px 32px;border-radius:10px}
+  article h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="home" href="./">GLP-1 減重衛教</a>
+  <span class="sp"></span>
+  <a href="./">總覽</a><span style="color:#C9C9BA">/</span><span>高纖低 GI 早餐指南</span>
+  <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
+</div></nav>
+<div class="wrap"><article><h1 id="共用參考高纖低GI早餐指南">共用參考：高纖低 GI 早餐指南</h1>
+<blockquote>跨冊共用（S2-D7 為主要入口；S3／M 冊引用）。狀態：<strong>已審定</strong>（2026-08-24）。<br>GI 以葡萄糖=100 為基準；≤55 低、56–69 中、≥70 高。台式特有品項（蛋餅、蘿蔔糕、燒餅）無正式 GI 實測值，依原料精緻程度與營養師共識判定。同品項 GI 因品種烹調有區間，衛教呈現以「低／中／高」分級為原則。</blockquote>
+<h2 id="地雷表衛教明講不要買">地雷表（衛教明講「不要買」）</h2>
+<div class="tw"><table><thead><tr><th>品項</th><th>問題</th><th>一句話原因</th></tr></thead><tbody><tr><td>白吐司／麵包類</td><td>GI 約 75（高）</td><td>精緻麵粉、纖維近零，升糖快又不耐餓</td></tr><tr><td>糯米飯糰</td><td>GI 約 75–98（高）</td><td>支鏈澱粉消化極快；內餡高鈉高油，一顆約 619 kcal</td></tr><tr><td>燒餅油條（＋米漿）</td><td>精緻澱粉×油炸×液態糖</td><td>一套約 500 kcal，三重疊加</td></tr><tr><td>蘿蔔糕</td><td>在來米粉＋煎油</td><td>本質是澱粉煎油，蘿蔔少纖維少</td></tr><tr><td>含糖豆漿／奶茶／米漿</td><td>液態糖</td><td>空腹吸收最快，無咀嚼無飽足</td></tr><tr><td><strong>即食麥片飲／三合一麥片</strong></td><td><strong>GI 約 79–83（≈白麵包）</strong></td><td>預糊化＋輾壓破壞澱粉結構——掛燕麥之名的<strong>假健康陷阱</strong></td></tr><tr><td><strong>烤地瓜（超商烤番薯）</strong></td><td><strong>GI 可達 82–94</strong></td><td>乾熱烘烤使澱粉裂解，與蒸的差近一倍</td></tr><tr><td>白粥配醬菜</td><td>糊化極高＋無蛋白質</td><td>糖尿病前期／糖尿病族群最高風險組合</td></tr></tbody></table></div>
+<p><strong>蛋餅（查證後定位：次選、非地雷）</strong>：皮屬麵食但單張醣量僅約 21 g，低於飯糰或蘿蔔糕，且必含蛋。依「麵食盡量少」立場：不主動推薦，是早餐店內<strong>相對最不雷</strong>的澱粉；先吃蛋再吃皮、不加醬。</p>
+<h2 id="可選表">可選表</h2>
+<div class="tw"><table><thead><tr><th>品項</th><th>GI</th><th>纖維／蛋白質重點</th></tr></thead><tbody><tr><td>無糖豆漿</td><td>34（低）</td><td>蛋白質 7 g/240ml；超商 400ml 約 13–14 g</td></tr><tr><td>傳統大燕麥片／鋼切燕麥</td><td>42–57（低）</td><td>β-葡聚醣（可溶性纖維）豐富；<strong>只推大片／鋼切，不可即溶</strong></td></tr><tr><td>隔夜燕麥（冷泡）</td><td>≤55</td><td>未加熱不糊化＋抗性澱粉保留，比煮的更低</td></tr><tr><td>蒸／水煮地瓜</td><td>44–63（低–中）</td><td>纖維 2.4 g/100g；<strong>指名「蒸的」</strong>；蒸後冷藏抗性澱粉再增</td></tr><tr><td>全麥吐司（合規標示）</td><td>51–69（差異大）</td><td>見下方「全麥標示陷阱」</td></tr><tr><td>水煮玉米</td><td>52（中低）</td><td>完整顆粒消化慢</td></tr><tr><td>無糖希臘優格／無糖優酪乳</td><td>約 35（低）</td><td>蛋白質 8–10 g/100g（優格）；配料加堅果莓果補纖維</td></tr><tr><td>茶葉蛋／水煮蛋</td><td>無醣</td><td>7 g/顆，最方便的一份蛋白質</td></tr><tr><td>原味堅果小包</td><td>極低</td><td>纖維＋好油，撒優格或當配料</td></tr></tbody></table></div>
+<p><strong>「全麥」標示陷阱</strong>：依衛福部規範，全穀占乾重 <strong>51%</strong> 即可標示「全麥」——市售合法全麥吐司可含近半精緻麵粉，多為白麵粉回添麩皮。挑選看成分表第一位是否「全粒粉」或認全穀標章。這正是「低 GI 替換只在自炊／嚴選情境提，外食直接教主食減量」立場的依據。</p>
+<h2 id="三場景組合">三場景組合</h2>
+<p><strong>① 超商</strong>：蒸地瓜（小）＋茶葉蛋×2＋無糖豆漿 400ml（蛋白質約 27 g）／無糖希臘優格＋堅果小包＋冷凍莓果（約 15 g）／生菜沙拉（醬減半）＋舒肥雞胸＋無糖豆漿（約 35 g，幾乎零升糖負荷，食量小者首選）。</p>
+<p><strong>② 傳統早餐店</strong>：<strong>首選：無糖豆漿大杯＋蔥蛋或荷包蛋×2，不點主食</strong>（約 22 g）／鹹豆漿不加油條＋蛋／次選：原味蛋餅加蛋不加醬，先吃蛋再吃皮／有生菜的店：里肌蛋吐司<strong>去一片吐司</strong>、生菜加倍、不抹美乃滋——培根火腿熱狗一律不點。</p>
+<p><strong>③ 在家 5 分鐘</strong>：隔夜燕麥（大燕麥 3 匙＋無糖豆漿 200ml＋奇亞籽，冷藏過夜，早上加莓果，約 13–15 g）／水煮蛋×2＋無糖豆漿＋前晚蒸好冷藏的小地瓜（約 21 g）／無糖希臘優格＋生燕麥片＋堅果碎／微波茶碗蒸（蛋 2 顆＋無糖豆漿打勻微波 3 分鐘）＋無糖拿鐵（約 20 g，噁心期最易入口）。</p>
+<p><strong>咖啡定位</strong>：黑咖啡隨餐可自由搭配（避免空腹單獨飲）；<strong>無糖拿鐵</strong>含牛奶約 240ml＝順便補 8 g 蛋白質，適合食量小者；風味糖漿拿鐵、奶茶不可。</p>
+<h2 id="醫師備註機轉與把關">醫師備註（機轉與把關）</h2>
+<ul>
+<li><strong>三支柱機轉，全部與週製劑同向</strong>（衛教可講「吃法幫針劑加分」）：①可溶性纖維（β-葡聚醣）增黏延緩胃排空、提升內源性 GLP-1 反應（AJCN RCT）②蛋白脂肪與醣共食刺激腸泌素、10g 乳清蛋白可降餐後血糖達 30% ③<strong>進食順序有實證</strong>：先菜與蛋白質後醣，餐後血糖 iAUC 降 <strong>73%</strong>（Shukla 2015, Diabetes Care，T2DM）</li>
+<li><strong>糖尿病前期／糖尿病（本院 36%）特別避免</strong>：白粥醬菜、燒餅油條米漿、任何含糖飲、即食麥片飲、烤地瓜單獨當早餐；「純澱粉＋無蛋白質」組合一律不可</li>
+<li>燕麥衛教必指名「傳統大片或鋼切」；地瓜必指名「蒸的」——這兩個是門診最常見的假健康踩雷點</li>
+</ul>
+<h2 id="出處">出處</h2>
+<ul>
+<li>Sydney University GI 資料庫：<a href="https://glycemicindex.com/" target="_blank" rel="noopener">https://glycemicindex.com/</a></li>
+<li>燕麥加工與升糖反應系統性回顧（Br J Nutr 2015）</li>
+<li>地瓜烹調與 GI（USDA ARS；PMC3205609）</li>
+<li>進食順序：Shukla 2015 Diabetes Care（PMC3882489）；妊娠糖尿病驗證（Front Nutr 2024）</li>
+<li>β-葡聚醣延緩胃排空 RCT（AJCN）；β-葡聚醣與 GLP-1 反應（PMC10949669）</li>
+<li>蛋白質共食降餐後血糖（PMC9370714；PMC8141680）</li>
+<li>衛福部全穀產品宣稱及標示原則；國健署全麥麵包挑選：<a href="https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=1425&amp;pid=15176" target="_blank" rel="noopener">https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=1425&amp;pid=15176</a></li>
+<li>糖尿病關懷基金會早餐指引；台式早餐組成分析（營養師專文）</li>
+</ul></article></div>
+<footer><div class="wrap">
+  <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
+  本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
+  原始碼與更新紀錄：<a href="https://github.com/philia81301-commits/obesity-education-clinic">GitHub</a>
+</div></footer>
+</body>
+</html>

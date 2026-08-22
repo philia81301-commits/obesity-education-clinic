@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>減重期｜GLP-1 減重衛教</title>
+<meta name="description" content="體重穩定下降期。食量最小、掉最順的黃金期，重點是「掉的是脂肪不是肌肉」。">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ink:#21281F; --muted:#66705F; --line:#DFDFD4; --paper:#FBFAF4;
+  --diet:#C2620A; --diet-soft:#FCE9D4;
+  --move:#0A8A4D; --move-soft:#DCF3E5;
+  --rx:#3563C9;   --rx-soft:#E1E9FB;
+  --flag:#C82D1B;
+  --gold:#9A6B2A; --gold-soft:#F5EDDD;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.75;
+  background-image:linear-gradient(180deg,#fff 0,var(--paper) 420px)}
+.kai{font-family:"LXGW WenKai TC","DFKai-SB",serif}
+a{color:var(--rx)}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px}
+
+/* 頁首 */
+.top{border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);
+  position:sticky;top:0;z-index:9;backdrop-filter:blur(6px)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:56px;font-size:14px}
+.top a{color:var(--muted);text-decoration:none}
+.top a:hover{color:var(--ink)}
+.top .home{font-weight:700;color:var(--ink)}
+.top .sp{flex:1}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:"LXGW WenKai TC",serif;font-size:32px;margin:0 0 10px;letter-spacing:.02em}
+.hero p{margin:0;color:var(--muted);font-size:15px;max-width:62ch}
+.pill{display:inline-block;background:var(--gold-soft);color:var(--gold);
+  border-radius:99px;padding:2px 13px;font-size:12.5px;font-weight:700;letter-spacing:.06em;margin-bottom:12px}
+
+/* 卡片 */
+.sec{margin:34px 0 10px;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:16px}
+.card{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;text-decoration:none;color:inherit;transition:.16s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.09);border-color:#C9C9BA}
+.card .lv{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--move)}
+.card.boss .lv{color:var(--flag)}
+.card.ref .lv{color:var(--gold)}
+.card h3{margin:5px 0 7px;font-size:18px;font-family:"LXGW WenKai TC",serif}
+.card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.65}
+.card::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--move)}
+.card.boss::after{background:var(--flag)}
+.card.ref::after{background:var(--gold)}
+.card.sheet::after{background:var(--diet)}
+.card.sheet .lv{color:var(--diet)}
+
+/* 內文 */
+article{background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:34px 40px 44px;margin:26px 0 40px}
+article h1{font-family:"LXGW WenKai TC",serif;font-size:27px;margin:0 0 6px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+article h2{font-family:"LXGW WenKai TC",serif;font-size:20px;margin:34px 0 10px;
+  padding-left:11px;border-left:5px solid var(--move)}
+article h3{font-size:16.5px;margin:24px 0 6px;color:var(--diet);letter-spacing:.01em}
+article h4{font-size:14.5px;margin:16px 0 4px}
+article p{margin:.5em 0}
+article ul,article ol{padding-left:1.35em;margin:.5em 0}
+article li{margin:.3em 0}
+article blockquote{margin:16px 0;padding:12px 18px;background:var(--gold-soft);
+  border-radius:8px;color:#5A4520;font-size:14px}
+article hr{border:0;border-top:1px solid var(--line);margin:30px 0}
+article code{background:#F0F0E7;border-radius:4px;padding:1px 5px;font-size:.9em}
+article strong{font-weight:700}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#F4F4EC;font-weight:700;white-space:nowrap}
+
+/* 頁尾 */
+footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0 46px;
+  font-size:13px;color:var(--muted)}
+footer b{color:var(--ink)}
+.warn{background:#FDECEA;border-left:4px solid var(--flag);border-radius:8px;
+  padding:13px 17px;font-size:13.5px;margin:20px 0;color:#7A2016}
+
+@media(max-width:640px){
+  .hero h1{font-size:26px}
+  article{padding:24px 20px 32px;border-radius:10px}
+  article h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="home" href="./">GLP-1 減重衛教</a>
+  <span class="sp"></span>
+  <a href="./">總覽</a><span style="color:#C9C9BA">/</span><span>減重期</span>
+  <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
+</div></nav>
+<div class="wrap"><article><h1 id="S2減重期體重穩定下降期">S2 減重期（體重穩定下降期）</h1>
+<blockquote>適用：劑量已爬升至治療劑量、食慾抑制明顯、體重穩定下降中的病人（約治療第 2 個月起）。<br>狀態：<strong>已審定</strong>（2026-08-22 醫師逐項審稿通過）。</blockquote>
+<hr>
+<h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
+<p><strong>這一冊要達成的事</strong>：在食量最小、減重最順的黃金期，把「掉的是脂肪、不是肌肉」做到位——蛋白質不鬆懈、阻力訓練上線、飲食品質升級。同時預告停滯期（賀爾蒙調控的正常生理反應），先打預防針，之後卡住才不會直接放棄。</p>
+<p>生理變化（講解用）：</p>
+<ul>
+<li>治療劑量下食慾抑制達高峰，<strong>熱量缺口大、肌肉流失風險最高的時期</strong>——這階段少做防護，停滯期會提早、更難撐過</li>
+<li>體重下降 → 瘦體素隨脂肪量減少而下降 → <strong>代謝適應（metabolic adaptation）啟動</strong>：靜態代謝率（RMR）除了隨體重與肌肉量減少而降低外，還會<strong>額外下降約 100–200 kcal/天</strong>；<strong>整體能量消耗（TEE）可比依新體重預期的低約 10–15%</strong>。運動與肌肉量是唯一能主動對抗的槓桿（依據：Leibel 1995 NEJM；Rosenbaum &amp; Leibel 2010；Fothergill 2016 Obesity。註：「BMR 下降 10–40%」為誤植——40% 無文獻出處，10–15% 是 TEE 的數字且大半來自活動能量消耗，連 Biggest Loser 極端個案 RMR 總降幅也僅約 23–25%）</li>
+<li>GLP-1 情境註記：tirzepatide 人體研究（Cell Metabolism 2025）顯示藥物治療下的代謝適應幅度與一般減重相近——講解時此段機轉照用，不需說「打針就沒有代謝適應」</li>
+<li>對應第二大腦筆記：肌肉是最大的耗能器官，維持 BMR 的三支柱＝蛋白質、阻力訓練、睡眠</li>
+<li>減重速度過快（每週 &gt;1–1.5% 體重）增加膽結石與肌肉流失風險——「穩」比「快」好，體重下降的速度來自<strong>正確的食物選擇＋運動搭配</strong>，不是硬餓出來</li>
+</ul>
+<hr>
+<h2 id="二飲食模組D">二、飲食模組（D）</h2>
+<h3 id="S2-D1蛋白質不能鬆懈">S2-D1 蛋白質不能鬆懈</h3>
+<ul>
+<li><strong>病人版</strong>：現在食量最小，最容易「蛋白質吃不夠、瘦到肌肉」。每餐第一口先吃蛋白質，一餐至少一個手掌大：蛋、豆腐、魚、雞肉。目標一樣是每公斤體重 <strong>1.2–1.5 公克</strong>，吃不下就用豆漿、無糖優格、水煮蛋當補充。</li>
+<li><strong>醫師備註</strong>：食慾抑制高峰期蛋白質達標率最差；優先確保蛋白質，總熱量其次。必要時評估體組成（InBody）追蹤肌肉量。具體採買清單見 S2-D6。</li>
+<li><strong>出處</strong>：肥胖治療期間蛋白質建議 1.2–1.5 g/kg/day（S1 已審定）</li>
+</ul>
+<h3 id="S2-D2主食減量麵食盡量少在地化飯麵食56外食73">S2-D2 主食減量、麵食盡量少（在地化：飯麵食 56%、外食 73%）</h3>
+<ul>
+<li><strong>病人版</strong>：外食很難點到糙米、全麥這類好主食，所以策略很簡單：<strong>飯量減半、麵食盡量少吃</strong>。麵吸湯又吸油、一碗很容易吃完，是最不划算的主食。主食少掉的份量，用蛋白質和蔬菜補飽。在家自己煮，才把白飯換成糙米或加燕麥。</li>
+<li><strong>醫師備註</strong>：醫師審定：外食情境低 GI 替換不切實際，主食策略改為「<strong>減量</strong>」；<strong>麵食盡量減少</strong>。門診問卷 56% 偏好飯麵食、73% 外食。減量後的飽足感由蛋白質＋纖維補（銜接 S2-D1、S2-D4）；低 GI 替換只在自炊情境提。</li>
+<li><strong>出處</strong>：本院 270 份問卷＋醫師審定 2026-08-22</li>
+</ul>
+<h3 id="S2-D3三餐定時餐間不進食">S2-D3 三餐定時，餐間不進食</h3>
+<ul>
+<li><strong>病人版</strong>：維持三餐定時，餐與餐之間不吃點心、不喝含糖飲料。讓胰島素在餐間有時間休息，身體才有機會燒脂肪。真的餓，先喝水，再檢查上一餐蛋白質有沒有吃夠。</li>
+<li><strong>醫師備註</strong>：延續 S1-D2 立場（不少量多餐）；餐間低胰島素窗口＝脂解窗口。「餓→先水→查蛋白質」是可執行的行為鏈。</li>
+<li><strong>出處</strong>：胰島素與脂解機轉（Lehninger 筆記）＋醫師審定立場</li>
+</ul>
+<h3 id="S2-D4外食配餐公式菜半盤蛋白質四分之一全穀四分之一">S2-D4 外食配餐公式：菜半盤、蛋白質四分之一、全穀四分之一</h3>
+<ul>
+<li><strong>病人版</strong>：自助餐、便當都用同一個公式：<strong>一半是蔬菜、四分之一是豆魚蛋肉、主食最多四分之一（飯減半、不點麵）</strong>。先夾菜再夾肉最後添飯，順序對了份量自然對。</li>
+<li><strong>醫師備註</strong>：餐盤法（211 概念）比算熱量可行；外食族 73% 的主力工具。主食格依 S2-D2 審定立場寫「減量」，不寫全穀替換。搭配 S1-D4 的選店原則使用。</li>
+<li><strong>出處</strong>：餐盤法飲食指導通則＋本院 270 份問卷</li>
+</ul>
+<h3 id="S2-D5吃太少的警訊">S2-D5 吃太少的警訊</h3>
+<ul>
+<li><strong>病人版</strong>：這個藥會讓你吃得下很少，但<strong>不是吃越少越好</strong>。出現這些情況表示吃太少了：明顯掉頭髮、整天沒力氣、怕冷、女性月經變亂。回診時告訴醫師，我們調整吃法，不是硬撐。</li>
+<li><strong>醫師備註</strong>：極低熱量攝取加速瘦體組織流失與代謝適應，反而縮短療效跑道；也是依從性中斷的前兆。詢問時主動篩掉髮、疲倦、月經史。</li>
+<li><strong>出處</strong>：極低熱量飲食風險通則（醫師審定 OK）</li>
+</ul>
+<h3 id="S2-D6高CP值蛋白質照著買就對了">S2-D6 高 CP 值蛋白質：照著買就對了</h3>
+<ul>
+<li><strong>病人版</strong>：食慾變小後，最怕「不小心把蛋白質也少吃了」。每餐<strong>先吃蛋白質，吃不下再放掉飯麵</strong>。最划算又方便的選擇：&lt;br&gt;◦ <strong>便利商店</strong>：即食雞胸肉 1 包、無糖豆漿 1 瓶、茶葉蛋 2 顆&lt;br&gt;◦ <strong>自助餐</strong>：清蒸魚或白斬雞＋加 1 顆滷蛋＋一格豆干&lt;br&gt;◦ <strong>在家</strong>：電鍋蒸雞胸、水煮蛋一次做好冰著、燙毛豆、板豆腐淋醬油膏&lt;br&gt;◦ <strong>完全吃不下的那天</strong>：至少喝完 1 瓶高蛋白無糖豆漿，或泡 1 匙乳清蛋白&lt;br&gt;不建議：香腸、火腿、培根——那是「油和鹽比蛋白質多」的加工肉。</li>
+<li><strong>醫師備註</strong>：完整比價總表與四場景清單見 <code>ref-高CP值蛋白質清單.md</code>。品質排序依國健署 107 年指南「豆 &gt; 魚 &gt; 蛋 &gt; 肉」。<strong>開立前確認 eGFR</strong>（CKD 3 期以上改依腎臟科建議個別化）；痛風病人豆製品安全（普林約 20 mg/100g，國健署有官方闢謠）、地雷是內臟蝦蟹貝啤酒糖飲、鯖魚罐頭急性期避免；乳清蛋白是補充不是取代正餐。</li>
+<li><strong>出處</strong>：食藥署營養成分資料庫＋國健署食物代換表／每日飲食指南（107 年版）＋國健署痛風闢謠＋衛福部加工肉品警訊（詳 ref 檔）</li>
+</ul>
+<h3 id="S2-D7早餐這樣吃高纖低GI蛋白質先醫師審定2026-08-24">S2-D7 早餐這樣吃：高纖、低 GI、蛋白質先（醫師審定 2026-08-24）</h3>
+<ul>
+<li><strong>病人版</strong>：食量變小，早餐每一口都要吃「最有用的」：<strong>先吃蛋白質</strong>（蛋、無糖豆漿、優格、雞胸肉），澱粉放最後、減半吃。&lt;br&gt;◦ <strong>超商</strong>：蒸地瓜（要蒸的，不要烤的）＋茶葉蛋＋無糖豆漿&lt;br&gt;◦ <strong>早餐店</strong>：無糖豆漿大杯＋兩顆蛋，不點主食（真想吃澱粉，選原味蛋餅不加醬）&lt;br&gt;◦ <strong>在家</strong>：前一晚泡好隔夜燕麥（<strong>傳統大片燕麥</strong>，不是即溶包）加無糖豆漿，早上配水煮蛋&lt;br&gt;<strong>不要買</strong>：飯糰、燒餅油條、蘿蔔糕、麵包、奶茶、含糖豆漿、<strong>沖泡麥片飲</strong>（它的升糖速度跟白麵包差不多）。</li>
+<li><strong>醫師備註</strong>：完整地雷表／可選表／GI 機轉見 <code>ref-高纖低GI早餐.md</code>。三個假健康陷阱必講：即溶麥片飲 GI 79–83≈白麵包、烤地瓜 GI 可達 82–94（蒸的 44–63）、市售「全麥」依法規全穀 51% 即可標示。進食順序有實證：先菜與蛋白質後醣，餐後血糖 iAUC −73%（Shukla 2015, Diabetes Care）——與週製劑延緩胃排空機轉同向，可講「吃法幫針劑加分」。糖尿病前期（本院 36%）另避白粥醬菜。蛋餅定位：次選非地雷、不主動推薦（維持麵食盡量少主軸）。</li>
+<li><strong>出處</strong>：Sydney University GI 資料庫＋Shukla 2015＋衛福部全穀標示原則（詳 ref 檔）</li>
+</ul>
+<hr>
+<h2 id="三運動模組E">三、運動模組（E）</h2>
+<h3 id="S2-E1阻力訓練上線每週2次在地化運動介入第二階段">S2-E1 阻力訓練上線：每週 2 次（在地化：運動介入第二階段）</h3>
+<ul>
+<li><strong>病人版</strong>：從這個月起，每週挑 2 天做肌力訓練，每次 20–30 分鐘：把 S1 學的動作加量——深蹲扶椅背改不扶、手拿裝水寶特瓶增加重量（有啞鈴或壺鈴更好）、橋式停留 5 秒、加上牆邊伏地挺身。肌肉是你的「代謝引擎」，練起來才守得住減重成果。</li>
+<li><strong>醫師備註</strong>：對應計畫書運動第二階段（4–12 週，每週 2 次阻力訓練）。動作沿用 S1-E3 四類（深蹲／椅上／地板核心／站立平衡）做漸進負重，不需要器材與教練即可起步。</li>
+<li><strong>出處</strong>：本院計畫書運動三階段介入策略＋醫師審定運動四類</li>
+</ul>
+<h3 id="S2-E2有氧升級走到微喘還能講話">S2-E2 有氧升級：走到「微喘還能講話」</h3>
+<ul>
+<li><strong>病人版</strong>：每天 30 分鐘的走路繼續，但把其中 3 天升級成<strong>快走到微喘、還能講話但沒辦法唱歌</strong>的程度。一週加總目標約 <strong>150 分鐘</strong>中等強度活動。湊不出時間？「更喘」的運動可以<strong>折半計算</strong>——看下一個模組（S2-E4）。</li>
+<li><strong>醫師備註</strong>：中等強度以談話測試（talk test）衛教最直觀；AMPK 活化促進脂肪酸氧化（可銜接機轉講解）。WHO 2020：每週 150–300 分鐘中等強度，<strong>或等效 75–150 分鐘高強度</strong>，且「每一分鐘都算數」（已取消 10 分鐘最短單位限制）——150 分鐘是標準線，達成路徑有彈性。</li>
+<li><strong>出處</strong>：WHO 2020 身體活動指引（醫師審定方向：標準保留，省時路徑見 S2-E4）</li>
+</ul>
+<h3 id="S2-E4沒時間運動短而喘也算數間歇與運動零食">S2-E4 沒時間運動？「短而喘」也算數（間歇與運動零食）</h3>
+<ul>
+<li><strong>病人版</strong>：150 分鐘不必一次做完，也不必都做很久——「短時間、有點喘」一樣有效，而且<strong>喘的運動 1 分鐘約可以抵快走 2 分鐘</strong>。三種開始方式：&lt;br&gt;①<strong>快慢交替走</strong>：快走 1 分鐘（喘到講話變吃力）→ 慢走 2 分鐘，做 5 回合約 15 分鐘，每週 3 次。&lt;br&gt;②<strong>爬樓梯當運動</strong>：通勤上班改走樓梯，一次快步爬 1–2 分鐘、爬到有點喘，一天累積 3 次就有幫助。&lt;br&gt;③<strong>膝蓋不好</strong>：改室內固定式腳踏車「快踩 1 分鐘、慢踩 2 分鐘」交替，不傷膝蓋。&lt;br&gt;強度對了的感覺是「<strong>喘到只能講短句</strong>」。剛開始先做 1–2 回合就好，慢慢加。</li>
+<li><strong>醫師備註</strong>：證據定位——HIIT 減脂與中等強度連續運動<strong>相當但省時約 60%</strong>（Wewege 2017, Obes Rev）；低量 HIIT（≤15 分/次）對脂肪量本身改善不顯著、但心肺適能／血糖／血壓改善明確（Sultana 2019, Sports Med）——GLP-1 已負責大部分減重，運動角色是保肌肉保心肺，<strong>衛教不寫「HIIT 減脂比較快」</strong>。VILPA／運動零食：不運動族群每天累積 3–4 分鐘生活型高強度（快步爬樓梯）與全因死亡率下降 26–30% 相關（Stamatakis 2022, Nature Medicine）——本院 59% 無運動習慣者的「零基礎入門層」。&lt;br&gt;<strong>安全篩檢（ACSM 流程）</strong>：久坐＋已知心血管／代謝／腎臟疾病或有症狀（胸悶、不明喘、暈厥）者，上高強度前先醫師評估；血壓 ≥160/100 先控制；無運動習慣者先 2–4 週中等強度適應再導入間歇，勿第一週就全力衝刺；增殖性視網膜病變、急性關節發炎期暫緩；GLP-1 進食極少或噁心期間避免空腹高強度、注意頭暈與補水（銜接 S2-R2）；合併 SU／胰島素者注意低血糖。<strong>HIIT 不取代阻力訓練</strong>（保肌主力仍是 S2-E1＋蛋白質）。膝關節炎首選固定式腳踏車或椅子輔助間歇（依審定立場不寫水中運動）。</li>
+<li><strong>出處</strong>：WHO 2020；Wewege 2017；Sultana 2019；Stamatakis 2022（Nat Med）；EASO 2021（HIIT Grade B，建議心血管風險評估後進行）；ACSM 運動前篩檢指引（醫師指示納入 2026-08-22）</li>
+</ul>
+<h3 id="S2-E3一週運動課表範例組裝用">S2-E3 一週運動課表範例（組裝用）</h3>
+<ul>
+<li><strong>病人版</strong>：一、三、五快走 30 分鐘（其中 1–2 天可改成 S2-E4 的快慢交替走 15 分鐘）；二、四肌力訓練 20 分鐘（深蹲＋橋式＋牆邊伏地挺身）；週末選一天散步或爬樓梯，一天完全休息。寫在手機行事曆，跟打針日排在一起。</li>
+<li><strong>醫師備註</strong>：此模組是給「要具體課表才會動」的病人的成品範例，可依關節狀況把快走換成 S1-E3 椅上／平衡組合或 S2-E4 的腳踏車間歇。</li>
+<li><strong>出處</strong>：由 S2-E1、S2-E2 組合</li>
+</ul>
+<hr>
+<h2 id="四藥物模組R">四、藥物模組（R）</h2>
+<h3 id="S2-R1升劑量後副作用會短暫回來">S2-R1 升劑量後副作用會短暫回來</h3>
+<ul>
+<li><strong>病人版</strong>：每次劑量往上調，前幾天可能又出現噁心、脹氣，通常幾天到兩週內會緩解——因應方法跟剛開始打針時一樣（清淡、吃慢、水喝夠）。一直不緩解或越來越嚴重，回診跟醫師說。</li>
+<li><strong>醫師備註</strong>：升量後 GI 症狀再現屬預期內；提前告知可大幅減少恐慌性自行停藥。因應模組沿用 S1-R2。</li>
+<li><strong>出處</strong>：劑量爬升期副作用型態（S1 已審定框架）</li>
+</ul>
+<h3 id="S2-R2頭暈不要硬撐想到低血糖也要想到低血壓">S2-R2 頭暈不要硬撐：想到低血糖，也要想到低血壓</h3>
+<ul>
+<li><strong>病人版</strong>：減重期頭暈有兩個常見原因，處理方式不同：&lt;br&gt;①<strong>低血糖</strong>（如果你同時在吃血糖藥）：心悸、冒冷汗、手抖、突然很餓——先吃 15 公克糖（約 3 顆方糖或半杯果汁），休息 15 分鐘再確認有沒有改善。&lt;br&gt;②<strong>低血壓</strong>（如果你同時在吃血壓藥）：站起來的時候頭暈、眼前發黑——先坐下，慢慢起身，在家量血壓記下來。&lt;br&gt;兩種情況都要<strong>回診時告訴醫師</strong>：體重下降後，血糖藥和血壓藥常常需要跟著減量。</li>
+<li><strong>醫師備註</strong>：GLP-1 單用低血糖風險低；合併 SU／胰島素者在熱量缺口＋運動量上升期風險升高，主動評估減量時機（15/15 法則衛教）。體重下降＋進食與水分攝取減少下，原劑量降壓藥易致姿勢性低血壓——囑咐居家血壓量測並攜紀錄回診，主動評估降壓藥減量。頭暈鑑別同時想低血糖與低血壓（醫師審定 2026-08-22）。</li>
+<li><strong>出處</strong>：低血糖處置通則＋合併用藥調整原則（醫師審定 OK）</li>
+</ul>
+<h3 id="S2-R3掉太快也要回報">S2-R3 掉太快也要回報</h3>
+<ul>
+<li><strong>病人版</strong>：體重掉得順是好事，但<strong>一週掉超過 1.5 公斤</strong>連續發生、或右上腹悶痛，回診時要主動講。掉太快會流失肌肉，也會增加膽結石的機會——我們要的是穩穩地掉脂肪。</li>
+<li><strong>醫師備註</strong>：快速減重之膽石症風險；必要時安排腹部超音波。同時回頭檢查蛋白質與熱量攝取是否過低（S2-D5）。</li>
+<li><strong>出處</strong>：快速減重併發症通則（醫師審定：警戒值 1.5 公斤/週）</li>
+</ul>
+<h3 id="紅旗症狀">紅旗症狀</h3>
+<p>沿用 <strong>S1-R4</strong>（每張一頁衛教單頁尾固定欄，不重複收錄）。</p>
+<hr>
+<h2 id="五診間話術三句T">五、診間話術三句（T）</h2>
+<h3 id="S2-T1">S2-T1</h3>
+<ol>
+<li>「現在是黃金期——藥幫你把食慾關小了，我們用這段時間把<strong>吃的品質</strong>和<strong>肌肉</strong>建起來，這才是以後不復胖的本錢。」</li>
+<li>「體重掉多快不是重點，<strong>掉的是脂肪還是肌肉</strong>才是重點——所以蛋白質和肌力訓練不能停。」</li>
+<li>「先跟你預告：之後體重多半會有一段卡住不動，那是身體賀爾蒙在調控的正常反應，<strong>不是你失敗</strong>——到時候回來，我們有對策。」</li>
+</ol>
+<ul>
+<li><strong>醫師備註</strong>：句 3 是停滯期的「預防針」，在最順的時期先講，S3 銜接時病人才有心理準備；呼應核心觀念「不要放棄是關鍵」。</li>
+</ul>
+<hr>
+<h2 id="六病人常見QAQ">六、病人常見 QA（Q）</h2>
+<h3 id="S2-Q1可不可以讓它掉更快">S2-Q1 可不可以讓它掉更快？</h3>
+<p>不建議。掉太快流失的是肌肉和水分，肌肉少了代謝跟著降，之後更容易卡住、更容易復胖，還會增加膽結石風險。<strong>穩穩地掉、掉的是脂肪</strong>，才是真的贏。</p>
+<h3 id="S2-Q2藥都讓我吃不下了我可以不運動嗎">S2-Q2 藥都讓我吃不下了，我可以不運動嗎？</h3>
+<p>不行，而且這正是最需要運動的時候。只靠吃很少，身體會連肌肉一起分解；肌肉一少，代謝下降，停滯期提早報到。運動不是為了多燒熱量，是為了<strong>保住肌肉、守住代謝</strong>。</p>
+<h3 id="S2-Q3開始做肌力訓練後體重怎麼反而不動了">S2-Q3 開始做肌力訓練後，體重怎麼反而不動了？</h3>
+<p>肌肉比脂肪重。開始訓練後體重暫時不動，常常是「脂肪減、肌肉增」同時發生——看腰圍、看褲頭、看體組成，比只看體重準。</p>
+<h3 id="S2-Q4應酬聚餐破功了怎麼辦">S2-Q4 應酬聚餐破功了怎麼辦？</h3>
+<p>一餐不會毀掉一個月的努力。聚餐照公式挑食物（菜多、蛋白質夠、酒少喝），吃多了就下一餐回到正軌就好——<strong>不要用「今天毀了」當理由放掉整週</strong>。</p>
+<hr>
+<h2 id="附一頁組裝範例減重期久坐上班族女性">附：一頁組裝範例②——減重期・久坐上班族女性</h2>
+<blockquote>病人輪廓：48 歲女性，BMI 31，脂肪肝，久坐辦公室、無運動經驗，Semaglutide 治療第 3 個月、體重穩定下降中。</blockquote>
+<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S2-D1 蛋白質不能鬆懈 ／ S2-D4 外食配餐公式 ／ S2-D5 吃太少的警訊</td></tr><tr><td>🏃 運動</td><td>S2-E1 阻力訓練每週 2 次 ／ S2-E3 一週運動課表範例</td></tr><tr><td>💉 藥物</td><td>S2-R1 升劑量後副作用會短暫回來</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></article></div>
+<footer><div class="wrap">
+  <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
+  本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
+  原始碼與更新紀錄：<a href="https://github.com/philia81301-commits/obesity-education-clinic">GitHub</a>
+</div></footer>
+</body>
+</html>

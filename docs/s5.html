@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>停藥／減藥過渡期｜GLP-1 減重衛教</title>
+<meta name="description" content="復胖風險最高期。停藥前檢核、恢復用藥去汙名化、計畫懷孕軌道。">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ink:#21281F; --muted:#66705F; --line:#DFDFD4; --paper:#FBFAF4;
+  --diet:#C2620A; --diet-soft:#FCE9D4;
+  --move:#0A8A4D; --move-soft:#DCF3E5;
+  --rx:#3563C9;   --rx-soft:#E1E9FB;
+  --flag:#C82D1B;
+  --gold:#9A6B2A; --gold-soft:#F5EDDD;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.75;
+  background-image:linear-gradient(180deg,#fff 0,var(--paper) 420px)}
+.kai{font-family:"LXGW WenKai TC","DFKai-SB",serif}
+a{color:var(--rx)}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px}
+
+/* 頁首 */
+.top{border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);
+  position:sticky;top:0;z-index:9;backdrop-filter:blur(6px)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:56px;font-size:14px}
+.top a{color:var(--muted);text-decoration:none}
+.top a:hover{color:var(--ink)}
+.top .home{font-weight:700;color:var(--ink)}
+.top .sp{flex:1}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:"LXGW WenKai TC",serif;font-size:32px;margin:0 0 10px;letter-spacing:.02em}
+.hero p{margin:0;color:var(--muted);font-size:15px;max-width:62ch}
+.pill{display:inline-block;background:var(--gold-soft);color:var(--gold);
+  border-radius:99px;padding:2px 13px;font-size:12.5px;font-weight:700;letter-spacing:.06em;margin-bottom:12px}
+
+/* 卡片 */
+.sec{margin:34px 0 10px;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:16px}
+.card{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;text-decoration:none;color:inherit;transition:.16s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.09);border-color:#C9C9BA}
+.card .lv{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--move)}
+.card.boss .lv{color:var(--flag)}
+.card.ref .lv{color:var(--gold)}
+.card h3{margin:5px 0 7px;font-size:18px;font-family:"LXGW WenKai TC",serif}
+.card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.65}
+.card::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--move)}
+.card.boss::after{background:var(--flag)}
+.card.ref::after{background:var(--gold)}
+.card.sheet::after{background:var(--diet)}
+.card.sheet .lv{color:var(--diet)}
+
+/* 內文 */
+article{background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:34px 40px 44px;margin:26px 0 40px}
+article h1{font-family:"LXGW WenKai TC",serif;font-size:27px;margin:0 0 6px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+article h2{font-family:"LXGW WenKai TC",serif;font-size:20px;margin:34px 0 10px;
+  padding-left:11px;border-left:5px solid var(--move)}
+article h3{font-size:16.5px;margin:24px 0 6px;color:var(--diet);letter-spacing:.01em}
+article h4{font-size:14.5px;margin:16px 0 4px}
+article p{margin:.5em 0}
+article ul,article ol{padding-left:1.35em;margin:.5em 0}
+article li{margin:.3em 0}
+article blockquote{margin:16px 0;padding:12px 18px;background:var(--gold-soft);
+  border-radius:8px;color:#5A4520;font-size:14px}
+article hr{border:0;border-top:1px solid var(--line);margin:30px 0}
+article code{background:#F0F0E7;border-radius:4px;padding:1px 5px;font-size:.9em}
+article strong{font-weight:700}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#F4F4EC;font-weight:700;white-space:nowrap}
+
+/* 頁尾 */
+footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0 46px;
+  font-size:13px;color:var(--muted)}
+footer b{color:var(--ink)}
+.warn{background:#FDECEA;border-left:4px solid var(--flag);border-radius:8px;
+  padding:13px 17px;font-size:13.5px;margin:20px 0;color:#7A2016}
+
+@media(max-width:640px){
+  .hero h1{font-size:26px}
+  article{padding:24px 20px 32px;border-radius:10px}
+  article h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="home" href="./">GLP-1 減重衛教</a>
+  <span class="sp"></span>
+  <a href="./">總覽</a><span style="color:#C9C9BA">/</span><span>停藥／減藥過渡期</span>
+  <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
+</div></nav>
+<div class="wrap"><article><h1 id="S5停藥減藥過渡期復胖風險最高期">S5 停藥／減藥過渡期（復胖風險最高期）</h1>
+<blockquote>適用：與醫師<strong>共同決定</strong>停藥或減藥的病人（維持穩定一段時間後、計畫懷孕、經濟或副作用因素等）。<br>狀態：<strong>已審定</strong>（2026-08-24 醫師審稿通過）。本冊是治療旅程中<strong>飢餓感回升最強、復胖風險最高</strong>的一段。</blockquote>
+<hr>
+<h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
+<p><strong>這一冊要達成的事</strong>：把「停藥」從一個事件變成一個<strong>有設計的過程</strong>——停藥前確認行為系統已自動化、運動量已到位；過渡中監測加密、抗餓工具全套上場；並徹底去汙名化「恢復用藥」，讓復胖的病人願意回來而不是消失。</p>
+<p>生理變化（講解用）：</p>
+<ul>
+<li><strong>停藥後藥理性食慾抑制消失、胃排空恢復</strong>，而瘦體素仍低、飢餓素仍高——賀爾蒙處於「把體重搶回來」的狀態，卻失去了藥物的壓制：這是全旅程飢餓感最強的時期</li>
+<li>臨床試驗一致顯示<strong>停藥後體重明顯回升</strong>（醫師層知識；衛教對病人講「賀爾蒙還在，需要有計畫地過渡」，不引數字嚇人——S4-R1 審定原則）</li>
+<li><strong>過渡的緩衝來自兩處</strong>：①漸進減量／拉長間隔（由醫師設計，不寫死方案）②行為系統接棒（蛋白質、餐盤、運動、警戒線——前四冊建立的全部資產）</li>
+<li><strong>停藥前檢核清單（醫師端）</strong>：體重穩定維持一段時間、肌力與有氧習慣已規律運作、警戒線制度已在用、共病指標穩定、病人理解復胖風險並知道回診條件——<strong>檢核不過，建議先不停</strong></li>
+<li><strong>計畫懷孕是特殊軌道</strong>：屬「必須停藥」情境，需提前規劃停藥時程（Semaglutide 依仿單建議受孕前至少 <strong>2 個月</strong>停藥；Tirzepatide 仿單未訂明確孕前洗除期，由醫師個別化評估——醫師審定 2026-08-24）——此情境的停藥諮詢優先於一切</li>
+</ul>
+<hr>
+<h2 id="二飲食模組D">二、飲食模組（D）</h2>
+<h3 id="S5-D1停藥前先演練習慣要能自己跑">S5-D1 停藥前先「演練」：習慣要能自己跑</h3>
+<ul>
+<li><strong>病人版</strong>：好的停藥不是突然的。停藥前先問自己：蛋白質優先、餐盤公式、無糖飲料、早餐吃法——這些<strong>還需要靠「忍」才做得到，還是已經變成自然？</strong>如果還在硬撐，先跟醫師說，把習慣練穩再停。停藥後靠的不是意志力，是這一年練起來的自動導航。</li>
+<li><strong>醫師備註</strong>：行為自動化（habit automaticity）是停藥成敗的最強預測因子之一；問診用「你外食時會自動先夾蛋白質嗎？」這類具體問題檢核，比「你習慣了嗎」有效。檢核不過→延後停藥，回 S4 繼續鞏固。</li>
+<li><strong>出處</strong>：行為維持與習慣形成通則＋醫師端停藥檢核</li>
+</ul>
+<h3 id="S5-D2食慾會回來工具全部上場">S5-D2 食慾會回來——工具全部上場</h3>
+<ul>
+<li><strong>病人版</strong>：停藥或減藥後的頭幾個月，食慾變大是<strong>正常的生理反應，不是你退步</strong>。這時候把學過的工具全部拿出來：每餐蛋白質先吃、抗餓餐盤（蔬菜堆滿、清湯）、15 分鐘法分辨真餓和嘴饞、真餓吃蛋白質或低甜度水果。特別小心兩個老朋友回來敲門：<strong>含糖飲料和宵夜</strong>。</li>
+<li><strong>醫師備註</strong>：過渡期最常見的破口與 270 份問卷一致（含糖飲料 33%、宵夜 31%）；回診主動問這兩項。抗餓工具索引：S3-D3（餐盤）、S3-R2（真餓/嘴饞）、S3-R3（宵夜防線）、S2-D7（早餐）——本模組是工具總復習，不新增內容。</li>
+<li><strong>出處</strong>：前冊審定模組總索引＋本院 270 份問卷</li>
+</ul>
+<h3 id="S5-D3體重監測加密警戒線不變行動升級">S5-D3 體重監測加密：警戒線不變、行動升級</h3>
+<ul>
+<li><strong>病人版</strong>：過渡期把量體重改成<strong>每週 1–2 次</strong>（固定時間）。警戒線一樣是<strong>比目標多 2 公斤</strong>：碰到線，除了聚餐盤點和運動補量，<strong>多做一件事——回診跟醫師討論要不要恢復或調整用藥</strong>。早回來三個月，勝過晚回來三公斤。</li>
+<li><strong>醫師備註</strong>：過渡期監測頻率上調（維持期每週 1 次→過渡期 1–2 次）；警戒線行動方案在 S4-D2 基礎上加入「用藥重啟評估」。復胖攔截的時間窗越早，重啟治療的劑量與成本越低。</li>
+<li><strong>出處</strong>：S4-D2 警戒線制度（已建立）＋醫師審定行動升級</li>
+</ul>
+<hr>
+<h2 id="三運動模組E">三、運動模組（E）</h2>
+<h3 id="S5-E1運動是停藥後的接棒者停藥前就要到位">S5-E1 運動是停藥後的接棒者：停藥前就要到位</h3>
+<ul>
+<li><strong>病人版</strong>：藥物退場後，<strong>守住代謝的主力就是肌肉和運動</strong>。所以順序很重要：先確認肌力每週 2–3 次、快走或短而喘每週累積 150 分鐘已經是你的日常，<strong>再談停藥</strong>——不是停藥之後才開始練。停藥後運動量不減，肌力訓練甚至可以再加一點。</li>
+<li><strong>醫師備註</strong>：運動量未到位是延後停藥的正當理由，直接對病人明講此標準（給明確門檻反而降低焦慮）。停藥後 RMR 守衛完全依賴瘦體組織與活動量；啞鈴／壺鈴進階（S3-E1）在此期特別鼓勵。</li>
+<li><strong>出處</strong>：審定運動路線總索引（S2-E1/E4、S3-E1/E2、S4-E1）</li>
+</ul>
+<h3 id="S5-E2過渡期運動原則不求進步只求不斷">S5-E2 過渡期運動原則：不求進步、只求不斷</h3>
+<ul>
+<li><strong>病人版</strong>：過渡期生活變動多（換季、工作忙、心情起伏），運動目標暫時降為一條：<strong>不中斷</strong>。狀態好照課表，狀態差就做「保底版」——10 分鐘核心菜單或 15 分鐘快走，做了就算數。連續兩週完全沒動，就回診聊聊發生什麼事。</li>
+<li><strong>醫師備註</strong>：過渡期優先守護習慣連續性（habit streak）而非訓練量進展；「保底版」設計降低全有全無思維。兩週零活動是行為警訊，常伴隨情緒或生活事件，回診時探詢。</li>
+<li><strong>出處</strong>：行為維持策略通則（與 S4-D3 復發預防同源）</li>
+</ul>
+<hr>
+<h2 id="四藥物模組R">四、藥物模組（R）</h2>
+<h3 id="S5-R1停藥方式由醫師設計漸進可回頭">S5-R1 停藥方式由醫師設計：漸進、可回頭</h3>
+<ul>
+<li><strong>病人版</strong>：停藥的方式不只一種——<strong>漸進減量、拉長打針間隔、先減到最低劑量觀察</strong>，哪一種適合你由醫師依你的狀況設計。過程中任何時候覺得食慾失控、體重回升，都<strong>可以回頭</strong>：調回原劑量不是失敗，是計畫的一部分。唯一錯誤的停法是自己默默不打了。</li>
+<li><strong>醫師備註</strong>：減量路徑個別化（不寫死方案，審定原則）；「可回頭」明講是依從性關鍵——病人知道有退路，才不會失敗後消失。自行斷藥者常因羞愧不回診，話術預先拆除此心理。</li>
+<li><strong>出處</strong>：醫師審定立場（停藥共同決策、漸進原則）</li>
+</ul>
+<h3 id="S5-R2復胖了回來就好恢復用藥不是失敗">S5-R2 復胖了，回來就好：恢復用藥不是失敗</h3>
+<ul>
+<li><strong>病人版</strong>：肥胖是慢性病，就像高血壓、糖尿病——<strong>有些人停藥後守得住，有些人需要重新用藥或長期用藥，兩種都正常</strong>。體重回升不是你的錯，更不是丟臉的事；碰到警戒線就回來，我們重新評估。<strong>最可惜的不是復胖，是復胖後不好意思回來</strong>。</li>
+<li><strong>醫師備註</strong>：去汙名化是本冊最重要的一頁。慢性病管理框架（chronic disease model）：重啟用藥類比高血壓藥調整，中性、無道德色彩。復胖回診者第一句話先肯定「你回來就是做對了」。</li>
+<li><strong>出處</strong>：肥胖慢性病照護模式＋醫師審定核心觀念第 1 條（減重為改善健康）</li>
+</ul>
+<h3 id="S5-R3想懷孕這是另一條軌道一定要先講">S5-R3 想懷孕？這是另一條軌道，一定要先講</h3>
+<ul>
+<li><strong>病人版</strong>：<strong>計畫懷孕的人，請提前告訴醫師</strong>——這類藥物懷孕期間不能使用，需要在受孕前一段時間就先停藥（時間由醫師依藥物告訴你），並且規劃停藥後到懷孕前的體重管理。<strong>不要先偷偷備孕再說</strong>：提前規劃，母嬰都安全。</li>
+<li><strong>醫師備註</strong>：Semaglutide 仿單建議受孕前至少 2 個月停藥；Tirzepatide 由醫師個別化評估（醫師審定 2026-08-24）。孕前停藥的體重管理計畫（行為為主）需同步設計。育齡女性起始用藥時即應告知此原則（可回饋至 S1 診間提醒）；意外懷孕發現時立即停藥並轉介婦產科。</li>
+<li><strong>出處</strong>：藥品仿單（醫師審定 OK）＋婦產科轉介原則</li>
+</ul>
+<h3 id="紅旗症狀">紅旗症狀</h3>
+<p>沿用 <strong>S1-R4</strong>（頁尾固定欄，不重複收錄）。</p>
+<hr>
+<h2 id="五診間話術三句T">五、診間話術三句（T）</h2>
+<h3 id="S5-T1">S5-T1</h3>
+<ol>
+<li>「停藥是<strong>我們一起設計的過程</strong>，不是把針丟掉的那一天。」</li>
+<li>「食慾會回來一些，那是身體的正常反應——你這段時間學的每一個工具，就是為了這一刻準備的。」</li>
+<li>「如果體重回升，<strong>回來就好</strong>——重新用藥不是失敗，就像血壓藥一樣，慢性病本來就可能需要長期管理。最可惜的不是復胖，是不好意思回來。」</li>
+</ol>
+<ul>
+<li><strong>醫師備註</strong>：句 3 是本冊核心，於「決定停藥當次」就講，不等復胖才講——預先種下回診的心理許可。</li>
+</ul>
+<hr>
+<h2 id="六病人常見QAQ">六、病人常見 QA（Q）</h2>
+<h3 id="S5-Q1停藥後一定會復胖嗎">S5-Q1 停藥後一定會復胖嗎？</h3>
+<p>老實說：食慾多半會回升一些，部分體重回升也常見——因為賀爾蒙還在「搶回體重」。但<strong>運動習慣扎實、警戒線制度有在跑的人，守住大部分成果是做得到的</strong>。關鍵是監測加密＋碰線就回診，把回升攔在 2 公斤，不要拖到 10 公斤。</p>
+<h3 id="S5-Q2我一定要停藥嗎可以一直打下去嗎">S5-Q2 我一定要停藥嗎？可以一直打下去嗎？</h3>
+<p>不一定要停。肥胖是慢性病，<strong>長期用藥是正當的治療選項</strong>，就像血壓藥可以長期吃。停不停、什麼時候停，看你的目標、生活規劃和經濟考量，跟醫師一起決定——沒有「打太久很丟臉」這回事。</p>
+<h3 id="S5-Q3我想懷孕該怎麼安排">S5-Q3 我想懷孕，該怎麼安排？</h3>
+<p>提前跟醫師說，越早越好。需要在受孕前先停藥一段時間（時程醫師會依你的藥告訴你），並且一起規劃停藥後的體重管理。<strong>先規劃、再備孕</strong>，對你和寶寶都安全。</p>
+<h3 id="S5-Q4停藥後還要回診嗎多久回一次">S5-Q4 停藥後還要回診嗎？多久回一次？</h3>
+<p>要，而且過渡期的回診<strong>比維持期更密</strong>（頻率醫師依你的狀況安排）。回診看體重曲線、食慾狀況和慢性病指標——這段時間的回診就是你的安全網，網還在，就不怕走鋼索。</p>
+<hr>
+<h2 id="附一頁組裝範例停藥過渡期達標後計畫停藥女性">附：一頁組裝範例④——停藥過渡期・達標後計畫停藥女性</h2>
+<blockquote>病人輪廓：38 歲女性，Semaglutide 治療 14 個月達標，維持穩定 6 個月，與醫師共同決定漸進減量；運動習慣已建立。</blockquote>
+<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S5-D2 食慾會回來——工具全部上場 ／ S5-D3 體重監測加密</td></tr><tr><td>🏃 運動</td><td>S5-E2 過渡期運動原則：不求進步、只求不斷</td></tr><tr><td>💉 藥物</td><td>S5-R1 停藥方式由醫師設計 ／ S5-R2 恢復用藥不是失敗</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></article></div>
+<footer><div class="wrap">
+  <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
+  本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
+  原始碼與更新紀錄：<a href="https://github.com/philia81301-commits/obesity-education-clinic">GitHub</a>
+</div></footer>
+</body>
+</html>

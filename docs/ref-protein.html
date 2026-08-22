@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>高 CP 值蛋白質清單｜GLP-1 減重衛教</title>
+<meta name="description" content="比價總表（NT$/10g 蛋白質）＋超商／自助餐／超市／吃不下時四場景採買清單。">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ink:#21281F; --muted:#66705F; --line:#DFDFD4; --paper:#FBFAF4;
+  --diet:#C2620A; --diet-soft:#FCE9D4;
+  --move:#0A8A4D; --move-soft:#DCF3E5;
+  --rx:#3563C9;   --rx-soft:#E1E9FB;
+  --flag:#C82D1B;
+  --gold:#9A6B2A; --gold-soft:#F5EDDD;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.75;
+  background-image:linear-gradient(180deg,#fff 0,var(--paper) 420px)}
+.kai{font-family:"LXGW WenKai TC","DFKai-SB",serif}
+a{color:var(--rx)}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px}
+
+/* 頁首 */
+.top{border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);
+  position:sticky;top:0;z-index:9;backdrop-filter:blur(6px)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:56px;font-size:14px}
+.top a{color:var(--muted);text-decoration:none}
+.top a:hover{color:var(--ink)}
+.top .home{font-weight:700;color:var(--ink)}
+.top .sp{flex:1}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:"LXGW WenKai TC",serif;font-size:32px;margin:0 0 10px;letter-spacing:.02em}
+.hero p{margin:0;color:var(--muted);font-size:15px;max-width:62ch}
+.pill{display:inline-block;background:var(--gold-soft);color:var(--gold);
+  border-radius:99px;padding:2px 13px;font-size:12.5px;font-weight:700;letter-spacing:.06em;margin-bottom:12px}
+
+/* 卡片 */
+.sec{margin:34px 0 10px;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:16px}
+.card{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;text-decoration:none;color:inherit;transition:.16s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.09);border-color:#C9C9BA}
+.card .lv{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--move)}
+.card.boss .lv{color:var(--flag)}
+.card.ref .lv{color:var(--gold)}
+.card h3{margin:5px 0 7px;font-size:18px;font-family:"LXGW WenKai TC",serif}
+.card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.65}
+.card::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--move)}
+.card.boss::after{background:var(--flag)}
+.card.ref::after{background:var(--gold)}
+.card.sheet::after{background:var(--diet)}
+.card.sheet .lv{color:var(--diet)}
+
+/* 內文 */
+article{background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:34px 40px 44px;margin:26px 0 40px}
+article h1{font-family:"LXGW WenKai TC",serif;font-size:27px;margin:0 0 6px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+article h2{font-family:"LXGW WenKai TC",serif;font-size:20px;margin:34px 0 10px;
+  padding-left:11px;border-left:5px solid var(--move)}
+article h3{font-size:16.5px;margin:24px 0 6px;color:var(--diet);letter-spacing:.01em}
+article h4{font-size:14.5px;margin:16px 0 4px}
+article p{margin:.5em 0}
+article ul,article ol{padding-left:1.35em;margin:.5em 0}
+article li{margin:.3em 0}
+article blockquote{margin:16px 0;padding:12px 18px;background:var(--gold-soft);
+  border-radius:8px;color:#5A4520;font-size:14px}
+article hr{border:0;border-top:1px solid var(--line);margin:30px 0}
+article code{background:#F0F0E7;border-radius:4px;padding:1px 5px;font-size:.9em}
+article strong{font-weight:700}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#F4F4EC;font-weight:700;white-space:nowrap}
+
+/* 頁尾 */
+footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0 46px;
+  font-size:13px;color:var(--muted)}
+footer b{color:var(--ink)}
+.warn{background:#FDECEA;border-left:4px solid var(--flag);border-radius:8px;
+  padding:13px 17px;font-size:13.5px;margin:20px 0;color:#7A2016}
+
+@media(max-width:640px){
+  .hero h1{font-size:26px}
+  article{padding:24px 20px 32px;border-radius:10px}
+  article h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="home" href="./">GLP-1 減重衛教</a>
+  <span class="sp"></span>
+  <a href="./">總覽</a><span style="color:#C9C9BA">/</span><span>高 CP 值蛋白質清單</span>
+  <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
+</div></nav>
+<div class="wrap"><article><h1 id="共用參考高CP值蛋白質清單">共用參考：高 CP 值蛋白質清單</h1>
+<blockquote>跨冊共用（S2-D6 為主要入口；S3／S5／M 冊引用）。狀態：<strong>已審定</strong>（2026-08-22）。<br>依據：食藥署食品營養成分資料庫、國健署食物代換表（1 份豆魚蛋肉類＝蛋白質 7 g）與市售品營養標示。<br><strong>價格聲明</strong>：2026 年 8 月台灣約略市價，僅供品項間相對比較，非採購依據。</blockquote>
+<h2 id="總表依販售單位計">總表（依販售單位計）</h2>
+<div class="tw"><table><thead><tr><th>食物</th><th>販售單位</th><th>蛋白質 (g)</th><th>約略價 (NT$)</th><th>NT$/10g 蛋白質</th><th>密度評語</th></tr></thead><tbody><tr><td>生鮮雞胸肉（超市）</td><td>100 g 生肉</td><td>22–23</td><td>16–24</td><td><strong>7–11</strong></td><td>極高，全場最便宜</td></tr><tr><td>冷凍毛豆仁（超市）</td><td>50 g 一把</td><td>7</td><td>120–160/kg</td><td><strong>8–11</strong></td><td>高，含纖維、植物性完全蛋白</td></tr><tr><td>雞蛋</td><td>1 顆</td><td>7</td><td>7–9</td><td>10–13</td><td>中高，營養最全面</td></tr><tr><td>傳統板豆腐</td><td>1 盒約 400 g</td><td>約 30</td><td>25–40</td><td>8–13</td><td>中高，比嫩豆腐濃縮近一倍</td></tr><tr><td>嫩豆腐</td><td>1 盒 300 g</td><td>約 15</td><td>15–25</td><td>10–17</td><td>中，好入口、體積偏大</td></tr><tr><td>乳清蛋白粉</td><td>1 匙 30 g</td><td>20–24</td><td>20–35/份</td><td>9–15</td><td>極高，小體積首選</td></tr><tr><td>無糖豆漿（超商）</td><td>400 ml</td><td>13.6</td><td>25</td><td>約 18</td><td>中</td></tr><tr><td>高蛋白無糖豆漿（超商）</td><td>400 ml</td><td>20.6</td><td>32</td><td>約 16</td><td>中高，同體積多 50%</td></tr><tr><td>鯖魚罐頭</td><td>1 罐 220–230 g</td><td>37–38</td><td>55–90</td><td>15–24</td><td>中（油脂高但為 omega-3；痛風者見備註）</td></tr><tr><td>水煮鮪魚罐頭</td><td>1 罐 150 g</td><td>約 23</td><td>40–65</td><td>17–28</td><td>極高（水煮低脂）</td></tr><tr><td>茶葉蛋（超商）</td><td>1 顆</td><td>7</td><td>9–13</td><td>13–19</td><td>中高，最方便的一份蛋白質</td></tr><tr><td>超商即食雞胸肉</td><td>1 包 100–110 g</td><td>20–25</td><td>59–79</td><td>25–35</td><td>極高，貴但即開即食</td></tr><tr><td>無加糖希臘式優格</td><td>500 g</td><td>27</td><td>約 139</td><td>約 50</td><td>高；貴、但吃不下時好入口</td></tr></tbody></table></div>
+<p>主力（每 10 g 蛋白質 ≤15 元）：<strong>超市生鮮雞胸、冷凍毛豆仁、雞蛋、板豆腐、乳清蛋白粉</strong>。超商品項貴 1.5–3 倍，但用方便性換達標率，對外食 73% 族群仍值得推。</p>
+<h2 id="四場景清單">四場景清單</h2>
+<p><strong>① 超商就買得到</strong>：即食雞胸 1 包（20–25 g，吃不完剩半包冰起來）／無糖或高蛋白豆漿 400 ml／茶葉蛋 2 顆（取代麵包餅乾當點心）／無加糖希臘優格小杯／關東煮滷蛋＋凍豆腐（湯少喝，鈉高）。</p>
+<p><strong>② 自助餐／便當店</strong>：主菜選清蒸魚、白斬雞、去皮滷雞腿（避開裹粉油炸與糖醋）／加夾一格滷豆干或涼拌豆腐／加 1 顆滷蛋（最便宜的加購，+7 g 約 10–15 元）／飯量減半、蛋白質格數加倍、先吃蛋白質再吃飯／<strong>地雷：香腸、火腿、熱狗、獅子頭、炸排骨</strong>。</p>
+<p><strong>③ 超市採買、不太會煮</strong>：雞胸肉電鍋蒸（抹鹽、外鍋一杯水）或買舒肥包／水煮蛋一次做 4–5 顆冰著／冷凍毛豆滾水燙 3 分鐘／鯖魚或水煮鮪魚罐頭開罐拌豆腐／板豆腐切塊淋醬油膏。</p>
+<p><strong>④ 食慾很差、吃不下正餐（小體積／流質）</strong>：高蛋白無糖豆漿 1 瓶（20.6 g，噁心日至少喝完這瓶）／乳清蛋白 1 匙泡水或鮮奶（20–24 g，體積最小）／無加糖希臘優格半杯到一杯／電鍋蒸蛋 1–2 顆（溫熱滑口，噁心期接受度高）／無糖優酪乳（聊勝於無）。</p>
+<h2 id="醫師備註臨床把關">醫師備註（臨床把關）</h2>
+<ul>
+<li><strong>品質排序</strong>：國健署 107 年版《每日飲食指南》正式修訂為「<strong>豆 &gt; 魚 &gt; 蛋 &gt; 肉</strong>」（減少飽和脂肪）；黃豆製品為完全蛋白，品質與動物性相當。紅豆綠豆是澱粉豆，不算蛋白質來源。</li>
+<li><strong>腎功能</strong>：1.2–1.5 g/kg 目標僅適用腎功能正常者；<strong>開立前確認 eGFR</strong>。CKD 3 期以上依腎臟科建議（≤0.8 g/kg）個別化，勿套用本清單劑量；一般病人也不需衝過 1.7–2 g/kg。</li>
+<li><strong>痛風（本院男性盛行率 11%）</strong>：<strong>豆製品是被冤枉的</strong>（豆腐普林約 20 mg/100g，遠低於內臟約 285 mg；國健署官方闢謠），痛風病人可安心以豆製品為主力。真正地雷：內臟、蝦蟹貝、小魚乾、啤酒、含糖飲料。鯖魚中高普林——急性期避免、緩解期限量。</li>
+<li><strong>加工肉品三輸</strong>：WHO IARC 一級致癌物（每日 50 g 增 18% 大腸癌風險）＋高脂高鈉＋換算 NT$/10g 蛋白質不比雞胸便宜。</li>
+<li><strong>乳清蛋白定位</strong>：正餐吃不夠時的「補充」不是取代；腎功能正常者安全；乳糖不耐選分離乳清（WPI）。</li>
+</ul>
+<h2 id="出處">出處</h2>
+<ul>
+<li>食藥署食品營養成分資料庫：<a href="https://consumer.fda.gov.tw/Food/TFND.aspx?nodeID=178" target="_blank" rel="noopener">https://consumer.fda.gov.tw/Food/TFND.aspx?nodeID=178</a></li>
+<li>國健署食物代換表（2019）、每日飲食指南手冊（107 年版）：<a href="https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=1208" target="_blank" rel="noopener">https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=1208</a></li>
+<li>國健署「喝豆漿會痛風？」闢謠：<a href="https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=1425&amp;pid=8448" target="_blank" rel="noopener">https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=1425&amp;pid=8448</a></li>
+<li>衛福部加工肉品與大腸癌（IARC）：<a href="https://www.mohw.gov.tw/fp-2649-20047-1.html" target="_blank" rel="noopener">https://www.mohw.gov.tw/fp-2649-20047-1.html</a></li>
+<li>台灣家庭醫學醫學會：蛋白質攝取量與腎功能</li>
+<li>GLP-1 治療中蛋白質 &gt;1.2 g/kg 保留瘦體組織：<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12536186/" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC12536186/</a></li>
+</ul></article></div>
+<footer><div class="wrap">
+  <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
+  本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
+  原始碼與更新紀錄：<a href="https://github.com/philia81301-commits/obesity-education-clinic">GitHub</a>
+</div></footer>
+</body>
+</html>

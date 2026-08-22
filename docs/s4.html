@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>維持期｜GLP-1 減重衛教</title>
+<meta name="description" content="達標後的體重維持。警戒線制度、72 小時回正軌、運動變主角。">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ink:#21281F; --muted:#66705F; --line:#DFDFD4; --paper:#FBFAF4;
+  --diet:#C2620A; --diet-soft:#FCE9D4;
+  --move:#0A8A4D; --move-soft:#DCF3E5;
+  --rx:#3563C9;   --rx-soft:#E1E9FB;
+  --flag:#C82D1B;
+  --gold:#9A6B2A; --gold-soft:#F5EDDD;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.75;
+  background-image:linear-gradient(180deg,#fff 0,var(--paper) 420px)}
+.kai{font-family:"LXGW WenKai TC","DFKai-SB",serif}
+a{color:var(--rx)}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px}
+
+/* 頁首 */
+.top{border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);
+  position:sticky;top:0;z-index:9;backdrop-filter:blur(6px)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:56px;font-size:14px}
+.top a{color:var(--muted);text-decoration:none}
+.top a:hover{color:var(--ink)}
+.top .home{font-weight:700;color:var(--ink)}
+.top .sp{flex:1}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:"LXGW WenKai TC",serif;font-size:32px;margin:0 0 10px;letter-spacing:.02em}
+.hero p{margin:0;color:var(--muted);font-size:15px;max-width:62ch}
+.pill{display:inline-block;background:var(--gold-soft);color:var(--gold);
+  border-radius:99px;padding:2px 13px;font-size:12.5px;font-weight:700;letter-spacing:.06em;margin-bottom:12px}
+
+/* 卡片 */
+.sec{margin:34px 0 10px;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:16px}
+.card{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;text-decoration:none;color:inherit;transition:.16s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.09);border-color:#C9C9BA}
+.card .lv{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--move)}
+.card.boss .lv{color:var(--flag)}
+.card.ref .lv{color:var(--gold)}
+.card h3{margin:5px 0 7px;font-size:18px;font-family:"LXGW WenKai TC",serif}
+.card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.65}
+.card::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--move)}
+.card.boss::after{background:var(--flag)}
+.card.ref::after{background:var(--gold)}
+.card.sheet::after{background:var(--diet)}
+.card.sheet .lv{color:var(--diet)}
+
+/* 內文 */
+article{background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:34px 40px 44px;margin:26px 0 40px}
+article h1{font-family:"LXGW WenKai TC",serif;font-size:27px;margin:0 0 6px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+article h2{font-family:"LXGW WenKai TC",serif;font-size:20px;margin:34px 0 10px;
+  padding-left:11px;border-left:5px solid var(--move)}
+article h3{font-size:16.5px;margin:24px 0 6px;color:var(--diet);letter-spacing:.01em}
+article h4{font-size:14.5px;margin:16px 0 4px}
+article p{margin:.5em 0}
+article ul,article ol{padding-left:1.35em;margin:.5em 0}
+article li{margin:.3em 0}
+article blockquote{margin:16px 0;padding:12px 18px;background:var(--gold-soft);
+  border-radius:8px;color:#5A4520;font-size:14px}
+article hr{border:0;border-top:1px solid var(--line);margin:30px 0}
+article code{background:#F0F0E7;border-radius:4px;padding:1px 5px;font-size:.9em}
+article strong{font-weight:700}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#F4F4EC;font-weight:700;white-space:nowrap}
+
+/* 頁尾 */
+footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0 46px;
+  font-size:13px;color:var(--muted)}
+footer b{color:var(--ink)}
+.warn{background:#FDECEA;border-left:4px solid var(--flag);border-radius:8px;
+  padding:13px 17px;font-size:13.5px;margin:20px 0;color:#7A2016}
+
+@media(max-width:640px){
+  .hero h1{font-size:26px}
+  article{padding:24px 20px 32px;border-radius:10px}
+  article h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="home" href="./">GLP-1 減重衛教</a>
+  <span class="sp"></span>
+  <a href="./">總覽</a><span style="color:#C9C9BA">/</span><span>維持期</span>
+  <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
+</div></nav>
+<div class="wrap"><article><h1 id="S4維持期達標後的體重維持">S4 維持期（達標後的體重維持）</h1>
+<blockquote>適用：已達成與醫師共同設定的目標體重（或健康指標目標），進入維持階段的病人。<br>狀態：<strong>已審定</strong>（2026-08-24 醫師審稿通過，警戒線 +2 公斤定案）。</blockquote>
+<hr>
+<h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
+<p><strong>這一冊要達成的事</strong>：把病人的心態從「減重成功＝結束」轉成「維持是新階段的開始」；建立體重警戒線制度、把運動與飲食從「努力」變「習慣」；維持期藥物怎麼走，開啟與病人的共同決策對話。</p>
+<p>生理變化（講解用）：</p>
+<ul>
+<li><strong>代謝適應不會因為達標就消失</strong>：Biggest Loser 六年追蹤顯示 RMR 的適應性下降<strong>長期持續存在</strong>（Fothergill 2016，數字已審定見 S2）——維持期的能量消耗天生比「沒胖過的同體重者」低，這是維持需要主動經營的生理原因</li>
+<li><strong>賀爾蒙未回復</strong>：瘦體素仍低、飢餓素仍偏高——飢餓感與食慾的對手還在場上，只是被藥物與習慣壓著</li>
+<li><strong>運動在維持期的證據比減重期更強</strong>：長期維持成功者的共同特徵是高活動量與規律自我監測——減重靠飲食七分，<strong>維持靠運動與習慣</strong></li>
+<li>醫師端決策點：<strong>維持期藥物劑量與頻率由醫師與病人共同討論</strong>（審定核心觀念第 6 條，不寫死數字）——選項包含維持原劑量、調整劑量或間隔，依食慾控制度、體重曲線與病人意願個別化；共病用藥（降壓藥、血糖藥）在體重下降後的減量評估持續進行（銜接 S2-R2）</li>
+<li>停藥議題在此冊<strong>只開門不展開</strong>：病人問起就預告 S5 有完整的停藥／減藥過渡衛教，避免病人自行停藥</li>
+</ul>
+<hr>
+<h2 id="二飲食模組D">二、飲食模組（D）</h2>
+<h3 id="S4-D1從減換檔到守吃法不歸零">S4-D1 從「減」換檔到「守」：吃法不歸零</h3>
+<ul>
+<li><strong>病人版</strong>：達標不是「解禁」。減重期學會的吃法——蛋白質優先、餐盤公式、主食減量、無糖飲料——<strong>就是你以後的正常吃法</strong>，不是任務結束就丟掉的規定。差別只在：不用再刻意吃更少，吃到「不餓也不撐」就好。</li>
+<li><strong>醫師備註</strong>：維持期熱量回升要漸進（避免達標後報復性回補）；行為維持的關鍵是把介入內化為預設值（default）。餐間不進食、真餓例外（蛋白質或低甜度水果）等審定立場照舊適用。</li>
+<li><strong>出處</strong>：體重維持行為策略通則＋審定飲食立場</li>
+</ul>
+<h3 id="S4-D2體重警戒線回升2公斤就行動">S4-D2 體重警戒線：回升 2 公斤就行動</h3>
+<ul>
+<li><strong>病人版</strong>：維持期體重上下 1–2 公斤是正常波動，不用緊張。但要設一條<strong>警戒線：比目標體重多 2 公斤</strong>——碰到線就做三件事：回想聚餐次數有沒有變多、把運動補回原本的量、<strong>提早回診</strong>。不要等回升 5 公斤才處理。</li>
+<li><strong>醫師備註</strong>：早期攔截是維持成功者的共同行為（規律自我監測＋快速修正）。每週固定同一天、同一時間量體重一次即可，不需每天量（避免對日波動過度反應）。行動方案就是回到 S2／S3 的作法，病人已經會了——這句話本身就是賦能話術。</li>
+<li><strong>出處</strong>：體重維持自我監測研究通則（醫師審定 OK）</li>
+</ul>
+<h3 id="S4-D3聚餐與旅行的回正軌規則72小時內">S4-D3 聚餐與旅行的回正軌規則：72 小時內</h3>
+<ul>
+<li><strong>病人版</strong>：連假、旅行、婚宴旺季吃多了很正常。規則只有一條：<strong>結束後 72 小時內回到正常吃法</strong>——蛋白質優先、無糖飲料、主食減量，加一次肌力訓練。三天內回正軌的人，體重多半自己回落；拖成「下週再說」的人，才會真的復胖。</li>
+<li><strong>醫師備註</strong>：lapse（單次破功）與 relapse（復胖）的行為醫學區分——衛教重點是消除「全有全無」思維（abstinence violation effect）。與 S2-Q4 一餐破功心法同源，此處升級為多日版。</li>
+<li><strong>出處</strong>：復發預防（relapse prevention）行為模型通則</li>
+</ul>
+<hr>
+<h2 id="三運動模組E">三、運動模組（E）</h2>
+<h3 id="S4-E1維持期運動是主角量不減變日常">S4-E1 維持期運動是主角：量不減、變日常</h3>
+<ul>
+<li><strong>病人版</strong>：很多人達標後先放掉的就是運動——這正是復胖的第一步。維持期運動<strong>不減量</strong>：肌力每週 2 次、快走或間歇每週 150 分鐘（或折半的短而喘）照舊，核心 10 分鐘菜單可以當每天的「開機儀式」。把它排進固定時段（跟打針日一樣寫在行事曆），變成跟刷牙一樣的事。</li>
+<li><strong>醫師備註</strong>：長期維持者的高活動量是最一致的預測因子；運動在維持期的角色從「輔助減重」轉為「主要防線」（守肌肉量＝守 RMR）。啞鈴／壺鈴進階（S3-E1）鼓勵維持期繼續往上加。</li>
+<li><strong>出處</strong>：體重維持與身體活動證據通則＋審定運動路線（S2-E1/E4、S3-E1/E2）</li>
+</ul>
+<h3 id="S4-E2每三個月給自己一個新的運動目標">S4-E2 每三個月給自己一個新的運動目標</h3>
+<ul>
+<li><strong>病人版</strong>：維持期最大的敵人是無聊。每三個月設一個小目標：深蹲負重加 2 公斤、棒式撐到 90 秒、報名一場健走活動、學一項新運動。有目標的人不會停，停的人多半是「沒理由繼續」。</li>
+<li><strong>醫師備註</strong>：目標設定（goal setting）維持動機；回診時把運動目標當例行話題問，與體重同等地位——這向病人傳遞「運動是處方不是建議」的訊號。</li>
+<li><strong>出處</strong>：行為維持動機策略通則</li>
+</ul>
+<hr>
+<h2 id="四藥物模組R">四、藥物模組（R）</h2>
+<h3 id="S4-R1維持期的藥怎麼走跟醫師一起決定">S4-R1 維持期的藥怎麼走？跟醫師一起決定</h3>
+<ul>
+<li><strong>病人版</strong>：達標之後，藥不是「馬上停」也不是「一定打一輩子」——<strong>維持期的劑量和打法，由你和醫師一起討論決定</strong>：有人維持原劑量、有人調整劑量或間隔，看你的食慾控制、體重曲線和生活規劃。唯一不行的是<strong>自己默默停藥</strong>：身體的飢餓賀爾蒙還在，突然放手復胖風險最高。想停藥？跟醫師說，我們有完整的停藥計畫（S5）。</li>
+<li><strong>醫師備註</strong>：審定核心觀念第 6 條的病人版落地。共同決策框架：食慾控制度／體重穩定度／副作用負擔／經濟因素四象限討論。臨床試驗顯示停藥後體重明顯回升（衛教講「賀爾蒙還在，需要有計畫地過渡」即可，不需引數字嚇病人）。</li>
+<li><strong>出處</strong>：醫師審定立場（維持期劑量共同決策）</li>
+</ul>
+<h3 id="S4-R2維持期回診頻率降低內容不變">S4-R2 維持期回診：頻率降低、內容不變</h3>
+<ul>
+<li><strong>病人版</strong>：維持期回診可以拉長間隔（多久一次由醫師依你的狀況安排），但每次回診還是看四件事：<strong>體重曲線、腰圍、肌肉量、慢性病指標</strong>（血壓、血糖、血脂）。體重守住＋指標進步，就是維持期的成績單——很多人在這階段血壓藥、血糖藥還能再減。</li>
+<li><strong>醫師備註</strong>：回診間隔個別化（不寫死頻率）；監測面向從單一體重轉為體組成＋代謝指標，強化「減重是為了改善健康」的核心觀念第 1 條。共病藥物減量是維持期最有感的正向回饋，主動呈現給病人。</li>
+<li><strong>出處</strong>：慢性病管理模式通則＋審定核心觀念</li>
+</ul>
+<h3 id="紅旗症狀">紅旗症狀</h3>
+<p>沿用 <strong>S1-R4</strong>（頁尾固定欄，不重複收錄）。</p>
+<hr>
+<h2 id="五診間話術三句T">五、診間話術三句（T）</h2>
+<h3 id="S4-T1">S4-T1</h3>
+<ol>
+<li>「恭喜你達標——但我要說實話：<strong>維持不是結束，是新階段的開始</strong>。你身體的煞車系統還在，我們用習慣接手它。」</li>
+<li>「設一條警戒線：<strong>回升 2 公斤就回來</strong>，不要等到 5 公斤。早回來的都守得住，晚回來的都要重打一仗。」</li>
+<li>「藥怎麼走，<strong>我們一起決定</strong>——維持原樣、調整、或有計畫地減，都是選項；唯一不行的是自己默默停掉。」</li>
+</ol>
+<ul>
+<li><strong>醫師備註</strong>：句 2 給具體數字與明確行動；句 3 開啟共同決策並預防自行停藥（S5 的入口）。</li>
+</ul>
+<hr>
+<h2 id="六病人常見QAQ">六、病人常見 QA（Q）</h2>
+<h3 id="S4-Q1我達標了可以停藥了嗎">S4-Q1 我達標了，可以停藥了嗎？</h3>
+<p>可以談，但不要自己停。體重下降後，身體的飢餓賀爾蒙還處在「想把體重搶回來」的狀態，突然停藥復胖風險最高。想停或想減藥，跟醫師討論一個<strong>有計畫的過渡</strong>（見 S5 冊）——這跟自己停藥是完全不同的兩件事。</p>
+<h3 id="S4-Q2維持期還要一直運動嗎">S4-Q2 維持期還要一直運動嗎？</h3>
+<p>要，而且運動在維持期比減重期<strong>更重要</strong>。減重靠飲食七分，維持靠運動和習慣——肌肉守住，代謝就守住，警戒線就不容易被碰到。</p>
+<h3 id="S4-Q3體重回升了一點是不是失敗了">S4-Q3 體重回升了一點，是不是失敗了？</h3>
+<p>上下 1–2 公斤是正常波動，不是失敗。碰到警戒線（+2 公斤）也不是失敗，是<strong>行動訊號</strong>：聚餐盤點、運動補量、提早回診——你在減重期學過的每一招都還在，只是重新拿出來用。</p>
+<h3 id="S4-Q4維持期可以久久回診一次就好嗎">S4-Q4 維持期可以久久回診一次就好嗎？</h3>
+<p>間隔可以拉長，但不要斷線。維持期回診的重點是體組成和慢性病指標——血壓藥、血糖藥常常是在這個階段減掉的，這是你最實際的健康紅利，值得回來收。</p></article></div>
+<footer><div class="wrap">
+  <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
+  本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
+  原始碼與更新紀錄：<a href="https://github.com/philia81301-commits/obesity-education-clinic">GitHub</a>
+</div></footer>
+</body>
+</html>
