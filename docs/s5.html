@@ -77,6 +77,31 @@ table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 頁內目錄 */
+.toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
+  padding:14px 18px 15px;margin:0 0 26px}
+.toc-t{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.toc-s{margin-bottom:7px}
+.toc-s:last-child{margin-bottom:0}
+.toc-h{display:inline-block;font-weight:700;font-size:14.5px;color:var(--ink);
+  text-decoration:none;line-height:1.5}
+.toc-h:hover{color:var(--move)}
+.toc-k{display:flex;flex-wrap:wrap;gap:3px 14px;margin:1px 0 0 2px}
+.toc-k a{font-size:12.8px;color:var(--muted);text-decoration:none;line-height:1.65}
+.toc-k a:hover{color:var(--move);text-decoration:underline}
+
+/* 錨點跳轉時避開黏頂的頁首 */
+article h2,article h3{scroll-margin-top:70px}
+
+/* 回到頂端 */
+.totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;
+  box-shadow:0 4px 14px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:.18s;z-index:20;padding:0}
+.totop.on{opacity:1;visibility:visible}
+.totop:hover{border-color:var(--move);color:var(--move)}
+.totop svg{width:20px;height:20px}
+
 /* 頁尾 */
 footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0 46px;
   font-size:13px;color:var(--muted)}
@@ -88,6 +113,9 @@ footer b{color:var(--ink)}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
+  .toc{padding:12px 14px 13px;margin-bottom:20px}
+  .toc-k{gap:2px 12px}
+  .totop{right:14px;bottom:14px}
 }
 </style>
 </head>
@@ -99,6 +127,7 @@ footer b{color:var(--ink)}
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 <div class="wrap"><article><h1 id="S5停藥減藥過渡期復胖風險最高期">S5 停藥／減藥過渡期（復胖風險最高期）</h1>
+<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S5-D1停藥前先演練習慣要能自己跑">S5-D1 停藥前先「演練」：習慣要能自己跑</a><a href="#S5-D2食慾會回來工具全部上場">S5-D2 食慾會回來——工具全部上場</a><a href="#S5-D3體重監測加密警戒線不變行動升級">S5-D3 體重監測加密：警戒線不變、行動升級</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#S5-E1運動是停藥後的接棒者停藥前就要到位">S5-E1 運動是停藥後的接棒者：停藥前就要到位</a><a href="#S5-E2過渡期運動原則不求進步只求不斷">S5-E2 過渡期運動原則：不求進步、只求不斷</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物模組R">四、藥物模組（R）</a><div class="toc-k"><a href="#S5-R1停藥方式由醫師設計漸進可回頭">S5-R1 停藥方式由醫師設計：漸進、可回頭</a><a href="#S5-R2復胖了回來就好恢復用藥不是失敗">S5-R2 復胖了，回來就好：恢復用藥不是失敗</a><a href="#S5-R3想懷孕這是另一條軌道一定要先講">S5-R3 想懷孕？這是另一條軌道，一定要先講</a><a href="#紅旗症狀">紅旗症狀</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S5-T1">S5-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S5-Q1停藥後一定會復胖嗎">S5-Q1 停藥後一定會復胖嗎？</a><a href="#S5-Q2我一定要停藥嗎可以一直打下去嗎">S5-Q2 我一定要停藥嗎？可以一直打下去嗎？</a><a href="#S5-Q3我想懷孕該怎麼安排">S5-Q3 我想懷孕，該怎麼安排？</a><a href="#S5-Q4停藥後還要回診嗎多久回一次">S5-Q4 停藥後還要回診嗎？多久回一次？</a></div></div><div class="toc-s"><a class="toc-h" href="#附一頁組裝範例停藥過渡期達標後計畫停藥女性">附：一頁組裝範例④——停藥過渡期・達標後計畫停藥女性</a></div></nav>
 <blockquote>適用：與醫師<strong>共同決定</strong>停藥或減藥的病人（維持穩定一段時間後、計畫懷孕、經濟或副作用因素等）。<br>狀態：<strong>已審定</strong>（2026-08-24 醫師審稿通過）。本冊是治療旅程中<strong>飢餓感回升最強、復胖風險最高</strong>的一段。</blockquote>
 <hr>
 <h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
@@ -197,5 +226,18 @@ footer b{color:var(--ink)}
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
   原始碼與更新紀錄：<a href="https://github.com/philia81301-commits/obesity-education-clinic">GitHub</a>
 </div></footer>
+<button class="totop" type="button" aria-label="回到頂端">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+</button>
+<script>
+(function(){
+  var b=document.querySelector('.totop');
+  if(!b)return;
+  var show=function(){ b.classList.toggle('on', window.scrollY>420); };
+  window.addEventListener('scroll', show, {passive:true});
+  show();
+  b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+</script>
 </body>
 </html>

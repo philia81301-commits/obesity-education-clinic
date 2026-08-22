@@ -39,9 +39,12 @@ function inline(s) {
     .replace(/(^|[^"'>=\w])(https?:\/\/[^\s<)]+)/g, '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
 }
 
+/** 回傳 { html, headings }；headings 供產生頁內目錄 */
 function mdToHtml(md) {
   const lines = md.split(/\r?\n/);
   const out = [];
+  const headings = [];
+  const usedIds = new Set();
   let i = 0;
   let listType = null;
 
@@ -72,7 +75,12 @@ function mdToHtml(md) {
       closeList();
       const lvl = h[1].length;
       const text = inline(h[2]);
-      const id = h[2].replace(/[^\w一-鿿-]/g, '').slice(0, 40);
+      let id = h[2].replace(/[^\w一-鿿-]/g, '').slice(0, 40) || `h${headings.length}`;
+      while (usedIds.has(id)) id += '-';   // 去重，避免同名標題錨點衝突
+      usedIds.add(id);
+      if (lvl === 2 || lvl === 3) {
+        headings.push({ lvl, id, text: h[2].replace(/\*\*/g, '') });
+      }
       out.push(`<h${lvl} id="${id}">${text}</h${lvl}>`);
       i++; continue;
     }
@@ -108,7 +116,24 @@ function mdToHtml(md) {
     i++;
   }
   closeList();
-  return out.join('\n');
+  return { html: out.join('\n'), headings };
+}
+
+/** 由 headings 產生兩層目錄：h2 為段落、h3 為該段落底下的模組 */
+function buildToc(headings) {
+  const secs = [];
+  for (const h of headings) {
+    if (h.lvl === 2) secs.push({ ...h, kids: [] });
+    else if (secs.length) secs[secs.length - 1].kids.push(h);
+  }
+  if (secs.length < 2) return '';
+  const rows = secs.map(s => {
+    const kids = s.kids.length
+      ? `<div class="toc-k">${s.kids.map(k => `<a href="#${k.id}">${esc(k.text)}</a>`).join('')}</div>`
+      : '';
+    return `<div class="toc-s"><a class="toc-h" href="#${s.id}">${esc(s.text)}</a>${kids}</div>`;
+  }).join('');
+  return `<nav class="toc"><div class="toc-t">本頁內容</div>${rows}</nav>`;
 }
 
 /* ---------- 版型 ---------- */
@@ -183,6 +208,31 @@ table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 頁內目錄 */
+.toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
+  padding:14px 18px 15px;margin:0 0 26px}
+.toc-t{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.toc-s{margin-bottom:7px}
+.toc-s:last-child{margin-bottom:0}
+.toc-h{display:inline-block;font-weight:700;font-size:14.5px;color:var(--ink);
+  text-decoration:none;line-height:1.5}
+.toc-h:hover{color:var(--move)}
+.toc-k{display:flex;flex-wrap:wrap;gap:3px 14px;margin:1px 0 0 2px}
+.toc-k a{font-size:12.8px;color:var(--muted);text-decoration:none;line-height:1.65}
+.toc-k a:hover{color:var(--move);text-decoration:underline}
+
+/* 錨點跳轉時避開黏頂的頁首 */
+article h2,article h3{scroll-margin-top:70px}
+
+/* 回到頂端 */
+.totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;
+  box-shadow:0 4px 14px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:.18s;z-index:20;padding:0}
+.totop.on{opacity:1;visibility:visible}
+.totop:hover{border-color:var(--move);color:var(--move)}
+.totop svg{width:20px;height:20px}
+
 /* 頁尾 */
 footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0 46px;
   font-size:13px;color:var(--muted)}
@@ -194,6 +244,9 @@ footer b{color:var(--ink)}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
+  .toc{padding:12px 14px 13px;margin-bottom:20px}
+  .toc-k{gap:2px 12px}
+  .totop{right:14px;bottom:14px}
 }
 `;
 
@@ -221,6 +274,19 @@ ${body}
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
   原始碼與更新紀錄：<a href="https://github.com/philia81301-commits/obesity-education-clinic">GitHub</a>
 </div></footer>
+<button class="totop" type="button" aria-label="回到頂端">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+</button>
+<script>
+(function(){
+  var b=document.querySelector('.totop');
+  if(!b)return;
+  var show=function(){ b.classList.toggle('on', window.scrollY>420); };
+  window.addEventListener('scroll', show, {passive:true});
+  show();
+  b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+</script>
 </body>
 </html>`;
 }
@@ -235,11 +301,14 @@ for (const b of [...BOOKS, ...REFS]) {
   if (!fs.existsSync(src)) { console.warn(`  ⚠ 找不到 ${b.md}，略過`); continue; }
   const md = fs.readFileSync(src, 'utf8');
   const crumb = `<a href="./">總覽</a><span style="color:#C9C9BA">/</span><span>${esc(b.title)}</span>`;
+  const { html: bodyHtml, headings } = mdToHtml(md);
+  // 目錄插在第一個 h1 之後（標題下方），沒有 h1 就放最前面
+  const withToc = bodyHtml.replace(/(<\/h1>)/, `$1\n${buildToc(headings)}`);
   const html = page({
     title: `${b.title}｜GLP-1 減重衛教`,
     desc: b.desc,
     crumb,
-    body: `<div class="wrap"><article>${mdToHtml(md)}</article></div>`,
+    body: `<div class="wrap"><article>${withToc}</article></div>`,
   });
   fs.writeFileSync(path.join(DOCS, `${b.slug}.html`), html, 'utf8');
   built++;

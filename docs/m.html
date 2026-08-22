@@ -77,6 +77,31 @@ table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 頁內目錄 */
+.toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
+  padding:14px 18px 15px;margin:0 0 26px}
+.toc-t{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.toc-s{margin-bottom:7px}
+.toc-s:last-child{margin-bottom:0}
+.toc-h{display:inline-block;font-weight:700;font-size:14.5px;color:var(--ink);
+  text-decoration:none;line-height:1.5}
+.toc-h:hover{color:var(--move)}
+.toc-k{display:flex;flex-wrap:wrap;gap:3px 14px;margin:1px 0 0 2px}
+.toc-k a{font-size:12.8px;color:var(--muted);text-decoration:none;line-height:1.65}
+.toc-k a:hover{color:var(--move);text-decoration:underline}
+
+/* 錨點跳轉時避開黏頂的頁首 */
+article h2,article h3{scroll-margin-top:70px}
+
+/* 回到頂端 */
+.totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;
+  box-shadow:0 4px 14px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:.18s;z-index:20;padding:0}
+.totop.on{opacity:1;visibility:visible}
+.totop:hover{border-color:var(--move);color:var(--move)}
+.totop svg{width:20px;height:20px}
+
 /* 頁尾 */
 footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0 46px;
   font-size:13px;color:var(--muted)}
@@ -88,6 +113,9 @@ footer b{color:var(--ink)}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
+  .toc{padding:12px 14px 13px;margin-bottom:20px}
+  .toc-k{gap:2px 12px}
+  .totop{right:14px;bottom:14px}
 }
 </style>
 </head>
@@ -99,6 +127,7 @@ footer b{color:var(--ink)}
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 <div class="wrap"><article><h1 id="M更年期女性專項獨立一冊跨階段使用">M 更年期女性專項（獨立一冊，跨階段使用）</h1>
+<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#M-D1蛋白質優先序再提高替換各階段D1使用">M-D1 蛋白質優先序再提高（替換各階段 D1 使用）</a><a href="#M-D2順便把骨頭顧起來鈣與維生素D">M-D2 順便把骨頭顧起來：鈣與維生素 D</a><a href="#M-D3職場與居家的零食防線無聊吃順手吃專用">M-D3 職場與居家的零食防線（無聊吃、順手吃專用）</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#M-E1肌力訓練從配角變主角替換各階段E1使用">M-E1 肌力訓練從配角變主角（替換各階段 E1 使用）</a><a href="#M-E2膝蓋不好照樣練關節炎31專用">M-E2 膝蓋不好照樣練（關節炎 31% 專用）</a><a href="#M-E3零基礎入門無運動85專用">M-E3 零基礎入門（無運動 85% 專用）</a><a href="#M-E4對運動沒興趣從不像運動的運動開始">M-E4 對運動沒興趣？從「不像運動的運動」開始</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物與婦科整合模組R">四、藥物與婦科整合模組（R）</a><div class="toc-k"><a href="#M-R1荷爾蒙治療不是減重藥但能搬開絆腳石">M-R1 荷爾蒙治療不是減重藥，但能搬開絆腳石</a><a href="#M-R2哪些情況不能自行使用荷爾蒙含婦科紅旗">M-R2 哪些情況不能自行使用荷爾蒙（含婦科紅旗）</a><a href="#M-R3減重針荷爾蒙治療可以並行醫師講解層為主">M-R3 減重針×荷爾蒙治療：可以並行（醫師講解層為主）</a><a href="#M-R4心情低落壓力大不是意志力問題是要處理的事">M-R4 心情低落、壓力大：不是意志力問題，是要處理的事</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#M-T1">M-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#M-Q1更年期後是不是注定變胖">M-Q1 更年期後是不是注定變胖？</a><a href="#M-Q2荷爾蒙治療會不會讓我變胖">M-Q2 荷爾蒙治療會不會讓我變胖？</a><a href="#M-Q3減重針對停經後的我還有效嗎">M-Q3 減重針對停經後的我還有效嗎？</a><a href="#M-Q4睡不好跟減不下來有關係嗎">M-Q4 睡不好跟減不下來有關係嗎？</a><a href="#M-Q5肚子的肉特別難瘦怎麼辦">M-Q5 肚子的肉特別難瘦，怎麼辦？</a><a href="#M-Q6壓力一大就想吃怎麼辦">M-Q6 壓力一大就想吃，怎麼辦？</a></div></div><div class="toc-s"><a class="toc-h" href="#附一頁組裝範例起始期更年期女性規格卡指定範例">附①：一頁組裝範例③——起始期・更年期女性（規格卡指定範例）</a></div><div class="toc-s"><a class="toc-h" href="#附本冊依據總表醫師審稿用">附②：本冊依據總表（醫師審稿用）</a></div></nav>
 <blockquote>適用：更年期過渡期或停經後、接受 GLP-1 RA／GIP 週製劑治療的女性（對應計畫書「計畫B」族群：85% 無運動、69% 脂肪肝、31% 關節炎）。<br>使用方式：<strong>這是「差異冊」</strong>——組一頁衛教單時，依病人所在階段（S1–S5）先選好基礎模組，再用本冊 M 模組<strong>替換或加掛</strong>對應的 D／E 模組；M-R 模組視婦科需求加掛。本冊不重複各階段已有內容。<br>狀態：<strong>已審定</strong>（2026-08-22 醫師逐項審稿通過，待審標記全數解除；出處總表見文末附錄，查證深度照實保留）。</blockquote>
 <hr>
 <h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
@@ -229,5 +258,18 @@ footer b{color:var(--ink)}
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
   原始碼與更新紀錄：<a href="https://github.com/philia81301-commits/obesity-education-clinic">GitHub</a>
 </div></footer>
+<button class="totop" type="button" aria-label="回到頂端">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+</button>
+<script>
+(function(){
+  var b=document.querySelector('.totop');
+  if(!b)return;
+  var show=function(){ b.classList.toggle('on', window.scrollY>420); };
+  window.addEventListener('scroll', show, {passive:true});
+  show();
+  b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+</script>
 </body>
 </html>

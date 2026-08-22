@@ -77,6 +77,31 @@ table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 頁內目錄 */
+.toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
+  padding:14px 18px 15px;margin:0 0 26px}
+.toc-t{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.toc-s{margin-bottom:7px}
+.toc-s:last-child{margin-bottom:0}
+.toc-h{display:inline-block;font-weight:700;font-size:14.5px;color:var(--ink);
+  text-decoration:none;line-height:1.5}
+.toc-h:hover{color:var(--move)}
+.toc-k{display:flex;flex-wrap:wrap;gap:3px 14px;margin:1px 0 0 2px}
+.toc-k a{font-size:12.8px;color:var(--muted);text-decoration:none;line-height:1.65}
+.toc-k a:hover{color:var(--move);text-decoration:underline}
+
+/* 錨點跳轉時避開黏頂的頁首 */
+article h2,article h3{scroll-margin-top:70px}
+
+/* 回到頂端 */
+.totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;
+  box-shadow:0 4px 14px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:.18s;z-index:20;padding:0}
+.totop.on{opacity:1;visibility:visible}
+.totop:hover{border-color:var(--move);color:var(--move)}
+.totop svg{width:20px;height:20px}
+
 /* 頁尾 */
 footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0 46px;
   font-size:13px;color:var(--muted)}
@@ -88,6 +113,9 @@ footer b{color:var(--ink)}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
+  .toc{padding:12px 14px 13px;margin-bottom:20px}
+  .toc-k{gap:2px 12px}
+  .totop{right:14px;bottom:14px}
 }
 </style>
 </head>
@@ -99,6 +127,7 @@ footer b{color:var(--ink)}
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 <div class="wrap"><article><h1 id="共用參考高CP值蛋白質清單">共用參考：高 CP 值蛋白質清單</h1>
+<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s"><a class="toc-h" href="#總表依販售單位計">總表（依販售單位計）</a></div><div class="toc-s"><a class="toc-h" href="#四場景清單">四場景清單</a></div><div class="toc-s"><a class="toc-h" href="#醫師備註臨床把關">醫師備註（臨床把關）</a></div><div class="toc-s"><a class="toc-h" href="#出處">出處</a></div></nav>
 <blockquote>跨冊共用（S2-D6 為主要入口；S3／S5／M 冊引用）。狀態：<strong>已審定</strong>（2026-08-22）。<br>依據：食藥署食品營養成分資料庫、國健署食物代換表（1 份豆魚蛋肉類＝蛋白質 7 g）與市售品營養標示。<br><strong>價格聲明</strong>：2026 年 8 月台灣約略市價，僅供品項間相對比較，非採購依據。</blockquote>
 <h2 id="總表依販售單位計">總表（依販售單位計）</h2>
 <div class="tw"><table><thead><tr><th>食物</th><th>販售單位</th><th>蛋白質 (g)</th><th>約略價 (NT$)</th><th>NT$/10g 蛋白質</th><th>密度評語</th></tr></thead><tbody><tr><td>生鮮雞胸肉（超市）</td><td>100 g 生肉</td><td>22–23</td><td>16–24</td><td><strong>7–11</strong></td><td>極高，全場最便宜</td></tr><tr><td>冷凍毛豆仁（超市）</td><td>50 g 一把</td><td>7</td><td>120–160/kg</td><td><strong>8–11</strong></td><td>高，含纖維、植物性完全蛋白</td></tr><tr><td>雞蛋</td><td>1 顆</td><td>7</td><td>7–9</td><td>10–13</td><td>中高，營養最全面</td></tr><tr><td>傳統板豆腐</td><td>1 盒約 400 g</td><td>約 30</td><td>25–40</td><td>8–13</td><td>中高，比嫩豆腐濃縮近一倍</td></tr><tr><td>嫩豆腐</td><td>1 盒 300 g</td><td>約 15</td><td>15–25</td><td>10–17</td><td>中，好入口、體積偏大</td></tr><tr><td>乳清蛋白粉</td><td>1 匙 30 g</td><td>20–24</td><td>20–35/份</td><td>9–15</td><td>極高，小體積首選</td></tr><tr><td>無糖豆漿（超商）</td><td>400 ml</td><td>13.6</td><td>25</td><td>約 18</td><td>中</td></tr><tr><td>高蛋白無糖豆漿（超商）</td><td>400 ml</td><td>20.6</td><td>32</td><td>約 16</td><td>中高，同體積多 50%</td></tr><tr><td>鯖魚罐頭</td><td>1 罐 220–230 g</td><td>37–38</td><td>55–90</td><td>15–24</td><td>中（油脂高但為 omega-3；痛風者見備註）</td></tr><tr><td>水煮鮪魚罐頭</td><td>1 罐 150 g</td><td>約 23</td><td>40–65</td><td>17–28</td><td>極高（水煮低脂）</td></tr><tr><td>茶葉蛋（超商）</td><td>1 顆</td><td>7</td><td>9–13</td><td>13–19</td><td>中高，最方便的一份蛋白質</td></tr><tr><td>超商即食雞胸肉</td><td>1 包 100–110 g</td><td>20–25</td><td>59–79</td><td>25–35</td><td>極高，貴但即開即食</td></tr><tr><td>無加糖希臘式優格</td><td>500 g</td><td>27</td><td>約 139</td><td>約 50</td><td>高；貴、但吃不下時好入口</td></tr></tbody></table></div>
@@ -130,5 +159,18 @@ footer b{color:var(--ink)}
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
   原始碼與更新紀錄：<a href="https://github.com/philia81301-commits/obesity-education-clinic">GitHub</a>
 </div></footer>
+<button class="totop" type="button" aria-label="回到頂端">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+</button>
+<script>
+(function(){
+  var b=document.querySelector('.totop');
+  if(!b)return;
+  var show=function(){ b.classList.toggle('on', window.scrollY>420); };
+  window.addEventListener('scroll', show, {passive:true});
+  show();
+  b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+</script>
 </body>
 </html>

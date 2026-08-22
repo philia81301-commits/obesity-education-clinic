@@ -77,6 +77,31 @@ table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 頁內目錄 */
+.toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
+  padding:14px 18px 15px;margin:0 0 26px}
+.toc-t{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.toc-s{margin-bottom:7px}
+.toc-s:last-child{margin-bottom:0}
+.toc-h{display:inline-block;font-weight:700;font-size:14.5px;color:var(--ink);
+  text-decoration:none;line-height:1.5}
+.toc-h:hover{color:var(--move)}
+.toc-k{display:flex;flex-wrap:wrap;gap:3px 14px;margin:1px 0 0 2px}
+.toc-k a{font-size:12.8px;color:var(--muted);text-decoration:none;line-height:1.65}
+.toc-k a:hover{color:var(--move);text-decoration:underline}
+
+/* 錨點跳轉時避開黏頂的頁首 */
+article h2,article h3{scroll-margin-top:70px}
+
+/* 回到頂端 */
+.totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;
+  box-shadow:0 4px 14px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:.18s;z-index:20;padding:0}
+.totop.on{opacity:1;visibility:visible}
+.totop:hover{border-color:var(--move);color:var(--move)}
+.totop svg{width:20px;height:20px}
+
 /* 頁尾 */
 footer{border-top:1px solid var(--line);margin-top:20px;padding:26px 0 46px;
   font-size:13px;color:var(--muted)}
@@ -88,6 +113,9 @@ footer b{color:var(--ink)}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
+  .toc{padding:12px 14px 13px;margin-bottom:20px}
+  .toc-k{gap:2px 12px}
+  .totop{right:14px;bottom:14px}
 }
 </style>
 </head>
@@ -99,6 +127,7 @@ footer b{color:var(--ink)}
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 <div class="wrap"><article><h1 id="S3停滯期plateau體重停滯飢餓感回升">S3 停滯期（plateau：體重停滯、飢餓感回升）</h1>
+<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S3-D1先盤點不先節食回想最近一個月的聚餐次數">S3-D1 先盤點，不先節食：回想最近一個月的「聚餐次數」</a><a href="#S3-D2不要用吃更少突破停滯">S3-D2 不要用「吃更少」突破停滯</a><a href="#S3-D3抗餓餐盤吃大體積高蛋白高纖">S3-D3 抗餓餐盤：吃「大體積、高蛋白、高纖」</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E醫師指定重點核心訓練">三、運動模組（E）★醫師指定重點：核心訓練</a><div class="toc-k"><a href="#S3-E1肌力訓練升級加到每週23次逐步加重">S3-E1 肌力訓練升級：加到每週 2–3 次、逐步加重</a><a href="#S3-E2每天10分鐘核心菜單醫師指定重點">S3-E2 每天 10 分鐘核心菜單（醫師指定重點）</a><a href="#S3-E3你可能不知不覺變懶了把步數找回來">S3-E3 你可能不知不覺變懶了：把步數找回來</a></div></div><div class="toc-s"><a class="toc-h" href="#四飢餓感與副作用因應R醫師指定重點飢餓感處理">四、飢餓感與副作用因應（R）★醫師指定重點：飢餓感處理</a><div class="toc-k"><a href="#S3-R1餓回來了這是預期內的事劑量可以談">S3-R1 餓回來了？這是預期內的事，劑量可以談</a><a href="#S3-R2分辨真的餓和嘴饞">S3-R2 分辨「真的餓」和「嘴饞」</a><a href="#S3-R3晚上最容易破功宵夜衝動三道防線在地化宵夜31">S3-R3 晚上最容易破功：宵夜衝動三道防線（在地化：宵夜 31%）</a><a href="#S3-R4睡眠和壓力看不見的增餓劑">S3-R4 睡眠和壓力：看不見的增餓劑</a><a href="#紅旗症狀">紅旗症狀</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S3-T1">S3-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S3-Q1停滯多久算正常">S3-Q1 停滯多久算正常？</a><a href="#S3-Q2是不是藥沒效了要不要換藥">S3-Q2 是不是藥沒效了？要不要換藥？</a><a href="#S3-Q3我可以用斷食或吃更少來突破嗎">S3-Q3 我可以用斷食或吃更少來突破嗎？</a><a href="#S3-Q4我明明有忌口為什麼還是一直想吃">S3-Q4 我明明有忌口，為什麼還是一直想吃？</a></div></div><div class="toc-s"><a class="toc-h" href="#附一頁組裝範例停滯期宵夜習慣男性">附：一頁組裝範例③——停滯期・宵夜習慣男性</a></div></nav>
 <blockquote>適用：規律用藥與執行飲食運動下，體重連續約 <strong>4 週以上</strong>不再下降的病人；常伴隨飢餓感回升。<br>狀態：<strong>已審定</strong>（2026-08-24 醫師審稿通過）。醫師指定重點：<strong>核心訓練</strong>、<strong>飢餓感處理</strong>。</blockquote>
 <hr>
 <h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
@@ -211,5 +240,18 @@ footer b{color:var(--ink)}
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
   原始碼與更新紀錄：<a href="https://github.com/philia81301-commits/obesity-education-clinic">GitHub</a>
 </div></footer>
+<button class="totop" type="button" aria-label="回到頂端">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+</button>
+<script>
+(function(){
+  var b=document.querySelector('.totop');
+  if(!b)return;
+  var show=function(){ b.classList.toggle('on', window.scrollY>420); };
+  window.addEventListener('scroll', show, {passive:true});
+  show();
+  b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+</script>
 </body>
 </html>
