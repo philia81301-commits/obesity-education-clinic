@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>底圖提案：程式紋理 v1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --ink:#21281F; --muted:#66705F;
+    --diet:#C2620A; --move:#0A8A4D; --rx:#3563C9; --gold:#9A6B2A; --flag:#C82D1B;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:28px 20px 60px; background:#EEEEE6; font-family:"Noto Sans TC",sans-serif; color:var(--ink); }
+  header { max-width:1080px; margin:0 auto 6px; }
+  h1 { font-family:"LXGW WenKai TC",serif; font-size:26px; margin:0 0 4px; }
+  header p { margin:0 0 18px; font-size:13.5px; color:var(--muted); line-height:1.7; }
+  .grid { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; }
+  .card { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 4px 18px rgba(0,0,0,.10); }
+  .swatch { position:relative; height:230px; overflow:hidden; }
+  .swatch .demo {
+    position:absolute; left:18px; right:18px; bottom:16px;
+    background:rgba(255,255,255,.92); border-radius:8px; padding:10px 14px;
+    font-size:12.5px; line-height:1.55;
+  }
+  .demo b { font-size:13.5px; }
+  .caption { padding:12px 16px 15px; }
+  .caption h2 { font-size:16px; margin:0 0 4px; display:flex; align-items:center; gap:8px; }
+  .tag { font-size:11px; font-weight:700; color:#fff; border-radius:99px; padding:1px 9px; }
+  .caption p { margin:0; font-size:12.5px; color:var(--muted); line-height:1.65; }
+
+  /* ── A 漫畫網點（screentone）：角落半調漸層 ── */
+  .bgA { background:#FFFDF6; }
+  .bgA::before { content:""; position:absolute; inset:0;
+    background-image:radial-gradient(#0A8A4D 1.15px, transparent 1.3px);
+    background-size:7px 7px;
+    -webkit-mask-image:radial-gradient(140% 120% at 100% 0%, #000 0%, transparent 55%);
+            mask-image:radial-gradient(140% 120% at 100% 0%, #000 0%, transparent 55%);
+    opacity:.34; }
+  .bgA::after { content:""; position:absolute; inset:0;
+    background-image:radial-gradient(#C2620A 1.5px, transparent 1.65px);
+    background-size:11px 11px;
+    -webkit-mask-image:radial-gradient(120% 110% at 0% 100%, #000 0%, transparent 45%);
+            mask-image:radial-gradient(120% 110% at 0% 100%, #000 0%, transparent 45%);
+    opacity:.28; }
+
+  /* ── B 集中速度線：從右上角放射 ── */
+  .bgB { background:#FFFDF6; }
+  .bgB svg { position:absolute; inset:0; width:100%; height:100%; }
+
+  /* ── C 向上 chevron 升級紋 ── */
+  .bgC { background:#FFFDF6; }
+  .bgC::before { content:""; position:absolute; inset:0; opacity:.13;
+    background-image:
+      linear-gradient(135deg, transparent 42%, #0A8A4D 42%, #0A8A4D 58%, transparent 58%),
+      linear-gradient(45deg,  transparent 42%, #0A8A4D 42%, #0A8A4D 58%, transparent 58%);
+    background-size:26px 13px; background-position:0 0, 13px 0;
+    -webkit-mask-image:linear-gradient(to top, #000 0%, transparent 70%);
+            mask-image:linear-gradient(to top, #000 0%, transparent 70%); }
+
+  /* ── D 8-bit 像素角標＋血條 ── */
+  .bgD { background:#FFFDF6; }
+  .px { position:absolute; display:grid; grid-template-columns:repeat(6,10px); grid-auto-rows:10px; }
+  .px i { display:block; }
+  .pxTL { top:0; left:0; } .pxBR { bottom:0; right:0; transform:rotate(180deg); }
+  .hp { position:absolute; top:14px; right:14px; width:150px; height:16px;
+    border:3px solid var(--ink); border-radius:2px; background:#fff; image-rendering:pixelated; }
+  .hp i { position:absolute; inset:2px; right:32%;
+    background:repeating-linear-gradient(90deg, #0A8A4D 0 8px, #12A15D 8px 16px); }
+  .hp b { position:absolute; right:-3px; top:-24px; font-size:10px; letter-spacing:.1em; color:var(--ink); }
+
+  /* ── E 六角戰術網格 ── */
+  .bgE { background:#FFFDF6; }
+  .bgE svg { position:absolute; inset:0; width:100%; height:100%; opacity:.20; }
+
+  /* ── F 能量斜紋＋進度軌跡 ── */
+  .bgF { background:#FFFDF6; }
+  .bgF::before { content:""; position:absolute; inset:0; opacity:.12;
+    background:repeating-linear-gradient(-58deg, transparent 0 26px, #C2620A 26px 34px, transparent 34px 44px, #3563C9 44px 47px);
+    -webkit-mask-image:linear-gradient(100deg, #000 0%, transparent 60%);
+            mask-image:linear-gradient(100deg, #000 0%, transparent 60%); }
+  .track { position:absolute; top:20px; left:16px; right:16px; height:34px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>底圖提案：純程式紋理 v1</h1>
+  <p>六個方向全部是 SVG／CSS 程式碼生成——顏色鎖 v2.1 品牌色、濃度壓在文字可讀範圍、黑白列印會退成均勻淺灰不干擾。已避開前輪否決的六種風格（關卡地圖、等高線、剪紙、瑞士幾何、階梯、筆刷）。每張示範框模擬衛教單上的文字區。</p>
+</header>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="swatch bgA">
+      <div class="demo"><b>A｜漫畫網點</b><br>少年漫畫 screentone：對角雙色網點漸層，戰鬥感最直接，濃度可逐級調。</div>
+    </div>
+    <div class="caption">
+      <h2>A 漫畫網點 <span class="tag" style="background:var(--move)">戰鬥感 ★★★</span></h2>
+      <p>radial-gradient 網點＋mask 漸層。黑白列印＝標準網點灰，反而像印刷網花，最耐印。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="swatch bgB">
+      <svg viewBox="0 0 400 230" preserveAspectRatio="xMaxYMin slice">
+        <g stroke="#3563C9" stroke-linecap="round" opacity=".30">
+          <line x1="400" y1="0" x2="240" y2="60"  stroke-width="7"/>
+          <line x1="400" y1="0" x2="180" y2="130" stroke-width="3"/>
+          <line x1="400" y1="0" x2="270" y2="150" stroke-width="10"/>
+          <line x1="400" y1="0" x2="120" y2="80"  stroke-width="2"/>
+          <line x1="400" y1="0" x2="330" y2="190" stroke-width="5"/>
+          <line x1="400" y1="0" x2="60"  y2="40"  stroke-width="4"/>
+          <line x1="400" y1="0" x2="210" y2="100" stroke-width="1.5"/>
+        </g>
+        <g stroke="#C2620A" stroke-linecap="round" opacity=".22">
+          <line x1="400" y1="0" x2="150" y2="105" stroke-width="6"/>
+          <line x1="400" y1="0" x2="300" y2="170" stroke-width="2.5"/>
+          <line x1="400" y1="0" x2="90"  y2="60"  stroke-width="8"/>
+        </g>
+      </svg>
+      <div class="demo"><b>B｜集中速度線</b><br>從角落放射的漫畫集中線——「本週重點在這裡」的視線引導，天生適合放標題區。</div>
+    </div>
+    <div class="caption">
+      <h2>B 集中速度線 <span class="tag" style="background:var(--rx)">戰鬥感 ★★★</span></h2>
+      <p>SVG 線段，粗細隨機交錯。只佔一個角、版面大片留白，資訊密的衛教單最安全。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="swatch bgC">
+      <div class="demo"><b>C｜向上 Chevron</b><br>連續向上的箭頭紋從頁尾往上淡出——「一直在升級」的隱喻，低調不搶戲。</div>
+    </div>
+    <div class="caption">
+      <h2>C 向上 Chevron <span class="tag" style="background:var(--move)">低調 ★★★</span></h2>
+      <p>兩層 linear-gradient 拼出箭頭，濃度最低的一款；適合當全頁滿版基底紋。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="swatch bgD">
+      <div class="px pxTL">
+        <i style="background:#21281F;grid-column:1/4;grid-row:1"></i>
+        <i style="background:#21281F;grid-column:1;grid-row:2/4"></i>
+        <i style="background:#C2620A;grid-column:2;grid-row:2"></i>
+      </div>
+      <div class="px pxBR">
+        <i style="background:#21281F;grid-column:1/4;grid-row:1"></i>
+        <i style="background:#21281F;grid-column:1;grid-row:2/4"></i>
+        <i style="background:#0A8A4D;grid-column:2;grid-row:2"></i>
+      </div>
+      <div class="hp"><b>WEEKLY HP</b><i></i></div>
+      <div class="demo"><b>D｜8-bit 像素框</b><br>像素角標＋血條（可拿來當「本週任務進度條」實際欄位）。復古遊戲機感，30–49 歲主力族群的童年語彙。</div>
+    </div>
+    <div class="caption">
+      <h2>D 8-bit 像素框 <span class="tag" style="background:var(--gold)">遊戲感 ★★★</span></h2>
+      <p>純 CSS grid 像素。血條不只是裝飾——可直接變成任務達成度的書寫欄位。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="swatch bgE">
+      <svg viewBox="0 0 400 230">
+        <defs><pattern id="hex" width="42" height="36.4" patternUnits="userSpaceOnUse">
+          <polygon points="21,0 42,10.5 42,25.9 21,36.4 0,25.9 0,10.5" fill="none" stroke="#3563C9" stroke-width="1.4" transform="translate(0,-8)"/>
+        </pattern></defs>
+        <rect width="400" height="230" fill="url(#hex)"/>
+        <polygon points="63,47.6 84,58.1 84,73.5 63,84 42,73.5 42,58.1" fill="#0A8A4D" opacity=".5" transform="translate(0,-19)"/>
+        <polygon points="147,84 168,94.5 168,109.9 147,120.4 126,109.9 126,94.5" fill="#C2620A" opacity=".45" transform="translate(0,-19)"/>
+      </svg>
+      <div class="demo"><b>E｜六角戰術網格</b><br>RPG 技能樹／戰術地圖的蜂巢格，點亮的格子＝已解鎖的習慣。</div>
+    </div>
+    <div class="caption">
+      <h2>E 六角網格 <span class="tag" style="background:var(--rx)">科技感 ★★★</span></h2>
+      <p>SVG pattern。可延伸玩法：每冊點亮不同數量的格子，暗示旅程進度。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="swatch bgF">
+      <svg class="track" viewBox="0 0 368 34" preserveAspectRatio="none">
+        <path d="M4 24 C60 8 120 30 180 16 S 300 6 364 18" fill="none" stroke="#9A6B2A" stroke-width="2.5" stroke-dasharray="1 9" stroke-linecap="round"/>
+        <circle cx="4" cy="24" r="5" fill="#0A8A4D"/>
+        <circle cx="180" cy="16" r="5" fill="#C2620A"/>
+        <circle cx="364" cy="18" r="6.5" fill="none" stroke="#9A6B2A" stroke-width="2.5"/>
+      </svg>
+      <div class="demo"><b>F｜能量斜紋＋路徑點</b><br>斜切的雙色能量帶＋頂部虛線路徑（起點→現在→目標），把「旅程」畫成一條線而不是一張地圖。</div>
+    </div>
+    <div class="caption">
+      <h2>F 能量斜紋 <span class="tag" style="background:var(--diet)">動感 ★★★</span></h2>
+      <p>repeating-linear-gradient 斜紋＋SVG 虛線路徑。路徑點可對應五關，每冊亮的點不同。</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
