@@ -127,9 +127,11 @@ function buildToc(headings) {
     else if (secs.length) secs[secs.length - 1].kids.push(h);
   }
   if (secs.length < 2) return '';
+  // 模組標題在「：」或「（」處截短——目錄要能掃，不是把內文再抄一遍
+  const shorten = t => t.split(/[：（(]/)[0].trim();
   const rows = secs.map(s => {
     const kids = s.kids.length
-      ? `<div class="toc-k">${s.kids.map(k => `<a href="#${k.id}">${esc(k.text)}</a>`).join('')}</div>`
+      ? `<div class="toc-k">${s.kids.map(k => `<a href="#${k.id}">${esc(shorten(k.text))}</a>`).join('')}</div>`
       : '';
     return `<div class="toc-s"><a class="toc-h" href="#${s.id}">${esc(s.text)}</a>${kids}</div>`;
   }).join('');
