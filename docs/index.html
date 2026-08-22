@@ -79,7 +79,9 @@ th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
 /* 頁內目錄 */
 .toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
-  padding:14px 18px 15px;margin:0 0 26px}
+  padding:14px 18px 15px;margin:0 0 26px;
+  /* 冊子模組多時（如 M 冊 18 個），目錄不得佔掉整個螢幕：超過就自己捲 */
+  max-height:40vh;overflow-y:auto;overscroll-behavior:contain}
 .toc-t{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
 .toc-s{margin-bottom:7px}
 .toc-s:last-child{margin-bottom:0}
@@ -113,7 +115,7 @@ footer b{color:var(--ink)}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
-  .toc{padding:12px 14px 13px;margin-bottom:20px}
+  .toc{padding:12px 14px 13px;margin-bottom:20px;max-height:38vh}
   .toc-k{gap:2px 12px}
   .totop{right:14px;bottom:14px}
 }
