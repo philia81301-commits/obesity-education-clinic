@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S5 停藥／減藥過渡期衛教單（A4）</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+  /* ===== v2.1 配色（對比增強版；紅色只給紅旗） ===== */
+  :root {
+    --ink: #21281F;
+    --muted: #66705F;
+    --line: #D8D8CC;
+    /* soft 底色的明度刻意拉開（灰階 243／231／218），
+       黑白印表機才分得出飲食／運動／藥物三塊；主色不變 */
+    --diet: #C2620A;  --diet-soft: #FDF1E2;
+    --move: #0A8A4D;  --move-soft: #D7F0E0;
+    --rx:   #3563C9;  --rx-soft:   #CDDBF5;
+    --flag: #C82D1B;
+    --gold: #9A6B2A;  --gold-soft: #F5EDDD;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* 螢幕預覽：灰底置中；列印時全部歸零 */
+  body {
+    margin: 0;
+    background: #9A9A92;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    color: var(--ink);
+  }
+
+  /* ===== 診間列印設定 =====
+     紙張：A4 直式 210×297mm，@page margin 設 0，
+     安全邊界改由 .sheet 的 padding 控制（上下 11mm、左右 12mm），
+     一般雷射印表機（實體最小邊界約 4–5mm）都印得完整。 */
+  @page { size: A4 portrait; margin: 0; }
+
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 24px auto;
+    padding: 11mm 12mm;
+    background: #FFFFFF;
+    box-shadow: 0 12px 40px rgba(0,0,0,.35);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ===== 底紋 F：能量斜紋（右上角淡出，濃度 .085 不干擾文字） ===== */
+  .sheet::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; opacity: .085;
+    background: repeating-linear-gradient(-58deg,
+      transparent 0 26px, var(--diet) 26px 34px,
+      transparent 34px 44px, var(--rx) 44px 47px);
+    -webkit-mask-image: radial-gradient(120% 90% at 100% 0%, #000 0%, transparent 62%);
+            mask-image: radial-gradient(120% 90% at 100% 0%, #000 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .sheet > * { position: relative; z-index: 1; }
+
+  /* 旅程路徑：五關進度點（本冊亮到第 1 關） */
+  .path { height: 7mm; margin: 0 0 2mm; }
+  .path svg { width: 100%; height: 100%; display: block; }
+
+  @media print {
+    body { background: #FFFFFF; }
+    .sheet { margin: 0; box-shadow: none; width: 210mm; height: 297mm; overflow: hidden; }
+    .toolbar { display: none !important; }
+  }
+
+  /* 螢幕上的列印提示列（不會被印出來） */
+  .toolbar {
+    max-width: 210mm; margin: 16px auto 0; padding: 10px 16px;
+    background: #FFFDF5; border-radius: 8px; font-size: 13px; line-height: 1.7;
+    color: #444;
+  }
+  .toolbar b { color: #000; }
+  .toolbar button {
+    font: inherit; font-weight: 700; color: #fff; background: var(--move);
+    border: 0; border-radius: 6px; padding: 4px 18px; cursor: pointer; margin-right: 12px;
+  }
+
+  /* ===== 版面（全部 mm / pt，列印穩定） ===== */
+  h1, .kai { font-family: "LXGW WenKai TC", "DFKai-SB", "KaiTi", "Noto Sans TC", serif; }
+
+  .head {
+    display: flex; align-items: baseline; gap: 4mm; flex-wrap: wrap;
+    border-bottom: 0.7mm solid var(--ink);
+    padding-bottom: 2.5mm; margin-bottom: 4mm;
+  }
+  h1 { font-size: 17pt; font-weight: 700; margin: 0; letter-spacing: .04em; }
+  .level {
+    background: var(--gold-soft); color: var(--gold);
+    border-radius: 99px; padding: 0.5mm 4mm;
+    font-size: 9.5pt; font-weight: 700; letter-spacing: .06em;
+  }
+  .fill-row { margin-left: auto; font-size: 10pt; display: flex; gap: 4mm; }
+  .fill u {
+    text-decoration: none; border-bottom: 0.35mm solid var(--ink);
+    display: inline-block; min-width: 16mm; text-align: center; color: var(--muted);
+  }
+  .fill u.wide { min-width: 24mm; }
+
+  .blk { margin-bottom: 3.5mm; }
+  .blk-head {
+    display: inline-flex; align-items: center; gap: 2mm;
+    font-weight: 700; font-size: 11pt; letter-spacing: .08em;
+    padding: 0.8mm 4.5mm 0.8mm 3mm; border-radius: 99px; margin-bottom: 1.8mm;
+  }
+  .blk-head svg { width: 4.6mm; height: 4.6mm; }
+  .b-diet .blk-head { background: var(--diet-soft); color: var(--diet); }
+  .b-move .blk-head { background: var(--move-soft); color: var(--move); }
+  .b-rx   .blk-head { background: var(--rx-soft);   color: var(--rx); }
+
+  .blk ul { margin: 0; padding-left: 5.5mm; font-size: 10.5pt; line-height: 1.62; }
+  .blk li { margin-bottom: 1.2mm; }
+  .blk li > b { font-weight: 700; }
+
+  /* 去汙名化訊息專區（S5 核心訊息） */
+  .core {
+    border: 0.4mm solid var(--gold); border-radius: 2.5mm;
+    background: var(--gold-soft); padding: 2.4mm 4mm 2.6mm; margin: 0 0 3mm;
+  }
+  .core-t { font-weight: 700; font-size: 10.5pt; color: var(--gold); margin-bottom: 1.2mm; }
+  .core-p { font-size: 9.8pt; line-height: 1.55; }
+  .core-p b { font-weight: 700; }
+
+  .quote {
+    font-family: "LXGW WenKai TC", "DFKai-SB", "KaiTi", serif;
+    font-size: 11pt; line-height: 1.6;
+    background: var(--gold-soft); border-radius: 2.5mm;
+    padding: 2.5mm 5mm; margin: 0 0 3.5mm;
+  }
+
+  .wins {
+    background: #F1F1E6; border-radius: 2.5mm;
+    padding: 2.5mm 5mm 2mm; margin-bottom: 3.5mm; font-size: 10pt;
+  }
+  .wins-title { font-weight: 700; margin-bottom: 1mm; letter-spacing: .04em; }
+  .wins-title span { font-weight: 400; color: var(--muted); font-size: 9pt; }
+  .win { display: flex; align-items: baseline; gap: 2.5mm; margin-bottom: 0.8mm; }
+  .box {
+    width: 3.6mm; height: 3.6mm; border: 0.4mm solid var(--ink);
+    border-radius: 0.8mm; flex-shrink: 0; position: relative; top: 0.5mm;
+  }
+  .streaks { display: flex; gap: 3mm; margin-top: 1.5mm; }
+  .streak {
+    display: inline-flex; align-items: baseline; gap: 1.5mm;
+    background: var(--gold-soft); border-radius: 99px;
+    padding: 0.4mm 3.5mm; font-size: 9pt;
+  }
+  .streak b { color: var(--gold); font-variant-numeric: tabular-nums; }
+  .streak u {
+    text-decoration: none; border-bottom: 0.3mm solid var(--gold);
+    min-width: 7mm; display: inline-block;
+  }
+
+  .spacer { flex: 1; }
+
+  .foot {
+    border-top: 0.4mm solid var(--line);
+    padding-top: 2.5mm; font-size: 9.5pt; line-height: 1.55;
+  }
+  .flag-line { color: var(--flag); font-weight: 500; display: flex; gap: 2mm; }
+  .flag-line svg { width: 3.8mm; height: 3.8mm; flex-shrink: 0; margin-top: 0.8mm; }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">列印</button>
+  診間列印設定：紙張 <b>A4 直式</b>、邊界 <b>無（或預設）</b>、縮放 <b>100%（實際大小）</b>、務必勾選 <b>背景圖形</b>（否則色塊印不出來）。黑白印表機也可：色塊會轉成可區分的深淺灰。
+</div>
+
+<div class="sheet">
+
+  <div class="head">
+    <h1>接棒的時候</h1>
+    <span class="level">第 5 關 · 停藥／減藥過渡期</span>
+    <span class="fill-row">
+      <span class="fill">姓名 <u class="wide">　</u></span>
+      <span class="fill">警戒線 <u style="min-width:13mm">　</u> kg</span>
+    </span>
+  </div>
+
+  <div class="path">
+    <svg viewBox="0 0 560 26" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M8 18 C90 6 170 24 250 13 S 430 5 552 15" fill="none"
+            stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="1 7" stroke-linecap="round"/>
+      <circle cx="8"   cy="18" r="3.4" fill="var(--move)" opacity=".45"/>
+      <circle cx="144" cy="14" r="3.4" fill="var(--move)" opacity=".45"/>
+      <circle cx="280" cy="12" r="3.4" fill="var(--move)" opacity=".45"/>
+      <circle cx="416" cy="9"  r="3.4" fill="var(--move)" opacity=".45"/>
+      <circle cx="552" cy="15" r="5.5" fill="var(--move)"/>
+      <text x="540" y="5" font-size="8" fill="#0A8A4D" text-anchor="end" font-family="Noto Sans TC, sans-serif" font-weight="700">你在這裡</text>
+    </svg>
+  </div>
+
+  <p class="quote">「停藥是<b>我們一起設計的過程</b>，不是把針丟掉的那一天。食慾會回來一些，那是身體的正常反應——你這段時間學的每一個工具，就是為了這一刻準備的。」</p>
+
+  <div class="blk b-diet">
+    <span class="blk-head">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="24" cy="33" rx="16" ry="5"/><path d="M24 11 C29 11 31.5 17 31.5 21.5 C31.5 26 28 29 24 29 C20 29 16.5 26 16.5 21.5 C16.5 17 19 11 24 11 Z"/></svg>
+      飲食
+    </span>
+    <ul>
+      <li><b>食慾會變大，那是正常的</b>——不是你退步。把學過的工具全部拿出來：每餐蛋白質先吃、抗餓餐盤（蔬菜堆滿、加一碗清湯）、15 分鐘法分辨真餓和嘴饞。特別小心兩個老朋友回來敲門：<b>含糖飲料和宵夜</b>。</li>
+      <li><b>量體重加密到每週 1–2 次</b>（固定時間）。碰到警戒線，除了聚餐盤點、運動補量，<b>多做一件事——回診跟醫師討論要不要恢復或調整用藥</b>。早回來三個月，勝過晚回來三公斤。</li>
+    </ul>
+  </div>
+
+  <div class="blk b-move">
+    <span class="blk-head">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="26" cy="9" r="4"/><path d="M25 14 L22 26"/><path d="M24.5 17.5 L31 21.5 M24.5 17.5 L17 20"/><path d="M22 26 L28.5 37 M22 26 L16 37"/></svg>
+      運動
+    </span>
+    <ul>
+      <li><b>運動是接棒的人</b>：藥物退場後，守住代謝的主力就是肌肉和運動。所以順序很重要——<b>先確認肌力每週 2–3 次、快走或短而喘每週 150 分鐘已經是你的日常，再談停藥</b>，不是停藥之後才開始練。停藥後運動量不減，肌力甚至可以再加一點。</li>
+      <li><b>這段時間的目標只有一條：不中斷</b>。狀態好照課表；狀態差就做「保底版」——10 分鐘核心菜單或 15 分鐘快走，做了就算數。<b>連續兩週完全沒動，就回診聊聊發生什麼事。</b></li>
+    </ul>
+  </div>
+
+  <div class="blk b-rx">
+    <span class="blk-head">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="19" y="6" width="10" height="25" rx="4"/><path d="M24 31 L24 39"/><path d="M19 14 L29 14"/></svg>
+      藥物
+    </span>
+    <ul>
+      <li><b>停藥方式不只一種，由醫師設計</b>：漸進減量、拉長打針間隔、先減到最低劑量觀察——哪一種適合你，看你的狀況。過程中任何時候覺得食慾失控、體重回升，<b>都可以回頭</b>：調回原劑量不是失敗，是計畫的一部分。唯一錯誤的停法是自己默默不打了。</li>
+      <li><b>想懷孕？請提前告訴醫師</b>：這類藥物懷孕期間不能使用，需要在受孕前一段時間先停藥（時間由醫師依你的藥告訴你），並一起規劃停藥後到懷孕前的體重管理。<b>不要先偷偷備孕再說</b>——提前規劃，母嬰都安全。</li>
+    </ul>
+  </div>
+
+  <div class="core">
+    <div class="core-t">如果體重回升了——回來就好</div>
+    <div class="core-p">
+      肥胖是慢性病，就像高血壓、糖尿病一樣：<b>有些人停藥後守得住，有些人需要重新用藥或長期用藥，兩種都正常。</b>
+      體重回升不是你的錯，更不是丟臉的事——碰到警戒線就回來，我們重新評估。<br>
+      <b>最可惜的不是復胖，是復胖後不好意思回來。</b>
+    </div>
+  </div>
+
+  <div class="wins">
+    <div class="wins-title">過渡期每週三件事 <span>——做到就打勾，回診一起看</span></div>
+    <div class="win"><span class="box"></span>量了 1–2 次體重：<u style="border-bottom:.3mm solid var(--ink);min-width:14mm;display:inline-block;text-decoration:none">　</u> kg（有沒有碰到警戒線？）</div>
+    <div class="win"><span class="box"></span>運動沒有中斷（狀態差時做保底版也算）</div>
+    <div class="win"><span class="box"></span>含糖飲料、宵夜沒有回來</div>
+    <div class="streaks">
+      <span class="streak">體重守在警戒線內 <b><u>　</u> 週</b></span>
+      <span class="streak">運動不中斷 <b><u>　</u> 週</b></span>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="foot">
+    <div class="flag-line">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M15 7 L15 41"/><path d="M15 9 L34 13.5 L15 20 Z" fill="currentColor" stroke="none"/></svg>
+      <span><b>出現以下情況不要等回診，直接聯絡診所或就醫</b>：吐到完全喝不下水、持續上腹或右上腹劇痛（可能痛到背後）、皮膚眼白變黃、心悸冒冷汗手抖、小便量明顯變少。</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
