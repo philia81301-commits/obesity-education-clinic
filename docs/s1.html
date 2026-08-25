@@ -79,6 +79,24 @@ table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 醫護專用內容：預設收起，由導覽列開關切換 */
+html:not(.show-doc) .docnote,
+html:not(.show-doc) .docsec{display:none}
+
+.docsw{font:inherit;font-size:13.5px;color:var(--muted);background:#fff;
+  border:1px solid var(--line);border-radius:99px;padding:4px 13px 4px 10px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  transition:.15s}
+.docsw:hover{border-color:var(--move);color:var(--ink)}
+.docsw i{width:9px;height:9px;border-radius:50%;background:#C9C9BA;
+  flex-shrink:0;transition:.15s}
+html.show-doc .docsw{border-color:var(--move);color:var(--move);background:var(--move-soft)}
+html.show-doc .docsw i{background:var(--move)}
+.docsw .off{display:inline}
+.docsw .on{display:none}
+html.show-doc .docsw .off{display:none}
+html.show-doc .docsw .on{display:inline}
+
 /* 頁內目錄 */
 .toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
   padding:14px 18px 15px;margin:0 0 26px;
@@ -116,7 +134,11 @@ footer b{color:var(--ink)}
 @media(max-width:640px){
   .top .wrap{height:56px;gap:10px}
   .top .home{font-size:18px}
-  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名 */
+  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名與開關 */
+  .docsw{font-size:12.5px;padding:3px 10px 3px 8px;gap:5px}
+  .docsw .off{display:none}   /* 手機只留「醫師版」二字 */
+  .docsw::after{content:"醫師版"}
+  html.show-doc .docsw .on{display:none}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
@@ -125,19 +147,26 @@ footer b{color:var(--ink)}
   .totop{right:14px;bottom:14px}
 }
 </style>
+<script>
+/* 在繪製前套用偏好，避免醫師備註閃一下才收起 */
+try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.classList.add('show-doc');}catch(e){}
+</script>
 </head>
 <body>
 <nav class="top"><div class="wrap">
   <a class="home" href="./">GLP-1 減重衛教</a>
   <span class="sp"></span>
   <span class="crumb"><a href="./">總覽</a><span style="color:#C9C9BA"> / </span>起始期</span>
+  <button class="docsw" type="button" aria-pressed="false">
+    <i></i><span class="off">顯示醫師備註</span><span class="on">隱藏醫師備註</span>
+  </button>
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 <div class="wrap"><article><h1 id="S1起始期開始注射04週">S1 起始期（開始注射 0–4 週）</h1>
-<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S1-D1蛋白質優先吃">S1-D1 蛋白質優先吃</a><a href="#S1-D2吃慢一點飽了就停不要少量多餐">S1-D2 吃慢一點、飽了就停</a><a href="#S1-D3水要喝夠">S1-D3 水要喝夠</a><a href="#S1-D4外食這樣選在地化外食族73">S1-D4 外食這樣選</a><a href="#S1-D5先避開的地雷食物">S1-D5 先避開的地雷食物</a><a href="#S1-D6纖維與便祕預防">S1-D6 纖維與便祕預防</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#S1-E1每天步行30分鐘在地化無運動習慣59">S1-E1 每天步行 30 分鐘</a><a href="#S1-E2把活動藏進生活">S1-E2 把活動藏進生活</a><a href="#S1-E3膝蓋不好也能練的下肢肌力低衝擊替代">S1-E3 膝蓋不好也能練的下肢肌力</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物模組R週製劑與副作用因應">四、藥物模組（R）：週製劑與副作用因應</a><div class="toc-k"><a href="#S1-R1打針的基本功">S1-R1 打針的基本功</a><a href="#S1-R2想吐的時候怎麼辦">S1-R2 想吐的時候怎麼辦</a><a href="#S1-R3忘記打針怎麼辦">S1-R3 忘記打針怎麼辦</a><a href="#S1-R4紅旗症狀出現就提前回診">S1-R4 紅旗症狀</a><a href="#S1-R5副作用太強劑量可以商量">S1-R5 副作用太強，劑量可以商量</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S1-T1">S1-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S1-Q1多久會開始瘦瘦多快才正常">S1-Q1 多久會開始瘦？瘦多快才正常？</a><a href="#S1-Q2這個針要打多久會不會要打一輩子">S1-Q2 這個針要打多久？會不會要打一輩子？</a><a href="#S1-Q5如果之後體重卡住不動是不是就失敗了">S1-Q5 如果之後體重卡住不動，是不是就失敗了？</a><a href="#S1-Q3打針期間可以喝酒嗎">S1-Q3 打針期間可以喝酒嗎？</a><a href="#S1-Q4我食慾沒有變差是不是藥沒效">S1-Q4 我食慾沒有變差，是不是藥沒效？</a></div></div><div class="toc-s"><a class="toc-h" href="#附一頁組裝範例起始期外食男性上班族">附：一頁組裝範例①——起始期・外食男性上班族</a></div></nav>
+<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s docsec"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S1-D1蛋白質優先吃">S1-D1 蛋白質優先吃</a><a href="#S1-D2吃慢一點飽了就停不要少量多餐">S1-D2 吃慢一點、飽了就停</a><a href="#S1-D3水要喝夠">S1-D3 水要喝夠</a><a href="#S1-D4外食這樣選在地化外食族73">S1-D4 外食這樣選</a><a href="#S1-D5先避開的地雷食物">S1-D5 先避開的地雷食物</a><a href="#S1-D6纖維與便祕預防">S1-D6 纖維與便祕預防</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#S1-E1每天步行30分鐘在地化無運動習慣59">S1-E1 每天步行 30 分鐘</a><a href="#S1-E2把活動藏進生活">S1-E2 把活動藏進生活</a><a href="#S1-E3膝蓋不好也能練的下肢肌力低衝擊替代">S1-E3 膝蓋不好也能練的下肢肌力</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物模組R週製劑與副作用因應">四、藥物模組（R）：週製劑與副作用因應</a><div class="toc-k"><a href="#S1-R1打針的基本功">S1-R1 打針的基本功</a><a href="#S1-R2想吐的時候怎麼辦">S1-R2 想吐的時候怎麼辦</a><a href="#S1-R3忘記打針怎麼辦">S1-R3 忘記打針怎麼辦</a><a href="#S1-R4紅旗症狀出現就提前回診">S1-R4 紅旗症狀</a><a href="#S1-R5副作用太強劑量可以商量">S1-R5 副作用太強，劑量可以商量</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S1-T1">S1-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S1-Q1多久會開始瘦瘦多快才正常">S1-Q1 多久會開始瘦？瘦多快才正常？</a><a href="#S1-Q2這個針要打多久會不會要打一輩子">S1-Q2 這個針要打多久？會不會要打一輩子？</a><a href="#S1-Q5如果之後體重卡住不動是不是就失敗了">S1-Q5 如果之後體重卡住不動，是不是就失敗了？</a><a href="#S1-Q3打針期間可以喝酒嗎">S1-Q3 打針期間可以喝酒嗎？</a><a href="#S1-Q4我食慾沒有變差是不是藥沒效">S1-Q4 我食慾沒有變差，是不是藥沒效？</a></div></div><div class="toc-s docsec"><a class="toc-h" href="#附一頁組裝範例起始期外食男性上班族">附：一頁組裝範例①——起始期・外食男性上班族</a></div></nav>
 <blockquote>適用：剛開始 GLP-1 RA／GIP 週製劑（Semaglutide 週纖達、Tirzepatide 猛健樂）、劑量爬升初期的病人。<br>狀態：<strong>已審定</strong>（2026-08-22 醫師兩輪審稿通過）。</blockquote>
 <hr>
-<h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
+<div class="docsec"><h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
 <p><strong>這一冊要達成的事</strong>：讓病人安全度過副作用最明顯的前幾週、建立蛋白質優先與規律步行的基礎習慣、設定合理期望值，避免第一個月就因噁心或「怎麼還沒瘦」而失落退出。</p>
 <p>生理變化（講解用）：</p>
 <ul>
@@ -148,94 +177,94 @@ footer b{color:var(--ink)}
 </ul>
 <blockquote><strong>核心觀念（醫師審定，全六冊適用）</strong>：減重是為了<strong>改善健康</strong>，不只是數字好看。旅程中的停滯期有<strong>生理上不可抗拒的因素（賀爾蒙的調控）</strong>，不是病人不努力；<strong>不要放棄是關鍵</strong>。體重下降的速度來自<strong>正確的食物選擇＋運動的搭配</strong>。維持期的劑量由醫師與病人<strong>討論決定</strong>。</blockquote>
 <hr>
-<h2 id="二飲食模組D">二、飲食模組（D）</h2>
+</div><h2 id="二飲食模組D">二、飲食模組（D）</h2>
 <h3 id="S1-D1蛋白質優先吃">S1-D1 蛋白質優先吃</h3>
 <ul>
 <li><strong>病人版</strong>：胃口變小後，每餐先吃蛋白質：蛋、豆腐、豆漿、魚、雞肉。一天目標大約「每公斤體重 1.2–1.5 公克」蛋白質，先吃夠蛋白質，才不會瘦到肌肉。</li>
-<li><strong>醫師備註</strong>：以調整後理想體重或實際體重計算由醫師依個案判斷；腎功能不佳者另計。可換算成具體份量講：「一餐一個手掌大的豆魚蛋肉」。</li>
-<li><strong>出處</strong>：肥胖治療期間蛋白質建議 1.2–1.5 g/kg/day（醫師審定 2026-08-22）</li>
+<li class="docnote"><strong>醫師備註</strong>：以調整後理想體重或實際體重計算由醫師依個案判斷；腎功能不佳者另計。可換算成具體份量講：「一餐一個手掌大的豆魚蛋肉」。</li>
+<li class="docnote"><strong>出處</strong>：肥胖治療期間蛋白質建議 1.2–1.5 g/kg/day（醫師審定 2026-08-22）</li>
 </ul>
 <h3 id="S1-D2吃慢一點飽了就停不要少量多餐">S1-D2 吃慢一點、飽了就停（不要少量多餐）</h3>
 <ul>
 <li><strong>病人版</strong>：藥物會讓你很快就飽。三餐照正常時間吃，份量減少、細嚼慢嚥，覺得飽了就停，不要硬吃完。但<strong>不要改成一天吃很多次</strong>：餐與餐之間不吃點心，一直進食會不斷刺激胰島素，反而容易把熱量存成脂肪。</li>
-<li><strong>醫師備註</strong>：進食頻率↑ → 胰島素反覆分泌 → 抑制脂解、促進脂肪合成（對應「胰島素鎖脂」機轉）。衛教方向是<strong>餐內減量</strong>，不是拆成多餐。早飽感是療效的一部分，把「吃不下」重新框架為「藥有在作用」。吃太快或吃太撐是打針初期想吐最常見的原因。</li>
-<li><strong>出處</strong>：胰島素與脂肪合成機轉（Lehninger 筆記）＋醫師審定 2026-08-22</li>
+<li class="docnote"><strong>醫師備註</strong>：進食頻率↑ → 胰島素反覆分泌 → 抑制脂解、促進脂肪合成（對應「胰島素鎖脂」機轉）。衛教方向是<strong>餐內減量</strong>，不是拆成多餐。早飽感是療效的一部分，把「吃不下」重新框架為「藥有在作用」。吃太快或吃太撐是打針初期想吐最常見的原因。</li>
+<li class="docnote"><strong>出處</strong>：胰島素與脂肪合成機轉（Lehninger 筆記）＋醫師審定 2026-08-22</li>
 </ul>
 <h3 id="S1-D3水要喝夠">S1-D3 水要喝夠</h3>
 <ul>
 <li><strong>病人版</strong>：食量變小，喝水量常跟著變少。每天至少 <strong>2000 毫升</strong>白開水或無糖飲品，分次小口喝。水喝不夠會頭暈、便祕，也容易被誤以為是藥的副作用。</li>
-<li><strong>醫師備註</strong>：噁心明顯者建議餐間喝、避免隨餐大量喝水撐胃。夏季或運動日再上調。</li>
-<li><strong>出處</strong>：一般成人水分建議（醫師審定 2026-08-22）</li>
+<li class="docnote"><strong>醫師備註</strong>：噁心明顯者建議餐間喝、避免隨餐大量喝水撐胃。夏季或運動日再上調。</li>
+<li class="docnote"><strong>出處</strong>：一般成人水分建議（醫師審定 2026-08-22）</li>
 </ul>
 <h3 id="S1-D4外食這樣選在地化外食族73">S1-D4 外食這樣選（在地化：外食族 73%）</h3>
 <ul>
 <li><strong>病人版</strong>：外食優先選「看得到原型食物」的店：自助餐夾蛋白質＋青菜、便當去炸皮、湯麵少喝湯。含糖飲料改無糖或水——胃口變小的現在，正是戒糖飲最容易成功的時機。</li>
-<li><strong>醫師備註</strong>：門診問卷顯示外食 73%、含糖飲料 33%、宵夜 31%；起始期食慾下降是行為改變的機會窗口，優先處理「喝的熱量」。</li>
-<li><strong>出處</strong>：本院 270 份問卷（2025-09～2026-05）</li>
+<li class="docnote"><strong>醫師備註</strong>：門診問卷顯示外食 73%、含糖飲料 33%、宵夜 31%；起始期食慾下降是行為改變的機會窗口，優先處理「喝的熱量」。</li>
+<li class="docnote"><strong>出處</strong>：本院 270 份問卷（2025-09～2026-05）</li>
 </ul>
 <h3 id="S1-D5先避開的地雷食物">S1-D5 先避開的地雷食物</h3>
 <ul>
 <li><strong>病人版</strong>：打針初期先少碰：油炸、肥肉、濃湯、甜點、酒。這些食物在胃裡停留久，最容易引發噁心、脹氣和不舒服。</li>
-<li><strong>醫師備註</strong>：高脂餐與酒精是起始期噁心／嘔吐的主要誘發因子；酒精另有低血糖與熱量問題。</li>
-<li><strong>出處</strong>：GLP-1 RA 副作用飲食因應通則</li>
+<li class="docnote"><strong>醫師備註</strong>：高脂餐與酒精是起始期噁心／嘔吐的主要誘發因子；酒精另有低血糖與熱量問題。</li>
+<li class="docnote"><strong>出處</strong>：GLP-1 RA 副作用飲食因應通則</li>
 </ul>
 <h3 id="S1-D6纖維與便祕預防">S1-D6 纖維與便祕預防</h3>
 <ul>
 <li><strong>病人版</strong>：每天至少半盤蔬菜，水果一到兩份。食量變小後便祕很常見，蔬菜、水分、走路三件事一起做，多數便祕不用吃藥就會改善。</li>
-<li><strong>醫師備註</strong>：纖維目標約 25–30 g/day；已便祕者先確認水分與活動量，再考慮軟便劑。</li>
-<li><strong>出處</strong>：膳食纖維一般建議</li>
+<li class="docnote"><strong>醫師備註</strong>：纖維目標約 25–30 g/day；已便祕者先確認水分與活動量，再考慮軟便劑。</li>
+<li class="docnote"><strong>出處</strong>：膳食纖維一般建議</li>
 </ul>
 <hr>
 <h2 id="三運動模組E">三、運動模組（E）</h2>
 <h3 id="S1-E1每天步行30分鐘在地化無運動習慣59">S1-E1 每天步行 30 分鐘（在地化：無運動習慣 59%）</h3>
 <ul>
 <li><strong>病人版</strong>：這個月的目標只有一個：<strong>每天走路 30 分鐘</strong>，可以拆成 3 次、每次 10 分鐘。不用流汗喘吁吁，走得到、走得久比走得快重要。</li>
-<li><strong>醫師備註</strong>：對應門診運動介入第一階段（0–4 週）；59% 病人無運動習慣，起始期只建立「每天有動」的習慣，不談強度。</li>
-<li><strong>出處</strong>：本院計畫書運動三階段介入策略</li>
+<li class="docnote"><strong>醫師備註</strong>：對應門診運動介入第一階段（0–4 週）；59% 病人無運動習慣，起始期只建立「每天有動」的習慣，不談強度。</li>
+<li class="docnote"><strong>出處</strong>：本院計畫書運動三階段介入策略</li>
 </ul>
 <h3 id="S1-E2把活動藏進生活">S1-E2 把活動藏進生活</h3>
 <ul>
 <li><strong>病人版</strong>：能站就不坐、能走樓梯就不搭電梯、提早一站下車。這些零碎活動加起來，消耗不輸一次運動。</li>
-<li><strong>醫師備註</strong>：NEAT（非運動性活動產熱）衛教；適合完全排斥「運動」二字的病人當替代起點。</li>
-<li><strong>出處</strong>：能量消耗組成通則</li>
+<li class="docnote"><strong>醫師備註</strong>：NEAT（非運動性活動產熱）衛教；適合完全排斥「運動」二字的病人當替代起點。</li>
+<li class="docnote"><strong>出處</strong>：能量消耗組成通則</li>
 </ul>
 <h3 id="S1-E3膝蓋不好也能練的下肢肌力低衝擊替代">S1-E3 膝蓋不好也能練的下肢肌力（低衝擊替代）</h3>
 <ul>
 <li><strong>病人版</strong>：膝蓋會痛，不代表不能動，是換一種動法。在家就能做：扶著椅背的<strong>正確深蹲</strong>（屁股往後坐、膝蓋不超過腳尖）、<strong>坐在椅子上</strong>輪流伸直膝蓋抬腿、<strong>地板核心運動</strong>（橋式）、<strong>扶牆單腳站</strong>練平衡。每天挑兩樣，各做 10 下、2–3 回合。</li>
-<li><strong>醫師備註</strong>：醫師審定：不寫水中運動（對本院族群不切實際）。改用四類：大腿肌力（正確深蹲）、椅上運動、地板核心訓練、站立平衡訓練。大腿肌力同時是保肌與膝關節保護的核心。退化性關節炎族群（問卷約 7–8%，更年期代謝症候群女性達 31%）優先給此模組。</li>
-<li><strong>出處</strong>：本院 270 份問卷＋醫師審定 2026-08-22</li>
+<li class="docnote"><strong>醫師備註</strong>：醫師審定：不寫水中運動（對本院族群不切實際）。改用四類：大腿肌力（正確深蹲）、椅上運動、地板核心訓練、站立平衡訓練。大腿肌力同時是保肌與膝關節保護的核心。退化性關節炎族群（問卷約 7–8%，更年期代謝症候群女性達 31%）優先給此模組。</li>
+<li class="docnote"><strong>出處</strong>：本院 270 份問卷＋醫師審定 2026-08-22</li>
 </ul>
 <hr>
 <h2 id="四藥物模組R週製劑與副作用因應">四、藥物模組（R）：週製劑與副作用因應</h2>
 <h3 id="S1-R1打針的基本功">S1-R1 打針的基本功</h3>
 <ul>
 <li><strong>病人版</strong>：每週固定同一天打（例如都選星期日），肚皮、大腿、上臂輪流換位置打。打針日在手機行事曆設提醒。要換打針日可以，但新舊兩針之間要隔夠：<strong>週纖達至少隔 2 天、猛健樂至少隔 3 天</strong>。</li>
-<li><strong>醫師備註</strong>：注射部位輪替減少局部反應；固定星期幾能大幅降低漏打率。換日間隔：Semaglutide ≥48 小時、Tirzepatide ≥72 小時。</li>
-<li><strong>出處</strong>：藥品仿單（醫師審定 2026-08-22）</li>
+<li class="docnote"><strong>醫師備註</strong>：注射部位輪替減少局部反應；固定星期幾能大幅降低漏打率。換日間隔：Semaglutide ≥48 小時、Tirzepatide ≥72 小時。</li>
+<li class="docnote"><strong>出處</strong>：藥品仿單（醫師審定 2026-08-22）</li>
 </ul>
 <h3 id="S1-R2想吐的時候怎麼辦">S1-R2 想吐的時候怎麼辦</h3>
 <ul>
 <li><strong>病人版</strong>：噁心多半出現在剛打完針或剛升劑量的幾天，通常會越來越輕。當天吃清淡、少量、避油膩；蘇打餅乾、薑茶可以緩解。吐了就先補充水分和電解質。</li>
-<li><strong>醫師備註</strong>：告知「多數人 4–8 週內耐受」設定預期；持續性嘔吐轉紅旗流程（S1-R4）。</li>
-<li><strong>出處</strong>：GLP-1 RA 臨床試驗腸胃道副作用資料</li>
+<li class="docnote"><strong>醫師備註</strong>：告知「多數人 4–8 週內耐受」設定預期；持續性嘔吐轉紅旗流程（S1-R4）。</li>
+<li class="docnote"><strong>出處</strong>：GLP-1 RA 臨床試驗腸胃道副作用資料</li>
 </ul>
 <h3 id="S1-R3忘記打針怎麼辦">S1-R3 忘記打針怎麼辦</h3>
 <ul>
 <li><strong>病人版</strong>：想起來的時候看還差幾天：<strong>週纖達在漏打後 5 天內</strong>、<strong>猛健樂在 4 天內</strong>想起來就趕快補打；超過就跳過這次，照原本時間打下一針，<strong>不要一次打兩劑</strong>。不確定就打電話回診所問。</li>
-<li><strong>醫師備註</strong>：補打時限：Semaglutide ≤5 天、Tirzepatide ≤4 天（96 小時）。</li>
-<li><strong>出處</strong>：藥品仿單（醫師審定 2026-08-22）</li>
+<li class="docnote"><strong>醫師備註</strong>：補打時限：Semaglutide ≤5 天、Tirzepatide ≤4 天（96 小時）。</li>
+<li class="docnote"><strong>出處</strong>：藥品仿單（醫師審定 2026-08-22）</li>
 </ul>
 <h3 id="S1-R4紅旗症狀出現就提前回診">S1-R4 紅旗症狀：出現就提前回診</h3>
 <ul>
 <li><strong>病人版</strong>：以下情況<strong>不要等下次回診</strong>，直接聯絡診所或就醫：吐到完全喝不下水、持續性的上腹或右上腹劇痛（可能痛到背後）、皮膚眼白變黃、心悸冒冷汗手抖（低血糖）、小便量明顯變少。</li>
-<li><strong>醫師備註</strong>：涵蓋胰臟炎、膽囊疾病、脫水腎前性損傷、低血糖（合併 SU／胰島素者風險較高，起始 GLP-1 時應評估減量）。此模組為<strong>每張一頁衛教單頁尾固定欄</strong>。</li>
-<li><strong>出處</strong>：藥品仿單警語＋臨床共識</li>
+<li class="docnote"><strong>醫師備註</strong>：涵蓋胰臟炎、膽囊疾病、脫水腎前性損傷、低血糖（合併 SU／胰島素者風險較高，起始 GLP-1 時應評估減量）。此模組為<strong>每張一頁衛教單頁尾固定欄</strong>。</li>
+<li class="docnote"><strong>出處</strong>：藥品仿單警語＋臨床共識</li>
 </ul>
 <h3 id="S1-R5副作用太強劑量可以商量">S1-R5 副作用太強，劑量可以商量</h3>
 <ul>
 <li><strong>病人版</strong>：副作用太不舒服，不要自己停藥，也不要硬撐——回來跟醫師討論。劑量可以晚一點再往上調，或先停在目前劑量久一點，減重照樣會有效果。</li>
-<li><strong>醫師備註</strong>：劑量調整溝通原則——爬升時程是「建議」不是「規定」，slower titration 保留療效並提高依從性；自行停藥才是最差結局。</li>
-<li><strong>出處</strong>：劑量爬升彈性之臨床共識</li>
+<li class="docnote"><strong>醫師備註</strong>：劑量調整溝通原則——爬升時程是「建議」不是「規定」，slower titration 保留療效並提高依從性；自行停藥才是最差結局。</li>
+<li class="docnote"><strong>出處</strong>：劑量爬升彈性之臨床共識</li>
 </ul>
 <hr>
 <h2 id="五診間話術三句T">五、診間話術三句（T）</h2>
@@ -246,7 +275,7 @@ footer b{color:var(--ink)}
 <li>「不舒服不要忍也不要自己停藥，<strong>回來找我，劑量可以商量</strong>。」</li>
 </ol>
 <ul>
-<li><strong>醫師備註</strong>：句 1 承接第二大腦「肥胖是荷爾蒙與代謝問題，不是意志力問題」核心訊息；句 2 預防「第一個月沒瘦就放棄」；句 3 對應 S1-R5。</li>
+<li class="docnote"><strong>醫師備註</strong>：句 1 承接第二大腦「肥胖是荷爾蒙與代謝問題，不是意志力問題」核心訊息；句 2 預防「第一個月沒瘦就放棄」；句 3 對應 S1-R5。</li>
 </ul>
 <hr>
 <h2 id="六病人常見QAQ">六、病人常見 QA（Q）</h2>
@@ -261,9 +290,9 @@ footer b{color:var(--ink)}
 <h3 id="S1-Q4我食慾沒有變差是不是藥沒效">S1-Q4 我食慾沒有變差，是不是藥沒效？</h3>
 <p>前幾週劑量低，食慾變化不明顯是常見的。請照樣做飲食與步行功課，劑量會逐步調整；若升到治療劑量後仍完全無感，回診時告訴醫師。</p>
 <hr>
-<h2 id="附一頁組裝範例起始期外食男性上班族">附：一頁組裝範例①——起始期・外食男性上班族</h2>
+<div class="docsec"><h2 id="附一頁組裝範例起始期外食男性上班族">附：一頁組裝範例①——起始期・外食男性上班族</h2>
 <blockquote>病人輪廓：42 歲男性，BMI 33，高血壓，三餐外食，無運動習慣，本週 Tirzepatide 第 2 週。</blockquote>
-<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S1-D1 蛋白質優先吃 ／ S1-D4 外食這樣選 ／ S1-D5 先避開的地雷食物</td></tr><tr><td>🏃 運動</td><td>S1-E1 每天步行 30 分鐘 ／ S1-E2 把活動藏進生活</td></tr><tr><td>💉 藥物</td><td>S1-R1 打針的基本功 ／ S1-R2 想吐的時候怎麼辦</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></article></div>
+<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S1-D1 蛋白質優先吃 ／ S1-D4 外食這樣選 ／ S1-D5 先避開的地雷食物</td></tr><tr><td>🏃 運動</td><td>S1-E1 每天步行 30 分鐘 ／ S1-E2 把活動藏進生活</td></tr><tr><td>💉 藥物</td><td>S1-R1 打針的基本功 ／ S1-R2 想吐的時候怎麼辦</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></div></article></div>
 <footer><div class="wrap">
   <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
@@ -280,6 +309,18 @@ footer b{color:var(--ink)}
   window.addEventListener('scroll', show, {passive:true});
   show();
   b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+(function(){
+  var sw=document.querySelector('.docsw');
+  if(!sw)return;
+  var root=document.documentElement;
+  var sync=function(){ sw.setAttribute('aria-pressed', root.classList.contains('show-doc')?'true':'false'); };
+  sync();
+  sw.addEventListener('click', function(){
+    var on=root.classList.toggle('show-doc');
+    try{ localStorage.setItem('glp1-show-doc', on?'1':'0'); }catch(e){}
+    sync();
+  });
 })();
 </script>
 </body>

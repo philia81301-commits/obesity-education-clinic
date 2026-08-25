@@ -79,6 +79,24 @@ table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 醫護專用內容：預設收起，由導覽列開關切換 */
+html:not(.show-doc) .docnote,
+html:not(.show-doc) .docsec{display:none}
+
+.docsw{font:inherit;font-size:13.5px;color:var(--muted);background:#fff;
+  border:1px solid var(--line);border-radius:99px;padding:4px 13px 4px 10px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  transition:.15s}
+.docsw:hover{border-color:var(--move);color:var(--ink)}
+.docsw i{width:9px;height:9px;border-radius:50%;background:#C9C9BA;
+  flex-shrink:0;transition:.15s}
+html.show-doc .docsw{border-color:var(--move);color:var(--move);background:var(--move-soft)}
+html.show-doc .docsw i{background:var(--move)}
+.docsw .off{display:inline}
+.docsw .on{display:none}
+html.show-doc .docsw .off{display:none}
+html.show-doc .docsw .on{display:inline}
+
 /* 頁內目錄 */
 .toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
   padding:14px 18px 15px;margin:0 0 26px;
@@ -116,7 +134,11 @@ footer b{color:var(--ink)}
 @media(max-width:640px){
   .top .wrap{height:56px;gap:10px}
   .top .home{font-size:18px}
-  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名 */
+  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名與開關 */
+  .docsw{font-size:12.5px;padding:3px 10px 3px 8px;gap:5px}
+  .docsw .off{display:none}   /* 手機只留「醫師版」二字 */
+  .docsw::after{content:"醫師版"}
+  html.show-doc .docsw .on{display:none}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
@@ -125,16 +147,23 @@ footer b{color:var(--ink)}
   .totop{right:14px;bottom:14px}
 }
 </style>
+<script>
+/* 在繪製前套用偏好，避免醫師備註閃一下才收起 */
+try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.classList.add('show-doc');}catch(e){}
+</script>
 </head>
 <body>
 <nav class="top"><div class="wrap">
   <a class="home" href="./">GLP-1 減重衛教</a>
   <span class="sp"></span>
   <span class="crumb"><a href="./">總覽</a><span style="color:#C9C9BA"> / </span>高纖低 GI 早餐指南</span>
+  <button class="docsw" type="button" aria-pressed="false">
+    <i></i><span class="off">顯示醫師備註</span><span class="on">隱藏醫師備註</span>
+  </button>
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 <div class="wrap"><article><h1 id="共用參考高纖低GI早餐指南">共用參考：高纖低 GI 早餐指南</h1>
-<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s"><a class="toc-h" href="#地雷表衛教明講不要買">地雷表（衛教明講「不要買」）</a></div><div class="toc-s"><a class="toc-h" href="#可選表">可選表</a></div><div class="toc-s"><a class="toc-h" href="#三場景組合">三場景組合</a></div><div class="toc-s"><a class="toc-h" href="#醫師備註機轉與把關">醫師備註（機轉與把關）</a></div><div class="toc-s"><a class="toc-h" href="#出處">出處</a></div></nav>
+<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s"><a class="toc-h" href="#地雷表衛教明講不要買">地雷表（衛教明講「不要買」）</a></div><div class="toc-s"><a class="toc-h" href="#可選表">可選表</a></div><div class="toc-s"><a class="toc-h" href="#三場景組合">三場景組合</a></div><div class="toc-s docsec"><a class="toc-h" href="#醫師備註機轉與把關">醫師備註（機轉與把關）</a></div><div class="toc-s docsec"><a class="toc-h" href="#出處">出處</a></div></nav>
 <blockquote>跨冊共用（S2-D7 為主要入口；S3／M 冊引用）。狀態：<strong>已審定</strong>（2026-08-24）。<br>GI 以葡萄糖=100 為基準；≤55 低、56–69 中、≥70 高。台式特有品項（蛋餅、蘿蔔糕、燒餅）無正式 GI 實測值，依原料精緻程度與營養師共識判定。同品項 GI 因品種烹調有區間，衛教呈現以「低／中／高」分級為原則。</blockquote>
 <h2 id="地雷表衛教明講不要買">地雷表（衛教明講「不要買」）</h2>
 <div class="tw"><table><thead><tr><th>品項</th><th>問題</th><th>一句話原因</th></tr></thead><tbody><tr><td>白吐司／麵包類</td><td>GI 約 75（高）</td><td>精緻麵粉、纖維近零，升糖快又不耐餓</td></tr><tr><td>糯米飯糰</td><td>GI 約 75–98（高）</td><td>支鏈澱粉消化極快；內餡高鈉高油，一顆約 619 kcal</td></tr><tr><td>燒餅油條（＋米漿）</td><td>精緻澱粉×油炸×液態糖</td><td>一套約 500 kcal，三重疊加</td></tr><tr><td>蘿蔔糕</td><td>在來米粉＋煎油</td><td>本質是澱粉煎油，蘿蔔少纖維少</td></tr><tr><td>含糖豆漿／奶茶／米漿</td><td>液態糖</td><td>空腹吸收最快，無咀嚼無飽足</td></tr><tr><td><strong>即食麥片飲／三合一麥片</strong></td><td><strong>GI 約 79–83（≈白麵包）</strong></td><td>預糊化＋輾壓破壞澱粉結構——掛燕麥之名的<strong>假健康陷阱</strong></td></tr><tr><td><strong>烤地瓜（超商烤番薯）</strong></td><td><strong>GI 可達 82–94</strong></td><td>乾熱烘烤使澱粉裂解，與蒸的差近一倍</td></tr><tr><td>白粥配醬菜</td><td>糊化極高＋無蛋白質</td><td>糖尿病前期／糖尿病族群最高風險組合</td></tr></tbody></table></div>
@@ -147,13 +176,13 @@ footer b{color:var(--ink)}
 <p><strong>② 傳統早餐店</strong>：<strong>首選：無糖豆漿大杯＋蔥蛋或荷包蛋×2，不點主食</strong>（約 22 g）／鹹豆漿不加油條＋蛋／次選：原味蛋餅加蛋不加醬，先吃蛋再吃皮／有生菜的店：里肌蛋吐司<strong>去一片吐司</strong>、生菜加倍、不抹美乃滋——培根火腿熱狗一律不點。</p>
 <p><strong>③ 在家 5 分鐘</strong>：隔夜燕麥（大燕麥 3 匙＋無糖豆漿 200ml＋奇亞籽，冷藏過夜，早上加莓果，約 13–15 g）／水煮蛋×2＋無糖豆漿＋前晚蒸好冷藏的小地瓜（約 21 g）／無糖希臘優格＋生燕麥片＋堅果碎／微波茶碗蒸（蛋 2 顆＋無糖豆漿打勻微波 3 分鐘）＋無糖拿鐵（約 20 g，噁心期最易入口）。</p>
 <p><strong>咖啡定位</strong>：黑咖啡隨餐可自由搭配（避免空腹單獨飲）；<strong>無糖拿鐵</strong>含牛奶約 240ml＝順便補 8 g 蛋白質，適合食量小者；風味糖漿拿鐵、奶茶不可。</p>
-<h2 id="醫師備註機轉與把關">醫師備註（機轉與把關）</h2>
+<div class="docsec"><h2 id="醫師備註機轉與把關">醫師備註（機轉與把關）</h2>
 <ul>
 <li><strong>三支柱機轉，全部與週製劑同向</strong>（衛教可講「吃法幫針劑加分」）：①可溶性纖維（β-葡聚醣）增黏延緩胃排空、提升內源性 GLP-1 反應（AJCN RCT）②蛋白脂肪與醣共食刺激腸泌素、10g 乳清蛋白可降餐後血糖達 30% ③<strong>進食順序有實證</strong>：先菜與蛋白質後醣，餐後血糖 iAUC 降 <strong>73%</strong>（Shukla 2015, Diabetes Care，T2DM）</li>
 <li><strong>糖尿病前期／糖尿病（本院 36%）特別避免</strong>：白粥醬菜、燒餅油條米漿、任何含糖飲、即食麥片飲、烤地瓜單獨當早餐；「純澱粉＋無蛋白質」組合一律不可</li>
 <li>燕麥衛教必指名「傳統大片或鋼切」；地瓜必指名「蒸的」——這兩個是門診最常見的假健康踩雷點</li>
 </ul>
-<h2 id="出處">出處</h2>
+</div><div class="docsec"><h2 id="出處">出處</h2>
 <ul>
 <li>Sydney University GI 資料庫：<a href="https://glycemicindex.com/" target="_blank" rel="noopener">https://glycemicindex.com/</a></li>
 <li>燕麥加工與升糖反應系統性回顧（Br J Nutr 2015）</li>
@@ -163,7 +192,7 @@ footer b{color:var(--ink)}
 <li>蛋白質共食降餐後血糖（PMC9370714；PMC8141680）</li>
 <li>衛福部全穀產品宣稱及標示原則；國健署全麥麵包挑選：<a href="https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=1425&amp;pid=15176" target="_blank" rel="noopener">https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=1425&amp;pid=15176</a></li>
 <li>糖尿病關懷基金會早餐指引；台式早餐組成分析（營養師專文）</li>
-</ul></article></div>
+</ul></div></article></div>
 <footer><div class="wrap">
   <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
@@ -180,6 +209,18 @@ footer b{color:var(--ink)}
   window.addEventListener('scroll', show, {passive:true});
   show();
   b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+(function(){
+  var sw=document.querySelector('.docsw');
+  if(!sw)return;
+  var root=document.documentElement;
+  var sync=function(){ sw.setAttribute('aria-pressed', root.classList.contains('show-doc')?'true':'false'); };
+  sync();
+  sw.addEventListener('click', function(){
+    var on=root.classList.toggle('show-doc');
+    try{ localStorage.setItem('glp1-show-doc', on?'1':'0'); }catch(e){}
+    sync();
+  });
 })();
 </script>
 </body>

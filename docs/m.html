@@ -79,6 +79,24 @@ table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 醫護專用內容：預設收起，由導覽列開關切換 */
+html:not(.show-doc) .docnote,
+html:not(.show-doc) .docsec{display:none}
+
+.docsw{font:inherit;font-size:13.5px;color:var(--muted);background:#fff;
+  border:1px solid var(--line);border-radius:99px;padding:4px 13px 4px 10px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  transition:.15s}
+.docsw:hover{border-color:var(--move);color:var(--ink)}
+.docsw i{width:9px;height:9px;border-radius:50%;background:#C9C9BA;
+  flex-shrink:0;transition:.15s}
+html.show-doc .docsw{border-color:var(--move);color:var(--move);background:var(--move-soft)}
+html.show-doc .docsw i{background:var(--move)}
+.docsw .off{display:inline}
+.docsw .on{display:none}
+html.show-doc .docsw .off{display:none}
+html.show-doc .docsw .on{display:inline}
+
 /* 頁內目錄 */
 .toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
   padding:14px 18px 15px;margin:0 0 26px;
@@ -116,7 +134,11 @@ footer b{color:var(--ink)}
 @media(max-width:640px){
   .top .wrap{height:56px;gap:10px}
   .top .home{font-size:18px}
-  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名 */
+  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名與開關 */
+  .docsw{font-size:12.5px;padding:3px 10px 3px 8px;gap:5px}
+  .docsw .off{display:none}   /* 手機只留「醫師版」二字 */
+  .docsw::after{content:"醫師版"}
+  html.show-doc .docsw .on{display:none}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
@@ -125,19 +147,26 @@ footer b{color:var(--ink)}
   .totop{right:14px;bottom:14px}
 }
 </style>
+<script>
+/* 在繪製前套用偏好，避免醫師備註閃一下才收起 */
+try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.classList.add('show-doc');}catch(e){}
+</script>
 </head>
 <body>
 <nav class="top"><div class="wrap">
   <a class="home" href="./">GLP-1 減重衛教</a>
   <span class="sp"></span>
   <span class="crumb"><a href="./">總覽</a><span style="color:#C9C9BA"> / </span>更年期女性專項</span>
+  <button class="docsw" type="button" aria-pressed="false">
+    <i></i><span class="off">顯示醫師備註</span><span class="on">隱藏醫師備註</span>
+  </button>
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 <div class="wrap"><article><h1 id="M更年期女性專項獨立一冊跨階段使用">M 更年期女性專項（獨立一冊，跨階段使用）</h1>
-<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#M-D1蛋白質優先序再提高替換各階段D1使用">M-D1 蛋白質優先序再提高</a><a href="#M-D2順便把骨頭顧起來鈣與維生素D">M-D2 順便把骨頭顧起來</a><a href="#M-D3職場與居家的零食防線無聊吃順手吃專用">M-D3 職場與居家的零食防線</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#M-E1肌力訓練從配角變主角替換各階段E1使用">M-E1 肌力訓練從配角變主角</a><a href="#M-E2膝蓋不好照樣練關節炎31專用">M-E2 膝蓋不好照樣練</a><a href="#M-E3零基礎入門無運動85專用">M-E3 零基礎入門</a><a href="#M-E4對運動沒興趣從不像運動的運動開始">M-E4 對運動沒興趣？從「不像運動的運動」開始</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物與婦科整合模組R">四、藥物與婦科整合模組（R）</a><div class="toc-k"><a href="#M-R1荷爾蒙治療不是減重藥但能搬開絆腳石">M-R1 荷爾蒙治療不是減重藥，但能搬開絆腳石</a><a href="#M-R2哪些情況不能自行使用荷爾蒙含婦科紅旗">M-R2 哪些情況不能自行使用荷爾蒙</a><a href="#M-R3減重針荷爾蒙治療可以並行醫師講解層為主">M-R3 減重針×荷爾蒙治療</a><a href="#M-R4心情低落壓力大不是意志力問題是要處理的事">M-R4 心情低落、壓力大</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#M-T1">M-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#M-Q1更年期後是不是注定變胖">M-Q1 更年期後是不是注定變胖？</a><a href="#M-Q2荷爾蒙治療會不會讓我變胖">M-Q2 荷爾蒙治療會不會讓我變胖？</a><a href="#M-Q3減重針對停經後的我還有效嗎">M-Q3 減重針對停經後的我還有效嗎？</a><a href="#M-Q4睡不好跟減不下來有關係嗎">M-Q4 睡不好跟減不下來有關係嗎？</a><a href="#M-Q5肚子的肉特別難瘦怎麼辦">M-Q5 肚子的肉特別難瘦，怎麼辦？</a><a href="#M-Q6壓力一大就想吃怎麼辦">M-Q6 壓力一大就想吃，怎麼辦？</a></div></div><div class="toc-s"><a class="toc-h" href="#附一頁組裝範例起始期更年期女性規格卡指定範例">附①：一頁組裝範例③——起始期・更年期女性（規格卡指定範例）</a></div><div class="toc-s"><a class="toc-h" href="#附本冊依據總表醫師審稿用">附②：本冊依據總表（醫師審稿用）</a></div></nav>
+<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s docsec"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#M-D1蛋白質優先序再提高替換各階段D1使用">M-D1 蛋白質優先序再提高</a><a href="#M-D2順便把骨頭顧起來鈣與維生素D">M-D2 順便把骨頭顧起來</a><a href="#M-D3職場與居家的零食防線無聊吃順手吃專用">M-D3 職場與居家的零食防線</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#M-E1肌力訓練從配角變主角替換各階段E1使用">M-E1 肌力訓練從配角變主角</a><a href="#M-E2膝蓋不好照樣練關節炎31專用">M-E2 膝蓋不好照樣練</a><a href="#M-E3零基礎入門無運動85專用">M-E3 零基礎入門</a><a href="#M-E4對運動沒興趣從不像運動的運動開始">M-E4 對運動沒興趣？從「不像運動的運動」開始</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物與婦科整合模組R">四、藥物與婦科整合模組（R）</a><div class="toc-k"><a href="#M-R1荷爾蒙治療不是減重藥但能搬開絆腳石">M-R1 荷爾蒙治療不是減重藥，但能搬開絆腳石</a><a href="#M-R2哪些情況不能自行使用荷爾蒙含婦科紅旗">M-R2 哪些情況不能自行使用荷爾蒙</a><a href="#M-R3減重針荷爾蒙治療可以並行醫師講解層為主">M-R3 減重針×荷爾蒙治療</a><a href="#M-R4心情低落壓力大不是意志力問題是要處理的事">M-R4 心情低落、壓力大</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#M-T1">M-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#M-Q1更年期後是不是注定變胖">M-Q1 更年期後是不是注定變胖？</a><a href="#M-Q2荷爾蒙治療會不會讓我變胖">M-Q2 荷爾蒙治療會不會讓我變胖？</a><a href="#M-Q3減重針對停經後的我還有效嗎">M-Q3 減重針對停經後的我還有效嗎？</a><a href="#M-Q4睡不好跟減不下來有關係嗎">M-Q4 睡不好跟減不下來有關係嗎？</a><a href="#M-Q5肚子的肉特別難瘦怎麼辦">M-Q5 肚子的肉特別難瘦，怎麼辦？</a><a href="#M-Q6壓力一大就想吃怎麼辦">M-Q6 壓力一大就想吃，怎麼辦？</a></div></div><div class="toc-s docsec"><a class="toc-h" href="#附一頁組裝範例起始期更年期女性規格卡指定範例">附①：一頁組裝範例③——起始期・更年期女性（規格卡指定範例）</a></div><div class="toc-s docsec"><a class="toc-h" href="#附本冊依據總表醫師審稿用">附②：本冊依據總表（醫師審稿用）</a></div></nav>
 <blockquote>適用：更年期過渡期或停經後、接受 GLP-1 RA／GIP 週製劑治療的女性（對應計畫書「計畫B」族群：85% 無運動、69% 脂肪肝、31% 關節炎）。<br>使用方式：<strong>這是「差異冊」</strong>——組一頁衛教單時，依病人所在階段（S1–S5）先選好基礎模組，再用本冊 M 模組<strong>替換或加掛</strong>對應的 D／E 模組；M-R 模組視婦科需求加掛。本冊不重複各階段已有內容。<br>狀態：<strong>已審定</strong>（2026-08-22 醫師逐項審稿通過，待審標記全數解除；出處總表見文末附錄，查證深度照實保留）。</blockquote>
 <hr>
-<h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
+<div class="docsec"><h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
 <p><strong>這一冊要達成的事</strong>：讓更年期女性理解「變難減不是自己的錯，是荷爾蒙讓脂肪搬家、肌肉流失變快」，把衛教重心放在<strong>肌力訓練＋蛋白質＋骨骼保護</strong>，並建立「症狀控制＝減重助力」的觀念——熱潮紅、睡眠、情緒該處理就處理、該轉婦科就轉，不要硬撐。</p>
 <p>生理變化（講解用）：</p>
 <ul>
@@ -152,76 +181,76 @@ footer b{color:var(--ink)}
 <li>呼應核心觀念 2：本冊全篇立場＝「有生理上不可抗拒的荷爾蒙因素，不是病人不努力；不要放棄是關鍵」</li>
 </ul>
 <hr>
-<h2 id="二飲食模組D">二、飲食模組（D）</h2>
+</div><h2 id="二飲食模組D">二、飲食模組（D）</h2>
 <h3 id="M-D1蛋白質優先序再提高替換各階段D1使用">M-D1 蛋白質優先序再提高（替換各階段 D1 使用）</h3>
 <ul>
 <li><strong>病人版</strong>：更年期後肌肉流失得比以前快，蛋白質比年輕時<strong>更不能少</strong>：目標一樣是每公斤體重 <strong>1.2–1.5 公克</strong>，而且<strong>每餐都要有</strong>——不要早午餐隨便、晚餐才補，肌肉是一餐一餐顧起來的。每餐至少一個手掌大：蛋、豆腐、魚、雞肉；吃不下就用無糖豆漿、優格補。</li>
-<li><strong>醫師備註</strong>：本族群同時面對 GLP-1 食慾抑制＋更年期加速肌少，蛋白質達標是第一優先。The Menopause Society MenoNote 2025 建議 1.2 g/kg/day（與本體系已審定之 1.2–1.5 g/kg 相容，取聯集寫法）；ESCEO 共識另建議<strong>每餐 20–25 g 優質蛋白</strong>平均分配（注意：出處是 ESCEO 非更年期學會，引用時標對來源）。採買執行面沿用 <code>ref-高CP值蛋白質清單.md</code>。</li>
-<li><strong>出處</strong>：The Menopause Society MenoNote: Midlife Weight Gain（2025，全文已核）＋ESCEO 共識（Rizzoli 2014, Maturitas）</li>
+<li class="docnote"><strong>醫師備註</strong>：本族群同時面對 GLP-1 食慾抑制＋更年期加速肌少，蛋白質達標是第一優先。The Menopause Society MenoNote 2025 建議 1.2 g/kg/day（與本體系已審定之 1.2–1.5 g/kg 相容，取聯集寫法）；ESCEO 共識另建議<strong>每餐 20–25 g 優質蛋白</strong>平均分配（注意：出處是 ESCEO 非更年期學會，引用時標對來源）。採買執行面沿用 <code>ref-高CP值蛋白質清單.md</code>。</li>
+<li class="docnote"><strong>出處</strong>：The Menopause Society MenoNote: Midlife Weight Gain（2025，全文已核）＋ESCEO 共識（Rizzoli 2014, Maturitas）</li>
 </ul>
 <h3 id="M-D2順便把骨頭顧起來鈣與維生素D">M-D2 順便把骨頭顧起來：鈣與維生素 D</h3>
 <ul>
 <li><strong>病人版</strong>：停經後骨質流失變快，減重期間更要顧：每天<strong>鈣質約 1000 毫克</strong>——最容易的做法是「每天 1.5–2 份奶類或高鈣豆製品」（例：無糖優格 1 杯＋板豆腐半盒＋一把深綠色蔬菜）。<strong>維生素 D</strong> 靠曬太陽加食物（鮭魚、蛋黃），不夠的話回診抽血評估要不要補充劑。</li>
-<li><strong>醫師備註</strong>：ESCEO 建議：鈣 1000 mg/日、維生素 D 800 IU/日（維持 25(OH)D &gt;50 nmol/L；劑量數字病人版不寫死，放醫師層）。快速減重本身是骨密度的負因子，GLP-1 大幅減重之骨骼影響需搭配阻力訓練與營養（Cureus 2026 綜述）。板豆腐（硫酸鈣凝固）鈣含量高於嫩豆腐——與蛋白質清單同一批食材可同時達標。</li>
-<li><strong>出處</strong>：ESCEO 共識（Rizzoli 2014, Maturitas）＋Cureus 2026 綜述</li>
+<li class="docnote"><strong>醫師備註</strong>：ESCEO 建議：鈣 1000 mg/日、維生素 D 800 IU/日（維持 25(OH)D &gt;50 nmol/L；劑量數字病人版不寫死，放醫師層）。快速減重本身是骨密度的負因子，GLP-1 大幅減重之骨骼影響需搭配阻力訓練與營養（Cureus 2026 綜述）。板豆腐（硫酸鈣凝固）鈣含量高於嫩豆腐——與蛋白質清單同一批食材可同時達標。</li>
+<li class="docnote"><strong>出處</strong>：ESCEO 共識（Rizzoli 2014, Maturitas）＋Cureus 2026 綜述</li>
 </ul>
 <h3 id="M-D3職場與居家的零食防線無聊吃順手吃專用">M-D3 職場與居家的零食防線（無聊吃、順手吃專用）</h3>
 <ul>
 <li><strong>病人版</strong>：原則不變——三餐定時、餐間不吃。零食的問題八成<strong>不是餓</strong>，是「看得到、拿得到」加上「無聊」。防線這樣設：&lt;br&gt;①<strong>職場</strong>：抽屜不囤零食；同事請的說「謝謝，我留到飯後」——不用當場拒絕，延後就贏了大半；桌上改放水或無糖茶，想吃時先喝一杯、起身走一圈。&lt;br&gt;②<strong>在家</strong>：零食<strong>不買進門</strong>是最有效的一招——買的時候擋一次，勝過在家擋十次；已經有的收到看不到的櫃子裡，不要放桌上。&lt;br&gt;③<strong>無聊想吃的當下</strong>：先做一件 10 分鐘的事（走路、澆花、家務）再決定——常常做完就不想吃了。&lt;br&gt;④<strong>15 分鐘後還是餓＝真的餓</strong>：可以吃，但只吃蛋白質（茶葉蛋、無糖豆漿）或低甜度水果（芭樂、大番茄、蓮霧）。</li>
-<li><strong>醫師備註</strong>：醫師指示（2026-08-22）納入：職場零食多、居家無聊進食是本族群常見破口。策略核心是<strong>環境設計優於意志力</strong>（看不到＝少吃；採買守門是最上游斷點）。無聊進食與壓力性進食（M-R4）同構，都用「斷點→延遲→替代」行為鏈；「延後者」話術（留到飯後）避免職場人際壓力。真餓例外沿用審定立場 7（15 分鐘法＋蛋白質或高榮三摺頁低甜度水果清單）。本模組跨階段通用，非更年期限定，各階段一頁單皆可選用。</li>
-<li><strong>出處</strong>：醫師審定立場（三餐定時餐間不進食＋真餓例外，S1–S3 已審定框架）＋醫師指示 2026-08-22</li>
+<li class="docnote"><strong>醫師備註</strong>：醫師指示（2026-08-22）納入：職場零食多、居家無聊進食是本族群常見破口。策略核心是<strong>環境設計優於意志力</strong>（看不到＝少吃；採買守門是最上游斷點）。無聊進食與壓力性進食（M-R4）同構，都用「斷點→延遲→替代」行為鏈；「延後者」話術（留到飯後）避免職場人際壓力。真餓例外沿用審定立場 7（15 分鐘法＋蛋白質或高榮三摺頁低甜度水果清單）。本模組跨階段通用，非更年期限定，各階段一頁單皆可選用。</li>
+<li class="docnote"><strong>出處</strong>：醫師審定立場（三餐定時餐間不進食＋真餓例外，S1–S3 已審定框架）＋醫師指示 2026-08-22</li>
 </ul>
 <hr>
 <h2 id="三運動模組E">三、運動模組（E）</h2>
 <h3 id="M-E1肌力訓練從配角變主角替換各階段E1使用">M-E1 肌力訓練從配角變主角（替換各階段 E1 使用）</h3>
 <ul>
 <li><strong>病人版</strong>：這個年紀的運動，<strong>肌力訓練比有氧更重要</strong>——它同時顧三件事：肌肉（代謝）、骨頭（密度）、平衡（防跌倒）。每週 2 次、每次 20–30 分鐘，動作就用四類：<strong>正確深蹲、椅上運動、地板核心、站立平衡</strong>，做得順再拿裝水寶特瓶或啞鈴加重量。有氧維持每週 150 分鐘快走即可。</li>
-<li><strong>醫師備註</strong>：MenoNote 2025：每週 ≥150 分鐘中等強度有氧＋每週 2 次肌力訓練（全文已核，與 WHO 2020 一致）。負重與阻力訓練兼顧骨密度；一篇綜述引述 15 週阻力訓練可減少熱潮紅頻率並改善脊椎骨密度（Cureus 2026 轉引；講解時只說「肌力訓練對熱潮紅和骨密度都有幫助的初步證據」，不給數字）。動作四類為醫師審定之低衝擊組合（不寫水中運動）。</li>
-<li><strong>出處</strong>：The Menopause Society MenoNote 2025（全文已核）＋WHO 2020＋Cureus 2026 綜述</li>
+<li class="docnote"><strong>醫師備註</strong>：MenoNote 2025：每週 ≥150 分鐘中等強度有氧＋每週 2 次肌力訓練（全文已核，與 WHO 2020 一致）。負重與阻力訓練兼顧骨密度；一篇綜述引述 15 週阻力訓練可減少熱潮紅頻率並改善脊椎骨密度（Cureus 2026 轉引；講解時只說「肌力訓練對熱潮紅和骨密度都有幫助的初步證據」，不給數字）。動作四類為醫師審定之低衝擊組合（不寫水中運動）。</li>
+<li class="docnote"><strong>出處</strong>：The Menopause Society MenoNote 2025（全文已核）＋WHO 2020＋Cureus 2026 綜述</li>
 </ul>
 <h3 id="M-E2膝蓋不好照樣練關節炎31專用">M-E2 膝蓋不好照樣練（關節炎 31% 專用）</h3>
 <ul>
 <li><strong>病人版</strong>：膝關節不好，不是不能運動，是要<strong>挑不壓膝蓋的</strong>：椅上運動（坐姿抬腿、坐姿踏步）、地板核心（橋式、死蟲式）、扶椅背的淺深蹲（蹲到微痠就好，不用深）、室內固定式腳踏車。<strong>快走改成腳踏車</strong>，時間照算。關節急性紅腫熱痛的那幾天休息，消了再繼續。</li>
-<li><strong>醫師備註</strong>：計畫B 族群關節炎 31%。低衝擊選項依審定四類＋固定式腳踏車（S2-E4 已審定先例）。體重每減 1 公斤，步行時膝關節負荷減約 4 公斤——可作為動機話術（Messier 2005；醫師審定 2026-08-22 納入）。</li>
-<li><strong>出處</strong>：醫師審定運動四類＋本院計畫書計畫B 數據；膝負荷換算（Messier 2005）</li>
+<li class="docnote"><strong>醫師備註</strong>：計畫B 族群關節炎 31%。低衝擊選項依審定四類＋固定式腳踏車（S2-E4 已審定先例）。體重每減 1 公斤，步行時膝關節負荷減約 4 公斤——可作為動機話術（Messier 2005；醫師審定 2026-08-22 納入）。</li>
+<li class="docnote"><strong>出處</strong>：醫師審定運動四類＋本院計畫書計畫B 數據；膝負荷換算（Messier 2005）</li>
 </ul>
 <h3 id="M-E3零基礎入門無運動85專用">M-E3 零基礎入門（無運動 85% 專用）</h3>
 <ul>
 <li><strong>病人版</strong>：從來沒運動習慣？從<strong>每天多走 10 分鐘</strong>＋<strong>每週 2 次、每次 10 分鐘的椅上肌力</strong>開始就好。做得順，再照各階段的課表往上加。目標不是馬上達標，是<strong>先讓身體習慣「每天都有動」</strong>。</li>
-<li><strong>醫師備註</strong>：計畫B 族群 85% 無運動習慣，起始門檻要壓到最低；漸進路徑接 S1-E 步行起步 → S2-E1 阻力訓練 → S2-E4 間歇。IMS 2025：行為改變、熱量限制、規律身體活動是中年體重管理最重要的介入。</li>
-<li><strong>出處</strong>：本院計畫書運動三階段介入＋IMS Recommendations 2025</li>
+<li class="docnote"><strong>醫師備註</strong>：計畫B 族群 85% 無運動習慣，起始門檻要壓到最低；漸進路徑接 S1-E 步行起步 → S2-E1 阻力訓練 → S2-E4 間歇。IMS 2025：行為改變、熱量限制、規律身體活動是中年體重管理最重要的介入。</li>
+<li class="docnote"><strong>出處</strong>：本院計畫書運動三階段介入＋IMS Recommendations 2025</li>
 </ul>
 <h3 id="M-E4對運動沒興趣從不像運動的運動開始">M-E4 對運動沒興趣？從「不像運動的運動」開始</h3>
 <ul>
 <li><strong>病人版</strong>：不喜歡「運動」沒關係——先不要叫它運動：&lt;br&gt;①<strong>挑你本來就不討厭的</strong>：跳舞、園藝、遛狗、逛街快走、跟朋友邊走邊聊。會動、有點喘，就算數。&lt;br&gt;②<strong>追劇時間就是運動時間</strong>：邊看邊<strong>原地超慢跑</strong>——小步小步、腳步放輕、速度比走路還慢也可以，一集剛好 20–40 分鐘，完全不用另外找時間。等水滾扶流理台深蹲、講電話站起來邊走，也都算。&lt;br&gt;③<strong>想更喘一點再加</strong>：<strong>原地開合跳</strong>、<strong>原地高抬膝</strong>，每次 1 分鐘、喘了就休息，穿插在超慢跑中間。<strong>膝蓋不好、或跳動時會漏尿的人跳過這一條</strong>——改用腳踏車（見 M-E2）；漏尿很常見、可以改善，回診時跟醫師說。&lt;br&gt;④<strong>找個伴</strong>：跟家人或朋友約固定時間，互相提醒——有伴的人最不容易斷。&lt;br&gt;⑤<strong>只跟昨天的自己比</strong>：手機記步數，這週比上週多一點就是贏，不用跟別人比。</li>
-<li><strong>醫師備註</strong>：醫師指示（2026-08-22）納入：計畫B 族群 85% 無運動，「沒興趣」比「沒體力」更常是真正卡點。策略：生活型身體活動同樣計入每週 150 分鐘（WHO 2020 取消 10 分鐘最短單位）；習慣堆疊（habit stacking）綁定既有行程；社會支持是運動持續性的重要預測因子（留通則不引個別文獻——醫師定 2026-08-22）。居家原地三項（醫師指示 2026-08-22 追加）衝擊分級：<strong>超慢跑＝低衝擊</strong>，門檻最低、與追劇綁定最自然——要領：小步幅、高步頻、前腳掌輕著地、可以邊做邊講話（步頻參考約 180 步/分）；<strong>開合跳與高抬膝＝中高衝擊</strong>，定位為「短而喘」的間歇元件（銜接 S2-E4 概念），<strong>膝關節炎（本族群 31%）與明顯下肢關節症狀者不開</strong>，替代選項導向 M-E2 固定式腳踏車；地板噪音顧慮（公寓）者超慢跑＋椅上運動即可，不勉強跳。<strong>應力性尿失禁</strong>：更年期盛行高，跳躍動作是典型誘發——有漏尿者先低衝擊＋骨盆底肌運動（凱格爾），困擾明顯或合併 GSM 症狀者轉介婦產科（與 M-R1 同路徑）；主動問，病人多半不好意思說。與 M-E3 分工：M-E3 給「怎麼開始」（劑量最低），本模組給「怎麼願意開始」（動機），兩者常一起用。門診開場問句：「你以前做過什麼<strong>會動的事</strong>是不討厭的？」從病人的答案起步，不從課表起步。與 M-R4「運動即紓壓」互接——同一個 10 分鐘，紓壓＋活動兩個目的。</li>
-<li><strong>出處</strong>：WHO 2020 身體活動指引＋行為改變通則＋醫師指示 2026-08-22</li>
+<li class="docnote"><strong>醫師備註</strong>：醫師指示（2026-08-22）納入：計畫B 族群 85% 無運動，「沒興趣」比「沒體力」更常是真正卡點。策略：生活型身體活動同樣計入每週 150 分鐘（WHO 2020 取消 10 分鐘最短單位）；習慣堆疊（habit stacking）綁定既有行程；社會支持是運動持續性的重要預測因子（留通則不引個別文獻——醫師定 2026-08-22）。居家原地三項（醫師指示 2026-08-22 追加）衝擊分級：<strong>超慢跑＝低衝擊</strong>，門檻最低、與追劇綁定最自然——要領：小步幅、高步頻、前腳掌輕著地、可以邊做邊講話（步頻參考約 180 步/分）；<strong>開合跳與高抬膝＝中高衝擊</strong>，定位為「短而喘」的間歇元件（銜接 S2-E4 概念），<strong>膝關節炎（本族群 31%）與明顯下肢關節症狀者不開</strong>，替代選項導向 M-E2 固定式腳踏車；地板噪音顧慮（公寓）者超慢跑＋椅上運動即可，不勉強跳。<strong>應力性尿失禁</strong>：更年期盛行高，跳躍動作是典型誘發——有漏尿者先低衝擊＋骨盆底肌運動（凱格爾），困擾明顯或合併 GSM 症狀者轉介婦產科（與 M-R1 同路徑）；主動問，病人多半不好意思說。與 M-E3 分工：M-E3 給「怎麼開始」（劑量最低），本模組給「怎麼願意開始」（動機），兩者常一起用。門診開場問句：「你以前做過什麼<strong>會動的事</strong>是不討厭的？」從病人的答案起步，不從課表起步。與 M-R4「運動即紓壓」互接——同一個 10 分鐘，紓壓＋活動兩個目的。</li>
+<li class="docnote"><strong>出處</strong>：WHO 2020 身體活動指引＋行為改變通則＋醫師指示 2026-08-22</li>
 </ul>
 <hr>
 <h2 id="四藥物與婦科整合模組R">四、藥物與婦科整合模組（R）</h2>
 <h3 id="M-R1荷爾蒙治療不是減重藥但能搬開絆腳石">M-R1 荷爾蒙治療不是減重藥，但能搬開絆腳石</h3>
 <ul>
 <li><strong>病人版</strong>：熱潮紅很嚴重、半夜盜汗睡不好、情緒起伏大——<strong>不要忍</strong>。這些症狀會讓你沒力氣好好吃、好好動，減重當然卡住。婦產科有荷爾蒙治療等方法可以處理；<strong>荷爾蒙治療不是減重藥</strong>，但症狀控制好了，減重才走得動。需要的話，回診時告訴醫師，我們安排轉介婦產科一起評估。</li>
-<li><strong>醫師備註</strong>：轉介時機（TMS 2025 聲明適應症白話化）：中重度血管舒縮症狀、生殖泌尿道症候群（陰道乾澀、反覆泌尿道不適）、停經 &lt;10 年且骨鬆高風險、提早停經／POI。台灣女性常見<strong>非典型症狀</strong>（關節痛、失眠、情緒困擾）也是 TMS 2025 特別提醒的評估點——別只問熱潮紅。MHT 與體重：不是減重適應症；MenoNote 2025 表述為「部分研究顯示可能略減腹部脂肪堆積並幫助保留肌肉，但效果不大（modest）」——衛教口徑照這句，不誇大。</li>
-<li><strong>出處</strong>：台灣更年期醫學會 2025 荷爾蒙治療臨床聲明（全文已核）＋The Menopause Society MenoNote 2025（全文已核）</li>
+<li class="docnote"><strong>醫師備註</strong>：轉介時機（TMS 2025 聲明適應症白話化）：中重度血管舒縮症狀、生殖泌尿道症候群（陰道乾澀、反覆泌尿道不適）、停經 &lt;10 年且骨鬆高風險、提早停經／POI。台灣女性常見<strong>非典型症狀</strong>（關節痛、失眠、情緒困擾）也是 TMS 2025 特別提醒的評估點——別只問熱潮紅。MHT 與體重：不是減重適應症；MenoNote 2025 表述為「部分研究顯示可能略減腹部脂肪堆積並幫助保留肌肉，但效果不大（modest）」——衛教口徑照這句，不誇大。</li>
+<li class="docnote"><strong>出處</strong>：台灣更年期醫學會 2025 荷爾蒙治療臨床聲明（全文已核）＋The Menopause Society MenoNote 2025（全文已核）</li>
 </ul>
 <h3 id="M-R2哪些情況不能自行使用荷爾蒙含婦科紅旗">M-R2 哪些情況不能自行使用荷爾蒙（含婦科紅旗）</h3>
 <ul>
 <li><strong>病人版</strong>：荷爾蒙治療<strong>一定要醫師評估</strong>才能用，尤其這些情況：得過<strong>乳癌</strong>、得過<strong>血栓</strong>（腿腫痛、肺栓塞）、有<strong>還沒查清楚原因的陰道出血</strong>、嚴重肝病。另外兩件事<strong>跟用不用藥無關，出現就要就醫</strong>：🚩<strong>停經後又出血</strong>、🚩<strong>乳房摸到硬塊</strong>——多數不是大事，但一定要檢查。</li>
-<li><strong>醫師備註</strong>：TMS 2025 禁忌症白話化：荷爾蒙依賴性腫瘤、未明原因子宮異常出血、活動性或既往血栓性疾病、活動性肝病、高風險心肌梗塞／中風。停經後出血與乳房腫塊列為紅旗（依「紅色只給紅旗」原則，本冊僅此模組用 🚩）。網路自購荷爾蒙產品／來路不明「更年期保健品」主動詢問。</li>
-<li><strong>出處</strong>：台灣更年期醫學會 2025 荷爾蒙治療臨床聲明（全文已核）</li>
+<li class="docnote"><strong>醫師備註</strong>：TMS 2025 禁忌症白話化：荷爾蒙依賴性腫瘤、未明原因子宮異常出血、活動性或既往血栓性疾病、活動性肝病、高風險心肌梗塞／中風。停經後出血與乳房腫塊列為紅旗（依「紅色只給紅旗」原則，本冊僅此模組用 🚩）。網路自購荷爾蒙產品／來路不明「更年期保健品」主動詢問。</li>
+<li class="docnote"><strong>出處</strong>：台灣更年期醫學會 2025 荷爾蒙治療臨床聲明（全文已核）</li>
 </ul>
 <h3 id="M-R3減重針荷爾蒙治療可以並行醫師講解層為主">M-R3 減重針×荷爾蒙治療：可以並行（醫師講解層為主）</h3>
 <ul>
 <li><strong>病人版</strong>：已經在用荷爾蒙治療的人，<strong>可以照常打減重針</strong>，兩邊不衝突；要不要用荷爾蒙治療，由婦產科醫師跟你討論決定。</li>
-<li><strong>醫師備註</strong>：觀察性證據（皆非學會常規建議，講解時明確定位為「研究訊號」）：①Tirzepatide＋MHT 回溯世代（Mayo Clinic, Lancet OGWH 2026；TMS 官網已轉載）：總體重 <strong>−19.2% vs −14.0%</strong>（p=0.0023），副作用兩組無差異；MHT 組多為經皮 estradiol＋micronized progesterone。呈現時用絕對數字，勿講「多減 35%」的相對差。②Semaglutide＋HT（Hurtado, Menopause 2024）：各時點減重皆優於單用。<strong>肥胖病人 MHT 途徑選擇</strong>：TMS 2025「高 VTE 風險或肥胖：優先經皮 estradiol、避免口服」；EMAS 2010 同立場（經皮第一選擇＋最低有效劑量；口服 HT＋肥胖之 VTE 風險顯著上升，經皮未見上升）——轉介單上可註明 BMI 供婦科參考。目前<strong>沒有任何更年期學會發布 GLP-1 專屬立場聲明</strong>，衛教口徑只能寫「學會肯定抗肥胖藥物的輔助角色（IMS 2025）＋研究顯示併用者減重較多」，不能寫「學會建議併用」。</li>
-<li><strong>出處</strong>：Lancet Obstet Gynaecol Womens Health 2026（主要結果已核；TMS 官網轉載）＋TMS 2025 聲明（全文已核）＋EMAS 2010 立場聲明（全文已核）＋Menopause 2024＋IMS Recommendations 2025</li>
+<li class="docnote"><strong>醫師備註</strong>：觀察性證據（皆非學會常規建議，講解時明確定位為「研究訊號」）：①Tirzepatide＋MHT 回溯世代（Mayo Clinic, Lancet OGWH 2026；TMS 官網已轉載）：總體重 <strong>−19.2% vs −14.0%</strong>（p=0.0023），副作用兩組無差異；MHT 組多為經皮 estradiol＋micronized progesterone。呈現時用絕對數字，勿講「多減 35%」的相對差。②Semaglutide＋HT（Hurtado, Menopause 2024）：各時點減重皆優於單用。<strong>肥胖病人 MHT 途徑選擇</strong>：TMS 2025「高 VTE 風險或肥胖：優先經皮 estradiol、避免口服」；EMAS 2010 同立場（經皮第一選擇＋最低有效劑量；口服 HT＋肥胖之 VTE 風險顯著上升，經皮未見上升）——轉介單上可註明 BMI 供婦科參考。目前<strong>沒有任何更年期學會發布 GLP-1 專屬立場聲明</strong>，衛教口徑只能寫「學會肯定抗肥胖藥物的輔助角色（IMS 2025）＋研究顯示併用者減重較多」，不能寫「學會建議併用」。</li>
+<li class="docnote"><strong>出處</strong>：Lancet Obstet Gynaecol Womens Health 2026（主要結果已核；TMS 官網轉載）＋TMS 2025 聲明（全文已核）＋EMAS 2010 立場聲明（全文已核）＋Menopause 2024＋IMS Recommendations 2025</li>
 </ul>
 <h3 id="M-R4心情低落壓力大不是意志力問題是要處理的事">M-R4 心情低落、壓力大：不是意志力問題，是要處理的事</h3>
 <ul>
 <li><strong>病人版</strong>：更年期心情容易低落、煩躁，這<strong>不是你想太多</strong>，是荷爾蒙變化的一部分。心情不好會讓人不想動、想用吃紓壓——所以它是減重卡住的重要原因，要一起處理。三件現在就能做的事：&lt;br&gt;①<strong>壓力大想吃的時候</strong>：先離開食物現場，出去走 10 分鐘再決定——動一動本身就是紓壓，常常走完就不想吃了。&lt;br&gt;②<strong>每天留 10 分鐘給自己</strong>：散步、聽音樂、慢呼吸（吸 4 秒、吐 6 秒），把它當成跟吃藥一樣的固定行程。&lt;br&gt;③<strong>低落超過兩週</strong>、對什麼事都提不起勁、睡不著或一直想哭——<strong>回診跟醫師說</strong>，這是可以治療的，不用自己撐。</li>
-<li><strong>醫師備註</strong>：醫師指示（2026-08-22）：情緒低落列為本族群體重管理的重要原因，壓力處理納入衛教。IMS 2025：情緒問題應積極治療，因其妨礙生活型態執行；MenoNote 2025：壓力管理是體重管理的一部分（全文已核）。門診操作：低落 &gt;2 週或功能受影響者以 <strong>PHQ-9</strong> 篩檢（本院已有篩檢工具），達切點轉介身心科；情緒症狀與血管舒縮症狀併存者，轉介婦產科時一併註明（TMS 2025 將情緒困擾列為台灣女性常見非典型症狀）。「運動即紓壓」與 M-E3 零基礎入門互相銜接——同一個 10 分鐘走路，兩個目的。壓力性進食的行為鏈斷點設計（離開現場→延遲→替代行為）比「不要吃」的禁止句有效。</li>
-<li><strong>出處</strong>：IMS Recommendations 2025＋The Menopause Society MenoNote 2025（全文已核）＋TMS 2025 聲明（非典型症狀段，全文已核）＋醫師指示 2026-08-22</li>
+<li class="docnote"><strong>醫師備註</strong>：醫師指示（2026-08-22）：情緒低落列為本族群體重管理的重要原因，壓力處理納入衛教。IMS 2025：情緒問題應積極治療，因其妨礙生活型態執行；MenoNote 2025：壓力管理是體重管理的一部分（全文已核）。門診操作：低落 &gt;2 週或功能受影響者以 <strong>PHQ-9</strong> 篩檢（本院已有篩檢工具），達切點轉介身心科；情緒症狀與血管舒縮症狀併存者，轉介婦產科時一併註明（TMS 2025 將情緒困擾列為台灣女性常見非典型症狀）。「運動即紓壓」與 M-E3 零基礎入門互相銜接——同一個 10 分鐘走路，兩個目的。壓力性進食的行為鏈斷點設計（離開現場→延遲→替代行為）比「不要吃」的禁止句有效。</li>
+<li class="docnote"><strong>出處</strong>：IMS Recommendations 2025＋The Menopause Society MenoNote 2025（全文已核）＋TMS 2025 聲明（非典型症狀段，全文已核）＋醫師指示 2026-08-22</li>
 </ul>
 <hr>
 <h2 id="五診間話術三句T">五、診間話術三句（T）</h2>
@@ -232,7 +261,7 @@ footer b{color:var(--ink)}
 <li>「熱潮紅、睡不好、<strong>心情低落都不要忍</strong>——先把絆腳石搬開，減重才走得動；需要的話我幫你轉婦產科或身心科，一起評估。」</li>
 </ol>
 <ul>
-<li><strong>醫師備註</strong>：句 1 是核心觀念 2（荷爾蒙因素、不是不努力）的更年期版本；句 3 開轉介之門，銜接 M-R1 與 M-R4。「脂肪搬家」是本冊統一比喻（來自 IMS／MenoNote 的體脂重分布），病人版全冊沿用。</li>
+<li class="docnote"><strong>醫師備註</strong>：句 1 是核心觀念 2（荷爾蒙因素、不是不努力）的更年期版本；句 3 開轉介之門，銜接 M-R1 與 M-R4。「脂肪搬家」是本冊統一比喻（來自 IMS／MenoNote 的體脂重分布），病人版全冊沿用。</li>
 </ul>
 <hr>
 <h2 id="六病人常見QAQ">六、病人常見 QA（Q）</h2>
@@ -250,16 +279,16 @@ footer b{color:var(--ink)}
 <h3 id="M-Q6壓力一大就想吃怎麼辦">M-Q6 壓力一大就想吃，怎麼辦？</h3>
 <p>這很常見，不是你意志力差——壓力荷爾蒙本來就會讓人想吃、而且特別想吃高熱量的。對策不是「硬忍」，是<strong>換一個紓壓出口</strong>：想吃的當下先離開食物現場，走 10 分鐘再決定。另外，如果發現自己心情低落超過兩週、常常靠吃才撐得住，回診跟醫師說——把情緒照顧好，本身就是減重治療的一部分。</p>
 <hr>
-<h2 id="附一頁組裝範例起始期更年期女性規格卡指定範例">附①：一頁組裝範例③——起始期・更年期女性（規格卡指定範例）</h2>
+<div class="docsec"><h2 id="附一頁組裝範例起始期更年期女性規格卡指定範例">附①：一頁組裝範例③——起始期・更年期女性（規格卡指定範例）</h2>
 <blockquote>病人輪廓：52 歲女性，停經 2 年，BMI 32，脂肪肝，膝關節炎，無運動經驗，熱潮紅明顯、睡眠中斷，Semaglutide 第 2 週（劑量爬升初期）。</blockquote>
 <div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>M-D1 蛋白質優先序再提高（替換 S1-D1）／ S1-D2 三餐定時餐間不進食 ／ M-D2 鈣與維生素 D</td></tr><tr><td>🏃 運動</td><td>M-E3 零基礎入門 ／ M-E2 膝蓋不好照樣練</td></tr><tr><td>💉 藥物</td><td>S1-R2 起始期腸胃症狀因應 ＋ 加掛 M-R1 荷爾蒙治療轉介說明</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（＋M-R2 婦科紅旗兩項）</td></tr></tbody></table></div>
 <ul>
-<li><strong>醫師備註</strong>：更年期女性的一頁單，D／E 區塊優先用 M 模組替換，R 區塊維持該階段模組、婦科需求時加掛 M-R。情緒低落或壓力性進食明顯者，藥物區塊的加掛模組改用 M-R4（一頁最多加掛一個 M-R，避免超載）。頁尾紅旗行加註「停經後出血、乳房硬塊」兩項。</li>
+<li class="docnote"><strong>醫師備註</strong>：更年期女性的一頁單，D／E 區塊優先用 M 模組替換，R 區塊維持該階段模組、婦科需求時加掛 M-R。情緒低落或壓力性進食明顯者，藥物區塊的加掛模組改用 M-R4（一頁最多加掛一個 M-R，避免超載）。頁尾紅旗行加註「停經後出血、乳房硬塊」兩項。</li>
 </ul>
 <hr>
-<h2 id="附本冊依據總表醫師審稿用">附②：本冊依據總表（醫師審稿用）</h2>
+</div><div class="docsec"><h2 id="附本冊依據總表醫師審稿用">附②：本冊依據總表（醫師審稿用）</h2>
 <div class="tw"><table><thead><tr><th>文件</th><th>年份</th><th>查證深度</th><th>連結</th></tr></thead><tbody><tr><td>台灣更年期醫學會 荷爾蒙治療臨床聲明</td><td>2025</td><td><strong>全文已核</strong>（6 頁）</td><td>menopause.org.tw 檔案下載區（down_id=404）</td></tr><tr><td>TMS《2025 台灣更年期婦女健康管理及藥物治療建議》</td><td>2025</td><td>僅摘要，<strong>全文未取得</strong>——引用前向學會索取</td><td>官網公告 2025/12/03</td></tr><tr><td>The Menopause Society MenoNote: Midlife Weight Gain</td><td>2025</td><td><strong>全文已核</strong>（版權頁明文允許醫療人員重製發給病人）</td><td>menopause.org/wp-content/uploads/for-women/MenoNote-Weight-Gain.pdf</td></tr><tr><td>NAMS 2022 Hormone Therapy Position Statement</td><td>2022</td><td>全文可及</td><td>Menopause 2022;29(7):767-794</td></tr><tr><td>IMS Davis et al. 白皮書（更年期與體重）</td><td>2012</td><td>新聞稿＋摘要層級</td><td>Climacteric 2012;15:419-429</td></tr><tr><td>IMS Recommendations on Women's Midlife Health</td><td>2025</td><td>key messages 摘要層級</td><td>Climacteric 2025（DOI: 10.1080/13697137.2025.2585487）</td></tr><tr><td>EMAS 肥胖停經婦女立場聲明</td><td>2010</td><td><strong>全文已核</strong>（4 頁；已 16 年，途徑選擇立場仍被 TMS 2025 沿用）</td><td>Maturitas 2010;66:323-326</td></tr><tr><td>Tirzepatide＋MHT 回溯世代（Mayo Clinic）</td><td>2026</td><td>主要結果已核；<strong>TMS 官網轉載</strong>（down_id=425）</td><td>Lancet OGWH 2026;2:e118-e128</td></tr><tr><td>Semaglutide＋HT（Hurtado）</td><td>2024</td><td>摘要層級</td><td>Menopause 2024</td></tr><tr><td>SWAN 體組成分析（Greendale）</td><td>2019</td><td>摘要層級</td><td>JCI Insight 2019</td></tr><tr><td>GLP-1 RA 與更年期綜述</td><td>2026</td><td>摘要層級</td><td>Cureus 2026;18(1):e101693</td></tr><tr><td>ESCEO 停經後肌肉骨骼營養共識（Rizzoli）</td><td>2014</td><td>摘要層級（<strong>出處為 ESCEO，非更年期學會</strong>）</td><td>Maturitas 2014</td></tr></tbody></table></div>
-<p>備註：台灣更年期健康學會網站無法正常存取，本冊未引用（僅可視需要提供 0800-005-107 更年期諮詢專線作為病人資源——醫師審定可用）。</p></article></div>
+<p>備註：台灣更年期健康學會網站無法正常存取，本冊未引用（僅可視需要提供 0800-005-107 更年期諮詢專線作為病人資源——醫師審定可用）。</p></div></article></div>
 <footer><div class="wrap">
   <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
@@ -276,6 +305,18 @@ footer b{color:var(--ink)}
   window.addEventListener('scroll', show, {passive:true});
   show();
   b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+(function(){
+  var sw=document.querySelector('.docsw');
+  if(!sw)return;
+  var root=document.documentElement;
+  var sync=function(){ sw.setAttribute('aria-pressed', root.classList.contains('show-doc')?'true':'false'); };
+  sync();
+  sw.addEventListener('click', function(){
+    var on=root.classList.toggle('show-doc');
+    try{ localStorage.setItem('glp1-show-doc', on?'1':'0'); }catch(e){}
+    sync();
+  });
 })();
 </script>
 </body>

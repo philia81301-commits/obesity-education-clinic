@@ -107,7 +107,10 @@ function mdToHtml(md) {
       while (i + 1 < lines.length && /^\s{2,}\S/.test(lines[i + 1]) && !/^\s*([-*]|\d+\.)\s/.test(lines[i + 1])) {
         i++; text += '<br>' + lines[i].trim();
       }
-      out.push(`<li>${inline(text)}</li>`);
+      // 醫師備註／出處：標記為醫護專用，預設收起（病人掃 QR 只看病人版）
+      const liHtml = inline(text);
+      const isDoc = /^<strong>(醫師備註|出處)<\/strong>/.test(liHtml);
+      out.push(`<li${isDoc ? ' class="docnote"' : ''}>${liHtml}</li>`);
       i++; continue;
     }
 
@@ -117,6 +120,21 @@ function mdToHtml(md) {
   }
   closeList();
   return { html: out.join('\n'), headings };
+}
+
+/** 判斷 h2 段落是否為醫護專用（整段收起） */
+function isDocSection(text) {
+  const t = text.replace(/<[^>]+>/g, '').trim();
+  return /醫師講解層|醫師備註|依據總表|組裝範例/.test(t) || t === '出處';
+}
+
+/** 把醫護專用的 h2 段落（含其後內容直到下一個 h2）包進 .docsec */
+function wrapDocSections(html) {
+  return html.split(/(?=<h2 )/).map(chunk => {
+    const m = chunk.match(/^<h2[^>]*>([\s\S]*?)<\/h2>/);
+    if (!m || !isDocSection(m[1])) return chunk;
+    return `<div class="docsec">${chunk}</div>`;
+  }).join('');
 }
 
 /** 由 headings 產生兩層目錄：h2 為段落、h3 為該段落底下的模組 */
@@ -133,7 +151,8 @@ function buildToc(headings) {
     const kids = s.kids.length
       ? `<div class="toc-k">${s.kids.map(k => `<a href="#${k.id}">${esc(shorten(k.text))}</a>`).join('')}</div>`
       : '';
-    return `<div class="toc-s"><a class="toc-h" href="#${s.id}">${esc(s.text)}</a>${kids}</div>`;
+    const cls = isDocSection(s.text) ? ' docsec' : '';
+    return `<div class="toc-s${cls}"><a class="toc-h" href="#${s.id}">${esc(s.text)}</a>${kids}</div>`;
   }).join('');
   return `<nav class="toc"><div class="toc-t">本頁內容</div>${rows}</nav>`;
 }
@@ -212,6 +231,24 @@ table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 醫護專用內容：預設收起，由導覽列開關切換 */
+html:not(.show-doc) .docnote,
+html:not(.show-doc) .docsec{display:none}
+
+.docsw{font:inherit;font-size:13.5px;color:var(--muted);background:#fff;
+  border:1px solid var(--line);border-radius:99px;padding:4px 13px 4px 10px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  transition:.15s}
+.docsw:hover{border-color:var(--move);color:var(--ink)}
+.docsw i{width:9px;height:9px;border-radius:50%;background:#C9C9BA;
+  flex-shrink:0;transition:.15s}
+html.show-doc .docsw{border-color:var(--move);color:var(--move);background:var(--move-soft)}
+html.show-doc .docsw i{background:var(--move)}
+.docsw .off{display:inline}
+.docsw .on{display:none}
+html.show-doc .docsw .off{display:none}
+html.show-doc .docsw .on{display:inline}
+
 /* 頁內目錄 */
 .toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
   padding:14px 18px 15px;margin:0 0 26px;
@@ -249,7 +286,11 @@ footer b{color:var(--ink)}
 @media(max-width:640px){
   .top .wrap{height:56px;gap:10px}
   .top .home{font-size:18px}
-  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名 */
+  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名與開關 */
+  .docsw{font-size:12.5px;padding:3px 10px 3px 8px;gap:5px}
+  .docsw .off{display:none}   /* 手機只留「醫師版」二字 */
+  .docsw::after{content:"醫師版"}
+  html.show-doc .docsw .on{display:none}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
@@ -259,7 +300,10 @@ footer b{color:var(--ink)}
 }
 `;
 
-function page({ title, body, crumb = '', desc = '' }) {
+function page({ title, body, crumb = '', desc = '', docSwitch = false }) {
+  const sw = docSwitch ? `<button class="docsw" type="button" aria-pressed="false">
+    <i></i><span class="off">顯示醫師備註</span><span class="on">隱藏醫師備註</span>
+  </button>` : '';
   return `<!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -269,12 +313,17 @@ function page({ title, body, crumb = '', desc = '' }) {
 <meta name="description" content="${esc(desc)}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <style>${CSS}</style>
+<script>
+/* 在繪製前套用偏好，避免醫師備註閃一下才收起 */
+try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.classList.add('show-doc');}catch(e){}
+</script>
 </head>
 <body>
 <nav class="top"><div class="wrap">
   <a class="home" href="./">GLP-1 減重衛教</a>
   <span class="sp"></span>
   ${crumb}
+  ${sw}
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 ${body}
@@ -295,6 +344,18 @@ ${body}
   show();
   b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
 })();
+(function(){
+  var sw=document.querySelector('.docsw');
+  if(!sw)return;
+  var root=document.documentElement;
+  var sync=function(){ sw.setAttribute('aria-pressed', root.classList.contains('show-doc')?'true':'false'); };
+  sync();
+  sw.addEventListener('click', function(){
+    var on=root.classList.toggle('show-doc');
+    try{ localStorage.setItem('glp1-show-doc', on?'1':'0'); }catch(e){}
+    sync();
+  });
+})();
 </script>
 </body>
 </html>`;
@@ -312,11 +373,12 @@ for (const b of [...BOOKS, ...REFS]) {
   const crumb = `<span class="crumb"><a href="./">總覽</a><span style="color:#C9C9BA"> / </span>${esc(b.title)}</span>`;
   const { html: bodyHtml, headings } = mdToHtml(md);
   // 目錄插在第一個 h1 之後（標題下方），沒有 h1 就放最前面
-  const withToc = bodyHtml.replace(/(<\/h1>)/, `$1\n${buildToc(headings)}`);
+  const withToc = wrapDocSections(bodyHtml).replace(/(<\/h1>)/, `$1\n${buildToc(headings)}`);
   const html = page({
     title: `${b.title}｜GLP-1 減重衛教`,
     desc: b.desc,
     crumb,
+    docSwitch: true,
     body: `<div class="wrap"><article>${withToc}</article></div>`,
   });
   fs.writeFileSync(path.join(DOCS, `${b.slug}.html`), html, 'utf8');

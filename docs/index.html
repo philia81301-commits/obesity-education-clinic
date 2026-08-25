@@ -79,6 +79,24 @@ table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 醫護專用內容：預設收起，由導覽列開關切換 */
+html:not(.show-doc) .docnote,
+html:not(.show-doc) .docsec{display:none}
+
+.docsw{font:inherit;font-size:13.5px;color:var(--muted);background:#fff;
+  border:1px solid var(--line);border-radius:99px;padding:4px 13px 4px 10px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  transition:.15s}
+.docsw:hover{border-color:var(--move);color:var(--ink)}
+.docsw i{width:9px;height:9px;border-radius:50%;background:#C9C9BA;
+  flex-shrink:0;transition:.15s}
+html.show-doc .docsw{border-color:var(--move);color:var(--move);background:var(--move-soft)}
+html.show-doc .docsw i{background:var(--move)}
+.docsw .off{display:inline}
+.docsw .on{display:none}
+html.show-doc .docsw .off{display:none}
+html.show-doc .docsw .on{display:inline}
+
 /* 頁內目錄 */
 .toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
   padding:14px 18px 15px;margin:0 0 26px;
@@ -116,7 +134,11 @@ footer b{color:var(--ink)}
 @media(max-width:640px){
   .top .wrap{height:56px;gap:10px}
   .top .home{font-size:18px}
-  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名 */
+  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名與開關 */
+  .docsw{font-size:12.5px;padding:3px 10px 3px 8px;gap:5px}
+  .docsw .off{display:none}   /* 手機只留「醫師版」二字 */
+  .docsw::after{content:"醫師版"}
+  html.show-doc .docsw .on{display:none}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
@@ -125,11 +147,16 @@ footer b{color:var(--ink)}
   .totop{right:14px;bottom:14px}
 }
 </style>
+<script>
+/* 在繪製前套用偏好，避免醫師備註閃一下才收起 */
+try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.classList.add('show-doc');}catch(e){}
+</script>
 </head>
 <body>
 <nav class="top"><div class="wrap">
   <a class="home" href="./">GLP-1 減重衛教</a>
   <span class="sp"></span>
+  
   
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
@@ -186,6 +213,18 @@ footer b{color:var(--ink)}
   window.addEventListener('scroll', show, {passive:true});
   show();
   b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+(function(){
+  var sw=document.querySelector('.docsw');
+  if(!sw)return;
+  var root=document.documentElement;
+  var sync=function(){ sw.setAttribute('aria-pressed', root.classList.contains('show-doc')?'true':'false'); };
+  sync();
+  sw.addEventListener('click', function(){
+    var on=root.classList.toggle('show-doc');
+    try{ localStorage.setItem('glp1-show-doc', on?'1':'0'); }catch(e){}
+    sync();
+  });
 })();
 </script>
 </body>

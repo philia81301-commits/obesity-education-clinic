@@ -79,6 +79,24 @@ table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 醫護專用內容：預設收起，由導覽列開關切換 */
+html:not(.show-doc) .docnote,
+html:not(.show-doc) .docsec{display:none}
+
+.docsw{font:inherit;font-size:13.5px;color:var(--muted);background:#fff;
+  border:1px solid var(--line);border-radius:99px;padding:4px 13px 4px 10px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  transition:.15s}
+.docsw:hover{border-color:var(--move);color:var(--ink)}
+.docsw i{width:9px;height:9px;border-radius:50%;background:#C9C9BA;
+  flex-shrink:0;transition:.15s}
+html.show-doc .docsw{border-color:var(--move);color:var(--move);background:var(--move-soft)}
+html.show-doc .docsw i{background:var(--move)}
+.docsw .off{display:inline}
+.docsw .on{display:none}
+html.show-doc .docsw .off{display:none}
+html.show-doc .docsw .on{display:inline}
+
 /* 頁內目錄 */
 .toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
   padding:14px 18px 15px;margin:0 0 26px;
@@ -116,7 +134,11 @@ footer b{color:var(--ink)}
 @media(max-width:640px){
   .top .wrap{height:56px;gap:10px}
   .top .home{font-size:18px}
-  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名 */
+  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名與開關 */
+  .docsw{font-size:12.5px;padding:3px 10px 3px 8px;gap:5px}
+  .docsw .off{display:none}   /* 手機只留「醫師版」二字 */
+  .docsw::after{content:"醫師版"}
+  html.show-doc .docsw .on{display:none}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
@@ -125,19 +147,26 @@ footer b{color:var(--ink)}
   .totop{right:14px;bottom:14px}
 }
 </style>
+<script>
+/* 在繪製前套用偏好，避免醫師備註閃一下才收起 */
+try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.classList.add('show-doc');}catch(e){}
+</script>
 </head>
 <body>
 <nav class="top"><div class="wrap">
   <a class="home" href="./">GLP-1 減重衛教</a>
   <span class="sp"></span>
   <span class="crumb"><a href="./">總覽</a><span style="color:#C9C9BA"> / </span>停滯期</span>
+  <button class="docsw" type="button" aria-pressed="false">
+    <i></i><span class="off">顯示醫師備註</span><span class="on">隱藏醫師備註</span>
+  </button>
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 <div class="wrap"><article><h1 id="S3停滯期plateau體重停滯飢餓感回升">S3 停滯期（plateau：體重停滯、飢餓感回升）</h1>
-<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S3-D1先盤點不先節食回想最近一個月的聚餐次數">S3-D1 先盤點，不先節食</a><a href="#S3-D2不要用吃更少突破停滯">S3-D2 不要用「吃更少」突破停滯</a><a href="#S3-D3抗餓餐盤吃大體積高蛋白高纖">S3-D3 抗餓餐盤</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E醫師指定重點核心訓練">三、運動模組（E）★醫師指定重點：核心訓練</a><div class="toc-k"><a href="#S3-E1肌力訓練升級加到每週23次逐步加重">S3-E1 肌力訓練升級</a><a href="#S3-E2每天10分鐘核心菜單醫師指定重點">S3-E2 每天 10 分鐘核心菜單</a><a href="#S3-E3你可能不知不覺變懶了把步數找回來">S3-E3 你可能不知不覺變懶了</a></div></div><div class="toc-s"><a class="toc-h" href="#四飢餓感與副作用因應R醫師指定重點飢餓感處理">四、飢餓感與副作用因應（R）★醫師指定重點：飢餓感處理</a><div class="toc-k"><a href="#S3-R1餓回來了這是預期內的事劑量可以談">S3-R1 餓回來了？這是預期內的事，劑量可以談</a><a href="#S3-R2分辨真的餓和嘴饞">S3-R2 分辨「真的餓」和「嘴饞」</a><a href="#S3-R3晚上最容易破功宵夜衝動三道防線在地化宵夜31">S3-R3 晚上最容易破功</a><a href="#S3-R4睡眠和壓力看不見的增餓劑">S3-R4 睡眠和壓力</a><a href="#紅旗症狀">紅旗症狀</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S3-T1">S3-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S3-Q1停滯多久算正常">S3-Q1 停滯多久算正常？</a><a href="#S3-Q2是不是藥沒效了要不要換藥">S3-Q2 是不是藥沒效了？要不要換藥？</a><a href="#S3-Q3我可以用斷食或吃更少來突破嗎">S3-Q3 我可以用斷食或吃更少來突破嗎？</a><a href="#S3-Q4我明明有忌口為什麼還是一直想吃">S3-Q4 我明明有忌口，為什麼還是一直想吃？</a></div></div><div class="toc-s"><a class="toc-h" href="#附一頁組裝範例停滯期宵夜習慣男性">附：一頁組裝範例③——停滯期・宵夜習慣男性</a></div></nav>
+<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s docsec"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S3-D1先盤點不先節食回想最近一個月的聚餐次數">S3-D1 先盤點，不先節食</a><a href="#S3-D2不要用吃更少突破停滯">S3-D2 不要用「吃更少」突破停滯</a><a href="#S3-D3抗餓餐盤吃大體積高蛋白高纖">S3-D3 抗餓餐盤</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E醫師指定重點核心訓練">三、運動模組（E）★醫師指定重點：核心訓練</a><div class="toc-k"><a href="#S3-E1肌力訓練升級加到每週23次逐步加重">S3-E1 肌力訓練升級</a><a href="#S3-E2每天10分鐘核心菜單醫師指定重點">S3-E2 每天 10 分鐘核心菜單</a><a href="#S3-E3你可能不知不覺變懶了把步數找回來">S3-E3 你可能不知不覺變懶了</a></div></div><div class="toc-s"><a class="toc-h" href="#四飢餓感與副作用因應R醫師指定重點飢餓感處理">四、飢餓感與副作用因應（R）★醫師指定重點：飢餓感處理</a><div class="toc-k"><a href="#S3-R1餓回來了這是預期內的事劑量可以談">S3-R1 餓回來了？這是預期內的事，劑量可以談</a><a href="#S3-R2分辨真的餓和嘴饞">S3-R2 分辨「真的餓」和「嘴饞」</a><a href="#S3-R3晚上最容易破功宵夜衝動三道防線在地化宵夜31">S3-R3 晚上最容易破功</a><a href="#S3-R4睡眠和壓力看不見的增餓劑">S3-R4 睡眠和壓力</a><a href="#紅旗症狀">紅旗症狀</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S3-T1">S3-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S3-Q1停滯多久算正常">S3-Q1 停滯多久算正常？</a><a href="#S3-Q2是不是藥沒效了要不要換藥">S3-Q2 是不是藥沒效了？要不要換藥？</a><a href="#S3-Q3我可以用斷食或吃更少來突破嗎">S3-Q3 我可以用斷食或吃更少來突破嗎？</a><a href="#S3-Q4我明明有忌口為什麼還是一直想吃">S3-Q4 我明明有忌口，為什麼還是一直想吃？</a></div></div><div class="toc-s docsec"><a class="toc-h" href="#附一頁組裝範例停滯期宵夜習慣男性">附：一頁組裝範例③——停滯期・宵夜習慣男性</a></div></nav>
 <blockquote>適用：規律用藥與執行飲食運動下，體重連續約 <strong>4 週以上</strong>不再下降的病人；常伴隨飢餓感回升。<br>狀態：<strong>已審定</strong>（2026-08-24 醫師審稿通過）。醫師指定重點：<strong>核心訓練</strong>、<strong>飢餓感處理</strong>。</blockquote>
 <hr>
-<h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
+<div class="docsec"><h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
 <p><strong>這一冊要達成的事</strong>：讓病人理解停滯是<strong>生理現象不是失敗</strong>（核心觀念第 2 條），完成三件事——盤點行為漂移、把肌力與核心訓練補上來、學會一套飢餓感因應工具。醫師端同步檢視：藥物劑量、睡眠、壓力、隱形熱量。</p>
 <p>生理變化（講解用）：</p>
 <ul>
@@ -148,72 +177,72 @@ footer b{color:var(--ink)}
 <li>醫師端決策點：檢視劑量是否已達治療劑量、有無升量空間；體組成（InBody）常顯示脂肪仍在降、只是體重持平——這是留住病人最有力的數據</li>
 </ul>
 <hr>
-<h2 id="二飲食模組D">二、飲食模組（D）</h2>
+</div><h2 id="二飲食模組D">二、飲食模組（D）</h2>
 <h3 id="S3-D1先盤點不先節食回想最近一個月的聚餐次數">S3-D1 先盤點，不先節食：回想最近一個月的「聚餐次數」</h3>
 <ul>
 <li><strong>病人版</strong>：體重卡住，先不要急著吃更少。先回想：<strong>最近聚餐、應酬、喝酒的次數是不是變多了？</strong>含糖飲料、宵夜是不是悄悄回來了？很多停滯不是藥沒效，是這些場合多了、份量悄悄變大。回診時把「一週幾次聚餐外食」告訴我們就好。</li>
-<li><strong>醫師備註</strong>：醫師審定：不用飲食拍照，問診直接用<strong>衛教三摺頁「飲食行為評估」的四個數量欄</strong>——每週聚餐次數、含糖飲料杯數、宵夜次數、飲酒天數——與上次紀錄比對，即可抓出停滯的可逆原因（本院問卷：含糖飲料 33%、甜點餅乾 33%、宵夜 31%）。聚餐多的病人銜接 S2-Q4 應酬破功心法與 S3-D3 抗餓餐盤點餐法。</li>
-<li><strong>出處</strong>：高雄榮總家醫部衛教三摺頁（減重衛教 0824 修）飲食行為評估欄＋本院 270 份問卷＋醫師審定 2026-08-24</li>
+<li class="docnote"><strong>醫師備註</strong>：醫師審定：不用飲食拍照，問診直接用<strong>衛教三摺頁「飲食行為評估」的四個數量欄</strong>——每週聚餐次數、含糖飲料杯數、宵夜次數、飲酒天數——與上次紀錄比對，即可抓出停滯的可逆原因（本院問卷：含糖飲料 33%、甜點餅乾 33%、宵夜 31%）。聚餐多的病人銜接 S2-Q4 應酬破功心法與 S3-D3 抗餓餐盤點餐法。</li>
+<li class="docnote"><strong>出處</strong>：高雄榮總家醫部衛教三摺頁（減重衛教 0824 修）飲食行為評估欄＋本院 270 份問卷＋醫師審定 2026-08-24</li>
 </ul>
 <h3 id="S3-D2不要用吃更少突破停滯">S3-D2 不要用「吃更少」突破停滯</h3>
 <ul>
 <li><strong>病人版</strong>：卡住的時候吃得更少、甚至不吃，是<strong>最吃虧的做法</strong>：身體會把「煞車」踩得更死——代謝降更多、肌肉掉更快、餓得更兇，之後反彈也更大。蛋白質照 S2 的目標吃夠，熱量不要再往下砍。</li>
-<li><strong>醫師備註</strong>：進一步限制熱量會加深代謝適應與瘦體組織流失（呼應核心觀念第 3 條：速度來自食物選擇＋運動搭配，不是餓出來）。若病人已自行斷食激烈節食，先處理這個。</li>
-<li><strong>出處</strong>：代謝適應文獻（S2 已審定）＋醫師審定立場</li>
+<li class="docnote"><strong>醫師備註</strong>：進一步限制熱量會加深代謝適應與瘦體組織流失（呼應核心觀念第 3 條：速度來自食物選擇＋運動搭配，不是餓出來）。若病人已自行斷食激烈節食，先處理這個。</li>
+<li class="docnote"><strong>出處</strong>：代謝適應文獻（S2 已審定）＋醫師審定立場</li>
 </ul>
 <h3 id="S3-D3抗餓餐盤吃大體積高蛋白高纖">S3-D3 抗餓餐盤：吃「大體積、高蛋白、高纖」</h3>
 <ul>
 <li><strong>病人版</strong>：一樣的熱量，選「佔肚子」的吃法：每餐蛋白質先吃（手掌大）、蔬菜堆半盤、加一碗清湯（蔬菜湯、菇湯，不是濃湯）。菇類、蒟蒻、大番茄、深綠蔬菜體積大熱量低，餓的日子多用它們把餐盤填滿。<strong>進食順序：菜和蛋白質先吃，飯留最後</strong>。</li>
-<li><strong>醫師備註</strong>：飽足感策略三支柱——蛋白質（最高飽足感巨量營養素）、可溶性纖維（延緩胃排空）、食物體積（胃機械性飽足）。進食順序（vegetable/protein first）有延緩餐後血糖與增加 GLP-1 分泌的實證，與藥物機轉同向。主食立場沿用審定版：減量、麵食盡量少。</li>
-<li><strong>出處</strong>：進食順序 Shukla 2015 Diabetes Care（先菜與蛋白後醣，餐後血糖 iAUC −73%；詳 <code>ref-高纖低GI早餐.md</code>）＋審定飲食立場</li>
+<li class="docnote"><strong>醫師備註</strong>：飽足感策略三支柱——蛋白質（最高飽足感巨量營養素）、可溶性纖維（延緩胃排空）、食物體積（胃機械性飽足）。進食順序（vegetable/protein first）有延緩餐後血糖與增加 GLP-1 分泌的實證，與藥物機轉同向。主食立場沿用審定版：減量、麵食盡量少。</li>
+<li class="docnote"><strong>出處</strong>：進食順序 Shukla 2015 Diabetes Care（先菜與蛋白後醣，餐後血糖 iAUC −73%；詳 <code>ref-高纖低GI早餐.md</code>）＋審定飲食立場</li>
 </ul>
 <hr>
 <h2 id="三運動模組E醫師指定重點核心訓練">三、運動模組（E）★醫師指定重點：核心訓練</h2>
 <h3 id="S3-E1肌力訓練升級加到每週23次逐步加重">S3-E1 肌力訓練升級：加到每週 2–3 次、逐步加重</h3>
 <ul>
 <li><strong>病人版</strong>：停滯期是把肌肉「加碼」的時機：肌力訓練從每週 2 次加到 <strong>2–3 次</strong>，而且每兩週讓自己「變強一點」——深蹲多 2 下、寶特瓶換大罐、橋式多撐 5 秒。<strong>家裡有啞鈴或壺鈴的人可以進階</strong>：雙手抱在胸前做深蹲（酒杯式深蹲）、壺鈴硬舉、或提著走路（農夫走路）。肌肉多一點，身體的「引擎」就大一點，停滯就短一點。</li>
-<li><strong>醫師備註</strong>：漸進超負荷（次數→重量→難度→外加重量）是突破的關鍵；只重複同樣的量，適應後刺激歸零。負重進階順序：徒手→裝水寶特瓶→<strong>啞鈴／壺鈴</strong>（酒杯深蹲、壺鈴硬舉、農夫走路——醫師審定納入 2026-08-24）。動作庫沿用審定四類（深蹲／椅上／地板核心／站立平衡）。提醒握姿與腰背中立，壺鈴硬舉先從輕重量學動作。</li>
-<li><strong>出處</strong>：漸進超負荷訓練原則＋醫師審定運動四類（進階負重 2026-08-24 補充）</li>
+<li class="docnote"><strong>醫師備註</strong>：漸進超負荷（次數→重量→難度→外加重量）是突破的關鍵；只重複同樣的量，適應後刺激歸零。負重進階順序：徒手→裝水寶特瓶→<strong>啞鈴／壺鈴</strong>（酒杯深蹲、壺鈴硬舉、農夫走路——醫師審定納入 2026-08-24）。動作庫沿用審定四類（深蹲／椅上／地板核心／站立平衡）。提醒握姿與腰背中立，壺鈴硬舉先從輕重量學動作。</li>
+<li class="docnote"><strong>出處</strong>：漸進超負荷訓練原則＋醫師審定運動四類（進階負重 2026-08-24 補充）</li>
 </ul>
 <h3 id="S3-E2每天10分鐘核心菜單醫師指定重點">S3-E2 每天 10 分鐘核心菜單（醫師指定重點）</h3>
 <ul>
 <li><strong>病人版</strong>：核心是所有動作的地基——核心有力，深蹲蹲得穩、走路走得久、腰也比較不會痛。每天 10 分鐘，做這四個，各 <strong>30 秒、休息 30 秒、輪 2 圈</strong>：&lt;br&gt;①<strong>橋式</strong>：躺著、膝蓋彎、屁股抬起夾緊（進階：單腳橋式）&lt;br&gt;②<strong>死蟲式</strong>：躺著、對側手腳慢慢伸直再收回，腰貼地不拱起&lt;br&gt;③<strong>鳥狗式</strong>：四足跪姿、對側手腳伸直，肚子收緊不晃&lt;br&gt;④<strong>棒式</strong>：手肘撐地、身體一直線（做不來先從膝蓋著地版開始）&lt;br&gt;做的時候<strong>正常呼吸、不要憋氣</strong>，腰會痛就停下來回診問。</li>
-<li><strong>醫師備註</strong>：全套為低衝擊、居家無器材、地板即可（審定四類中的「地板核心訓練」專章化）。<strong>不納入仰臥起坐</strong>（三摺頁雖列，但腰椎屈曲負荷高、肥胖族群執行品質差，醫師審定以本菜單四動作為準 2026-08-24）。核心強化改善深蹲與日常動作品質、預防下背痛，是 S2-E1／S3-E1 阻力訓練的安全基礎。高血壓病人特別提醒勿憋氣（Valsalva）；急性下背痛期間暫停並評估。動作以等長／慢速為主，適合中高齡與關節炎族群。</li>
-<li><strong>出處</strong>：核心訓練與下背痛預防通則＋醫師指定納入（2026-08-22）</li>
+<li class="docnote"><strong>醫師備註</strong>：全套為低衝擊、居家無器材、地板即可（審定四類中的「地板核心訓練」專章化）。<strong>不納入仰臥起坐</strong>（三摺頁雖列，但腰椎屈曲負荷高、肥胖族群執行品質差，醫師審定以本菜單四動作為準 2026-08-24）。核心強化改善深蹲與日常動作品質、預防下背痛，是 S2-E1／S3-E1 阻力訓練的安全基礎。高血壓病人特別提醒勿憋氣（Valsalva）；急性下背痛期間暫停並評估。動作以等長／慢速為主，適合中高齡與關節炎族群。</li>
+<li class="docnote"><strong>出處</strong>：核心訓練與下背痛預防通則＋醫師指定納入（2026-08-22）</li>
 </ul>
 <h3 id="S3-E3你可能不知不覺變懶了把步數找回來">S3-E3 你可能不知不覺變懶了：把步數找回來</h3>
 <ul>
 <li><strong>病人版</strong>：停滯期身體會偷偷「省電」——不自覺少走路、多坐著，消耗就更少。看手機的步數紀錄：如果比之前少，先把它補回原本的量，能站就站、能走就走。</li>
-<li><strong>醫師備註</strong>：代謝適應中非靜態（活動）能量消耗降幅最大（Leibel 1995）；NEAT 回補是病人最能自主控制的槓桿。用手機內建計步做基準比較（跟自己比，不設統一步數門檻）。</li>
-<li><strong>出處</strong>：Leibel 1995 NEJM（S2 已審定引用）</li>
+<li class="docnote"><strong>醫師備註</strong>：代謝適應中非靜態（活動）能量消耗降幅最大（Leibel 1995）；NEAT 回補是病人最能自主控制的槓桿。用手機內建計步做基準比較（跟自己比，不設統一步數門檻）。</li>
+<li class="docnote"><strong>出處</strong>：Leibel 1995 NEJM（S2 已審定引用）</li>
 </ul>
 <hr>
 <h2 id="四飢餓感與副作用因應R醫師指定重點飢餓感處理">四、飢餓感與副作用因應（R）★醫師指定重點：飢餓感處理</h2>
 <h3 id="S3-R1餓回來了這是預期內的事劑量可以談">S3-R1 餓回來了？這是預期內的事，劑量可以談</h3>
 <ul>
 <li><strong>病人版</strong>：打針一段時間後覺得「食慾好像回來了」，不是你的錯，也<strong>不代表藥沒效</strong>——體重下降後，身體的飢餓賀爾蒙本來就會反撲。回診告訴醫師餓的程度和時間，<strong>劑量和作法可以調整</strong>，千萬不要自己停藥或自己加藥。</li>
-<li><strong>醫師備註</strong>：鑑別三件事——①生理性 hunger regain（瘦體素↓/飢餓素↑）②劑量未達或可再升（檢視爬升史）③行為因素（睡眠、壓力、飲食漂移）。處置順序：行為盤點（S3-D1）→ 劑量評估 → 強化飽足策略（S3-D3）。自行停藥是最差結局（沿用 S1-R5 立場）。</li>
-<li><strong>出處</strong>：hunger regain 賀爾蒙機轉（Lehninger 筆記＋S2 審定框架）</li>
+<li class="docnote"><strong>醫師備註</strong>：鑑別三件事——①生理性 hunger regain（瘦體素↓/飢餓素↑）②劑量未達或可再升（檢視爬升史）③行為因素（睡眠、壓力、飲食漂移）。處置順序：行為盤點（S3-D1）→ 劑量評估 → 強化飽足策略（S3-D3）。自行停藥是最差結局（沿用 S1-R5 立場）。</li>
+<li class="docnote"><strong>出處</strong>：hunger regain 賀爾蒙機轉（Lehninger 筆記＋S2 審定框架）</li>
 </ul>
 <h3 id="S3-R2分辨真的餓和嘴饞">S3-R2 分辨「真的餓」和「嘴饞」</h3>
 <ul>
 <li><strong>病人版</strong>：真的餓是<strong>慢慢來的、什麼都吃得下</strong>；嘴饞是<strong>突然的、只想吃特定東西</strong>（炸的、甜的）。分不清楚就用「<strong>15 分鐘法</strong>」：先喝一杯水、離開廚房做別的事 15 分鐘——真餓不會消失，就去吃<strong>蛋白質或低甜度水果</strong>（蓮霧、大番茄、芭樂、蘋果、奇異果）；嘴饞多半會過去。</li>
-<li><strong>醫師備註</strong>：生理性飢餓 vs 享樂性食慾（hedonic hunger）的行為衛教版本；15 分鐘延遲＋喝水＋情境轉移是可執行度最高的組合。<strong>「餐間不進食」原則維持，唯一例外：經 15 分鐘法確認的真餓，可吃蛋白質或低甜度水果</strong>（清單沿用衛教三摺頁，醫師審定 2026-08-24）。嘴饞頻繁發作時回頭查睡眠與壓力（S3-R4）。</li>
-<li><strong>出處</strong>：食慾行為介入通則＋高榮家醫部衛教三摺頁低甜度水果清單</li>
+<li class="docnote"><strong>醫師備註</strong>：生理性飢餓 vs 享樂性食慾（hedonic hunger）的行為衛教版本；15 分鐘延遲＋喝水＋情境轉移是可執行度最高的組合。<strong>「餐間不進食」原則維持，唯一例外：經 15 分鐘法確認的真餓，可吃蛋白質或低甜度水果</strong>（清單沿用衛教三摺頁，醫師審定 2026-08-24）。嘴饞頻繁發作時回頭查睡眠與壓力（S3-R4）。</li>
+<li class="docnote"><strong>出處</strong>：食慾行為介入通則＋高榮家醫部衛教三摺頁低甜度水果清單</li>
 </ul>
 <p>_</p>
 <h3 id="S3-R3晚上最容易破功宵夜衝動三道防線在地化宵夜31">S3-R3 晚上最容易破功：宵夜衝動三道防線（在地化：宵夜 31%）</h3>
 <ul>
 <li><strong>病人版</strong>：停滯期的嘴饞最常在晚上發作。三道防線：①<strong>晚餐蛋白質吃夠</strong>（晚餐沒吃夠，晚上一定餓）②<strong>家裡不囤零食</strong>——要吃得出門買，多數時候你會懶得去 ③<strong>提早半小時上床</strong>——熬夜的人餓得更兇，睡著就不餓了。</li>
-<li><strong>醫師備註</strong>：本院問卷宵夜習慣 31%。環境設計（stimulus control）比意志力有效；夜食頻繁且清醒時無法克制者，評估夜食症候群。</li>
-<li><strong>出處</strong>：本院 270 份問卷＋刺激控制行為療法通則</li>
+<li class="docnote"><strong>醫師備註</strong>：本院問卷宵夜習慣 31%。環境設計（stimulus control）比意志力有效；夜食頻繁且清醒時無法克制者，評估夜食症候群。</li>
+<li class="docnote"><strong>出處</strong>：本院 270 份問卷＋刺激控制行為療法通則</li>
 </ul>
 <h3 id="S3-R4睡眠和壓力看不見的增餓劑">S3-R4 睡眠和壓力：看不見的增餓劑</h3>
 <ul>
 <li><strong>病人版</strong>：睡不夠和壓力大，身體會分泌更多「飢餓賀爾蒙」，讓你隔天特別想吃高熱量的東西。目標不是硬性的 7 小時——是<strong>比現在多睡 30–60 分鐘</strong>，而且<strong>時段盡量固定</strong>。壓力大的日子，用走路和呼吸練習代替吃東西紓壓。</li>
 <li><strong>輪班工作者版</strong>（護理、工廠、保全等）：班表沒辦法固定沒關係，守住四件事：&lt;br&gt;①<strong>保護主睡眠</strong>：下班回家的那一覺是主力——房間全黑（遮光窗簾）、耳塞、手機勿擾，家人知道這段不吵你。&lt;br&gt;②<strong>下夜班戴太陽眼鏡回家</strong>、上床前不滑手機；睡醒後去曬太陽——用光線告訴身體現在是白天還是晚上。&lt;br&gt;③<strong>上夜班前小睡 20–30 分鐘</strong>，班中提神用無糖茶或黑咖啡，但<strong>下班前 4–6 小時就停</strong>，不然主睡眠會被咖啡因吃掉。&lt;br&gt;④<strong>三餐跟著你的清醒時間排</strong>，不跟時鐘：上班前吃正餐，<strong>半夜班中不吃大餐、不用零食和含糖飲料提神</strong>——半夜進食是輪班者體重上升最大的破口。</li>
-<li><strong>醫師備註</strong>：睡眠剝奪→飢餓素↑瘦體素↓＋高熱量食物偏好增加；皮質醇慢性升高促進腹部脂肪儲積。<strong>輪班（尤其夜班）為肥胖與代謝症候群的獨立風險因子</strong>（晝夜節律失調→胰島素敏感度下降、夜間進食）。衛教目標從固定時數改為「保護主睡眠時段＋規律性＋光線管理」；問診加問班型與主睡眠品質。日間嗜睡嚴重或鼾聲明顯者評估睡眠呼吸中止（本院男性 19%）。7 小時作為非輪班者的理想目標保留在醫師講解層，不寫成病人版的及格線（醫師審定 2026-08-24）。</li>
-<li><strong>出處</strong>：睡眠與食慾賀爾蒙研究通則＋輪班與代謝風險文獻（醫師審定 OK）＋本院 270 份問卷</li>
+<li class="docnote"><strong>醫師備註</strong>：睡眠剝奪→飢餓素↑瘦體素↓＋高熱量食物偏好增加；皮質醇慢性升高促進腹部脂肪儲積。<strong>輪班（尤其夜班）為肥胖與代謝症候群的獨立風險因子</strong>（晝夜節律失調→胰島素敏感度下降、夜間進食）。衛教目標從固定時數改為「保護主睡眠時段＋規律性＋光線管理」；問診加問班型與主睡眠品質。日間嗜睡嚴重或鼾聲明顯者評估睡眠呼吸中止（本院男性 19%）。7 小時作為非輪班者的理想目標保留在醫師講解層，不寫成病人版的及格線（醫師審定 2026-08-24）。</li>
+<li class="docnote"><strong>出處</strong>：睡眠與食慾賀爾蒙研究通則＋輪班與代謝風險文獻（醫師審定 OK）＋本院 270 份問卷</li>
 </ul>
 <h3 id="紅旗症狀">紅旗症狀</h3>
 <p>沿用 <strong>S1-R4</strong>（頁尾固定欄，不重複收錄）。</p>
@@ -226,7 +255,7 @@ footer b{color:var(--ink)}
 <li>「數字沒動，不代表沒進步——體脂肪和腰圍常常還在降。<strong>撐過停滯期的人才進得了維持期</strong>，劑量和作法我們一起調。」</li>
 </ol>
 <ul>
-<li><strong>醫師備註</strong>：句 1 兌現 S2-T1 句 3 的預告；句 3 搭配 InBody 或腰圍數據使用最有力。</li>
+<li class="docnote"><strong>醫師備註</strong>：句 1 兌現 S2-T1 句 3 的預告；句 3 搭配 InBody 或腰圍數據使用最有力。</li>
 </ul>
 <hr>
 <h2 id="六病人常見QAQ">六、病人常見 QA（Q）</h2>
@@ -239,9 +268,9 @@ footer b{color:var(--ink)}
 <h3 id="S3-Q4我明明有忌口為什麼還是一直想吃">S3-Q4 我明明有忌口，為什麼還是一直想吃？</h3>
 <p>因為對手是賀爾蒙不是意志力：體重下降後瘦體素變少、飢餓素變多，大腦被迫「調高食慾」。這正是要回診的原因——行為工具（S3-R2、R3）加上劑量調整，兩邊一起處理。</p>
 <hr>
-<h2 id="附一頁組裝範例停滯期宵夜習慣男性">附：一頁組裝範例③——停滯期・宵夜習慣男性</h2>
+<div class="docsec"><h2 id="附一頁組裝範例停滯期宵夜習慣男性">附：一頁組裝範例③——停滯期・宵夜習慣男性</h2>
 <blockquote>病人輪廓：45 歲男性，BMI 34，糖尿病前期，Tirzepatide 第 6 個月，體重卡 4 週，晚上嘴饞、宵夜習慣復發。</blockquote>
-<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S3-D1 三天飲食拍照 ／ S3-D3 抗餓餐盤</td></tr><tr><td>🏃 運動</td><td>S3-E2 每天 10 分鐘核心菜單 ／ S3-E1 肌力升級</td></tr><tr><td>💉 藥物</td><td>S3-R1 餓回來是預期內、劑量可以談 ／ S3-R3 宵夜三道防線</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></article></div>
+<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S3-D1 三天飲食拍照 ／ S3-D3 抗餓餐盤</td></tr><tr><td>🏃 運動</td><td>S3-E2 每天 10 分鐘核心菜單 ／ S3-E1 肌力升級</td></tr><tr><td>💉 藥物</td><td>S3-R1 餓回來是預期內、劑量可以談 ／ S3-R3 宵夜三道防線</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></div></article></div>
 <footer><div class="wrap">
   <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
@@ -258,6 +287,18 @@ footer b{color:var(--ink)}
   window.addEventListener('scroll', show, {passive:true});
   show();
   b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+(function(){
+  var sw=document.querySelector('.docsw');
+  if(!sw)return;
+  var root=document.documentElement;
+  var sync=function(){ sw.setAttribute('aria-pressed', root.classList.contains('show-doc')?'true':'false'); };
+  sync();
+  sw.addEventListener('click', function(){
+    var on=root.classList.toggle('show-doc');
+    try{ localStorage.setItem('glp1-show-doc', on?'1':'0'); }catch(e){}
+    sync();
+  });
 })();
 </script>
 </body>

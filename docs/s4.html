@@ -79,6 +79,24 @@ table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
 th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
 th{background:#F4F4EC;font-weight:700;white-space:nowrap}
 
+/* 醫護專用內容：預設收起，由導覽列開關切換 */
+html:not(.show-doc) .docnote,
+html:not(.show-doc) .docsec{display:none}
+
+.docsw{font:inherit;font-size:13.5px;color:var(--muted);background:#fff;
+  border:1px solid var(--line);border-radius:99px;padding:4px 13px 4px 10px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  transition:.15s}
+.docsw:hover{border-color:var(--move);color:var(--ink)}
+.docsw i{width:9px;height:9px;border-radius:50%;background:#C9C9BA;
+  flex-shrink:0;transition:.15s}
+html.show-doc .docsw{border-color:var(--move);color:var(--move);background:var(--move-soft)}
+html.show-doc .docsw i{background:var(--move)}
+.docsw .off{display:inline}
+.docsw .on{display:none}
+html.show-doc .docsw .off{display:none}
+html.show-doc .docsw .on{display:inline}
+
 /* 頁內目錄 */
 .toc{background:#F7F7EF;border:1px solid var(--line);border-radius:10px;
   padding:14px 18px 15px;margin:0 0 26px;
@@ -116,7 +134,11 @@ footer b{color:var(--ink)}
 @media(max-width:640px){
   .top .wrap{height:56px;gap:10px}
   .top .home{font-size:18px}
-  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名 */
+  .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名與開關 */
+  .docsw{font-size:12.5px;padding:3px 10px 3px 8px;gap:5px}
+  .docsw .off{display:none}   /* 手機只留「醫師版」二字 */
+  .docsw::after{content:"醫師版"}
+  html.show-doc .docsw .on{display:none}
   .hero h1{font-size:26px}
   article{padding:24px 20px 32px;border-radius:10px}
   article h1{font-size:22px}
@@ -125,19 +147,26 @@ footer b{color:var(--ink)}
   .totop{right:14px;bottom:14px}
 }
 </style>
+<script>
+/* 在繪製前套用偏好，避免醫師備註閃一下才收起 */
+try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.classList.add('show-doc');}catch(e){}
+</script>
 </head>
 <body>
 <nav class="top"><div class="wrap">
   <a class="home" href="./">GLP-1 減重衛教</a>
   <span class="sp"></span>
   <span class="crumb"><a href="./">總覽</a><span style="color:#C9C9BA"> / </span>維持期</span>
+  <button class="docsw" type="button" aria-pressed="false">
+    <i></i><span class="off">顯示醫師備註</span><span class="on">隱藏醫師備註</span>
+  </button>
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
 <div class="wrap"><article><h1 id="S4維持期達標後的體重維持">S4 維持期（達標後的體重維持）</h1>
-<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S4-D1從減換檔到守吃法不歸零">S4-D1 從「減」換檔到「守」</a><a href="#S4-D2體重警戒線回升2公斤就行動">S4-D2 體重警戒線</a><a href="#S4-D3聚餐與旅行的回正軌規則72小時內">S4-D3 聚餐與旅行的回正軌規則</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#S4-E1維持期運動是主角量不減變日常">S4-E1 維持期運動是主角</a><a href="#S4-E2每三個月給自己一個新的運動目標">S4-E2 每三個月給自己一個新的運動目標</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物模組R">四、藥物模組（R）</a><div class="toc-k"><a href="#S4-R1維持期的藥怎麼走跟醫師一起決定">S4-R1 維持期的藥怎麼走？跟醫師一起決定</a><a href="#S4-R2維持期回診頻率降低內容不變">S4-R2 維持期回診</a><a href="#紅旗症狀">紅旗症狀</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S4-T1">S4-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S4-Q1我達標了可以停藥了嗎">S4-Q1 我達標了，可以停藥了嗎？</a><a href="#S4-Q2維持期還要一直運動嗎">S4-Q2 維持期還要一直運動嗎？</a><a href="#S4-Q3體重回升了一點是不是失敗了">S4-Q3 體重回升了一點，是不是失敗了？</a><a href="#S4-Q4維持期可以久久回診一次就好嗎">S4-Q4 維持期可以久久回診一次就好嗎？</a></div></div></nav>
+<nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s docsec"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S4-D1從減換檔到守吃法不歸零">S4-D1 從「減」換檔到「守」</a><a href="#S4-D2體重警戒線回升2公斤就行動">S4-D2 體重警戒線</a><a href="#S4-D3聚餐與旅行的回正軌規則72小時內">S4-D3 聚餐與旅行的回正軌規則</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#S4-E1維持期運動是主角量不減變日常">S4-E1 維持期運動是主角</a><a href="#S4-E2每三個月給自己一個新的運動目標">S4-E2 每三個月給自己一個新的運動目標</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物模組R">四、藥物模組（R）</a><div class="toc-k"><a href="#S4-R1維持期的藥怎麼走跟醫師一起決定">S4-R1 維持期的藥怎麼走？跟醫師一起決定</a><a href="#S4-R2維持期回診頻率降低內容不變">S4-R2 維持期回診</a><a href="#紅旗症狀">紅旗症狀</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S4-T1">S4-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S4-Q1我達標了可以停藥了嗎">S4-Q1 我達標了，可以停藥了嗎？</a><a href="#S4-Q2維持期還要一直運動嗎">S4-Q2 維持期還要一直運動嗎？</a><a href="#S4-Q3體重回升了一點是不是失敗了">S4-Q3 體重回升了一點，是不是失敗了？</a><a href="#S4-Q4維持期可以久久回診一次就好嗎">S4-Q4 維持期可以久久回診一次就好嗎？</a></div></div></nav>
 <blockquote>適用：已達成與醫師共同設定的目標體重（或健康指標目標），進入維持階段的病人。<br>狀態：<strong>已審定</strong>（2026-08-24 醫師審稿通過，警戒線 +2 公斤定案）。</blockquote>
 <hr>
-<h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
+<div class="docsec"><h2 id="一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</h2>
 <p><strong>這一冊要達成的事</strong>：把病人的心態從「減重成功＝結束」轉成「維持是新階段的開始」；建立體重警戒線制度、把運動與飲食從「努力」變「習慣」；維持期藥物怎麼走，開啟與病人的共同決策對話。</p>
 <p>生理變化（講解用）：</p>
 <ul>
@@ -148,52 +177,52 @@ footer b{color:var(--ink)}
 <li>停藥議題在此冊<strong>只開門不展開</strong>：病人問起就預告 S5 有完整的停藥／減藥過渡衛教，避免病人自行停藥</li>
 </ul>
 <hr>
-<h2 id="二飲食模組D">二、飲食模組（D）</h2>
+</div><h2 id="二飲食模組D">二、飲食模組（D）</h2>
 <h3 id="S4-D1從減換檔到守吃法不歸零">S4-D1 從「減」換檔到「守」：吃法不歸零</h3>
 <ul>
 <li><strong>病人版</strong>：達標不是「解禁」。減重期學會的吃法——蛋白質優先、餐盤公式、主食減量、無糖飲料——<strong>就是你以後的正常吃法</strong>，不是任務結束就丟掉的規定。差別只在：不用再刻意吃更少，吃到「不餓也不撐」就好。</li>
-<li><strong>醫師備註</strong>：維持期熱量回升要漸進（避免達標後報復性回補）；行為維持的關鍵是把介入內化為預設值（default）。餐間不進食、真餓例外（蛋白質或低甜度水果）等審定立場照舊適用。</li>
-<li><strong>出處</strong>：體重維持行為策略通則＋審定飲食立場</li>
+<li class="docnote"><strong>醫師備註</strong>：維持期熱量回升要漸進（避免達標後報復性回補）；行為維持的關鍵是把介入內化為預設值（default）。餐間不進食、真餓例外（蛋白質或低甜度水果）等審定立場照舊適用。</li>
+<li class="docnote"><strong>出處</strong>：體重維持行為策略通則＋審定飲食立場</li>
 </ul>
 <h3 id="S4-D2體重警戒線回升2公斤就行動">S4-D2 體重警戒線：回升 2 公斤就行動</h3>
 <ul>
 <li><strong>病人版</strong>：維持期體重上下 1–2 公斤是正常波動，不用緊張。但要設一條<strong>警戒線：比目標體重多 2 公斤</strong>——碰到線就做三件事：回想聚餐次數有沒有變多、把運動補回原本的量、<strong>提早回診</strong>。不要等回升 5 公斤才處理。</li>
-<li><strong>醫師備註</strong>：早期攔截是維持成功者的共同行為（規律自我監測＋快速修正）。每週固定同一天、同一時間量體重一次即可，不需每天量（避免對日波動過度反應）。行動方案就是回到 S2／S3 的作法，病人已經會了——這句話本身就是賦能話術。</li>
-<li><strong>出處</strong>：體重維持自我監測研究通則（醫師審定 OK）</li>
+<li class="docnote"><strong>醫師備註</strong>：早期攔截是維持成功者的共同行為（規律自我監測＋快速修正）。每週固定同一天、同一時間量體重一次即可，不需每天量（避免對日波動過度反應）。行動方案就是回到 S2／S3 的作法，病人已經會了——這句話本身就是賦能話術。</li>
+<li class="docnote"><strong>出處</strong>：體重維持自我監測研究通則（醫師審定 OK）</li>
 </ul>
 <h3 id="S4-D3聚餐與旅行的回正軌規則72小時內">S4-D3 聚餐與旅行的回正軌規則：72 小時內</h3>
 <ul>
 <li><strong>病人版</strong>：連假、旅行、婚宴旺季吃多了很正常。規則只有一條：<strong>結束後 72 小時內回到正常吃法</strong>——蛋白質優先、無糖飲料、主食減量，加一次肌力訓練。三天內回正軌的人，體重多半自己回落；拖成「下週再說」的人，才會真的復胖。</li>
-<li><strong>醫師備註</strong>：lapse（單次破功）與 relapse（復胖）的行為醫學區分——衛教重點是消除「全有全無」思維（abstinence violation effect）。與 S2-Q4 一餐破功心法同源，此處升級為多日版。</li>
-<li><strong>出處</strong>：復發預防（relapse prevention）行為模型通則</li>
+<li class="docnote"><strong>醫師備註</strong>：lapse（單次破功）與 relapse（復胖）的行為醫學區分——衛教重點是消除「全有全無」思維（abstinence violation effect）。與 S2-Q4 一餐破功心法同源，此處升級為多日版。</li>
+<li class="docnote"><strong>出處</strong>：復發預防（relapse prevention）行為模型通則</li>
 </ul>
 <hr>
 <h2 id="三運動模組E">三、運動模組（E）</h2>
 <h3 id="S4-E1維持期運動是主角量不減變日常">S4-E1 維持期運動是主角：量不減、變日常</h3>
 <ul>
 <li><strong>病人版</strong>：很多人達標後先放掉的就是運動——這正是復胖的第一步。維持期運動<strong>不減量</strong>：肌力每週 2 次、快走或間歇每週 150 分鐘（或折半的短而喘）照舊，核心 10 分鐘菜單可以當每天的「開機儀式」。把它排進固定時段（跟打針日一樣寫在行事曆），變成跟刷牙一樣的事。</li>
-<li><strong>醫師備註</strong>：長期維持者的高活動量是最一致的預測因子；運動在維持期的角色從「輔助減重」轉為「主要防線」（守肌肉量＝守 RMR）。啞鈴／壺鈴進階（S3-E1）鼓勵維持期繼續往上加。</li>
-<li><strong>出處</strong>：體重維持與身體活動證據通則＋審定運動路線（S2-E1/E4、S3-E1/E2）</li>
+<li class="docnote"><strong>醫師備註</strong>：長期維持者的高活動量是最一致的預測因子；運動在維持期的角色從「輔助減重」轉為「主要防線」（守肌肉量＝守 RMR）。啞鈴／壺鈴進階（S3-E1）鼓勵維持期繼續往上加。</li>
+<li class="docnote"><strong>出處</strong>：體重維持與身體活動證據通則＋審定運動路線（S2-E1/E4、S3-E1/E2）</li>
 </ul>
 <h3 id="S4-E2每三個月給自己一個新的運動目標">S4-E2 每三個月給自己一個新的運動目標</h3>
 <ul>
 <li><strong>病人版</strong>：維持期最大的敵人是無聊。每三個月設一個小目標：深蹲負重加 2 公斤、棒式撐到 90 秒、報名一場健走活動、學一項新運動。有目標的人不會停，停的人多半是「沒理由繼續」。</li>
-<li><strong>醫師備註</strong>：目標設定（goal setting）維持動機；回診時把運動目標當例行話題問，與體重同等地位——這向病人傳遞「運動是處方不是建議」的訊號。</li>
-<li><strong>出處</strong>：行為維持動機策略通則</li>
+<li class="docnote"><strong>醫師備註</strong>：目標設定（goal setting）維持動機；回診時把運動目標當例行話題問，與體重同等地位——這向病人傳遞「運動是處方不是建議」的訊號。</li>
+<li class="docnote"><strong>出處</strong>：行為維持動機策略通則</li>
 </ul>
 <hr>
 <h2 id="四藥物模組R">四、藥物模組（R）</h2>
 <h3 id="S4-R1維持期的藥怎麼走跟醫師一起決定">S4-R1 維持期的藥怎麼走？跟醫師一起決定</h3>
 <ul>
 <li><strong>病人版</strong>：達標之後，藥不是「馬上停」也不是「一定打一輩子」——<strong>維持期的劑量和打法，由你和醫師一起討論決定</strong>：有人維持原劑量、有人調整劑量或間隔，看你的食慾控制、體重曲線和生活規劃。唯一不行的是<strong>自己默默停藥</strong>：身體的飢餓賀爾蒙還在，突然放手復胖風險最高。想停藥？跟醫師說，我們有完整的停藥計畫（S5）。</li>
-<li><strong>醫師備註</strong>：審定核心觀念第 6 條的病人版落地。共同決策框架：食慾控制度／體重穩定度／副作用負擔／經濟因素四象限討論。臨床試驗顯示停藥後體重明顯回升（衛教講「賀爾蒙還在，需要有計畫地過渡」即可，不需引數字嚇病人）。</li>
-<li><strong>出處</strong>：醫師審定立場（維持期劑量共同決策）</li>
+<li class="docnote"><strong>醫師備註</strong>：審定核心觀念第 6 條的病人版落地。共同決策框架：食慾控制度／體重穩定度／副作用負擔／經濟因素四象限討論。臨床試驗顯示停藥後體重明顯回升（衛教講「賀爾蒙還在，需要有計畫地過渡」即可，不需引數字嚇病人）。</li>
+<li class="docnote"><strong>出處</strong>：醫師審定立場（維持期劑量共同決策）</li>
 </ul>
 <h3 id="S4-R2維持期回診頻率降低內容不變">S4-R2 維持期回診：頻率降低、內容不變</h3>
 <ul>
 <li><strong>病人版</strong>：維持期回診可以拉長間隔（多久一次由醫師依你的狀況安排），但每次回診還是看四件事：<strong>體重曲線、腰圍、肌肉量、慢性病指標</strong>（血壓、血糖、血脂）。體重守住＋指標進步，就是維持期的成績單——很多人在這階段血壓藥、血糖藥還能再減。</li>
-<li><strong>醫師備註</strong>：回診間隔個別化（不寫死頻率）；監測面向從單一體重轉為體組成＋代謝指標，強化「減重是為了改善健康」的核心觀念第 1 條。共病藥物減量是維持期最有感的正向回饋，主動呈現給病人。</li>
-<li><strong>出處</strong>：慢性病管理模式通則＋審定核心觀念</li>
+<li class="docnote"><strong>醫師備註</strong>：回診間隔個別化（不寫死頻率）；監測面向從單一體重轉為體組成＋代謝指標，強化「減重是為了改善健康」的核心觀念第 1 條。共病藥物減量是維持期最有感的正向回饋，主動呈現給病人。</li>
+<li class="docnote"><strong>出處</strong>：慢性病管理模式通則＋審定核心觀念</li>
 </ul>
 <h3 id="紅旗症狀">紅旗症狀</h3>
 <p>沿用 <strong>S1-R4</strong>（頁尾固定欄，不重複收錄）。</p>
@@ -206,7 +235,7 @@ footer b{color:var(--ink)}
 <li>「藥怎麼走，<strong>我們一起決定</strong>——維持原樣、調整、或有計畫地減，都是選項；唯一不行的是自己默默停掉。」</li>
 </ol>
 <ul>
-<li><strong>醫師備註</strong>：句 2 給具體數字與明確行動；句 3 開啟共同決策並預防自行停藥（S5 的入口）。</li>
+<li class="docnote"><strong>醫師備註</strong>：句 2 給具體數字與明確行動；句 3 開啟共同決策並預防自行停藥（S5 的入口）。</li>
 </ul>
 <hr>
 <h2 id="六病人常見QAQ">六、病人常見 QA（Q）</h2>
@@ -234,6 +263,18 @@ footer b{color:var(--ink)}
   window.addEventListener('scroll', show, {passive:true});
   show();
   b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+(function(){
+  var sw=document.querySelector('.docsw');
+  if(!sw)return;
+  var root=document.documentElement;
+  var sync=function(){ sw.setAttribute('aria-pressed', root.classList.contains('show-doc')?'true':'false'); };
+  sync();
+  sw.addEventListener('click', function(){
+    var on=root.classList.toggle('show-doc');
+    try{ localStorage.setItem('glp1-show-doc', on?'1':'0'); }catch(e){}
+    sync();
+  });
 })();
 </script>
 </body>
