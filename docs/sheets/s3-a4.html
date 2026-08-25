@@ -32,15 +32,17 @@
 
   /* ===== 診間列印設定 =====
      紙張：A4 直式 210×297mm，@page margin 設 0，
-     安全邊界改由 .sheet 的 padding 控制（上下 11mm、左右 12mm），
-     一般雷射印表機（實體最小邊界約 4–5mm）都印得完整。 */
+     安全邊界改由 .sheet 的 padding 控制（上 11mm、左右 12mm、下 16mm）。
+     下緣特別留 16mm：印表機驅動常把內容整體往下偏移 4–5mm，加上實體
+     不可列印區，貼在紙張最底端的字會被裁掉——曾發生紅旗警語最後一行
+     被切半的事故，底部 padding 不要再改回 11mm。 */
   @page { size: A4 portrait; margin: 0; }
 
   .sheet {
     width: 210mm;
     min-height: 297mm;
     margin: 24px auto;
-    padding: 11mm 12mm;
+    padding: 11mm 12mm 16mm;
     background: #FFFFFF;
     box-shadow: 0 12px 40px rgba(0,0,0,.35);
     display: flex;
@@ -105,7 +107,7 @@
   .fill u.wide { min-width: 24mm; }
 
   /* S3 模組數較多，區塊間距與行距略收緊以壓在一頁內 */
-  .blk { margin-bottom: 2.8mm; }
+  .blk { margin-bottom: 2.5mm; }
   .blk-head {
     display: inline-flex; align-items: center; gap: 2mm;
     font-weight: 700; font-size: 11pt; letter-spacing: .08em;
@@ -116,7 +118,7 @@
   .b-move .blk-head { background: var(--move-soft); color: var(--move); }
   .b-rx   .blk-head { background: var(--rx-soft);   color: var(--rx); }
 
-  .blk ul { margin: 0; padding-left: 5.5mm; font-size: 10.5pt; line-height: 1.56; }
+  .blk ul { margin: 0; padding-left: 5.5mm; font-size: 10.5pt; line-height: 1.5; }
   .blk li { margin-bottom: 1.2mm; }
   .blk li > b { font-weight: 700; }
 

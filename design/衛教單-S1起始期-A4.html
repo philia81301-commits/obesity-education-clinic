@@ -32,15 +32,17 @@
 
   /* ===== 診間列印設定 =====
      紙張：A4 直式 210×297mm，@page margin 設 0，
-     安全邊界改由 .sheet 的 padding 控制（上下 11mm、左右 12mm），
-     一般雷射印表機（實體最小邊界約 4–5mm）都印得完整。 */
+     安全邊界改由 .sheet 的 padding 控制（上 11mm、左右 12mm、下 16mm）。
+     下緣特別留 16mm：印表機驅動常把內容整體往下偏移 4–5mm，加上實體
+     不可列印區，貼在紙張最底端的字會被裁掉——曾發生紅旗警語最後一行
+     被切半的事故，底部 padding 不要再改回 11mm。 */
   @page { size: A4 portrait; margin: 0; }
 
   .sheet {
     width: 210mm;
     min-height: 297mm;
     margin: 24px auto;
-    padding: 11mm 12mm;
+    padding: 11mm 12mm 16mm;
     background: #FFFFFF;
     box-shadow: 0 12px 40px rgba(0,0,0,.35);
     display: flex;
