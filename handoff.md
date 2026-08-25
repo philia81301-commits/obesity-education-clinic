@@ -51,5 +51,5 @@
 
 - 時間：2026-08-25（列印實測首輪：兩處裁字修復上線）
 - 更新者：Claude Code（Opus 5）@ X108521（診間電腦，office 帳號）
-- Git push：待推
+- Git push：✅ 已推（fc9936f；本日程式修正 dc6b5bc、5e5b930 亦已推）
 - L3 Obsidian：⚠️ 本機 2ndBrain 無 `obesity-education-clinic/` 資料夾（L3 筆記在 DESKTOP-LVSV9Q5 建的），本次未更新——回主力機收工時把這兩個列印坑補進踩坑筆記
