@@ -51,5 +51,5 @@
 
 - 時間：2026-08-25（階段三結案：列印實測、QR、遊戲化用語、醫師備註摺疊）
 - 更新者：Claude Code（Opus 5）@ DESKTOP-LVSV9Q5
-- Git push：待推（收工流程回填）
+- Git push：✅ 已推（0f29be1）
 - L3 Obsidian：本次已更新 `2ndBrain/obesity-education-clinic/專案工作流程.md`
