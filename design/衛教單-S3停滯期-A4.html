@@ -65,7 +65,10 @@
 
   /* 旅程路徑：五關進度點（本冊亮到第 1 關） */
   .path { height: 8.6mm; margin: 0 0 1.6mm; }
-  .path svg { width: 100%; height: 100%; display: block; }
+  .path svg { width: 100%; height: 100%; display: block;
+    /* 「你在這裡」標籤字頂高於 viewBox 上緣，SVG 預設裁切會缺字頭——
+       開 overflow 讓字升進上方 4mm 空白帶（S2/S4/S5/M 都曾被切） */
+    overflow: visible; }
 
   @media print {
     body { background: #FFFFFF; }
