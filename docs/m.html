@@ -134,7 +134,13 @@ footer b{color:var(--ink)}
 /* 章節闖關小遊戲（可愛風） */
 .quiz{margin:0 0 46px}
 .quiz-box{background:linear-gradient(160deg,#FFFDF4,#FDF1DE);border:2px solid #F0D9A8;
-  border-radius:24px;padding:24px 26px 28px;box-shadow:0 10px 30px rgba(154,107,42,.08)}
+  border-radius:24px;padding:24px 26px 28px;box-shadow:0 10px 30px rgba(154,107,42,.08);
+  position:relative;overflow:hidden}
+.quiz-box::before{content:"✦";position:absolute;top:14px;right:20px;font-size:20px;
+  color:#E8B83C;opacity:.55;animation:qtwinkle 2.2s ease-in-out infinite}
+.quiz-box::after{content:"✦";position:absolute;bottom:18px;left:16px;font-size:13px;
+  color:#E8B83C;opacity:.4;animation:qtwinkle 2.2s ease-in-out infinite 1.1s}
+@keyframes qtwinkle{0%,100%{opacity:.2;transform:scale(.85)}50%{opacity:.7;transform:scale(1.1)}}
 .quiz-head{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .quiz-mascot{font-size:46px;line-height:1;filter:drop-shadow(0 3px 4px rgba(0,0,0,.12));
   animation:qbob 2.6s ease-in-out infinite}
@@ -156,18 +162,27 @@ footer b{color:var(--ink)}
 .qtext{font-size:17.5px;font-weight:700;margin:9px 0 12px}
 .qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .qopts button{font:inherit;font-size:15.5px;text-align:left;background:#FDFBF3;
-  border:1.5px solid #E7DDC2;border-radius:14px;padding:10px 14px;cursor:pointer;transition:.15s}
-.qopts button:hover:not(:disabled){transform:translateY(-2px);border-color:var(--move);background:#fff}
+  border:1.5px solid #E7DDC2;border-radius:99px;padding:8px 16px 8px 8px;cursor:pointer;
+  transition:.15s;display:flex;align-items:center;gap:10px}
+.qopts button i{width:27px;height:27px;border-radius:50%;background:#F4E7C8;color:#8A6215;
+  font-style:normal;font-weight:700;font-size:13px;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;transition:.15s}
+.qopts button:hover:not(:disabled){transform:translateY(-2px) rotate(-.4deg);
+  border-color:var(--move);background:#fff;box-shadow:0 4px 12px rgba(10,138,77,.12)}
+.qopts button:hover:not(:disabled) i{background:var(--move-soft);color:var(--move)}
 .qopts button:disabled{cursor:default}
 .qopts button.no{opacity:.5;background:#F4F1E7;animation:qshake .4s}
-.qopts button.no::after{content:" 💦"}
+.qopts button.no i{background:#DDD8C8;color:#8B8674}
+.qopts button.no::after{content:"💦";margin-left:auto}
 .qopts button.yes{background:var(--move-soft);border-color:var(--move);color:#0A6B3D;font-weight:700}
-.qopts button.yes::after{content:" ⭕"}
+.qopts button.yes i{background:var(--move);color:#fff}
+.qopts button.yes::after{content:"⭕";margin-left:auto}
 @keyframes qshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 .qmiss{margin-top:9px;font-size:13.5px;color:#A8834B}
 .qwhy{margin-top:10px;background:var(--gold-soft);color:#5A4520;border-radius:10px;
   padding:8px 12px;font-size:14px;line-height:1.7}
-.quiz-done{margin-top:18px;background:#fff;border:2px solid #E8B83C;border-radius:18px;
+.quiz-done{margin-top:18px;background:linear-gradient(180deg,#FFFDF4,#FFF4D8);
+  border:2px solid #E8B83C;border-radius:18px;
   padding:22px 20px;text-align:center;animation:qin .5s}
 .quiz-done .party span{display:inline-block;font-size:26px;margin:0 3px;animation:qbob 1.2s ease-in-out infinite}
 .quiz-done .party span:nth-child(2){animation-delay:.15s}
@@ -179,7 +194,9 @@ footer b{color:var(--ink)}
 .qbtn{display:inline-block;font:inherit;font-size:15px;font-weight:700;border-radius:99px;
   padding:8px 20px;cursor:pointer;text-decoration:none;margin:0 5px 6px;transition:.15s}
 .qbtn:hover{transform:translateY(-2px)}
-.qbtn.go{background:var(--move);border:2px solid var(--move);color:#fff}
+.qbtn.go{background:var(--move);border:2px solid var(--move);color:#fff;
+  animation:qpulse 1.8s ease-in-out infinite}
+@keyframes qpulse{0%,100%{box-shadow:0 0 0 0 rgba(10,138,77,.35)}50%{box-shadow:0 0 0 7px rgba(10,138,77,0)}}
 .qbtn.again{background:#fff;border:2px solid var(--line);color:var(--muted)}
 .qbadge{position:absolute;top:10px;right:12px;background:#FFF3CE;border:1.5px solid #E8B83C;
   color:#8A6215;font-size:11.5px;font-weight:700;border-radius:99px;padding:1px 9px}
@@ -366,7 +383,7 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
       </div>
     </div>
   </div>
-  <script>(function(){var Q=[{"q":"更年期後脂肪最愛搬去哪？","o":["手臂","大腿","肚子","臉頰"],"a":2,"w":"荷爾蒙讓脂肪往肚子搬家——這不是你的錯，我們有對策。"},{"q":"這個階段運動的主角是？","o":["肌力訓練","慢跑","拉筋","散步"],"a":0,"w":"一次顧三件事：肌肉（代謝）、骨頭（密度）、平衡（防跌倒）。"},{"q":"每天鈣質目標大約多少？","o":["100 毫克","500 毫克","1000 毫克","3000 毫克"],"a":2,"w":"大約等於每天 1.5–2 份奶類或高鈣豆製品。"},{"q":"停經後又出血，該怎麼辦？","o":["正常不用理","就醫檢查","觀察半年","多喝水"],"a":1,"w":"多數不是大事，但一定要檢查；乳房摸到硬塊也一樣。"},{"q":"壓力大想吃的第一步？","o":["先吃再說","離開現場走 10 分鐘","買零食囤著","硬忍"],"a":1,"w":"動一動本身就是紓壓，常常走完就不想吃了。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
+  <script>(function(){var Q=[{"q":"更年期後脂肪最愛搬去哪？","o":["手臂","大腿","肚子","臉頰"],"a":2,"w":"荷爾蒙讓脂肪往肚子搬家——這不是你的錯，我們有對策。"},{"q":"這個階段運動的主角是？","o":["肌力訓練","慢跑","拉筋","散步"],"a":0,"w":"一次顧三件事：肌肉（代謝）、骨頭（密度）、平衡（防跌倒）。"},{"q":"每天鈣質目標大約多少？","o":["100 毫克","500 毫克","1000 毫克","3000 毫克"],"a":2,"w":"大約等於每天 1.5–2 份奶類或高鈣豆製品。"},{"q":"停經後又出血，該怎麼辦？","o":["正常不用理","就醫檢查","觀察半年","多喝水"],"a":1,"w":"多數不是大事，但一定要檢查；乳房摸到硬塊也一樣。"},{"q":"壓力大想吃的第一步？","o":["先吃再說","離開現場走 10 分鐘","買零食囤著","硬忍"],"a":1,"w":"動一動本身就是紓壓，常常走完就不想吃了。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"><i>'+"ABCD"[j]+'</i><span></span></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].querySelector("span").textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
 </section></div>
 <footer><div class="wrap">
   <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
