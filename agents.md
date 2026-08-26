@@ -21,6 +21,12 @@
   - [x] 手機掃 QR 真機閱讀體驗——醫師回報正常
   - [x] 遊戲化用語尺度（「魔王關」「戰績」）——醫師確認可用
   - [x] 內容頁「醫師備註／出處」可摺疊，**預設收起**（導覽列開關，選擇跨頁記住）
+- [x] **階段四：章節闖關小遊戲**（2026-08-26）
+  - [x] 六冊各 5 題四選一（共 30 題），答對才出下一題、答錯不扣分、答對附一行解說；集滿五星得稱號
+  - [x] 題庫全部取自各冊已審定病人版內容（題庫在 `tools/build-site.js` 的 `QUIZ` 常數）
+  - [x] 吉祥物貼圖 ×6、通關徽章 ×4（Canva 生成；S5／M 徽章因額度用盡待補，暫用 CSS 金框）
+  - [x] 通關記錄存 localStorage，首頁卡片顯示「🏅 已通關」
+  - [x] 醫師審題四輪修正（見 handoff.md「出題守則」）
 
 ## 資料夾結構
 ```
@@ -40,10 +46,13 @@ obesity-education-clinic/
 ├── design/
 │   ├── 旅程夥伴視覺提案-v2.html   # 視覺識別提案 v2.1（配色/字體/圖示/語氣/衛教單 mockup）
 │   ├── 底圖提案-程式紋理v1.html   # 六款純程式底紋（醫師選 F 能量斜紋＋路徑點）
-│   └── 衛教單-*-A4.html           # 六張 A4 衛教單（S1起始期/S2減重期/S3停滯期/S4維持期/S5停藥過渡期/M更年期專項）
-├── docs/              # GitHub Pages 網站（build-site.js 產生，勿手改）
+│   ├── 衛教單-*-A4.html           # 六張 A4 衛教單（S1起始期/S2減重期/S3停滯期/S4維持期/S5停藥過渡期/M更年期專項）
+│   └── assets-quiz/               # 小遊戲圖：<slug>-mascot.png（6 隻）、<slug>-badge.png（4 面，S5/M 待補）
+├── docs/              # GitHub Pages 網站（build-site.js 產生，勿手改；含 assets/quiz/）
 ├── tools/
-│   └── build-site.js  # content/*.md → docs/；改內容後重跑再 commit
+│   └── build-site.js  # content/*.md → docs/；改內容後重跑再 commit；QUIZ 常數＝小遊戲題庫
+├── .claude/
+│   └── launch.json    # 本地預覽伺服器設定（http-server docs -p 8087）
 └── rdq/
     └── RDQ-spec-glp1-education-system-20260822.md   # 需求規格卡
 ```
