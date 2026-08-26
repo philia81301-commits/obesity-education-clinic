@@ -26,6 +26,106 @@ const REFS = [
   { md: 'ref-高纖低GI早餐.md', slug: 'ref-breakfast', title: '高纖低 GI 早餐指南', desc: '台式早餐地雷表與可選表、三場景組合、GI 機轉；含三個「假健康」陷阱。' },
 ];
 
+/** 章節闖關小遊戲：每冊 5 題四選一，題目與解說全部出自該冊已審定的病人版內容 */
+const QUIZ = {
+  s1: {
+    mascot: '🐣', name: '新手村五連闖', badge: '新手村畢業生',
+    next: { href: 's2.html', label: '前往第 2 關：減重期 →' },
+    qs: [
+      { q: '胃口變小，每餐第一口先吃？', o: ['白飯', '水果', '蛋白質', '冰淇淋'], a: 2,
+        w: '蛋、豆腐、魚、雞肉先吃夠，才不會瘦到肌肉。' },
+      { q: '每天的水至少要喝多少？', o: ['500 毫升', '2000 毫升', '喝湯就好', '口渴再喝'], a: 1,
+        w: '食量變小水常跟著變少，分次小口喝到 2000 毫升。' },
+      { q: '每週打針日怎麼安排最好？', o: ['想到才打', '每天換時間', '痛了就停', '固定同一天'], a: 3,
+        w: '固定星期幾最不容易漏打，肚皮、大腿、上臂輪流換位置。' },
+      { q: '這個月的運動目標是什麼？', o: ['每天走路 30 分鐘', '每天跑 5 公里', '週末爬山一次', '先不用動'], a: 0,
+        w: '可以拆成 3 次、每次 10 分鐘——走得到比走得快重要。' },
+      { q: '皮膚眼白變黃，該怎麼做？', o: ['等下次回診', '多喝水觀察', '直接就醫', '自己停藥就好'], a: 2,
+        w: '這是紅旗症狀——不要等回診，直接聯絡診所或就醫。' },
+    ],
+  },
+  s2: {
+    mascot: '🐿️', name: '黃金期五連闖', badge: '黃金期戰士',
+    next: { href: 's3.html', label: '挑戰魔王關：停滯期 →' },
+    qs: [
+      { q: '體重掉太快，最怕流失什麼？', o: ['水分', '肌肉', '脂肪', '鈣質'], a: 1,
+        w: '肌肉掉了代謝跟著降——穩穩掉脂肪才是真的贏。' },
+      { q: '外食餐盤，蔬菜要佔多少？', o: ['四分之一', '三分之一', '一半', '不用蔬菜'], a: 2,
+        w: '菜半盤、豆魚蛋肉四分之一、飯最多四分之一。' },
+      { q: '兩餐之間嘴饞，第一步先？', o: ['先喝水', '吃點餅乾', '喝含糖飲料', '忍到頭暈'], a: 0,
+        w: '先喝水，再檢查上一餐蛋白質有沒有吃夠。' },
+      { q: '快走要走到什麼程度才夠？', o: ['能唱歌', '微喘還能講話', '喘到說不出話', '不流汗就好'], a: 1,
+        w: '「微喘、能講話但沒辦法唱歌」就是剛好的中等強度。' },
+      { q: '一週掉超過幾公斤要回報？', o: ['0.5 公斤', '1 公斤', '1.5 公斤', '3 公斤'], a: 2,
+        w: '連續掉太快會流失肌肉，也會增加膽結石的機會。' },
+    ],
+  },
+  s3: {
+    mascot: '🐉', name: '魔王關五連闖', badge: '魔王剋星',
+    next: { href: 's4.html', label: '前往第 4 關：維持期 →' },
+    qs: [
+      { q: '體重卡住，最不該做的是？', o: ['回診討論', '吃得更少', '肌力加量', '把步數找回來'], a: 1,
+        w: '越餓煞車踩得越死——代謝降更多、之後反彈更大。' },
+      { q: '停滯期主要是誰在搞鬼？', o: ['你不夠努力', '藥完全失效', '賀爾蒙調控', '天氣太熱'], a: 2,
+        w: '瘦體素變少、飢餓素變多——是生理現象，不是你失敗。' },
+      { q: '分不清真餓還是嘴饞，先？', o: ['直接吃再說', '喝水等 15 分鐘', '買鹽酥雞', '餓就是餓'], a: 1,
+        w: '真餓不會消失；嘴饞多半 15 分鐘就自己過去了。' },
+      { q: '核心菜單「沒有」哪個動作？', o: ['橋式', '棒式', '仰臥起坐', '死蟲式'], a: 2,
+        w: '菜單是橋式、死蟲式、鳥狗式、棒式——記得正常呼吸不憋氣。' },
+      { q: '防宵夜的第一道防線是？', o: ['晚餐蛋白質吃夠', '忍耐到睡著', '多囤零食', '喝含糖飲料'], a: 0,
+        w: '晚餐沒吃夠晚上一定餓；再加上家裡不囤零食、提早上床。' },
+    ],
+  },
+  s4: {
+    mascot: '🐢', name: '守關五連闖', badge: '守成高手',
+    next: { href: 's5.html', label: '前往第 5 關：停藥過渡期 →' },
+    qs: [
+      { q: '體重警戒線是比目標多幾公斤？', o: ['2 公斤', '5 公斤', '1 公斤', '10 公斤'], a: 0,
+        w: '碰線就做三件事：盤點聚餐、運動補量、提早回診。' },
+      { q: '聚餐吃多了，多久內回正軌？', o: ['24 小時', '72 小時', '一星期', '下個月'], a: 1,
+        w: '三天內回到正常吃法，體重多半自己回落。' },
+      { q: '維持期的主角是誰？', o: ['藥物', '節食', '運動', '斷食'], a: 2,
+        w: '減重靠飲食七分，維持靠運動和習慣——量不減、變日常。' },
+      { q: '達標了可以自己停藥嗎？', o: ['可以馬上停', '偷偷減量', '跟醫師討論', '丟掉針就好'], a: 2,
+        w: '飢餓賀爾蒙還在，自己默默停藥復胖風險最高。' },
+      { q: '維持期多久量一次體重？', o: ['每天三次', '每週固定一次', '每月一次', '都不用量'], a: 1,
+        w: '每週固定同一天、同一時間量——日波動不用緊張。' },
+    ],
+  },
+  s5: {
+    mascot: '🦋', name: '畢業五連闖', badge: '畢業旅人',
+    next: { href: './', label: '回到總覽，看看你的徽章 →' },
+    qs: [
+      { q: '停藥後食慾變大代表？', o: ['你退步了', '正常生理反應', '藥白打了', '意志力差'], a: 1,
+        w: '賀爾蒙還在——把這一路學的工具全部拿出來用。' },
+      { q: '過渡期多久量一次體重？', o: ['每週 1–2 次', '每月一次', '不用量', '想到才量'], a: 0,
+        w: '監測加密，碰到警戒線就提早回診。' },
+      { q: '過渡期運動唯一的目標？', o: ['破紀錄', '不中斷', '練出腹肌', '跑馬拉松'], a: 1,
+        w: '狀態差就做保底版：10 分鐘核心或 15 分鐘快走。' },
+      { q: '復胖碰到警戒線，該？', o: ['不好意思躲起來', '自己重新打針', '回診找醫師', '放棄'], a: 2,
+        w: '回來就好——恢復用藥不是失敗，是計畫的一部分。' },
+      { q: '想懷孕的人第一步是？', o: ['先偷偷備孕', '提前告訴醫師', '自己停藥', '上網查就好'], a: 1,
+        w: '需要提前規劃停藥時程——先規劃再備孕，母嬰都安全。' },
+    ],
+  },
+  m: {
+    mascot: '🌸', name: '女王五連闖', badge: '不敗女王',
+    next: { href: './', label: '回到總覽，看看你的徽章 →' },
+    qs: [
+      { q: '更年期後脂肪最愛搬去哪？', o: ['手臂', '大腿', '肚子', '臉頰'], a: 2,
+        w: '荷爾蒙讓脂肪往肚子搬家——這不是你的錯，我們有對策。' },
+      { q: '這個階段運動的主角是？', o: ['肌力訓練', '慢跑', '拉筋', '散步'], a: 0,
+        w: '一次顧三件事：肌肉（代謝）、骨頭（密度）、平衡（防跌倒）。' },
+      { q: '每天鈣質目標大約多少？', o: ['100 毫克', '500 毫克', '1000 毫克', '3000 毫克'], a: 2,
+        w: '大約等於每天 1.5–2 份奶類或高鈣豆製品。' },
+      { q: '停經後又出血，該怎麼辦？', o: ['正常不用理', '就醫檢查', '觀察半年', '多喝水'], a: 1,
+        w: '多數不是大事，但一定要檢查；乳房摸到硬塊也一樣。' },
+      { q: '壓力大想吃的第一步？', o: ['先吃再說', '離開現場走 10 分鐘', '買零食囤著', '硬忍'], a: 1,
+        w: '動一動本身就是紓壓，常常走完就不想吃了。' },
+    ],
+  },
+};
+
 /* ---------- 極簡 markdown → HTML ---------- */
 function esc(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -283,7 +383,63 @@ footer b{color:var(--ink)}
 .warn{background:#FDECEA;border-left:4px solid var(--flag);border-radius:8px;
   padding:14px 18px;font-size:15px;margin:20px 0;color:#7A2016;line-height:1.7}
 
+/* 章節闖關小遊戲（可愛風） */
+.quiz{margin:0 0 46px}
+.quiz-box{background:linear-gradient(160deg,#FFFDF4,#FDF1DE);border:2px solid #F0D9A8;
+  border-radius:24px;padding:24px 26px 28px;box-shadow:0 10px 30px rgba(154,107,42,.08)}
+.quiz-head{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.quiz-mascot{font-size:46px;line-height:1;filter:drop-shadow(0 3px 4px rgba(0,0,0,.12));
+  animation:qbob 2.6s ease-in-out infinite}
+@keyframes qbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.quiz-kicker{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gold)}
+.quiz-title{font-family:"LXGW WenKai TC",serif;margin:2px 0 4px;font-size:22px}
+.quiz-sub{margin:0;color:var(--muted);font-size:14.5px}
+.quiz-stars{display:flex;gap:6px;margin-left:auto}
+.quiz-stars i{width:34px;height:34px;border-radius:50%;background:#fff;border:2px dashed #E3CFA2;
+  display:flex;align-items:center;justify-content:center;font-style:normal;font-size:16px;
+  color:#D8C49B;transition:.2s}
+.quiz-stars i.on{border-style:solid;border-color:#E8B83C;background:#FFF3CE;animation:qpop .45s}
+@keyframes qpop{0%{transform:scale(.4)}60%{transform:scale(1.3)}100%{transform:scale(1)}}
+.qcard{background:#fff;border:1.5px solid #EFE3C8;border-radius:18px;padding:16px 18px 18px;
+  margin-top:16px;animation:qin .4s}
+@keyframes qin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.qnum{display:inline-block;background:var(--move-soft);color:var(--move);font-weight:700;
+  font-size:12.5px;border-radius:99px;padding:2px 11px}
+.qtext{font-size:17.5px;font-weight:700;margin:9px 0 12px}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qopts button{font:inherit;font-size:15.5px;text-align:left;background:#FDFBF3;
+  border:1.5px solid #E7DDC2;border-radius:14px;padding:10px 14px;cursor:pointer;transition:.15s}
+.qopts button:hover:not(:disabled){transform:translateY(-2px);border-color:var(--move);background:#fff}
+.qopts button:disabled{cursor:default}
+.qopts button.no{opacity:.5;background:#F4F1E7;animation:qshake .4s}
+.qopts button.no::after{content:" 💦"}
+.qopts button.yes{background:var(--move-soft);border-color:var(--move);color:#0A6B3D;font-weight:700}
+.qopts button.yes::after{content:" ⭕"}
+@keyframes qshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.qmiss{margin-top:9px;font-size:13.5px;color:#A8834B}
+.qwhy{margin-top:10px;background:var(--gold-soft);color:#5A4520;border-radius:10px;
+  padding:8px 12px;font-size:14px;line-height:1.7}
+.quiz-done{margin-top:18px;background:#fff;border:2px solid #E8B83C;border-radius:18px;
+  padding:22px 20px;text-align:center;animation:qin .5s}
+.quiz-done .party span{display:inline-block;font-size:26px;margin:0 3px;animation:qbob 1.2s ease-in-out infinite}
+.quiz-done .party span:nth-child(2){animation-delay:.15s}
+.quiz-done .party span:nth-child(3){animation-delay:.3s}
+.quiz-done .party span:nth-child(4){animation-delay:.45s}
+.quiz-done .party span:nth-child(5){animation-delay:.6s}
+.quiz-done h3{font-family:"LXGW WenKai TC",serif;font-size:21px;margin:8px 0 4px}
+.quiz-done p{margin:0 0 14px;color:var(--muted);font-size:14.5px}
+.qbtn{display:inline-block;font:inherit;font-size:15px;font-weight:700;border-radius:99px;
+  padding:8px 20px;cursor:pointer;text-decoration:none;margin:0 5px 6px;transition:.15s}
+.qbtn:hover{transform:translateY(-2px)}
+.qbtn.go{background:var(--move);border:2px solid var(--move);color:#fff}
+.qbtn.again{background:#fff;border:2px solid var(--line);color:var(--muted)}
+.qbadge{position:absolute;top:10px;right:12px;background:#FFF3CE;border:1.5px solid #E8B83C;
+  color:#8A6215;font-size:11.5px;font-weight:700;border-radius:99px;padding:1px 9px}
+
 @media(max-width:640px){
+  .qopts{grid-template-columns:1fr}
+  .quiz-box{padding:18px 16px 22px;border-radius:18px}
+  .quiz-stars{margin-left:0}
   .top .wrap{height:56px;gap:10px}
   .top .home{font-size:18px}
   .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名與開關 */
@@ -361,6 +517,61 @@ ${body}
 </html>`;
 }
 
+/** 產生章節闖關小遊戲區塊（含互動腳本；一頁一個，資料內嵌） */
+function quizHtml(slug) {
+  const z = QUIZ[slug];
+  if (!z) return '';
+  const stars = z.qs.map(() => '<i>☆</i>').join('');
+  // 內嵌腳本不用樣板字串，避免與外層樣板衝突
+  const js = '(function(){' +
+    'var Q=' + JSON.stringify(z.qs) + ';' +
+    'var box=document.getElementById("quiz");if(!box)return;' +
+    'var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");' +
+    'function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\\u2606";stars[i].className="";}show(0);}' +
+    'function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}' +
+    'function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";' +
+    'var h=\'<span class="qnum">\\u7b2c \'+(i+1)+\' \\u984c</span><div class="qtext"></div><div class="qopts">\';' +
+    'for(var j=0;j<q.o.length;j++)h+=\'<button type="button" data-j="\'+j+\'"></button>\';' +
+    'h+=\'</div><div class="qmiss" hidden>\\u5dee\\u4e00\\u9ede\\uff0c\\u63db\\u4e00\\u500b\\u8a66\\u8a66\\uff01</div><div class="qwhy" hidden></div>\';' +
+    'card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;' +
+    'var btns=card.querySelectorAll(".qopts button");' +
+    'for(var k=0;k<btns.length;k++)btns[k].textContent=q.o[k];' +
+    'qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});' +
+    'for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){' +
+    'if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;' +
+    'card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\\ud83d\\udca1 "+q.w;w.hidden=false;' +
+    'stars[i].textContent="\\u2b50";stars[i].className="on";' +
+    'setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);' +
+    '}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}' +
+    '});})(btns[k2]);}' +
+    'var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);' +
+    'show(0);})();';
+  return `<section class="quiz" id="quiz" data-slug="${slug}">
+  <div class="quiz-box">
+    <div class="quiz-head">
+      <div class="quiz-mascot">${z.mascot}</div>
+      <div>
+        <div class="quiz-kicker">讀完來玩</div>
+        <h2 class="quiz-title">${z.name}</h2>
+        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分，放心作答！</p>
+      </div>
+      <span class="quiz-stars">${stars}</span>
+    </div>
+    <div class="quiz-qs"></div>
+    <div class="quiz-done" hidden>
+      <div class="party"><span>🎉</span><span>${z.mascot}</span><span>⭐</span><span>${z.mascot}</span><span>🎉</span></div>
+      <h3>五題全通關！獲得稱號「${z.badge}」</h3>
+      <p>把答案講給家人聽一遍，記得更牢喔。</p>
+      <div>
+        <a class="qbtn go" href="${z.next.href}">${z.next.label}</a>
+        <button class="qbtn again" type="button">再玩一次</button>
+      </div>
+    </div>
+  </div>
+  <script>${js}</script>
+</section>`;
+}
+
 /* ---------- 產出 ---------- */
 fs.mkdirSync(DOCS, { recursive: true });
 fs.mkdirSync(path.join(DOCS, 'sheets'), { recursive: true });
@@ -379,7 +590,7 @@ for (const b of [...BOOKS, ...REFS]) {
     desc: b.desc,
     crumb,
     docSwitch: true,
-    body: `<div class="wrap"><article>${withToc}</article></div>`,
+    body: `<div class="wrap"><article>${withToc}</article>${quizHtml(b.slug)}</div>`,
   });
   fs.writeFileSync(path.join(DOCS, `${b.slug}.html`), html, 'utf8');
   built++;
@@ -420,7 +631,7 @@ const home = page({
   <div class="hero">
     <span class="pill">診間衛教內容體系</span>
     <h1>打針之後，怎麼吃、怎麼動</h1>
-    <p>GLP-1 RA／GIP 週製劑（週纖達、猛健樂）減重治療的分階段衛教。依治療旅程分五關，加一冊更年期女性專項與兩份共用採買清單；每個模組都有病人版、醫師備註與依據出處。</p>
+    <p>GLP-1 RA／GIP 週製劑（週纖達、猛健樂）減重治療的分階段衛教。依治療旅程分五關，加一冊更年期女性專項與兩份共用採買清單；每個模組都有病人版、醫師備註與依據出處。每一關讀完都有五題小遊戲，全對就能收集通關徽章 🏅。</p>
   </div>
 
   <div class="sec">治療旅程五關</div>
@@ -443,7 +654,21 @@ const home = page({
   <div class="warn">
     <b>給病人的提醒</b>：本站是衛教參考資料，內容以一般情況撰寫。您的劑量、用藥調整、停藥時機都需要由您的醫師依個人狀況評估——出現嚴重嘔吐、劇烈腹痛、皮膚眼白變黃、心悸冒冷汗等情況，請不要等回診，直接就醫。
   </div>
-</div>`,
+</div>
+<script>
+/* 通關徽章：讀 localStorage 幫已通關的冊別卡片掛上徽章 */
+(function(){
+  try{
+    var cs=document.querySelectorAll('a.card');
+    for(var i=0;i<cs.length;i++){
+      var m=(cs[i].getAttribute('href')||'').match(/^(s[1-5]|m)\\.html$/);
+      if(m&&localStorage.getItem('glp1-quiz-'+m[1])==='1'){
+        var b=document.createElement('span');b.className='qbadge';b.textContent='🏅 已通關';cs[i].appendChild(b);
+      }
+    }
+  }catch(e){}
+})();
+</script>`,
 });
 fs.writeFileSync(path.join(DOCS, 'index.html'), home, 'utf8');
 fs.writeFileSync(path.join(DOCS, '.nojekyll'), '', 'utf8');

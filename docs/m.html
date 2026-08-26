@@ -131,7 +131,63 @@ footer b{color:var(--ink)}
 .warn{background:#FDECEA;border-left:4px solid var(--flag);border-radius:8px;
   padding:14px 18px;font-size:15px;margin:20px 0;color:#7A2016;line-height:1.7}
 
+/* 章節闖關小遊戲（可愛風） */
+.quiz{margin:0 0 46px}
+.quiz-box{background:linear-gradient(160deg,#FFFDF4,#FDF1DE);border:2px solid #F0D9A8;
+  border-radius:24px;padding:24px 26px 28px;box-shadow:0 10px 30px rgba(154,107,42,.08)}
+.quiz-head{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.quiz-mascot{font-size:46px;line-height:1;filter:drop-shadow(0 3px 4px rgba(0,0,0,.12));
+  animation:qbob 2.6s ease-in-out infinite}
+@keyframes qbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.quiz-kicker{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gold)}
+.quiz-title{font-family:"LXGW WenKai TC",serif;margin:2px 0 4px;font-size:22px}
+.quiz-sub{margin:0;color:var(--muted);font-size:14.5px}
+.quiz-stars{display:flex;gap:6px;margin-left:auto}
+.quiz-stars i{width:34px;height:34px;border-radius:50%;background:#fff;border:2px dashed #E3CFA2;
+  display:flex;align-items:center;justify-content:center;font-style:normal;font-size:16px;
+  color:#D8C49B;transition:.2s}
+.quiz-stars i.on{border-style:solid;border-color:#E8B83C;background:#FFF3CE;animation:qpop .45s}
+@keyframes qpop{0%{transform:scale(.4)}60%{transform:scale(1.3)}100%{transform:scale(1)}}
+.qcard{background:#fff;border:1.5px solid #EFE3C8;border-radius:18px;padding:16px 18px 18px;
+  margin-top:16px;animation:qin .4s}
+@keyframes qin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.qnum{display:inline-block;background:var(--move-soft);color:var(--move);font-weight:700;
+  font-size:12.5px;border-radius:99px;padding:2px 11px}
+.qtext{font-size:17.5px;font-weight:700;margin:9px 0 12px}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qopts button{font:inherit;font-size:15.5px;text-align:left;background:#FDFBF3;
+  border:1.5px solid #E7DDC2;border-radius:14px;padding:10px 14px;cursor:pointer;transition:.15s}
+.qopts button:hover:not(:disabled){transform:translateY(-2px);border-color:var(--move);background:#fff}
+.qopts button:disabled{cursor:default}
+.qopts button.no{opacity:.5;background:#F4F1E7;animation:qshake .4s}
+.qopts button.no::after{content:" 💦"}
+.qopts button.yes{background:var(--move-soft);border-color:var(--move);color:#0A6B3D;font-weight:700}
+.qopts button.yes::after{content:" ⭕"}
+@keyframes qshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.qmiss{margin-top:9px;font-size:13.5px;color:#A8834B}
+.qwhy{margin-top:10px;background:var(--gold-soft);color:#5A4520;border-radius:10px;
+  padding:8px 12px;font-size:14px;line-height:1.7}
+.quiz-done{margin-top:18px;background:#fff;border:2px solid #E8B83C;border-radius:18px;
+  padding:22px 20px;text-align:center;animation:qin .5s}
+.quiz-done .party span{display:inline-block;font-size:26px;margin:0 3px;animation:qbob 1.2s ease-in-out infinite}
+.quiz-done .party span:nth-child(2){animation-delay:.15s}
+.quiz-done .party span:nth-child(3){animation-delay:.3s}
+.quiz-done .party span:nth-child(4){animation-delay:.45s}
+.quiz-done .party span:nth-child(5){animation-delay:.6s}
+.quiz-done h3{font-family:"LXGW WenKai TC",serif;font-size:21px;margin:8px 0 4px}
+.quiz-done p{margin:0 0 14px;color:var(--muted);font-size:14.5px}
+.qbtn{display:inline-block;font:inherit;font-size:15px;font-weight:700;border-radius:99px;
+  padding:8px 20px;cursor:pointer;text-decoration:none;margin:0 5px 6px;transition:.15s}
+.qbtn:hover{transform:translateY(-2px)}
+.qbtn.go{background:var(--move);border:2px solid var(--move);color:#fff}
+.qbtn.again{background:#fff;border:2px solid var(--line);color:var(--muted)}
+.qbadge{position:absolute;top:10px;right:12px;background:#FFF3CE;border:1.5px solid #E8B83C;
+  color:#8A6215;font-size:11.5px;font-weight:700;border-radius:99px;padding:1px 9px}
+
 @media(max-width:640px){
+  .qopts{grid-template-columns:1fr}
+  .quiz-box{padding:18px 16px 22px;border-radius:18px}
+  .quiz-stars{margin-left:0}
   .top .wrap{height:56px;gap:10px}
   .top .home{font-size:18px}
   .top .crumb{display:none}   /* 手機空間有限，麵包屑讓位給站名與開關 */
@@ -288,7 +344,30 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
 <hr>
 </div><div class="docsec"><h2 id="附本冊依據總表醫師審稿用">附②：本冊依據總表（醫師審稿用）</h2>
 <div class="tw"><table><thead><tr><th>文件</th><th>年份</th><th>查證深度</th><th>連結</th></tr></thead><tbody><tr><td>台灣更年期醫學會 荷爾蒙治療臨床聲明</td><td>2025</td><td><strong>全文已核</strong>（6 頁）</td><td>menopause.org.tw 檔案下載區（down_id=404）</td></tr><tr><td>TMS《2025 台灣更年期婦女健康管理及藥物治療建議》</td><td>2025</td><td>僅摘要，<strong>全文未取得</strong>——引用前向學會索取</td><td>官網公告 2025/12/03</td></tr><tr><td>The Menopause Society MenoNote: Midlife Weight Gain</td><td>2025</td><td><strong>全文已核</strong>（版權頁明文允許醫療人員重製發給病人）</td><td>menopause.org/wp-content/uploads/for-women/MenoNote-Weight-Gain.pdf</td></tr><tr><td>NAMS 2022 Hormone Therapy Position Statement</td><td>2022</td><td>全文可及</td><td>Menopause 2022;29(7):767-794</td></tr><tr><td>IMS Davis et al. 白皮書（更年期與體重）</td><td>2012</td><td>新聞稿＋摘要層級</td><td>Climacteric 2012;15:419-429</td></tr><tr><td>IMS Recommendations on Women's Midlife Health</td><td>2025</td><td>key messages 摘要層級</td><td>Climacteric 2025（DOI: 10.1080/13697137.2025.2585487）</td></tr><tr><td>EMAS 肥胖停經婦女立場聲明</td><td>2010</td><td><strong>全文已核</strong>（4 頁；已 16 年，途徑選擇立場仍被 TMS 2025 沿用）</td><td>Maturitas 2010;66:323-326</td></tr><tr><td>Tirzepatide＋MHT 回溯世代（Mayo Clinic）</td><td>2026</td><td>主要結果已核；<strong>TMS 官網轉載</strong>（down_id=425）</td><td>Lancet OGWH 2026;2:e118-e128</td></tr><tr><td>Semaglutide＋HT（Hurtado）</td><td>2024</td><td>摘要層級</td><td>Menopause 2024</td></tr><tr><td>SWAN 體組成分析（Greendale）</td><td>2019</td><td>摘要層級</td><td>JCI Insight 2019</td></tr><tr><td>GLP-1 RA 與更年期綜述</td><td>2026</td><td>摘要層級</td><td>Cureus 2026;18(1):e101693</td></tr><tr><td>ESCEO 停經後肌肉骨骼營養共識（Rizzoli）</td><td>2014</td><td>摘要層級（<strong>出處為 ESCEO，非更年期學會</strong>）</td><td>Maturitas 2014</td></tr></tbody></table></div>
-<p>備註：台灣更年期健康學會網站無法正常存取，本冊未引用（僅可視需要提供 0800-005-107 更年期諮詢專線作為病人資源——醫師審定可用）。</p></div></article></div>
+<p>備註：台灣更年期健康學會網站無法正常存取，本冊未引用（僅可視需要提供 0800-005-107 更年期諮詢專線作為病人資源——醫師審定可用）。</p></div></article><section class="quiz" id="quiz" data-slug="m">
+  <div class="quiz-box">
+    <div class="quiz-head">
+      <div class="quiz-mascot">🌸</div>
+      <div>
+        <div class="quiz-kicker">讀完來玩</div>
+        <h2 class="quiz-title">女王五連闖</h2>
+        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分，放心作答！</p>
+      </div>
+      <span class="quiz-stars"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
+    </div>
+    <div class="quiz-qs"></div>
+    <div class="quiz-done" hidden>
+      <div class="party"><span>🎉</span><span>🌸</span><span>⭐</span><span>🌸</span><span>🎉</span></div>
+      <h3>五題全通關！獲得稱號「不敗女王」</h3>
+      <p>把答案講給家人聽一遍，記得更牢喔。</p>
+      <div>
+        <a class="qbtn go" href="./">回到總覽，看看你的徽章 →</a>
+        <button class="qbtn again" type="button">再玩一次</button>
+      </div>
+    </div>
+  </div>
+  <script>(function(){var Q=[{"q":"更年期後脂肪最愛搬去哪？","o":["手臂","大腿","肚子","臉頰"],"a":2,"w":"荷爾蒙讓脂肪往肚子搬家——這不是你的錯，我們有對策。"},{"q":"這個階段運動的主角是？","o":["肌力訓練","慢跑","拉筋","散步"],"a":0,"w":"一次顧三件事：肌肉（代謝）、骨頭（密度）、平衡（防跌倒）。"},{"q":"每天鈣質目標大約多少？","o":["100 毫克","500 毫克","1000 毫克","3000 毫克"],"a":2,"w":"大約等於每天 1.5–2 份奶類或高鈣豆製品。"},{"q":"停經後又出血，該怎麼辦？","o":["正常不用理","就醫檢查","觀察半年","多喝水"],"a":1,"w":"多數不是大事，但一定要檢查；乳房摸到硬塊也一樣。"},{"q":"壓力大想吃的第一步？","o":["先吃再說","離開現場走 10 分鐘","買零食囤著","硬忍"],"a":1,"w":"動一動本身就是紓壓，常常走完就不想吃了。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
+</section></div>
 <footer><div class="wrap">
   <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
