@@ -59,5 +59,5 @@
 
 - 時間：2026-08-26（階段四：章節闖關小遊戲上線＋醫師四輪審題修正）
 - 更新者：Claude Code（Fable 5）@ DESKTOP-LVSV9Q5
-- Git push：待推
+- Git push：✅ 已推（1a9581a）
 - L3 Obsidian：本次已更新 `2ndBrain/obesity-education-clinic/專案工作流程.md`
