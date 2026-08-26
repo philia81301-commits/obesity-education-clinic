@@ -144,6 +144,12 @@ footer b{color:var(--ink)}
 .quiz-head{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .quiz-mascot{font-size:46px;line-height:1;filter:drop-shadow(0 3px 4px rgba(0,0,0,.12));
   animation:qbob 2.6s ease-in-out infinite}
+.quiz-mascot img{width:86px;height:86px;border-radius:26px;display:block;
+  border:2.5px solid #fff;box-shadow:0 5px 14px rgba(154,107,42,.22)}
+.qmedal{width:132px;height:132px;object-fit:cover;border-radius:50%;display:block;
+  margin:6px auto 2px;border:3px solid #F0D9A8;background:#fff;
+  box-shadow:0 6px 18px rgba(154,107,42,.22);animation:qpop .6s}
+.qmedal.ring{border:4px solid #E8B83C}
 @keyframes qbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .quiz-kicker{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gold)}
 .quiz-title{font-family:"LXGW WenKai TC",serif;margin:2px 0 4px;font-size:22px}
@@ -368,7 +374,7 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
 <div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S1-D1 蛋白質優先吃 ／ S1-D4 外食這樣選 ／ S1-D5 先避開的地雷食物</td></tr><tr><td>🏃 運動</td><td>S1-E1 每天步行 30 分鐘 ／ S1-E2 把活動藏進生活</td></tr><tr><td>💉 藥物</td><td>S1-R1 打針的基本功 ／ S1-R2 想吐的時候怎麼辦</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></div></article><section class="quiz" id="quiz" data-slug="s1">
   <div class="quiz-box">
     <div class="quiz-head">
-      <div class="quiz-mascot">🐣</div>
+      <div class="quiz-mascot"><img src="assets/quiz/s1-mascot.png" alt="" loading="lazy"></div>
       <div>
         <div class="quiz-kicker">讀完來玩</div>
         <h2 class="quiz-title">新手村五連闖</h2>
@@ -379,6 +385,7 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
     <div class="quiz-qs"></div>
     <div class="quiz-done" hidden>
       <div class="party"><span>🎉</span><span>🐣</span><span>⭐</span><span>🐣</span><span>🎉</span></div>
+      <img class="qmedal" src="assets/quiz/s1-badge.png" alt="通關徽章">
       <h3>五題全通關！獲得稱號「新手村畢業生」</h3>
       <p>把答案講給家人聽一遍，記得更牢喔。</p>
       <div>

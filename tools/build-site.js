@@ -396,6 +396,12 @@ footer b{color:var(--ink)}
 .quiz-head{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .quiz-mascot{font-size:46px;line-height:1;filter:drop-shadow(0 3px 4px rgba(0,0,0,.12));
   animation:qbob 2.6s ease-in-out infinite}
+.quiz-mascot img{width:86px;height:86px;border-radius:26px;display:block;
+  border:2.5px solid #fff;box-shadow:0 5px 14px rgba(154,107,42,.22)}
+.qmedal{width:132px;height:132px;object-fit:cover;border-radius:50%;display:block;
+  margin:6px auto 2px;border:3px solid #F0D9A8;background:#fff;
+  box-shadow:0 6px 18px rgba(154,107,42,.22);animation:qpop .6s}
+.qmedal.ring{border:4px solid #E8B83C}
 @keyframes qbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .quiz-kicker{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gold)}
 .quiz-title{font-family:"LXGW WenKai TC",serif;margin:2px 0 4px;font-size:22px}
@@ -534,11 +540,25 @@ ${body}
 </html>`;
 }
 
+/** 遊戲圖檔（Canva 生成的吉祥物貼圖與徽章）：來源在 design/assets-quiz/，build 時複製進 docs/assets/quiz/ */
+const QUIZ_ASSETS = path.join(ROOT, 'design', 'assets-quiz');
+const hasAsset = name => fs.existsSync(path.join(QUIZ_ASSETS, name));
+
 /** 產生章節闖關小遊戲區塊（含互動腳本；一頁一個，資料內嵌） */
 function quizHtml(slug) {
   const z = QUIZ[slug];
   if (!z) return '';
   const stars = z.qs.map(() => '<i>☆</i>').join('');
+  // 吉祥物：有 Canva 貼圖就用圖，沒有退回 emoji
+  const mascotImg = hasAsset(`${slug}-mascot.png`)
+    ? `<img src="assets/quiz/${slug}-mascot.png" alt="" loading="lazy">`
+    : z.mascot;
+  // 通關徽章：有徽章圖用徽章圖；只有貼圖就用金環包貼圖；都沒有就不放圖
+  const medalImg = hasAsset(`${slug}-badge.png`)
+    ? `<img class="qmedal" src="assets/quiz/${slug}-badge.png" alt="通關徽章">`
+    : hasAsset(`${slug}-mascot.png`)
+      ? `<img class="qmedal ring" src="assets/quiz/${slug}-mascot.png" alt="通關徽章">`
+      : '';
   // 內嵌腳本不用樣板字串，避免與外層樣板衝突
   const js = '(function(){' +
     'var Q=' + JSON.stringify(z.qs) + ';' +
@@ -566,7 +586,7 @@ function quizHtml(slug) {
   return `<section class="quiz" id="quiz" data-slug="${slug}">
   <div class="quiz-box">
     <div class="quiz-head">
-      <div class="quiz-mascot">${z.mascot}</div>
+      <div class="quiz-mascot">${mascotImg}</div>
       <div>
         <div class="quiz-kicker">讀完來玩</div>
         <h2 class="quiz-title">${z.name}</h2>
@@ -577,6 +597,7 @@ function quizHtml(slug) {
     <div class="quiz-qs"></div>
     <div class="quiz-done" hidden>
       <div class="party"><span>🎉</span><span>${z.mascot}</span><span>⭐</span><span>${z.mascot}</span><span>🎉</span></div>
+      ${medalImg}
       <h3>五題全通關！獲得稱號「${z.badge}」</h3>
       <p>把答案講給家人聽一遍，記得更牢喔。</p>
       <div>
@@ -592,6 +613,15 @@ function quizHtml(slug) {
 /* ---------- 產出 ---------- */
 fs.mkdirSync(DOCS, { recursive: true });
 fs.mkdirSync(path.join(DOCS, 'sheets'), { recursive: true });
+
+// 遊戲圖檔：design/assets-quiz/*.png → docs/assets/quiz/
+if (fs.existsSync(QUIZ_ASSETS)) {
+  const outDir = path.join(DOCS, 'assets', 'quiz');
+  fs.mkdirSync(outDir, { recursive: true });
+  for (const f of fs.readdirSync(QUIZ_ASSETS).filter(f => f.endsWith('.png'))) {
+    fs.copyFileSync(path.join(QUIZ_ASSETS, f), path.join(outDir, f));
+  }
+}
 
 let built = 0;
 for (const b of [...BOOKS, ...REFS]) {

@@ -144,6 +144,12 @@ footer b{color:var(--ink)}
 .quiz-head{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .quiz-mascot{font-size:46px;line-height:1;filter:drop-shadow(0 3px 4px rgba(0,0,0,.12));
   animation:qbob 2.6s ease-in-out infinite}
+.quiz-mascot img{width:86px;height:86px;border-radius:26px;display:block;
+  border:2.5px solid #fff;box-shadow:0 5px 14px rgba(154,107,42,.22)}
+.qmedal{width:132px;height:132px;object-fit:cover;border-radius:50%;display:block;
+  margin:6px auto 2px;border:3px solid #F0D9A8;background:#fff;
+  box-shadow:0 6px 18px rgba(154,107,42,.22);animation:qpop .6s}
+.qmedal.ring{border:4px solid #E8B83C}
 @keyframes qbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .quiz-kicker{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gold)}
 .quiz-title{font-family:"LXGW WenKai TC",serif;margin:2px 0 4px;font-size:22px}
