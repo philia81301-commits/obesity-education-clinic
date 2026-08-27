@@ -241,7 +241,32 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
   </button>
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
-<div class="wrap"><article><h1 id="S3停滯期plateau體重停滯飢餓感回升">S3 停滯期（plateau：體重停滯、飢餓感回升）</h1>
+<div class="wrap"><section class="quiz" id="quiz" data-slug="s3">
+  <div class="quiz-box">
+    <div class="quiz-head">
+      <div class="quiz-mascot"><img src="assets/quiz/s3-mascot.png" alt="" loading="lazy"></div>
+      <div>
+        <div class="quiz-kicker">先來闖關</div>
+        <h2 class="quiz-title">魔王關五連闖</h2>
+        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分——答案都在下面的本章內容裡！</p>
+      </div>
+      <span class="quiz-stars"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
+    </div>
+    <div class="quiz-qs"></div>
+    <div class="quiz-done" hidden>
+      <div class="party"><span>🎉</span><span>🐉</span><span>⭐</span><span>🐉</span><span>🎉</span></div>
+      <img class="qmedal" src="assets/quiz/s3-badge.png" alt="通關徽章">
+      <h3>五題全通關！獲得稱號「魔王剋星」</h3>
+      <p>把答案講給家人聽一遍，記得更牢喔。</p>
+      <div>
+        <a class="qbtn go" href="#read">往下讀本章完整內容 ↓</a>
+        <a class="qbtn again" href="s4.html">前往第 4 關：維持期 →</a>
+        <button class="qbtn again" type="button">再玩一次</button>
+      </div>
+    </div>
+  </div>
+  <script>(function(){var Q=[{"q":"體重卡住，最不該做的是？","o":["回診討論","吃得更少","肌力加量","把步數找回來"],"a":1,"w":"越餓煞車踩得越死——代謝降更多、之後反彈更大。"},{"q":"停滯期主要是誰在搞鬼？","o":["你不夠努力","藥完全失效","賀爾蒙調控","天氣太熱"],"a":2,"w":"瘦體素變少、飢餓素變多——是生理現象，不是你失敗。"},{"q":"分不清真餓還是嘴饞，先？","o":["直接吃再說","喝水等 15 分鐘","買鹽酥雞","餓就是餓"],"a":1,"w":"真餓不會消失；嘴饞多半 15 分鐘就自己過去了。"},{"q":"做核心運動時要記得什麼？","o":["憋氣用力","越快越好","正常呼吸不憋氣","忍痛做完"],"a":2,"w":"橋式、死蟲式、鳥狗式、棒式都慢慢做、正常呼吸；腰會痛就停下來回診問。"},{"q":"防宵夜的第一道防線是？","o":["晚餐蛋白質吃夠","忍耐到睡著","多囤零食","喝含糖飲料"],"a":0,"w":"晚餐沒吃夠晚上一定餓；再加上家裡不囤零食、提早上床。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"><i>'+"ABCD"[j]+'</i><span></span></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].querySelector("span").textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
+</section><article id="read"><h1 id="S3停滯期plateau體重停滯飢餓感回升">S3 停滯期（plateau：體重停滯、飢餓感回升）</h1>
 <nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s docsec"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S3-D1先盤點不先節食回想最近一個月的聚餐次數">S3-D1 先盤點，不先節食</a><a href="#S3-D2不要用吃更少突破停滯">S3-D2 不要用「吃更少」突破停滯</a><a href="#S3-D3抗餓餐盤吃大體積高蛋白高纖">S3-D3 抗餓餐盤</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E醫師指定重點核心訓練">三、運動模組（E）★醫師指定重點：核心訓練</a><div class="toc-k"><a href="#S3-E1肌力訓練升級加到每週23次逐步加重">S3-E1 肌力訓練升級</a><a href="#S3-E2每天10分鐘核心菜單醫師指定重點">S3-E2 每天 10 分鐘核心菜單</a><a href="#S3-E3你可能不知不覺變懶了把步數找回來">S3-E3 你可能不知不覺變懶了</a></div></div><div class="toc-s"><a class="toc-h" href="#四飢餓感與副作用因應R醫師指定重點飢餓感處理">四、飢餓感與副作用因應（R）★醫師指定重點：飢餓感處理</a><div class="toc-k"><a href="#S3-R1餓回來了這是預期內的事劑量可以談">S3-R1 餓回來了？這是預期內的事，劑量可以談</a><a href="#S3-R2分辨真的餓和嘴饞">S3-R2 分辨「真的餓」和「嘴饞」</a><a href="#S3-R3晚上最容易破功宵夜衝動三道防線在地化宵夜31">S3-R3 晚上最容易破功</a><a href="#S3-R4睡眠和壓力看不見的增餓劑">S3-R4 睡眠和壓力</a><a href="#紅旗症狀">紅旗症狀</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S3-T1">S3-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S3-Q1停滯多久算正常">S3-Q1 停滯多久算正常？</a><a href="#S3-Q2是不是藥沒效了要不要換藥">S3-Q2 是不是藥沒效了？要不要換藥？</a><a href="#S3-Q3我可以用斷食或吃更少來突破嗎">S3-Q3 我可以用斷食或吃更少來突破嗎？</a><a href="#S3-Q4我明明有忌口為什麼還是一直想吃">S3-Q4 我明明有忌口，為什麼還是一直想吃？</a></div></div><div class="toc-s docsec"><a class="toc-h" href="#附一頁組裝範例停滯期宵夜習慣男性">附：一頁組裝範例③——停滯期・宵夜習慣男性</a></div></nav>
 <blockquote>適用：規律用藥與執行飲食運動下，體重連續約 <strong>4 週以上</strong>不再下降的病人；常伴隨飢餓感回升。<br>狀態：<strong>已審定</strong>（2026-08-24 醫師審稿通過）。醫師指定重點：<strong>核心訓練</strong>、<strong>飢餓感處理</strong>。</blockquote>
 <hr>
@@ -349,31 +374,7 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
 <hr>
 <div class="docsec"><h2 id="附一頁組裝範例停滯期宵夜習慣男性">附：一頁組裝範例③——停滯期・宵夜習慣男性</h2>
 <blockquote>病人輪廓：45 歲男性，BMI 34，糖尿病前期，Tirzepatide 第 6 個月，體重卡 4 週，晚上嘴饞、宵夜習慣復發。</blockquote>
-<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S3-D1 三天飲食拍照 ／ S3-D3 抗餓餐盤</td></tr><tr><td>🏃 運動</td><td>S3-E2 每天 10 分鐘核心菜單 ／ S3-E1 肌力升級</td></tr><tr><td>💉 藥物</td><td>S3-R1 餓回來是預期內、劑量可以談 ／ S3-R3 宵夜三道防線</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></div></article><section class="quiz" id="quiz" data-slug="s3">
-  <div class="quiz-box">
-    <div class="quiz-head">
-      <div class="quiz-mascot"><img src="assets/quiz/s3-mascot.png" alt="" loading="lazy"></div>
-      <div>
-        <div class="quiz-kicker">讀完來玩</div>
-        <h2 class="quiz-title">魔王關五連闖</h2>
-        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分，放心作答！</p>
-      </div>
-      <span class="quiz-stars"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
-    </div>
-    <div class="quiz-qs"></div>
-    <div class="quiz-done" hidden>
-      <div class="party"><span>🎉</span><span>🐉</span><span>⭐</span><span>🐉</span><span>🎉</span></div>
-      <img class="qmedal" src="assets/quiz/s3-badge.png" alt="通關徽章">
-      <h3>五題全通關！獲得稱號「魔王剋星」</h3>
-      <p>把答案講給家人聽一遍，記得更牢喔。</p>
-      <div>
-        <a class="qbtn go" href="s4.html">前往第 4 關：維持期 →</a>
-        <button class="qbtn again" type="button">再玩一次</button>
-      </div>
-    </div>
-  </div>
-  <script>(function(){var Q=[{"q":"體重卡住，最不該做的是？","o":["回診討論","吃得更少","肌力加量","把步數找回來"],"a":1,"w":"越餓煞車踩得越死——代謝降更多、之後反彈更大。"},{"q":"停滯期主要是誰在搞鬼？","o":["你不夠努力","藥完全失效","賀爾蒙調控","天氣太熱"],"a":2,"w":"瘦體素變少、飢餓素變多——是生理現象，不是你失敗。"},{"q":"分不清真餓還是嘴饞，先？","o":["直接吃再說","喝水等 15 分鐘","買鹽酥雞","餓就是餓"],"a":1,"w":"真餓不會消失；嘴饞多半 15 分鐘就自己過去了。"},{"q":"做核心運動時要記得什麼？","o":["憋氣用力","越快越好","正常呼吸不憋氣","忍痛做完"],"a":2,"w":"橋式、死蟲式、鳥狗式、棒式都慢慢做、正常呼吸；腰會痛就停下來回診問。"},{"q":"防宵夜的第一道防線是？","o":["晚餐蛋白質吃夠","忍耐到睡著","多囤零食","喝含糖飲料"],"a":0,"w":"晚餐沒吃夠晚上一定餓；再加上家裡不囤零食、提早上床。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"><i>'+"ABCD"[j]+'</i><span></span></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].querySelector("span").textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
-</section></div>
+<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S3-D1 三天飲食拍照 ／ S3-D3 抗餓餐盤</td></tr><tr><td>🏃 運動</td><td>S3-E2 每天 10 分鐘核心菜單 ／ S3-E1 肌力升級</td></tr><tr><td>💉 藥物</td><td>S3-R1 餓回來是預期內、劑量可以談 ／ S3-R3 宵夜三道防線</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></div></article></div>
 <footer><div class="wrap">
   <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>

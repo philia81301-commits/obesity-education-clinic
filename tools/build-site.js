@@ -588,9 +588,9 @@ function quizHtml(slug) {
     <div class="quiz-head">
       <div class="quiz-mascot">${mascotImg}</div>
       <div>
-        <div class="quiz-kicker">讀完來玩</div>
+        <div class="quiz-kicker">先來闖關</div>
         <h2 class="quiz-title">${z.name}</h2>
-        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分，放心作答！</p>
+        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分——答案都在下面的本章內容裡！</p>
       </div>
       <span class="quiz-stars">${stars}</span>
     </div>
@@ -601,7 +601,8 @@ function quizHtml(slug) {
       <h3>五題全通關！獲得稱號「${z.badge}」</h3>
       <p>把答案講給家人聽一遍，記得更牢喔。</p>
       <div>
-        <a class="qbtn go" href="${z.next.href}">${z.next.label}</a>
+        <a class="qbtn go" href="#read">往下讀本章完整內容 ↓</a>
+        <a class="qbtn again" href="${z.next.href}">${z.next.label}</a>
         <button class="qbtn again" type="button">再玩一次</button>
       </div>
     </div>
@@ -637,7 +638,7 @@ for (const b of [...BOOKS, ...REFS]) {
     desc: b.desc,
     crumb,
     docSwitch: true,
-    body: `<div class="wrap"><article>${withToc}</article>${quizHtml(b.slug)}</div>`,
+    body: `<div class="wrap">${quizHtml(b.slug)}<article id="read">${withToc}</article></div>`,
   });
   fs.writeFileSync(path.join(DOCS, `${b.slug}.html`), html, 'utf8');
   built++;

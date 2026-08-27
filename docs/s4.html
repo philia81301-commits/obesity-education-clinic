@@ -241,7 +241,32 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
   </button>
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
-<div class="wrap"><article><h1 id="S4維持期達標後的體重維持">S4 維持期（達標後的體重維持）</h1>
+<div class="wrap"><section class="quiz" id="quiz" data-slug="s4">
+  <div class="quiz-box">
+    <div class="quiz-head">
+      <div class="quiz-mascot"><img src="assets/quiz/s4-mascot.png" alt="" loading="lazy"></div>
+      <div>
+        <div class="quiz-kicker">先來闖關</div>
+        <h2 class="quiz-title">守關五連闖</h2>
+        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分——答案都在下面的本章內容裡！</p>
+      </div>
+      <span class="quiz-stars"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
+    </div>
+    <div class="quiz-qs"></div>
+    <div class="quiz-done" hidden>
+      <div class="party"><span>🎉</span><span>🐢</span><span>⭐</span><span>🐢</span><span>🎉</span></div>
+      <img class="qmedal" src="assets/quiz/s4-badge.png" alt="通關徽章">
+      <h3>五題全通關！獲得稱號「守成高手」</h3>
+      <p>把答案講給家人聽一遍，記得更牢喔。</p>
+      <div>
+        <a class="qbtn go" href="#read">往下讀本章完整內容 ↓</a>
+        <a class="qbtn again" href="s5.html">前往第 5 關：停藥過渡期 →</a>
+        <button class="qbtn again" type="button">再玩一次</button>
+      </div>
+    </div>
+  </div>
+  <script>(function(){var Q=[{"q":"瘦下來後，胖回幾公斤就要處理？","o":["2 公斤","5 公斤","1 公斤","10 公斤"],"a":0,"w":"這條線叫「警戒線」：1 公斤內是正常波動；碰到 2 公斤就盤點聚餐、補運動、提早回診。"},{"q":"聚餐吃多了，最晚幾小時內回正軌？","o":["24 小時","72 小時","一星期","下個月"],"a":1,"w":"規則只有一條：72 小時內回到正常吃法，體重多半自己回落。"},{"q":"維持期的主角是誰？","o":["藥物","節食","運動","斷食"],"a":2,"w":"減重靠飲食七分，維持靠運動和習慣——量不減、變日常。"},{"q":"達標了可以自己停藥嗎？","o":["可以馬上停","偷偷減量","跟醫師討論","丟掉針就好"],"a":2,"w":"飢餓賀爾蒙還在，自己默默停藥復胖風險最高。"},{"q":"維持期多久量一次體重？","o":["每天三次","每週固定一次","每月一次","都不用量"],"a":1,"w":"每週固定同一天、同一時間量——日波動不用緊張。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"><i>'+"ABCD"[j]+'</i><span></span></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].querySelector("span").textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
+</section><article id="read"><h1 id="S4維持期達標後的體重維持">S4 維持期（達標後的體重維持）</h1>
 <nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s docsec"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S4-D1從減換檔到守吃法不歸零">S4-D1 從「減」換檔到「守」</a><a href="#S4-D2體重警戒線回升2公斤就行動">S4-D2 體重警戒線</a><a href="#S4-D3聚餐與旅行的回正軌規則72小時內">S4-D3 聚餐與旅行的回正軌規則</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#S4-E1維持期運動是主角量不減變日常">S4-E1 維持期運動是主角</a><a href="#S4-E2每三個月給自己一個新的運動目標">S4-E2 每三個月給自己一個新的運動目標</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物模組R">四、藥物模組（R）</a><div class="toc-k"><a href="#S4-R1維持期的藥怎麼走跟醫師一起決定">S4-R1 維持期的藥怎麼走？跟醫師一起決定</a><a href="#S4-R2維持期回診頻率降低內容不變">S4-R2 維持期回診</a><a href="#紅旗症狀">紅旗症狀</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S4-T1">S4-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S4-Q1我達標了可以停藥了嗎">S4-Q1 我達標了，可以停藥了嗎？</a><a href="#S4-Q2維持期還要一直運動嗎">S4-Q2 維持期還要一直運動嗎？</a><a href="#S4-Q3體重回升了一點是不是失敗了">S4-Q3 體重回升了一點，是不是失敗了？</a><a href="#S4-Q4維持期可以久久回診一次就好嗎">S4-Q4 維持期可以久久回診一次就好嗎？</a></div></div></nav>
 <blockquote>適用：已達成與醫師共同設定的目標體重（或健康指標目標），進入維持階段的病人。<br>狀態：<strong>已審定</strong>（2026-08-24 醫師審稿通過，警戒線 +2 公斤定案）。</blockquote>
 <hr>
@@ -325,31 +350,7 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
 <h3 id="S4-Q3體重回升了一點是不是失敗了">S4-Q3 體重回升了一點，是不是失敗了？</h3>
 <p>上下 1–2 公斤是正常波動，不是失敗。碰到警戒線（+2 公斤）也不是失敗，是<strong>行動訊號</strong>：聚餐盤點、運動補量、提早回診——你在減重期學過的每一招都還在，只是重新拿出來用。</p>
 <h3 id="S4-Q4維持期可以久久回診一次就好嗎">S4-Q4 維持期可以久久回診一次就好嗎？</h3>
-<p>間隔可以拉長，但不要斷線。維持期回診的重點是體組成和慢性病指標——血壓藥、血糖藥常常是在這個階段減掉的，這是你最實際的健康紅利，值得回來收。</p></article><section class="quiz" id="quiz" data-slug="s4">
-  <div class="quiz-box">
-    <div class="quiz-head">
-      <div class="quiz-mascot"><img src="assets/quiz/s4-mascot.png" alt="" loading="lazy"></div>
-      <div>
-        <div class="quiz-kicker">讀完來玩</div>
-        <h2 class="quiz-title">守關五連闖</h2>
-        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分，放心作答！</p>
-      </div>
-      <span class="quiz-stars"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
-    </div>
-    <div class="quiz-qs"></div>
-    <div class="quiz-done" hidden>
-      <div class="party"><span>🎉</span><span>🐢</span><span>⭐</span><span>🐢</span><span>🎉</span></div>
-      <img class="qmedal" src="assets/quiz/s4-badge.png" alt="通關徽章">
-      <h3>五題全通關！獲得稱號「守成高手」</h3>
-      <p>把答案講給家人聽一遍，記得更牢喔。</p>
-      <div>
-        <a class="qbtn go" href="s5.html">前往第 5 關：停藥過渡期 →</a>
-        <button class="qbtn again" type="button">再玩一次</button>
-      </div>
-    </div>
-  </div>
-  <script>(function(){var Q=[{"q":"瘦下來後，胖回幾公斤就要處理？","o":["2 公斤","5 公斤","1 公斤","10 公斤"],"a":0,"w":"這條線叫「警戒線」：1 公斤內是正常波動；碰到 2 公斤就盤點聚餐、補運動、提早回診。"},{"q":"聚餐吃多了，最晚幾小時內回正軌？","o":["24 小時","72 小時","一星期","下個月"],"a":1,"w":"規則只有一條：72 小時內回到正常吃法，體重多半自己回落。"},{"q":"維持期的主角是誰？","o":["藥物","節食","運動","斷食"],"a":2,"w":"減重靠飲食七分，維持靠運動和習慣——量不減、變日常。"},{"q":"達標了可以自己停藥嗎？","o":["可以馬上停","偷偷減量","跟醫師討論","丟掉針就好"],"a":2,"w":"飢餓賀爾蒙還在，自己默默停藥復胖風險最高。"},{"q":"維持期多久量一次體重？","o":["每天三次","每週固定一次","每月一次","都不用量"],"a":1,"w":"每週固定同一天、同一時間量——日波動不用緊張。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"><i>'+"ABCD"[j]+'</i><span></span></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].querySelector("span").textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
-</section></div>
+<p>間隔可以拉長，但不要斷線。維持期回診的重點是體組成和慢性病指標——血壓藥、血糖藥常常是在這個階段減掉的，這是你最實際的健康紅利，值得回來收。</p></article></div>
 <footer><div class="wrap">
   <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>

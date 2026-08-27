@@ -241,7 +241,32 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
   </button>
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
-<div class="wrap"><article><h1 id="S1起始期開始注射04週">S1 起始期（開始注射 0–4 週）</h1>
+<div class="wrap"><section class="quiz" id="quiz" data-slug="s1">
+  <div class="quiz-box">
+    <div class="quiz-head">
+      <div class="quiz-mascot"><img src="assets/quiz/s1-mascot.png" alt="" loading="lazy"></div>
+      <div>
+        <div class="quiz-kicker">先來闖關</div>
+        <h2 class="quiz-title">新手村五連闖</h2>
+        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分——答案都在下面的本章內容裡！</p>
+      </div>
+      <span class="quiz-stars"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
+    </div>
+    <div class="quiz-qs"></div>
+    <div class="quiz-done" hidden>
+      <div class="party"><span>🎉</span><span>🐣</span><span>⭐</span><span>🐣</span><span>🎉</span></div>
+      <img class="qmedal" src="assets/quiz/s1-badge.png" alt="通關徽章">
+      <h3>五題全通關！獲得稱號「新手村畢業生」</h3>
+      <p>把答案講給家人聽一遍，記得更牢喔。</p>
+      <div>
+        <a class="qbtn go" href="#read">往下讀本章完整內容 ↓</a>
+        <a class="qbtn again" href="s2.html">前往第 2 關：減重期 →</a>
+        <button class="qbtn again" type="button">再玩一次</button>
+      </div>
+    </div>
+  </div>
+  <script>(function(){var Q=[{"q":"胃口變小，每餐第一口先吃？","o":["白飯","水果","蛋白質","冰淇淋"],"a":2,"w":"蛋、豆腐、魚、雞肉先吃夠，才不會瘦到肌肉。"},{"q":"每天的水至少要喝多少？","o":["500 毫升","2000 毫升","喝湯就好","口渴再喝"],"a":1,"w":"食量變小水常跟著變少，分次小口喝到 2000 毫升。"},{"q":"每週打針日怎麼安排最好？","o":["想到才打","每天換時間","痛了就停","固定同一天"],"a":3,"w":"固定星期幾最不容易漏打，肚皮、大腿、上臂輪流換位置。"},{"q":"這個月的運動目標是什麼？","o":["每天走路 30 分鐘","每天跑 5 公里","週末爬山一次","先不用動"],"a":0,"w":"可以拆成 3 次、每次 10 分鐘——走得到比走得快重要。"},{"q":"皮膚眼白變黃，該怎麼做？","o":["等下次回診","多喝水觀察","直接就醫","自己停藥就好"],"a":2,"w":"這是紅旗症狀——不要等回診，直接聯絡診所或就醫。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"><i>'+"ABCD"[j]+'</i><span></span></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].querySelector("span").textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
+</section><article id="read"><h1 id="S1起始期開始注射04週">S1 起始期（開始注射 0–4 週）</h1>
 <nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s docsec"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S1-D1蛋白質優先吃">S1-D1 蛋白質優先吃</a><a href="#S1-D2吃慢一點飽了就停不要少量多餐">S1-D2 吃慢一點、飽了就停</a><a href="#S1-D3水要喝夠">S1-D3 水要喝夠</a><a href="#S1-D4外食這樣選在地化外食族73">S1-D4 外食這樣選</a><a href="#S1-D5先避開的地雷食物">S1-D5 先避開的地雷食物</a><a href="#S1-D6纖維與便祕預防">S1-D6 纖維與便祕預防</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#S1-E1每天步行30分鐘在地化無運動習慣59">S1-E1 每天步行 30 分鐘</a><a href="#S1-E2把活動藏進生活">S1-E2 把活動藏進生活</a><a href="#S1-E3膝蓋不好也能練的下肢肌力低衝擊替代">S1-E3 膝蓋不好也能練的下肢肌力</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物模組R週製劑與副作用因應">四、藥物模組（R）：週製劑與副作用因應</a><div class="toc-k"><a href="#S1-R1打針的基本功">S1-R1 打針的基本功</a><a href="#S1-R2想吐的時候怎麼辦">S1-R2 想吐的時候怎麼辦</a><a href="#S1-R3忘記打針怎麼辦">S1-R3 忘記打針怎麼辦</a><a href="#S1-R4紅旗症狀出現就提前回診">S1-R4 紅旗症狀</a><a href="#S1-R5副作用太強劑量可以商量">S1-R5 副作用太強，劑量可以商量</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S1-T1">S1-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S1-Q1多久會開始瘦瘦多快才正常">S1-Q1 多久會開始瘦？瘦多快才正常？</a><a href="#S1-Q2這個針要打多久會不會要打一輩子">S1-Q2 這個針要打多久？會不會要打一輩子？</a><a href="#S1-Q5如果之後體重卡住不動是不是就失敗了">S1-Q5 如果之後體重卡住不動，是不是就失敗了？</a><a href="#S1-Q3打針期間可以喝酒嗎">S1-Q3 打針期間可以喝酒嗎？</a><a href="#S1-Q4我食慾沒有變差是不是藥沒效">S1-Q4 我食慾沒有變差，是不是藥沒效？</a></div></div><div class="toc-s docsec"><a class="toc-h" href="#附一頁組裝範例起始期外食男性上班族">附：一頁組裝範例①——起始期・外食男性上班族</a></div></nav>
 <blockquote>適用：剛開始 GLP-1 RA／GIP 週製劑（Semaglutide 週纖達、Tirzepatide 猛健樂）、劑量爬升初期的病人。<br>狀態：<strong>已審定</strong>（2026-08-22 醫師兩輪審稿通過）。</blockquote>
 <hr>
@@ -371,31 +396,7 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
 <hr>
 <div class="docsec"><h2 id="附一頁組裝範例起始期外食男性上班族">附：一頁組裝範例①——起始期・外食男性上班族</h2>
 <blockquote>病人輪廓：42 歲男性，BMI 33，高血壓，三餐外食，無運動習慣，本週 Tirzepatide 第 2 週。</blockquote>
-<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S1-D1 蛋白質優先吃 ／ S1-D4 外食這樣選 ／ S1-D5 先避開的地雷食物</td></tr><tr><td>🏃 運動</td><td>S1-E1 每天步行 30 分鐘 ／ S1-E2 把活動藏進生活</td></tr><tr><td>💉 藥物</td><td>S1-R1 打針的基本功 ／ S1-R2 想吐的時候怎麼辦</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></div></article><section class="quiz" id="quiz" data-slug="s1">
-  <div class="quiz-box">
-    <div class="quiz-head">
-      <div class="quiz-mascot"><img src="assets/quiz/s1-mascot.png" alt="" loading="lazy"></div>
-      <div>
-        <div class="quiz-kicker">讀完來玩</div>
-        <h2 class="quiz-title">新手村五連闖</h2>
-        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分，放心作答！</p>
-      </div>
-      <span class="quiz-stars"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
-    </div>
-    <div class="quiz-qs"></div>
-    <div class="quiz-done" hidden>
-      <div class="party"><span>🎉</span><span>🐣</span><span>⭐</span><span>🐣</span><span>🎉</span></div>
-      <img class="qmedal" src="assets/quiz/s1-badge.png" alt="通關徽章">
-      <h3>五題全通關！獲得稱號「新手村畢業生」</h3>
-      <p>把答案講給家人聽一遍，記得更牢喔。</p>
-      <div>
-        <a class="qbtn go" href="s2.html">前往第 2 關：減重期 →</a>
-        <button class="qbtn again" type="button">再玩一次</button>
-      </div>
-    </div>
-  </div>
-  <script>(function(){var Q=[{"q":"胃口變小，每餐第一口先吃？","o":["白飯","水果","蛋白質","冰淇淋"],"a":2,"w":"蛋、豆腐、魚、雞肉先吃夠，才不會瘦到肌肉。"},{"q":"每天的水至少要喝多少？","o":["500 毫升","2000 毫升","喝湯就好","口渴再喝"],"a":1,"w":"食量變小水常跟著變少，分次小口喝到 2000 毫升。"},{"q":"每週打針日怎麼安排最好？","o":["想到才打","每天換時間","痛了就停","固定同一天"],"a":3,"w":"固定星期幾最不容易漏打，肚皮、大腿、上臂輪流換位置。"},{"q":"這個月的運動目標是什麼？","o":["每天走路 30 分鐘","每天跑 5 公里","週末爬山一次","先不用動"],"a":0,"w":"可以拆成 3 次、每次 10 分鐘——走得到比走得快重要。"},{"q":"皮膚眼白變黃，該怎麼做？","o":["等下次回診","多喝水觀察","直接就醫","自己停藥就好"],"a":2,"w":"這是紅旗症狀——不要等回診，直接聯絡診所或就醫。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"><i>'+"ABCD"[j]+'</i><span></span></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].querySelector("span").textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
-</section></div>
+<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S1-D1 蛋白質優先吃 ／ S1-D4 外食這樣選 ／ S1-D5 先避開的地雷食物</td></tr><tr><td>🏃 運動</td><td>S1-E1 每天步行 30 分鐘 ／ S1-E2 把活動藏進生活</td></tr><tr><td>💉 藥物</td><td>S1-R1 打針的基本功 ／ S1-R2 想吐的時候怎麼辦</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></div></article></div>
 <footer><div class="wrap">
   <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>

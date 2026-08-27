@@ -241,7 +241,32 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
   </button>
   <a href="https://philia81301-commits.github.io/">← 工具集首頁</a>
 </div></nav>
-<div class="wrap"><article><h1 id="S2減重期體重穩定下降期">S2 減重期（體重穩定下降期）</h1>
+<div class="wrap"><section class="quiz" id="quiz" data-slug="s2">
+  <div class="quiz-box">
+    <div class="quiz-head">
+      <div class="quiz-mascot"><img src="assets/quiz/s2-mascot.png" alt="" loading="lazy"></div>
+      <div>
+        <div class="quiz-kicker">先來闖關</div>
+        <h2 class="quiz-title">黃金期五連闖</h2>
+        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分——答案都在下面的本章內容裡！</p>
+      </div>
+      <span class="quiz-stars"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
+    </div>
+    <div class="quiz-qs"></div>
+    <div class="quiz-done" hidden>
+      <div class="party"><span>🎉</span><span>🐿️</span><span>⭐</span><span>🐿️</span><span>🎉</span></div>
+      <img class="qmedal" src="assets/quiz/s2-badge.png" alt="通關徽章">
+      <h3>五題全通關！獲得稱號「黃金期戰士」</h3>
+      <p>把答案講給家人聽一遍，記得更牢喔。</p>
+      <div>
+        <a class="qbtn go" href="#read">往下讀本章完整內容 ↓</a>
+        <a class="qbtn again" href="s3.html">挑戰魔王關：停滯期 →</a>
+        <button class="qbtn again" type="button">再玩一次</button>
+      </div>
+    </div>
+  </div>
+  <script>(function(){var Q=[{"q":"體重掉太快，最怕流失什麼？","o":["水分","肌肉","脂肪","鈣質"],"a":1,"w":"肌肉掉了代謝跟著降——穩穩掉脂肪才是真的贏。"},{"q":"外食餐盤，蔬菜要佔多少？","o":["四分之一","三分之一","一半","不用蔬菜"],"a":2,"w":"菜半盤、豆魚蛋肉四分之一、飯最多四分之一。"},{"q":"兩餐之間嘴饞，第一步先？","o":["先喝水","吃點餅乾","喝含糖飲料","忍到頭暈"],"a":0,"w":"先喝水，再檢查上一餐蛋白質有沒有吃夠。"},{"q":"快走要走到什麼程度才夠？","o":["能唱歌","微喘還能講話","喘到說不出話","不流汗就好"],"a":1,"w":"「微喘、能講話但沒辦法唱歌」就是剛好的中等強度。"},{"q":"掉太快的警戒值是一週幾公斤？","o":["0.5 公斤","1 公斤","1.5 公斤","3 公斤"],"a":2,"w":"一週掉超過 1.5 公斤就要回報——掉太快會流失肌肉，也會增加膽結石的機會。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"><i>'+"ABCD"[j]+'</i><span></span></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].querySelector("span").textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
+</section><article id="read"><h1 id="S2減重期體重穩定下降期">S2 減重期（體重穩定下降期）</h1>
 <nav class="toc"><div class="toc-t">本頁內容</div><div class="toc-s docsec"><a class="toc-h" href="#一階段目標與生理變化醫師講解層">一、階段目標與生理變化（醫師講解層）</a></div><div class="toc-s"><a class="toc-h" href="#二飲食模組D">二、飲食模組（D）</a><div class="toc-k"><a href="#S2-D1蛋白質不能鬆懈">S2-D1 蛋白質不能鬆懈</a><a href="#S2-D2主食減量麵食盡量少在地化飯麵食56外食73">S2-D2 主食減量、麵食盡量少</a><a href="#S2-D3三餐定時餐間不進食">S2-D3 三餐定時，餐間不進食</a><a href="#S2-D4外食配餐公式菜半盤蛋白質四分之一全穀四分之一">S2-D4 外食配餐公式</a><a href="#S2-D5吃太少的警訊">S2-D5 吃太少的警訊</a><a href="#S2-D6高CP值蛋白質照著買就對了">S2-D6 高 CP 值蛋白質</a><a href="#S2-D7早餐這樣吃高纖低GI蛋白質先醫師審定2026-08-24">S2-D7 早餐這樣吃</a></div></div><div class="toc-s"><a class="toc-h" href="#三運動模組E">三、運動模組（E）</a><div class="toc-k"><a href="#S2-E1阻力訓練上線每週2次在地化運動介入第二階段">S2-E1 阻力訓練上線</a><a href="#S2-E2有氧升級走到微喘還能講話">S2-E2 有氧升級</a><a href="#S2-E4沒時間運動短而喘也算數間歇與運動零食">S2-E4 沒時間運動？「短而喘」也算數</a><a href="#S2-E3一週運動課表範例組裝用">S2-E3 一週運動課表範例</a></div></div><div class="toc-s"><a class="toc-h" href="#四藥物模組R">四、藥物模組（R）</a><div class="toc-k"><a href="#S2-R1升劑量後副作用會短暫回來">S2-R1 升劑量後副作用會短暫回來</a><a href="#S2-R2頭暈不要硬撐想到低血糖也要想到低血壓">S2-R2 頭暈不要硬撐</a><a href="#S2-R3掉太快也要回報">S2-R3 掉太快也要回報</a><a href="#紅旗症狀">紅旗症狀</a></div></div><div class="toc-s"><a class="toc-h" href="#五診間話術三句T">五、診間話術三句（T）</a><div class="toc-k"><a href="#S2-T1">S2-T1</a></div></div><div class="toc-s"><a class="toc-h" href="#六病人常見QAQ">六、病人常見 QA（Q）</a><div class="toc-k"><a href="#S2-Q1可不可以讓它掉更快">S2-Q1 可不可以讓它掉更快？</a><a href="#S2-Q2藥都讓我吃不下了我可以不運動嗎">S2-Q2 藥都讓我吃不下了，我可以不運動嗎？</a><a href="#S2-Q3開始做肌力訓練後體重怎麼反而不動了">S2-Q3 開始做肌力訓練後，體重怎麼反而不動了？</a><a href="#S2-Q4應酬聚餐破功了怎麼辦">S2-Q4 應酬聚餐破功了怎麼辦？</a></div></div><div class="toc-s docsec"><a class="toc-h" href="#附一頁組裝範例減重期久坐上班族女性">附：一頁組裝範例②——減重期・久坐上班族女性</a></div></nav>
 <blockquote>適用：劑量已爬升至治療劑量、食慾抑制明顯、體重穩定下降中的病人（約治療第 2 個月起）。<br>狀態：<strong>已審定</strong>（2026-08-22 醫師逐項審稿通過）。</blockquote>
 <hr>
@@ -371,31 +396,7 @@ try{if(localStorage.getItem('glp1-show-doc')==='1')document.documentElement.clas
 <hr>
 <div class="docsec"><h2 id="附一頁組裝範例減重期久坐上班族女性">附：一頁組裝範例②——減重期・久坐上班族女性</h2>
 <blockquote>病人輪廓：48 歲女性，BMI 31，脂肪肝，久坐辦公室、無運動經驗，Semaglutide 治療第 3 個月、體重穩定下降中。</blockquote>
-<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S2-D1 蛋白質不能鬆懈 ／ S2-D4 外食配餐公式 ／ S2-D5 吃太少的警訊</td></tr><tr><td>🏃 運動</td><td>S2-E1 阻力訓練每週 2 次 ／ S2-E3 一週運動課表範例</td></tr><tr><td>💉 藥物</td><td>S2-R1 升劑量後副作用會短暫回來</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></div></article><section class="quiz" id="quiz" data-slug="s2">
-  <div class="quiz-box">
-    <div class="quiz-head">
-      <div class="quiz-mascot"><img src="assets/quiz/s2-mascot.png" alt="" loading="lazy"></div>
-      <div>
-        <div class="quiz-kicker">讀完來玩</div>
-        <h2 class="quiz-title">黃金期五連闖</h2>
-        <p class="quiz-sub">一次一題、四選一，答對才會出現下一題。答錯不扣分，放心作答！</p>
-      </div>
-      <span class="quiz-stars"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
-    </div>
-    <div class="quiz-qs"></div>
-    <div class="quiz-done" hidden>
-      <div class="party"><span>🎉</span><span>🐿️</span><span>⭐</span><span>🐿️</span><span>🎉</span></div>
-      <img class="qmedal" src="assets/quiz/s2-badge.png" alt="通關徽章">
-      <h3>五題全通關！獲得稱號「黃金期戰士」</h3>
-      <p>把答案講給家人聽一遍，記得更牢喔。</p>
-      <div>
-        <a class="qbtn go" href="s3.html">挑戰魔王關：停滯期 →</a>
-        <button class="qbtn again" type="button">再玩一次</button>
-      </div>
-    </div>
-  </div>
-  <script>(function(){var Q=[{"q":"體重掉太快，最怕流失什麼？","o":["水分","肌肉","脂肪","鈣質"],"a":1,"w":"肌肉掉了代謝跟著降——穩穩掉脂肪才是真的贏。"},{"q":"外食餐盤，蔬菜要佔多少？","o":["四分之一","三分之一","一半","不用蔬菜"],"a":2,"w":"菜半盤、豆魚蛋肉四分之一、飯最多四分之一。"},{"q":"兩餐之間嘴饞，第一步先？","o":["先喝水","吃點餅乾","喝含糖飲料","忍到頭暈"],"a":0,"w":"先喝水，再檢查上一餐蛋白質有沒有吃夠。"},{"q":"快走要走到什麼程度才夠？","o":["能唱歌","微喘還能講話","喘到說不出話","不流汗就好"],"a":1,"w":"「微喘、能講話但沒辦法唱歌」就是剛好的中等強度。"},{"q":"掉太快的警戒值是一週幾公斤？","o":["0.5 公斤","1 公斤","1.5 公斤","3 公斤"],"a":2,"w":"一週掉超過 1.5 公斤就要回報——掉太快會流失肌肉，也會增加膽結石的機會。"}];var box=document.getElementById("quiz");if(!box)return;var qs=box.querySelector(".quiz-qs"),stars=box.querySelectorAll(".quiz-stars i"),done=box.querySelector(".quiz-done"),slug=box.getAttribute("data-slug");function reset(){qs.innerHTML="";done.hidden=true;for(var i=0;i<stars.length;i++){stars[i].textContent="\u2606";stars[i].className="";}show(0);}function finish(){done.hidden=false;try{localStorage.setItem("glp1-quiz-"+slug,"1");}catch(e){}done.scrollIntoView({behavior:"smooth",block:"nearest"});}function show(i){var q=Q[i];var card=document.createElement("div");card.className="qcard";var h='<span class="qnum">\u7b2c '+(i+1)+' \u984c</span><div class="qtext"></div><div class="qopts">';for(var j=0;j<q.o.length;j++)h+='<button type="button" data-j="'+j+'"><i>'+"ABCD"[j]+'</i><span></span></button>';h+='</div><div class="qmiss" hidden>\u5dee\u4e00\u9ede\uff0c\u63db\u4e00\u500b\u8a66\u8a66\uff01</div><div class="qwhy" hidden></div>';card.innerHTML=h;card.querySelector(".qtext").textContent=q.q;var btns=card.querySelectorAll(".qopts button");for(var k=0;k<btns.length;k++)btns[k].querySelector("span").textContent=q.o[k];qs.appendChild(card);if(i>0)card.scrollIntoView({behavior:"smooth",block:"nearest"});for(var k2=0;k2<btns.length;k2++)(function(b){b.addEventListener("click",function(){if(+b.getAttribute("data-j")===q.a){b.className="yes";for(var x=0;x<btns.length;x++)btns[x].disabled=true;card.querySelector(".qmiss").hidden=true;var w=card.querySelector(".qwhy");w.textContent="\ud83d\udca1 "+q.w;w.hidden=false;stars[i].textContent="\u2b50";stars[i].className="on";setTimeout(function(){if(i+1<Q.length)show(i+1);else finish();},700);}else{b.className="no";b.disabled=true;card.querySelector(".qmiss").hidden=false;}});})(btns[k2]);}var again=done.querySelector(".again");if(again)again.addEventListener("click",reset);show(0);})();</script>
-</section></div>
+<div class="tw"><table><thead><tr><th>區塊</th><th>選用模組</th></tr></thead><tbody><tr><td>🍽️ 飲食</td><td>S2-D1 蛋白質不能鬆懈 ／ S2-D4 外食配餐公式 ／ S2-D5 吃太少的警訊</td></tr><tr><td>🏃 運動</td><td>S2-E1 阻力訓練每週 2 次 ／ S2-E3 一週運動課表範例</td></tr><tr><td>💉 藥物</td><td>S2-R1 升劑量後副作用會短暫回來</td></tr><tr><td>頁尾固定</td><td>S1-R4 紅旗症狀一行版（不放回診日——醫師定案 2026-08-22）</td></tr></tbody></table></div></div></article></div>
 <footer><div class="wrap">
   <b>潘湘如醫師｜家醫科</b>　·　GLP-1 RA／GIP 週製劑減重治療衛教內容體系<br>
   本站內容為衛教參考，不能取代個別醫療評估；用藥與劑量調整請與您的醫師討論。<br>
