@@ -63,7 +63,8 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-08-26（階段四：章節闖關小遊戲上線＋醫師四輪審題修正）
-- 更新者：Claude Code（Fable 5）@ DESKTOP-LVSV9Q5
-- Git push：✅ 已推（1a9581a）
-- L3 Obsidian：本次已更新 `2ndBrain/obesity-education-clinic/專案工作流程.md`
+- 時間：2026-08-27（S5／M 徽章補齊＋遊戲移到章首）
+- 更新者：Claude Code（Fable 5）@ X108521（醫院）
+- Git push：✅ 已推（`f58c8e9` 徽章 → `75d853c` 合成工具 → `101ecad` 遊戲先），線上版已驗證
+- L3 Obsidian：⚠️ 本次在醫院電腦收工，此電腦的 vault 沒有本專案資料夾，L3 未更新；回家用電腦時補
+- 前一筆：2026-08-26 @ DESKTOP-LVSV9Q5 · 闖關小遊戲上線 · ✅ 已推（1a9581a）· L3 已更新
