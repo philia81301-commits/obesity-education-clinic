@@ -1,0 +1,117 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>badge forge</title>
+<body style="background:#ddd;display:flex;gap:20px;padding:20px;">
+<canvas id="c1" width="447" height="447"></canvas>
+<canvas id="c2" width="447" height="447"></canvas>
+<pre id="log"></pre>
+<script>
+const log = m => document.getElementById('log').textContent += m + '\n';
+
+function loadImg(src){ return new Promise((ok,bad)=>{ const i=new Image(); i.onload=()=>ok(i); i.onerror=bad; i.src=src; }); }
+
+/* 把吉祥物圖的純色背景挖掉：從四角 flood fill 相近色 */
+function removeBg(img){
+  const c=document.createElement('canvas'); c.width=img.width; c.height=img.height;
+  const x=c.getContext('2d'); x.drawImage(img,0,0);
+  const d=x.getImageData(0,0,c.width,c.height), p=d.data, W=c.width, H=c.height;
+  const ref=[p[0],p[1],p[2]];
+  const near=(i)=>{ const dr=p[i]-ref[0],dg=p[i+1]-ref[1],db=p[i+2]-ref[2]; return dr*dr+dg*dg+db*db < 1600; };
+  const seen=new Uint8Array(W*H); const stack=[0, W-1, (H-1)*W, H*W-1];
+  while(stack.length){
+    const q=stack.pop(); if(seen[q]) continue; seen[q]=1;
+    const i=q*4; if(!near(i)) continue;
+    p[i+3]=0;
+    const px=q%W, py=(q/W)|0;
+    if(px>0)stack.push(q-1); if(px<W-1)stack.push(q+1);
+    if(py>0)stack.push(q-W); if(py<H-1)stack.push(q+W);
+  }
+  x.putImageData(d,0,0); return c;
+}
+
+/* 緞帶路徑（不做 save，由呼叫端管理 transform） */
+function ribbonPath(ctx, cx, cy, R, ang, sign){
+  ctx.translate(cx+sign*54, cy+R-30); ctx.rotate(ang);
+  ctx.beginPath();
+  ctx.moveTo(-28,0); ctx.lineTo(28,0); ctx.lineTo(28,122);
+  ctx.lineTo(0,98); ctx.lineTo(-28,122); ctx.closePath();
+}
+
+function drawBadge(ctx, mascot, opt){
+  const W=447, cx=223.5, cy=200, R=118, leafR=R+16;
+  ctx.clearRect(0,0,W,W);
+  ctx.fillStyle = opt.bg; ctx.fillRect(0,0,W,W);
+
+  // ── 白貼紙層（帶柔和陰影）──
+  ctx.save();
+  ctx.shadowColor='rgba(90,60,20,.30)'; ctx.shadowOffsetX=6; ctx.shadowOffsetY=9; ctx.shadowBlur=12;
+  for(const s of [1,-1]){
+    ctx.save(); ribbonPath(ctx,cx,cy,R, s*0.17, s);
+    ctx.lineWidth=18; ctx.lineJoin='round'; ctx.strokeStyle='#fff';
+    ctx.stroke(); ctx.fillStyle='#fff'; ctx.fill();
+    ctx.restore();
+  }
+  ctx.beginPath(); ctx.arc(cx,cy,leafR+9,0,7); ctx.fillStyle='#fff'; ctx.fill();
+  ctx.restore();
+
+  // ── 綠緞帶 ──
+  for(const s of [1,-1]){
+    ctx.save(); ribbonPath(ctx,cx,cy,R, s*0.17, s);
+    const g=ctx.createLinearGradient(0,0,0,122);
+    g.addColorStop(0,'#4CB06E'); g.addColorStop(1,'#0A8A4D');
+    ctx.fillStyle=g; ctx.fill();
+    ctx.restore();
+  }
+  // 蓋回白圓（讓緞帶從金牌「後面」伸出）
+  ctx.beginPath(); ctx.arc(cx,cy,leafR+9,0,7); ctx.fillStyle='#fff'; ctx.fill();
+
+  // ── 月桂圈 ──
+  ctx.beginPath(); ctx.arc(cx,cy,leafR,0,7); ctx.fillStyle='#D9A527'; ctx.fill();
+  for(let k=0;k<22;k++){
+    const a=k/22*Math.PI*2;
+    ctx.save();
+    ctx.translate(cx+Math.cos(a)*(R+6), cy+Math.sin(a)*(R+6));
+    ctx.rotate(a+Math.PI/2+0.42);
+    ctx.beginPath(); ctx.ellipse(0,0,9,18,0,0,7);
+    ctx.fillStyle = k%2 ? '#C79320' : '#EDBC3F'; ctx.fill();
+    ctx.beginPath(); ctx.ellipse(-1.5,-2,4,10,0,0,7);
+    ctx.fillStyle = k%2 ? '#B5831B' : '#F5CE58'; ctx.fill();
+    ctx.restore();
+  }
+  // ── 金幣面 ──
+  const cg=ctx.createLinearGradient(cx,cy-R,cx,cy+R);
+  cg.addColorStop(0,'#FFE694'); cg.addColorStop(1,'#EFB63C');
+  ctx.beginPath(); ctx.arc(cx,cy,R,0,7); ctx.fillStyle=cg; ctx.fill();
+  ctx.lineWidth=5; ctx.strokeStyle='#C79320'; ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx,cy,R-11,0,7); ctx.lineWidth=2.5;
+  ctx.strokeStyle='rgba(199,147,32,.55)'; ctx.stroke();
+
+  // ── 角色 ──
+  const m=opt.m;
+  ctx.save(); ctx.beginPath(); ctx.arc(cx,cy+(m.dy||0), m.dr,0,7); ctx.clip();
+  ctx.drawImage(mascot,
+    m.sx-m.sr, m.sy-m.sr, m.sr*2, m.sr*2,
+    cx-m.dr, cy+(m.dy||0)-m.dr, m.dr*2, m.dr*2);
+  ctx.restore();
+
+  // ── 光澤（最上層，弱一點）──
+  ctx.save(); ctx.beginPath(); ctx.ellipse(cx-56,cy-66,30,16,-0.6,0,7);
+  ctx.fillStyle='rgba(255,255,255,.35)'; ctx.fill(); ctx.restore();
+}
+
+async function main(){
+  const s5 = removeBg(await loadImg('s5-mascot.png'));
+  const mm = removeBg(await loadImg('m-mascot.png'));
+  const c1=document.getElementById('c1').getContext('2d');
+  const c2=document.getElementById('c2').getContext('2d');
+  drawBadge(c1, s5, { bg:'#F8F0DC', m:{ sx:223, sy:205, sr:120, dr:97, dy:2 } });
+  drawBadge(c2, mm, { bg:'#F8F0DC', m:{ sx:223, sy:215, sr:152, dr:99, dy:2 } });
+  for(const [id,name] of [['c1','s5-badge-draft.png'],['c2','m-badge-draft.png']]){
+    const blob = await new Promise(r=>document.getElementById(id).toBlob(r,'image/png'));
+    const rsp = await fetch('/'+name, {method:'PUT', body:blob});
+    log(await rsp.text());
+  }
+  log('done');
+}
+main().catch(e=>log('ERR '+e));
+</script>
