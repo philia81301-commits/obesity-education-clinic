@@ -61,5 +61,5 @@
 - 時間：2026-09-15（S1 衛教單：刪蘇打餅乾＋新增藥物機轉區塊）
 - 更新者：Claude Code（Fable 5.1）@ X108521（醫院）
 - Git push：✅ 已推（內容 commit `cdea0e8` 刪蘇打餅乾 → `c2c7b9a` 機轉區塊 → `e809f02` 刪收尾句，線上已生效；本收工 commit 隨後推）
-- L3 Obsidian：❌ 未更新——此電腦 vault 資料夾已出現，但 `專案工作流程.md` 是 OneDrive「僅線上」佔位檔，且 OneDrive 程式未執行（cloud file provider not running），讀不到。回家電腦時補：本日兩項微調＋「S1 only」決策
+- L3 Obsidian：✅ 已更新（含補記 8/27 那次）。踩坑：這台電腦的 vault 筆記是 OneDrive「僅線上」佔位檔，OneDrive.exe 主程式沒起來時讀不到；`Start-Process OneDrive.exe /background` 拉起後 `attrib -U +P` 釘選，約一分鐘可讀寫
 - 前一筆：2026-08-27 @ X108521 · S5／M 徽章補齊＋遊戲移到章首 · ✅ 已推（101ecad）· L3 未更新（當時此電腦無 vault 資料夾）
