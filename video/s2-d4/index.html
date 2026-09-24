@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<title>S2-D4 外食配餐公式（影片畫面）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@500;700;900&display=swap">
+<style>
+  /* v2.1 視覺定調：飲食烈橘／運動勝利綠／成就暖金；紅色只給紅旗，這支片不用 */
+  :root {
+    --ink: #21281F; --muted: #66705F; --paper: #FFFDF7;
+    --diet: #C2620A; --diet-soft: #FAD9B0;
+    --move: #0A8A4D; --move-soft: #CDEBD8;
+    --gold: #9A6B2A; --gold-soft: #EEDDB8;
+  }
+  html, body { margin: 0; background: #2b2b27; }
+  body.capture { background: var(--paper); }
+  #stage {
+    position: relative; width: 1080px; height: 1920px; overflow: hidden;
+    background: var(--paper); margin: 0 auto;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; color: var(--ink);
+    transform-origin: top center;
+  }
+  /* 底紋 F：能量斜紋，右上角淡出 */
+  #stage::before {
+    content: ""; position: absolute; inset: 0; opacity: .10;
+    background: repeating-linear-gradient(-58deg,
+      transparent 0 40px, var(--diet) 40px 52px,
+      transparent 52px 66px, #3563C9 66px 70px);
+    -webkit-mask-image: radial-gradient(130% 70% at 100% 0%, #000 0%, transparent 60%);
+            mask-image: radial-gradient(130% 70% at 100% 0%, #000 0%, transparent 60%);
+  }
+  .kai { font-family: "LXGW WenKai TC", "DFKai-SB", serif; }
+  .abs { position: absolute; }
+
+  #chip { left: 60px; top: 70px; padding: 12px 30px; border-radius: 99px;
+    background: #F5EDDD; color: var(--gold); font-size: 36px; font-weight: 700; letter-spacing: 2px; }
+  #title { left: 0; right: 0; text-align: center; font-weight: 700; white-space: nowrap; }
+  #tags { left: 0; right: 0; top: 900px; display: flex; justify-content: center; gap: 28px; }
+  .tag { padding: 14px 40px; border-radius: 99px; font-size: 52px; font-weight: 700;
+    background: #fff; border: 5px solid var(--diet); color: var(--diet); }
+  #mascot { width: 380px; height: 380px; border-radius: 60px; left: 350px; top: 1120px;
+    box-shadow: 0 16px 40px rgba(0,0,0,.12); }
+
+  #plate { left: 0; top: 0; width: 1080px; height: 1920px; }
+  .zlabel { font-weight: 900; }
+
+  /* 下方資訊卡：同一時間只亮一張 */
+  .card { left: 70px; right: 70px; top: 1260px; height: 250px; border-radius: 36px;
+    background: #fff; box-shadow: 0 10px 30px rgba(33,40,31,.12);
+    display: flex; align-items: center; justify-content: center; gap: 30px; text-align: center; }
+  .card .big { font-size: 60px; font-weight: 900; line-height: 1.2; }
+  .card .small { font-size: 40px; color: var(--muted); font-weight: 700; margin-top: 8px; }
+  .formula { display: flex; gap: 18px; }
+  .fcell { padding: 18px 26px; border-radius: 24px; font-size: 46px; font-weight: 900; }
+  .fcell b { font-family: "LXGW WenKai TC", serif; font-size: 62px; margin-left: 6px; }
+  .step { padding: 16px 30px; border-radius: 24px; font-size: 54px; font-weight: 900;
+    background: #F1F1E6; color: #B5B8AC; }
+  .arrow { font-size: 48px; color: #B5B8AC; font-weight: 900; }
+
+  #sub { left: 60px; right: 60px; top: 1580px; min-height: 200px;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    padding: 24px 40px; box-sizing: border-box; border-radius: 30px;
+    background: rgba(33,40,31,.9); color: #fff; font-size: 58px; font-weight: 700; line-height: 1.4; }
+  #foot { left: 0; right: 0; top: 1835px; text-align: center; font-size: 30px; color: var(--muted); letter-spacing: 2px; }
+
+  #hud { position: fixed; left: 10px; bottom: 10px; color: #fff; font: 14px monospace; }
+  body.capture #hud { display: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="chip" class="abs">第 2 關・減重期</div>
+  <div id="title" class="abs kai">外食配餐公式</div>
+  <div id="tags" class="abs"><span class="tag">自助餐</span><span class="tag">便當</span></div>
+
+  <svg id="plate" class="abs" viewBox="0 0 1080 1920">
+    <defs>
+      <!-- 蔬菜：青江菜葉 -->
+      <g id="leaf"><ellipse cx="0" cy="0" rx="28" ry="58" fill="#3FAE6E"/><ellipse cx="0" cy="22" rx="12" ry="34" fill="#E3F4E8"/><line x1="0" y1="-50" x2="0" y2="40" stroke="#0A8A4D" stroke-width="5"/></g>
+      <!-- 蔬菜：花椰菜 -->
+      <g id="broc"><rect x="-10" y="10" width="20" height="46" rx="8" fill="#7CBF7A"/><circle cx="-26" cy="0" r="28" fill="#0A8A4D"/><circle cx="26" cy="0" r="28" fill="#0A8A4D"/><circle cx="0" cy="-22" r="32" fill="#1E9E5E"/></g>
+      <!-- 蛋白質：荷包蛋、魚、豆腐 -->
+      <g id="egg"><ellipse cx="0" cy="0" rx="50" ry="38" fill="#fff" stroke="#E9D8BC" stroke-width="4"/><circle cx="6" cy="-2" r="18" fill="#F2B531"/></g>
+      <g id="fish"><polygon points="42,0 76,-26 76,26" fill="#C2620A"/><ellipse cx="0" cy="0" rx="56" ry="28" fill="#E08A3C"/><circle cx="-32" cy="-6" r="6" fill="#fff"/></g>
+      <g id="tofu"><rect x="-38" y="-30" width="76" height="60" rx="12" fill="#FFF7E3" stroke="#D9C39A" stroke-width="5"/></g>
+    </defs>
+
+    <!-- 盤子 -->
+    <g id="plateG">
+      <circle cx="540" cy="830" r="385" fill="#fff" stroke="#E4E1D3" stroke-width="10"/>
+      <circle cx="540" cy="830" r="345" fill="#FAF8F0"/>
+      <path id="zVeg"  fill="var(--move-soft)"/>
+      <path id="zPro"  fill="var(--diet-soft)"/>
+      <path id="zSta"  fill="var(--gold-soft)"/>
+      <g id="divider" stroke="#fff" stroke-width="10" stroke-linecap="round">
+        <line x1="540" y1="485" x2="540" y2="1175"/><line x1="540" y1="830" x2="885" y2="830"/>
+      </g>
+      <g id="guides" fill="none" stroke="#B5B8AC" stroke-width="6" stroke-dasharray="18 16">
+        <line x1="540" y1="485" x2="540" y2="1175"/><line x1="540" y1="830" x2="885" y2="830"/>
+      </g>
+
+      <g id="gVeg">
+        <use href="#broc" id="v1" x="0" y="0"/><use href="#leaf" id="v2"/><use href="#leaf" id="v3"/><use href="#broc" id="v4"/>
+        <text id="lVeg" class="zlabel" x="350" y="930" text-anchor="middle" fill="var(--move)" font-size="56">蔬菜 <tspan class="kai" font-size="80">½</tspan></text>
+      </g>
+      <g id="gPro">
+        <use href="#egg" id="p1"/><use href="#fish" id="p2"/><use href="#tofu" id="p3"/><use href="#egg" id="p4"/>
+        <text id="lPro" class="zlabel" x="700" y="800" text-anchor="middle" fill="var(--diet)" font-size="46">豆魚蛋肉 <tspan class="kai" font-size="68">¼</tspan></text>
+      </g>
+      <g id="gSta">
+        <g id="rice">
+          <path id="mound" d="M-100,0 Q-90,-110 0,-110 Q90,-110 100,0 Z"/>
+          <g id="grains"></g>
+        </g>
+        <text id="lSta" class="zlabel" x="690" y="1080" text-anchor="middle" fill="var(--gold)" font-size="46">主食 ≤<tspan class="kai" font-size="68">¼</tspan></text>
+        <g id="stamp" transform="translate(800 900) rotate(-12)">
+          <rect x="-92" y="-40" width="184" height="80" rx="14" fill="#fff" stroke="var(--gold)" stroke-width="6"/>
+          <text x="0" y="16" text-anchor="middle" font-size="44" font-weight="900" fill="var(--gold)">飯減半</text>
+        </g>
+      </g>
+
+      <!-- 夾菜順序徽章 -->
+      <g id="badges" font-weight="900" text-anchor="middle">
+        <g id="b1" transform="translate(200 520)"><circle r="66" fill="var(--move)"/><text y="22" font-size="60" fill="#fff">①菜</text></g>
+        <g id="b2" transform="translate(900 520)"><circle r="66" fill="var(--diet)"/><text y="22" font-size="60" fill="#fff">②肉</text></g>
+        <g id="b3" transform="translate(900 1150)"><circle r="66" fill="var(--gold)"/><text y="22" font-size="60" fill="#fff">③飯</text></g>
+      </g>
+    </g>
+  </svg>
+
+  <!-- 資訊卡 -->
+  <div id="cFormula" class="abs card"><div class="formula">
+    <div class="fcell" id="f1" style="background:var(--move-soft);color:var(--move)">蔬菜<b>½</b></div>
+    <div class="fcell" id="f2" style="background:var(--diet-soft);color:var(--diet)">豆魚蛋肉<b>¼</b></div>
+    <div class="fcell" id="f3" style="background:var(--gold-soft);color:var(--gold)">主食≤<b>¼</b></div>
+  </div></div>
+  <div id="cNoodle" class="abs card">
+    <svg width="170" height="170" viewBox="-85 -85 170 170">
+      <path d="M-70,-10 H70 Q66,60 0,66 Q-66,60 -70,-10 Z" fill="#F5EDDD" stroke="#9A6B2A" stroke-width="6"/>
+      <g fill="none" stroke="#D9A441" stroke-width="7" stroke-linecap="round">
+        <path d="M-50,-10 q10,-30 0,-60"/><path d="M-20,-10 q10,-30 0,-64"/><path d="M10,-10 q10,-30 0,-60"/><path d="M40,-10 q10,-30 0,-56"/>
+      </g>
+      <g stroke="#21281F" stroke-width="14" stroke-linecap="round"><line x1="-72" y1="-72" x2="72" y2="72"/><line x1="72" y1="-72" x2="-72" y2="72"/></g>
+    </svg>
+    <div><div class="big">不點麵</div><div class="small">吸湯又吸油，一碗很快吃完</div></div>
+  </div>
+  <div id="cBrown" class="abs card"><div>
+    <div class="big">在家自己煮</div>
+    <div class="big" style="color:var(--gold)">白飯 → 糙米</div>
+  </div></div>
+  <div id="cFill" class="abs card"><div>
+    <div class="small" style="margin:0 0 6px">少掉的主食</div>
+    <div class="big">用 <span style="color:var(--diet)">蛋白質</span> ＋ <span style="color:var(--move)">蔬菜</span> 補飽</div>
+  </div></div>
+  <div id="cOrder" class="abs card">
+    <span class="step" id="s1">①菜</span><span class="arrow">→</span>
+    <span class="step" id="s2">②肉</span><span class="arrow">→</span>
+    <span class="step" id="s3">③飯</span>
+  </div>
+  <div id="cOk" class="abs card"><div class="big"><span style="color:var(--move)">✔</span> 順序對了，份量自然對</div></div>
+
+  <img id="mascot" class="abs" src="assets/s2-mascot.png" alt="">
+  <div id="sub" class="abs"></div>
+  <div id="foot" class="abs">減重門診衛教｜GLP-1 旅程夥伴</div>
+</div>
+<div id="hud"></div>
+
+<script>
+// ====== 旁白逐字稿（與 逐字稿.md 同步；來源 S2-D4／S2-D2 已審定病人版） ======
+const LINES = [
+  '外食族看過來：自助餐、便當，到底怎麼夾才對？',
+  '記住一個餐盤公式就好。',
+  '第一，盤子的一半，放蔬菜。',
+  '第二，四分之一，放豆魚蛋肉，也就是蛋白質。',
+  '第三，主食最多四分之一，而且飯要減半。',
+  '麵最好不要點——麵吸湯又吸油，一碗很容易就吃完。',
+  '在家自己煮，可以把白飯換成糙米。',
+  '主食少掉的份量，可以用蛋白質和蔬菜補飽。',
+  '夾的順序也很重要：先夾菜，再夾肉，最後才添飯。',
+  '順序對了，份量自然就對。',
+  '自助餐、便當，都用同一個公式。',
+];
+const TAIL = 2.5;   // 最後一句講完後停留秒數
+
+// 時間軸：有醫師錄音時由 timing.json 覆蓋（每句 [開始, 結束] 秒）；沒有就用字數估算
+function estimateTiming() {
+  let t = 0.6; const out = [];
+  for (const s of LINES) { const d = s.length * 0.27 + 0.3; out.push([t, t + d]); t += d + 0.9; }
+  return out;
+}
+let SEG = estimateTiming();
+function setTiming(arr) { SEG = arr; }
+function totalDuration() { return SEG[SEG.length - 1][1] + TAIL; }
+
+// ====== 小工具 ======
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const easeOut = x => 1 - Math.pow(1 - x, 3);
+const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const back = x => { const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const lerp = (a, b, k) => a + (b - a) * k;
+function mix(c1, c2, k) {
+  const p = c => [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16));
+  const a = p(c1), b = p(c2);
+  return '#' + a.map((v, i) => Math.round(lerp(v, b[i], k)).toString(16).padStart(2, '0')).join('');
+}
+// 第 i 句（0 起算）的場景進度：場景＝這句開始到下一句開始
+function P(t, i, a = 0, b = 1) {
+  const s = SEG[i][0], e = i + 1 < SEG.length ? SEG[i + 1][0] : SEG[i][1] + TAIL;
+  const d = e - s;
+  return clamp((t - s - a * d) / ((b - a) * d));
+}
+function wedge(cx, cy, r, a0, a1) {
+  if (a1 - a0 < 0.01) return '';
+  const pt = a => { const rad = (a - 90) * Math.PI / 180; return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)]; };
+  const [x0, y0] = pt(a0), [x1, y1] = pt(a1);
+  return `M${cx},${cy} L${x0},${y0} A${r},${r} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1},${y1} Z`;
+}
+function place(el, x, y, s, rot = 0, op = 1) {
+  el.setAttribute('transform', `translate(${x} ${y}) rotate(${rot}) scale(${Math.max(s, 0.0001)})`);
+  el.style.opacity = op;
+}
+function show(el, k, dy = 30) {  // HTML 元素淡入＋上浮
+  el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * dy}px)`;
+  el.style.visibility = k <= 0.001 ? 'hidden' : 'visible';
+}
+
+// 米粒（固定亂數，每次畫面一樣）
+(function makeGrains() {
+  let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  let html = '';
+  for (let i = 0; i < 26; i++) {
+    const x = (rnd() - .5) * 160, y = -rnd() * 90 - 8;
+    if (Math.abs(x) > 95 - (-y) * 0.3) continue;
+    html += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="9" ry="5" transform="rotate(${(rnd() * 180).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`;
+  }
+  $('grains').innerHTML = html;
+})();
+
+// ====== 每一格畫面 ======
+function render(t) {
+  // --- 開場：標題置中 → 移到上方 ---
+  const up = easeInOut(P(t, 1, 0, 0.35));
+  const title = $('title');
+  title.style.top = lerp(620, 150, up) + 'px';
+  title.style.fontSize = lerp(128, 92, up) + 'px';
+  title.style.opacity = easeOut(clamp(t / 0.5));
+  const tagIn = back(clamp((t - 0.5) / 0.5)), tagOut = 1 - P(t, 1, 0, 0.25);
+  show($('tags'), clamp(Math.min(tagIn, tagOut)));
+  $('tags').style.transform = `scale(${lerp(0.6, 1, clamp(tagIn))})`;
+  // 吉祥物：開場出現，結尾回來
+  const mIn = back(clamp((t - 0.8) / 0.6)) * (1 - P(t, 1, 0, 0.25));
+  const mEnd = back(P(t, 10, 0.25, 0.5));
+  const m = $('mascot');
+  if (t < SEG[10][0]) {
+    m.style.left = '350px'; m.style.top = '1120px'; m.style.width = m.style.height = '380px';
+    m.style.opacity = clamp(mIn); m.style.transform = `scale(${Math.max(mIn, 0.001)})`;
+  } else {
+    m.style.left = '840px'; m.style.top = '40px'; m.style.width = m.style.height = '190px';
+    m.style.opacity = clamp(mEnd); m.style.transform = `scale(${Math.max(mEnd, 0.001)}) rotate(${6 * Math.sin(t * 3)}deg)`;
+  }
+
+  // --- 盤子出現 ---
+  const pIn = back(P(t, 1, 0.2, 0.6));
+  const pg = $('plateG');
+  pg.setAttribute('transform', `translate(540 830) scale(${Math.max(pIn, 0.0001)}) translate(-540 -830)`);
+  pg.style.opacity = clamp(P(t, 1, 0.2, 0.4));
+  $('guides').style.opacity = clamp(P(t, 1, 0.5, 0.75)) * (1 - P(t, 4, 0.2, 0.4));
+
+  // --- 三區填色：第 3/4/5 句各填一區；第 9 句清空後依序 ①菜 ②肉 ③飯 重填 ---
+  const reset = P(t, 8, 0.02, 0.12);
+  const refill = [P(t, 8, 0.36, 0.52), P(t, 8, 0.56, 0.72), P(t, 8, 0.76, 0.92)];
+  const first = [P(t, 2, 0.05, 0.45), P(t, 3, 0.05, 0.4), P(t, 4, 0.05, 0.35)];
+  const fill = [0, 1, 2].map(k => {
+    if (t < SEG[8][0]) return easeInOut(first[k]);
+    return reset < 1 ? 1 - reset : easeInOut(refill[k]);
+  });
+  $('zVeg').setAttribute('d', wedge(540, 830, 345, 180, 180 + 180 * fill[0]));
+  $('zPro').setAttribute('d', wedge(540, 830, 345, 0, 90 * fill[1]));
+  $('zSta').setAttribute('d', wedge(540, 830, 345, 90, 90 + 90 * fill[2]));
+  $('divider').style.opacity = clamp(Math.max(fill[0], fill[1], fill[2]) * 3) * clamp(P(t, 2, 0, 0.1) * 10);
+
+  // 圖示：填色過半後彈出（pop 0→1）
+  const pop = (k, delay) => back(clamp((fill[k] - 0.4 - delay) / 0.35));
+  const extra = back(P(t, 7, 0.15, 0.4)) * (t < SEG[8][0] ? 1 : 1 - reset);   // 第 8 句：多一份菜、多一份蛋白質
+  place($('v1'), 330, 660, pop(0, 0));
+  place($('v2'), 235, 790, pop(0, .08), -18);
+  place($('v3'), 430, 745, pop(0, .16), 14);
+  place($('v4'), 330, 1030, extra * 0.85);
+  place($('p1'), 630, 620, pop(1, 0));
+  place($('p2'), 760, 690, pop(1, .08), -20);
+  place($('p3'), 812, 600, pop(1, .16), 8);
+  place($('p4'), 610, 725, extra * 0.8);
+  $('lVeg').style.opacity = clamp(pop(0, .1));
+  $('lPro').style.opacity = clamp(pop(1, .1));
+  $('lSta').style.opacity = clamp(pop(2, .1));
+
+  // 白飯：第 5 句縮成一半；第 7 句變糙米；第 9 句重填時回白飯
+  const half = easeInOut(P(t, 4, 0.55, 0.8));
+  const brown = t < SEG[8][0] ? easeInOut(P(t, 6, 0.15, 0.45)) : 0;
+  const riceS = pop(2, 0) * lerp(1.1, 0.62, half);
+  place($('rice'), 668, 995, riceS);
+  $('mound').setAttribute('fill', mix('#FFFFFF', '#D8B98A', brown));
+  $('mound').setAttribute('stroke', mix('#B89B66', '#8A5A2B', brown));
+  $('mound').setAttribute('stroke-width', 7);
+  $('grains').setAttribute('fill', mix('#D9CCB0', '#7A4E22', brown));
+  const stampK = back(P(t, 4, 0.6, 0.78)) * (t < SEG[8][0] ? 1 : 1 - reset);
+  $('stamp').setAttribute('transform', `translate(800 915) rotate(-12) scale(${Math.max(stampK * 0.85, 0.0001)})`);
+
+  // 順序徽章（第 9 句）
+  const bk = [0, 1, 2].map(k => back(clamp(refill[k] * 2.2)) * (1 - P(t, 9, 0.6, 0.85)));
+  ['b1', 'b2', 'b3'].forEach((id, k) => {
+    const g = $(id), [x, y] = [[200, 520], [900, 520], [900, 1150]][k];
+    g.setAttribute('transform', `translate(${x} ${y}) scale(${Math.max(bk[k], 0.0001)})`);
+  });
+
+  // --- 下方資訊卡 ---
+  const win = (i0, i1, fadeOut = true) => {       // 從第 i0 句開始到第 i1 句開始前
+    const a = P(t, i0, 0, 0.12);
+    const b = fadeOut ? 1 - (i1 < SEG.length ? P(t, i1 - 1, 0.9, 1) : 0) : 1;
+    return t < SEG[i0][0] ? 0 : easeOut(Math.min(a, b));
+  };
+  show($('cFormula'), Math.max(win(2, 5), t >= SEG[10][0] ? easeOut(P(t, 10, 0, 0.15)) : 0));
+  const fk = [first[0], first[1], first[2]].map(x => clamp(x * 2.5));
+  const endAll = t >= SEG[10][0] ? 1 : 0;
+  ['f1', 'f2', 'f3'].forEach((id, k) => {
+    const v = Math.max(back(fk[k]), endAll);
+    $(id).style.opacity = clamp(v); $(id).style.transform = `scale(${lerp(.6, 1, clamp(v))})`;
+  });
+  show($('cNoodle'), win(5, 6));
+  show($('cBrown'), win(6, 7));
+  show($('cFill'), win(7, 8));
+  show($('cOrder'), win(8, 9));
+  ['s1', 's2', 's3'].forEach((id, k) => {
+    const on = refill[k] > 0.05;
+    const col = ['var(--move)', 'var(--diet)', 'var(--gold)'][k];
+    $(id).style.background = on ? col : '#F1F1E6';
+    $(id).style.color = on ? '#fff' : '#B5B8AC';
+  });
+  show($('cOk'), win(9, 10));
+
+  // --- 字幕：這句開始到下一句開始 ---
+  let cur = -1;
+  for (let i = 0; i < SEG.length; i++) if (t >= SEG[i][0] - 0.05) cur = i;
+  const sub = $('sub');
+  if (cur >= 0 && t < SEG[cur][1] + (cur + 1 < SEG.length ? (SEG[cur + 1][0] - SEG[cur][1]) : TAIL)) {
+    if (sub.dataset.i != cur) { sub.textContent = LINES[cur]; sub.dataset.i = cur; }
+    sub.style.opacity = 1;
+  } else sub.style.opacity = 0;
+  if (cur === SEG.length - 1 && t > SEG[cur][1] + 0.6) sub.style.opacity = 0;
+}
+
+// ====== 預覽模式（瀏覽器直接打開）：即時播放，點畫面重播 ======
+const params = new URLSearchParams(location.search);
+if (params.has('capture')) {
+  document.body.classList.add('capture');
+} else {
+  const fit = () => { const k = Math.min(1, (innerHeight - 10) / 1920); $('stage').style.transform = `scale(${k})`; };
+  addEventListener('resize', fit); fit();
+  let t0 = performance.now(), audio = null;
+  fetch('timing.json').then(r => r.ok ? r.json() : null).then(j => {
+    if (!j) return;
+    setTiming(j.segments);
+    if (j.audio) { audio = new Audio(j.audio); }
+    restart();
+  }).catch(() => {});
+  function restart() { t0 = performance.now(); if (audio) { audio.currentTime = 0; audio.play().catch(() => {}); } }
+  document.addEventListener('click', restart);
+  (function loop() {
+    let t = audio && !audio.paused ? audio.currentTime : (performance.now() - t0) / 1000;
+    if (t > totalDuration() + 1) restart();
+    render(t);
+    $('hud').textContent = t.toFixed(2) + ' / ' + totalDuration().toFixed(2) + ' s（點畫面重播）';
+    requestAnimationFrame(loop);
+  })();
+}
+render(0);
+</script>
+</body>
+</html>

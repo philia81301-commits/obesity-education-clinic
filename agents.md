@@ -32,6 +32,9 @@
 - [ ] **維護期：內容微調**（依醫師逐句指示；改字要同步 content／design 來源再 build）
   - [x] 2026-09-15 S1 噁心處理刪「蘇打餅乾」（content＋衛教單四處同步）
   - [x] 2026-09-15 S1 衛教單「飲食」前新增「藥在你身體裡做什麼」機轉區塊（**只加 S1**，其他五張不加）
+- [ ] **階段五：模組衛教短片**（一模組一支、直式、醫師本人配音；規格見 `rdq/RDQ-spec-s2d4-video-pilot-20260924.md`）
+  - [x] 2026-09-24 S2-D4 外食配餐公式試作完成（71.8 秒），醫師核可為樣板
+  - [ ] 其他模組批量製作；16:9 候診室版；決定上網站／YouTube 的方式
 
 ## 資料夾結構
 ```
@@ -56,6 +59,11 @@ obesity-education-clinic/
 ├── docs/              # GitHub Pages 網站（build-site.js 產生，勿手改；含 assets/quiz/）
 ├── tools/
 │   └── build-site.js  # content/*.md → docs/；改內容後重跑再 commit；QUIZ 常數＝小遊戲題庫
+├── video/             # 衛教短片（流程見 handoff.md「影片製作」）
+│   ├── align.py       # 錄音 → faster-whisper 逐字對齊 → timing.json＋降噪旁白
+│   ├── render.mjs     # Edge 逐格截圖 → ffmpeg 輸出 mp4
+│   ├── snap.mjs       # 每句一格的關鍵畫面總表（檢查版面用）
+│   └── <模組>/        # index.html 動畫、逐字稿.md、提詞.html、timing.json（audio/、out/ 不進 git）
 ├── .claude/
 │   └── launch.json    # 本地預覽伺服器設定（http-server docs -p 8087）
 └── rdq/

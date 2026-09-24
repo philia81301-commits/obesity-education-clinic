@@ -8,3 +8,8 @@ credentials.*
 *.xlsx
 *.csv
 *.docx
+
+# 衛教影片：工具套件、醫師錄音、輸出影片不進 repo（公開 repo）
+video/node_modules/
+video/*/audio/
+video/*/out/

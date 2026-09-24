@@ -12,6 +12,21 @@
 2. **S1 衛教單「飲食」前新增區塊「藥在你身體裡做什麼」**（`.blk.b-how`，沿用藥物藍 `--rx-soft`，靶心 icon）。兩條：①胃排空變慢＋腦部食慾中樞把「想吃」訊號調小；②前幾週低劑量暖身、體重沒明顯動是正常的。**只加在 S1，其他五張不加（醫師明確指示）。** 醫師刪掉了原本的收尾句「所以吃得少是藥在做的事，不是你在硬撐」。
 3. 版面實測：整頁 297 mm、底部 spacer 仍剩約 23 mm，一頁 A4 印得下。
 
+2026-09-24 本日完成（衛教短片試作，**醫師核可為樣板**）：
+
+- **S2-D4 外食配餐公式**直式短片：1080×1920、71.8 秒、醫師本人配音、字幕燒入。先跑 RDQ（規格卡 `rdq/RDQ-spec-s2d4-video-pilot-20260924.md`，已 confirmed）
+- 第 8 句醫師念成「**可以**用蛋白質和蔬菜補飽」，字幕與逐字稿已跟著改
+- 成品 mp4 與錄音在本機 `video/s2-d4/out/`、`audio/`，**不進 git**（公開 repo）；要換電腦用得先另外搬
+
+## 🎬 影片製作（做下一支照這個）
+
+1. 複製 `video/s2-d4/` 當底稿，改 `逐字稿.md`、`提詞.html`、`index.html` 的 `LINES` 與場景（三處句子要一致）
+2. 開提詞頁，用這台電腦的 **Logi USB Headset** 錄 120 秒（ffmpeg dshow）。**響「叮」之後醫師才開口**，錄音檔存成 `audio/narration-raw.wav`
+3. `python video/align.py <模組>` → 輸出每句的吻合率，要 100%；辨識原文在 `audio/transcript.txt`
+4. `node video/snap.mjs <模組> <png>` 看版面 → `node video/render.mjs <模組>` 輸出（約 5 分鐘）
+- 踩坑：npm 預設擋掉 ffmpeg-static 的安裝腳本（`npm approve-scripts ffmpeg-static` 後再 `npm rebuild`）；醫師錄音時手邊一定要有提詞畫面（第一次沒開，整段作廢）；錄音 73 秒後有環境嗡嗡聲，align 會自動裁掉；光靠停頓切不開句子（第 4／5 句只停 0.4 秒），所以一定要用 whisper 對齊
+- 新電腦要先裝：`cd video; npm i`、`pip install faster-whisper`（第一次跑會下載 small 模型，約 500 MB）
+
 ## 🚦 目前狀態
 
 - **網站產生方式**：`docs/` 由 `tools/build-site.js` 從 `content/*.md` 自動產生（零相依 Node 腳本）。**改完 content 或 design 衛教單，都要重跑 `node tools/build-site.js` 再 commit**，否則線上不會變
@@ -24,6 +39,7 @@
 
 ## ➡️ 下一步
 
+0. 衛教短片：挑下一個模組批量做；決定 16:9 候診室版、上網站／YouTube 的方式（公開前：不用商品名、不寫療效保證，法規面先問院方）
 1. **8 月底個案檔上傳後跑月度分析**——更新 M 冊 50 歲分組數字；**11 歲個案改另列**（`subgroup_female_age.js` 需加年齡下限與兒少另列邏輯）
 2. 可選：向台灣更年期醫學會索取《2025 台灣更年期婦女健康管理及藥物治療建議》全文，補強 M 冊出處
 3. 可選：`衛教圖示-少吃多動不夠的生化解釋` 的 **v3 圖檔仍含舊的「BMR 10–40%」數字**（筆記文字已勘誤），下次重做圖時出 v4
@@ -58,8 +74,8 @@
 
 ## 🕐 最後更新
 
-- 時間：2026-09-15（S1 衛教單：刪蘇打餅乾＋新增藥物機轉區塊）
-- 更新者：Claude Code（Fable 5.1）@ X108521（醫院）
-- Git push：✅ 已推（內容 commit `cdea0e8` 刪蘇打餅乾 → `c2c7b9a` 機轉區塊 → `e809f02` 刪收尾句，線上已生效；本收工 commit 隨後推）
-- L3 Obsidian：✅ 已更新（含補記 8/27 那次）。踩坑：這台電腦的 vault 筆記是 OneDrive「僅線上」佔位檔，OneDrive.exe 主程式沒起來時讀不到；`Start-Process OneDrive.exe /background` 拉起後 `attrib -U +P` 釘選，約一分鐘可讀寫
+- 時間：2026-09-24（S2-D4 衛教短片試作，核可為樣板）
+- 更新者：Claude Code（Opus 5.5）
+- Git：本次只有本機 commit，**尚未 push**；L3 Obsidian 未更新
+- 前一筆：2026-09-15 @ X108521 · S1 衛教單刪蘇打餅乾＋新增藥物機轉區塊 · ✅ 已推 · L3 ✅。踩坑：這台電腦的 vault 筆記是 OneDrive「僅線上」佔位檔，OneDrive.exe 主程式沒起來時讀不到；`Start-Process OneDrive.exe /background` 拉起後 `attrib -U +P` 釘選，約一分鐘可讀寫
 - 前一筆：2026-08-27 @ X108521 · S5／M 徽章補齊＋遊戲移到章首 · ✅ 已推（101ecad）· L3 未更新（當時此電腦無 vault 資料夾）
