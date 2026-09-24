@@ -76,6 +76,6 @@
 
 - 時間：2026-09-24（S2-D4 衛教短片試作，核可為樣板）
 - 更新者：Claude Code（Opus 5.5）
-- Git：本次只有本機 commit，**尚未 push**；L3 Obsidian 未更新
+- Git push：✅ 已推（`76509fa`）；L3 Obsidian 未更新
 - 前一筆：2026-09-15 @ X108521 · S1 衛教單刪蘇打餅乾＋新增藥物機轉區塊 · ✅ 已推 · L3 ✅。踩坑：這台電腦的 vault 筆記是 OneDrive「僅線上」佔位檔，OneDrive.exe 主程式沒起來時讀不到；`Start-Process OneDrive.exe /background` 拉起後 `attrib -U +P` 釘選，約一分鐘可讀寫
 - 前一筆：2026-08-27 @ X108521 · S5／M 徽章補齊＋遊戲移到章首 · ✅ 已推（101ecad）· L3 未更新（當時此電腦無 vault 資料夾）
