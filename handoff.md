@@ -15,6 +15,13 @@
 
 前次（2026-09-15）：S1 噁心處理刪「蘇打餅乾」、S1 衛教單新增「藥在你身體裡做什麼」（只加 S1）——細節見 Obsidian。
 
+## 📊 首頁「門診成績單影片」（2026-10-31 上線）
+
+- 16:9、72 秒、無配音（旁白燒在畫面字幕）。內容取自減重門診月報，講師用醫師可愛風貼圖；**不出現商品名**，費用只呈現初診問卷「可接受月預算」分布
+- 採 handoff 原訂**選項 A**：`design/assets-video/scorecard.mp4`＋`scorecard-poster.jpg` → build 時複製到 `docs/assets/video/`，首頁 hero 下方播放
+- **每月更新**：用 Claude 技能 `weight-clinic-scorecard-video` 產新片（產生器 `make_video.py` 與每月數據 JSON 在 Google Drive「減重門診分析／成績單影片工具」），覆蓋同名 mp4、改 `tools/build-site.js` 的 `VIDEO.month`，再 build＋commit
+- 每月 ~4 MB 進 git 歷史；支數變多或 repo 變大時改走選項 B（YouTube 嵌入）
+
 ## 🎬 影片製作（做下一支照這個）
 
 1. 複製 `video/s2-d4/` 當底稿，改 `逐字稿.md`、`提詞.html`、`index.html` 的 `LINES` 與場景（三處句子要一致）
@@ -70,6 +77,11 @@
 - 做完**加進 `tools/build-site.js` 的 `SHEETS` 陣列**再跑 build
 
 ## 🕐 最後更新
+
+- 時間：2026-10-31（首頁加入「門診成績單影片」；順帶 build 出上次未 build 的 M 冊 2026-10 數據）
+- 更新者：Claude（Opus 5.5）@ 雲端 session
+- Git push：見本次 commit；L3 Obsidian 未更新（雲端 session 無 vault）
+- 前一筆（以下）：
 
 - 時間：2026-09-24（S2-D4 衛教短片試作，核可為樣板）
 - 更新者：Claude Code（Opus 5.5）@ X108521（醫院）

@@ -310,6 +310,13 @@ a{color:var(--rx)}
 .card.sheet::after{background:var(--diet)}
 .card.sheet .lv{color:var(--diet)}
 
+/* 門診成績單影片（16:9，首頁） */
+.vid{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:6px}
+.vid video{display:block;width:100%;aspect-ratio:16/9;border-radius:9px;background:#F3F1EA}
+.vid .cap{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin:12px 4px 2px}
+.vid h3{margin:0;font-size:19px;font-family:"LXGW WenKai TC",serif}
+.vid p{margin:0;font-size:14px;color:var(--muted);line-height:1.68}
+
 /* 內文 */
 article{background:#fff;border:1px solid var(--line);border-radius:14px;
   padding:34px 40px 44px;margin:26px 0 40px}
@@ -624,6 +631,23 @@ if (fs.existsSync(QUIZ_ASSETS)) {
   }
 }
 
+// 門診成績單影片：design/assets-video/ → docs/assets/video/（mp4 每月覆蓋同名檔；月份文字改 VIDEO 常數）
+const VIDEO_ASSETS = path.join(ROOT, 'design', 'assets-video');
+const VIDEO = {
+  file: 'scorecard.mp4', poster: 'scorecard-poster.jpg',
+  title: '減重門診成績單', month: '民國115年10月',
+  desc: '想試試減重門診嗎？潘湘如醫師帶你看門診夥伴的真實數據：大家的體重狀況、常合併的健康問題、選擇的治療方式、三個月左右的減重成效，以及每月預算參考。約 1 分鐘，無聲也看得懂。',
+};
+let hasVideo = false;
+if (fs.existsSync(path.join(VIDEO_ASSETS, VIDEO.file))) {
+  const outDir = path.join(DOCS, 'assets', 'video');
+  fs.mkdirSync(outDir, { recursive: true });
+  for (const f of [VIDEO.file, VIDEO.poster]) {
+    if (fs.existsSync(path.join(VIDEO_ASSETS, f))) fs.copyFileSync(path.join(VIDEO_ASSETS, f), path.join(outDir, f));
+  }
+  hasVideo = true;
+}
+
 let built = 0;
 for (const b of [...BOOKS, ...REFS]) {
   const src = path.join(CONTENT, b.md);
@@ -681,6 +705,16 @@ const home = page({
     <h1>打針之後，怎麼吃、怎麼動</h1>
     <p>GLP-1 RA／GIP 週製劑（週纖達、猛健樂）減重治療的分階段衛教。依治療旅程分五關，加一冊更年期女性專項與兩份共用採買清單；每個模組都有病人版、醫師備註與依據出處。每一關讀完都有五題小遊戲，全對就能收集通關徽章 🏅。</p>
   </div>
+
+  ${hasVideo ? `<div class="sec">門診成績單影片</div>
+  <div class="vid">
+    <video controls playsinline preload="metadata" poster="assets/video/${VIDEO.poster}">
+      <source src="assets/video/${VIDEO.file}" type="video/mp4">
+      您的瀏覽器無法播放影片，<a href="assets/video/${VIDEO.file}">按這裡下載觀看</a>。
+    </video>
+    <div class="cap"><h3>${VIDEO.title}</h3><p>${VIDEO.month} 數據更新</p></div>
+    <p style="margin:2px 4px 4px">${VIDEO.desc}</p>
+  </div>` : ''}
 
   <div class="sec">治療旅程五關</div>
   <div class="cards">
