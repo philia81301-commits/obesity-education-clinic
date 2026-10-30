@@ -1,6 +1,6 @@
 # 門診成績單影片（16:9 首頁版）——工作說明與待辦
 
-> 2026-10-31 在醫師**個人** Claude 帳號完成第一版並上線首頁。之後改由**院內 Claude Team 帳號**接手，個人帳號的記憶與技能卡不會跟過去，以本檔為準。
+> 2026-10-31 在醫師個人 Claude 帳號完成第一版並上線首頁，之後改由院內 Claude Team 帳號接手。兩個帳號都用醫師個人 Gmail 登入、Google Drive 相同，差別只在費用；以本檔為準。
 
 ## 現況
 
@@ -17,7 +17,7 @@
 | 貼圖原檔 | Google Drive 根目錄：`sticker_bravo_transparent.png`、`sticker_whoop_*.png`、`bravo_早安_*.png`（醫師帳號 philia81301@gmail.com） |
 | 月報來源 | Drive「減重門診分析／減重門診分析產出_YYYY_MM」內的 Google Doc「減重門診評估報告與規劃策略計畫書_YYYY_MM」 |
 
-⚠️ 院內帳號若沒有接這個 Google Drive，請醫師把三張貼圖與最新 data JSON 直接上傳到對話。
+院內帳號同樣用 philia81301@gmail.com 登入，Drive 上的貼圖、data JSON、月報都直接讀得到。
 
 ## 每月更新流程
 
