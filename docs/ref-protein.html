@@ -58,8 +58,12 @@ a{color:var(--rx)}
 .card.sheet::after{background:var(--diet)}
 .card.sheet .lv{color:var(--diet)}
 
-/* 門診成績單影片（16:9，首頁） */
-.vid{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:6px}
+/* 首頁影片區（16:9）：健康旅程攻略＋門診成績單，寬螢幕並排、手機上下排 */
+.vids{display:grid;gap:16px;grid-template-columns:1fr;margin-bottom:6px}
+@media (min-width:860px){.vids{grid-template-columns:1fr 1fr}}
+.vid{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}
+.vid .who{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--move);
+  background:#DCF3E5;border-radius:99px;padding:2px 11px;margin:0 0 10px 2px}
 .vid video{display:block;width:100%;aspect-ratio:16/9;border-radius:9px;background:#F3F1EA}
 .vid .cap{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin:12px 4px 2px}
 .vid h3{margin:0;font-size:19px;font-family:"LXGW WenKai TC",serif}

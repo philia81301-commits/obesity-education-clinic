@@ -310,8 +310,12 @@ a{color:var(--rx)}
 .card.sheet::after{background:var(--diet)}
 .card.sheet .lv{color:var(--diet)}
 
-/* 門診成績單影片（16:9，首頁） */
-.vid{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:6px}
+/* 首頁影片區（16:9）：健康旅程攻略＋門診成績單，寬螢幕並排、手機上下排 */
+.vids{display:grid;gap:16px;grid-template-columns:1fr;margin-bottom:6px}
+@media (min-width:860px){.vids{grid-template-columns:1fr 1fr}}
+.vid{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}
+.vid .who{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--move);
+  background:#DCF3E5;border-radius:99px;padding:2px 11px;margin:0 0 10px 2px}
 .vid video{display:block;width:100%;aspect-ratio:16/9;border-radius:9px;background:#F3F1EA}
 .vid .cap{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin:12px 4px 2px}
 .vid h3{margin:0;font-size:19px;font-family:"LXGW WenKai TC",serif}
@@ -638,15 +642,33 @@ const VIDEO = {
   title: '減重門診成績單', month: '民國115年10月',
   desc: '想試試減重門診嗎？潘湘如醫師帶你看門診夥伴的真實數據：大家的體重狀況、常合併的健康問題、選擇的治療方式、三個月左右的減重成效，以及每月預算參考。約 1 分鐘，無聲也看得懂。',
 };
-let hasVideo = false;
-if (fs.existsSync(path.join(VIDEO_ASSETS, VIDEO.file))) {
+// 健康旅程攻略：候診區循環衛教片（減重／營養／運動／好習慣，固定內容，不需每月更新）
+const GUIDE = {
+  file: 'journey-guide.mp4', poster: 'journey-guide-poster.jpg',
+  title: '健康旅程攻略', len: '4 分 31 秒',
+  who: '正在治療的你',
+  desc: '減重五關怎麼走、每餐先吃蛋白質、外食怎麼選、走路 30 分鐘可以拆三次、把目標變成打勾——還有哪些症狀不要等回診。候診區也在播，無聲也看得懂。',
+};
+function copyVideo(v) {
+  if (!fs.existsSync(path.join(VIDEO_ASSETS, v.file))) return false;
   const outDir = path.join(DOCS, 'assets', 'video');
   fs.mkdirSync(outDir, { recursive: true });
-  for (const f of [VIDEO.file, VIDEO.poster]) {
+  for (const f of [v.file, v.poster]) {
     if (fs.existsSync(path.join(VIDEO_ASSETS, f))) fs.copyFileSync(path.join(VIDEO_ASSETS, f), path.join(outDir, f));
   }
-  hasVideo = true;
+  return true;
 }
+const hasVideo = copyVideo(VIDEO);
+const hasGuide = copyVideo(GUIDE);
+const vidCard = (v, who, meta) => `<div class="vid">
+    <span class="who">${who}</span>
+    <video controls playsinline preload="metadata" poster="assets/video/${v.poster}">
+      <source src="assets/video/${v.file}" type="video/mp4">
+      您的瀏覽器無法播放影片，<a href="assets/video/${v.file}">按這裡下載觀看</a>。
+    </video>
+    <div class="cap"><h3>${v.title}</h3><p>${meta}</p></div>
+    <p style="margin:2px 4px 4px">${v.desc}</p>
+  </div>`;
 
 let built = 0;
 for (const b of [...BOOKS, ...REFS]) {
@@ -706,14 +728,10 @@ const home = page({
     <p>GLP-1 RA／GIP 週製劑（週纖達、猛健樂）減重治療的分階段衛教。依治療旅程分五關，加一冊更年期女性專項與兩份共用採買清單；每個模組都有病人版、醫師備註與依據出處。每一關讀完都有五題小遊戲，全對就能收集通關徽章 🏅。</p>
   </div>
 
-  ${hasVideo ? `<div class="sec">門診成績單影片</div>
-  <div class="vid">
-    <video controls playsinline preload="metadata" poster="assets/video/${VIDEO.poster}">
-      <source src="assets/video/${VIDEO.file}" type="video/mp4">
-      您的瀏覽器無法播放影片，<a href="assets/video/${VIDEO.file}">按這裡下載觀看</a>。
-    </video>
-    <div class="cap"><h3>${VIDEO.title}</h3><p>${VIDEO.month} 數據更新</p></div>
-    <p style="margin:2px 4px 4px">${VIDEO.desc}</p>
+  ${hasGuide || hasVideo ? `<div class="sec">影片：先看這裡</div>
+  <div class="vids">
+    ${hasGuide ? vidCard(GUIDE, '▶ ' + GUIDE.who, GUIDE.len) : ''}
+    ${hasVideo ? vidCard(VIDEO, '▶ 考慮加入的你', `約 1 分鐘・${VIDEO.month} 數據更新`) : ''}
   </div>` : ''}
 
   <div class="sec">治療旅程五關</div>
