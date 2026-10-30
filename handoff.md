@@ -21,6 +21,7 @@
 - 採 handoff 原訂**選項 A**：`design/assets-video/scorecard.mp4`＋`scorecard-poster.jpg` → build 時複製到 `docs/assets/video/`，首頁 hero 下方播放
 - **每月更新**：用 Claude 技能 `weight-clinic-scorecard-video` 產新片（產生器 `make_video.py` 與每月數據 JSON 在 Google Drive「減重門診分析／成績單影片工具」），覆蓋同名 mp4、改 `tools/build-site.js` 的 `VIDEO.month`，再 build＋commit
 - 每月 ~4 MB 進 git 歷史；支數變多或 repo 變大時改走選項 B（YouTube 嵌入）
+- 產生器與完整說明：`video/scorecard/`（`make_video.py`＋`README.md`）
 
 ## 🎞️ 首頁「健康旅程攻略」影片（2026-10-31 上線）
 
@@ -50,6 +51,7 @@
 
 ## ➡️ 下一步
 
+00. **（轉院內 Claude Team 帳號後先做）門診成績單影片**：完整流程、Drive 位置與三項待醫師決定（YouTube 與否、院方確認公開統計、配音）都在 `video/scorecard/README.md`——個人帳號的記憶與技能卡不會跟過去，以該檔為準
 0. 衛教短片：等醫師挑下一個模組（先寫逐字稿給醫師審，再錄音）；16:9 候診室版與上網站方式都等醫師決定（公開前：不用商品名、不寫療效保證，法規面先問院方）
 1. **8 月底個案檔上傳後跑月度分析**——更新 M 冊 50 歲分組數字；**11 歲個案改另列**（`subgroup_female_age.js` 需加年齡下限與兒少另列邏輯）
 2. 可選：向台灣更年期醫學會索取《2025 台灣更年期婦女健康管理及藥物治療建議》全文，補強 M 冊出處
