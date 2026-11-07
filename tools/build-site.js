@@ -645,9 +645,9 @@ const VIDEO = {
 // 健康旅程攻略：候診區循環衛教片（減重／營養／運動／好習慣，固定內容，不需每月更新）
 const GUIDE = {
   file: 'journey-guide.mp4', poster: 'journey-guide-poster.jpg',
-  title: '健康旅程攻略', len: '4 分 31 秒',
+  title: '健康旅程攻略', len: '4 分 50 秒', ver: '2026_11-animated',
   who: '正在治療的你',
-  desc: '減重五關怎麼走、每餐先吃蛋白質、外食怎麼選、走路 30 分鐘可以拆三次、把目標變成打勾——還有哪些症狀不要等回診。候診區也在播，無聲也看得懂。',
+  desc: '減重五關怎麼走、每餐先吃蛋白質、外食怎麼選、走路 30 分鐘可以拆三次、把目標變成打勾——還有哪些症狀不要等回診。旁白為電腦合成語音，並附字幕；候診區也在播，靜音也看得懂。',
 };
 function copyVideo(v) {
   if (!fs.existsSync(path.join(VIDEO_ASSETS, v.file))) return false;
