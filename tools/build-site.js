@@ -639,8 +639,8 @@ if (fs.existsSync(QUIZ_ASSETS)) {
 const VIDEO_ASSETS = path.join(ROOT, 'design', 'assets-video');
 const VIDEO = {
   file: 'scorecard.mp4', poster: 'scorecard-poster.jpg',
-  title: '減重門診成績單', month: '民國115年10月',
-  desc: '想試試減重門診嗎？潘湘如醫師帶你看門診夥伴的真實數據：大家的體重狀況、常合併的健康問題、選擇的治療方式、三個月左右的減重成效，以及每月預算參考。約 1 分鐘，無聲也看得懂。',
+  title: '減重門診成績單', month: '民國115年10月', len: '1 分 43 秒',
+  desc: '想試試減重門診嗎？帶你看門診夥伴的真實數據：大家的體重狀況、常合併的健康問題、選擇的治療方式、追蹤期間的減重成效，以及可接受的每月預算。旁白為電腦合成語音，並附字幕，靜音也看得懂。',
 };
 // 健康旅程攻略：候診區循環衛教片（減重／營養／運動／好習慣，固定內容，不需每月更新）
 const GUIDE = {
@@ -731,7 +731,7 @@ const home = page({
   ${hasGuide || hasVideo ? `<div class="sec">影片：先看這裡</div>
   <div class="vids">
     ${hasGuide ? vidCard(GUIDE, '▶ ' + GUIDE.who, GUIDE.len) : ''}
-    ${hasVideo ? vidCard(VIDEO, '▶ 考慮加入的你', `約 1 分鐘・${VIDEO.month} 數據更新`) : ''}
+    ${hasVideo ? vidCard(VIDEO, '▶ 考慮加入的你', `${VIDEO.len}・${VIDEO.month} 數據更新`) : ''}
   </div>` : ''}
 
   <div class="sec">治療旅程五關</div>

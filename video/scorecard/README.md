@@ -4,8 +4,9 @@
 
 ## 現況
 
-- 成品：`design/assets-video/scorecard.mp4`（1920×1080、30fps、71.5 秒、無配音，旁白燒在畫面字幕），首頁 hero 下方播放
-- 產生器：本資料夾 `make_video.py`（Python＋Pillow＋ffmpeg，字型 Noto Sans CJK TC，ttc index=3）
+- **2026-11-07 起，首頁成品換成動畫配音版**（720p、1 分 43 秒、電腦合成語音＋字幕），產生器在 `philia81301-commits/video-pilot-boss` 的 `report/`。下方「每月更新流程」是無聲第一版的做法，照跑會蓋回無聲版；改接哪個產生器待醫師決定。
+- 第一版成品（已被取代）：`design/assets-video/scorecard.mp4`（1920×1080、30fps、71.5 秒、無配音，旁白燒在畫面字幕），首頁 hero 下方播放
+- 第一版產生器：本資料夾 `make_video.py`（Python＋Pillow＋ffmpeg，字型 Noto Sans CJK TC，ttc index=3）
 - 內容七幕：開場 → 門診夥伴輪廓 → 常合併疾病 → 治療方式 → 3–5 個月成效 → 每月預算 → 結尾＋免責
 - 講師貼圖三張：`bravo.png`（已去背）、`whoop.png`、`morning.png`（白底，程式自動去背）。**不用 Cheers 那張**（手拿啤酒、有酒類品牌）
 
