@@ -17,7 +17,7 @@
 
 ## 📊 首頁「門診成績單影片」（2026-10-31 上線，2026-11-07 換動畫配音版）
 
-- **2026-11-07 醫師要求換上動畫配音版**：720p、1 分 43 秒、電腦合成語音（zh-TW-HsiaoChenNeural）＋字幕，不自稱醫師本人，數據仍為民國 115 年 10 月。產生器在公開 repo `philia81301-commits/video-pilot-boss` 的 `report/`，**不是** `video/scorecard/make_video.py`；照舊流程重跑會把配音版蓋回無聲版。每月流程要改接哪個產生器，待醫師決定。以下為 10-31 第一版紀錄
+- **2026-11-07 醫師要求換上動畫配音版**：720p、1 分 43 秒、電腦合成語音（zh-TW-HsiaoChenNeural）＋字幕，不自稱醫師本人，數據仍為民國 115 年 10 月。產生器在公開 repo `philia81301-commits/video-pilot-boss` 的 `report/`，**不是** `video/scorecard/make_video.py`；照舊流程重跑會把配音版蓋回無聲版。**每月流程已併入月報技能「減重門診成效分析」第四步之五**（2026-11-07 醫師指示），流程說明見該 repo 的 `report/README.md`。以下為 10-31 第一版紀錄
 - 16:9、72 秒、無配音（旁白燒在畫面字幕）。內容取自減重門診月報，講師用醫師可愛風貼圖；**不出現商品名**，費用只呈現初診問卷「可接受月預算」分布
 - 採 handoff 原訂**選項 A**：`design/assets-video/scorecard.mp4`＋`scorecard-poster.jpg` → build 時複製到 `docs/assets/video/`，首頁 hero 下方播放
 - **每月更新**：用 Claude 技能 `weight-clinic-scorecard-video` 產新片（產生器 `make_video.py` 與每月數據 JSON 在 Google Drive「減重門診分析／成績單影片工具」），覆蓋同名 mp4、改 `tools/build-site.js` 的 `VIDEO.month`，再 build＋commit

@@ -635,11 +635,11 @@ if (fs.existsSync(QUIZ_ASSETS)) {
   }
 }
 
-// 門診成績單影片：design/assets-video/ → docs/assets/video/（mp4 每月覆蓋同名檔；月份文字改 VIDEO 常數）
+// 門診成績單影片：design/assets-video/ → docs/assets/video/（mp4 每月覆蓋同名檔；VIDEO 常數要改月份、片長與 ver，ver 變了手機才不會卡舊片）
 const VIDEO_ASSETS = path.join(ROOT, 'design', 'assets-video');
 const VIDEO = {
   file: 'scorecard.mp4', poster: 'scorecard-poster.jpg',
-  title: '減重門診成績單', month: '民國115年10月', len: '1 分 43 秒',
+  title: '減重門診成績單', month: '民國115年10月', len: '1 分 43 秒', ver: '2026_10-animated',
   desc: '想試試減重門診嗎？帶你看門診夥伴的真實數據：大家的體重狀況、常合併的健康問題、選擇的治療方式、追蹤期間的減重成效，以及可接受的每月預算。旁白為電腦合成語音，並附字幕，靜音也看得懂。',
 };
 // 健康旅程攻略：候診區循環衛教片（減重／營養／運動／好習慣，固定內容，不需每月更新）
@@ -662,9 +662,9 @@ const hasVideo = copyVideo(VIDEO);
 const hasGuide = copyVideo(GUIDE);
 const vidCard = (v, who, meta) => `<div class="vid">
     <span class="who">${who}</span>
-    <video controls playsinline preload="metadata" poster="assets/video/${v.poster}">
-      <source src="assets/video/${v.file}" type="video/mp4">
-      您的瀏覽器無法播放影片，<a href="assets/video/${v.file}">按這裡下載觀看</a>。
+    <video controls playsinline preload="metadata" poster="assets/video/${v.poster}${v.ver ? '?v=' + v.ver : ''}">
+      <source src="assets/video/${v.file}${v.ver ? '?v=' + v.ver : ''}" type="video/mp4">
+      您的瀏覽器無法播放影片，<a href="assets/video/${v.file}${v.ver ? '?v=' + v.ver : ''}">按這裡下載觀看</a>。
     </video>
     <div class="cap"><h3>${v.title}</h3><p>${meta}</p></div>
     <p style="margin:2px 4px 4px">${v.desc}</p>
