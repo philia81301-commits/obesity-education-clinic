@@ -649,6 +649,13 @@ const GUIDE = {
   who: '正在治療的你',
   desc: '減重五關怎麼走、每餐先吃蛋白質、外食怎麼選、走路 30 分鐘可以拆三次、把目標變成打勾——還有哪些症狀不要等回診。旁白為電腦合成語音，並附字幕；候診區也在播，靜音也看得懂。',
 };
+// 雙重腸泌素作用機轉：民眾版（不出現商品名、不放療效數字；原始專案 Obesity-lecture/video/mounjaro-moa，MOA_VER=public）
+const MECH = {
+  file: 'moa-public.mp4', poster: 'moa-public-poster.jpg',
+  title: '雙重腸泌素針劑怎麼作用', len: '3 分 08 秒', ver: '2026_11-v1',
+  who: '想知道藥怎麼作用的你',
+  desc: '脂肪細胞撐大之後，脂肪會滿出來堆到肝臟、內臟，還引起全身慢性發炎。GIP 與 GLP-1 兩種腸泌素各管什麼：一個讓人吃得少，一個幫脂肪組織恢復調度。標示「動物研究」的部分還需要更多人體研究。旁白為電腦合成語音，並附字幕。',
+};
 function copyVideo(v) {
   if (!fs.existsSync(path.join(VIDEO_ASSETS, v.file))) return false;
   const outDir = path.join(DOCS, 'assets', 'video');
@@ -660,6 +667,7 @@ function copyVideo(v) {
 }
 const hasVideo = copyVideo(VIDEO);
 const hasGuide = copyVideo(GUIDE);
+const hasMech = copyVideo(MECH);
 const vidCard = (v, who, meta) => `<div class="vid">
     <span class="who">${who}</span>
     <video controls playsinline preload="metadata" poster="assets/video/${v.poster}${v.ver ? '?v=' + v.ver : ''}">
@@ -728,10 +736,11 @@ const home = page({
     <p>GLP-1 RA／GIP 週製劑（週纖達、猛健樂）減重治療的分階段衛教。依治療旅程分五關，加一冊更年期女性專項與兩份共用採買清單；每個模組都有病人版、醫師備註與依據出處。每一關讀完都有五題小遊戲，全對就能收集通關徽章 🏅。</p>
   </div>
 
-  ${hasGuide || hasVideo ? `<div class="sec">影片：先看這裡</div>
+  ${hasGuide || hasVideo || hasMech ? `<div class="sec">影片：先看這裡</div>
   <div class="vids">
     ${hasGuide ? vidCard(GUIDE, '▶ ' + GUIDE.who, GUIDE.len) : ''}
     ${hasVideo ? vidCard(VIDEO, '▶ 考慮加入的你', `${VIDEO.len}・${VIDEO.month} 數據更新`) : ''}
+    ${hasMech ? vidCard(MECH, '▶ ' + MECH.who, MECH.len) : ''}
   </div>` : ''}
 
   <div class="sec">治療旅程五關</div>
