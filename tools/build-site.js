@@ -652,7 +652,7 @@ const GUIDE = {
 // 雙重腸泌素作用機轉：民眾版（不出現商品名、不放療效數字；原始專案 Obesity-lecture/video/mounjaro-moa，MOA_VER=public）
 const MECH = {
   file: 'moa-public.mp4', poster: 'moa-public-poster.jpg',
-  title: '雙重腸泌素針劑怎麼作用', len: '3 分 08 秒', ver: '2026_11-v1',
+  title: '雙重腸泌素針劑怎麼作用', len: '3 分 08 秒', ver: '2026_11-v2',
   who: '想知道藥怎麼作用的你',
   desc: '脂肪細胞撐大之後，脂肪會滿出來堆到肝臟、內臟，還引起全身慢性發炎。GIP 與 GLP-1 兩種腸泌素各管什麼：一個讓人吃得少，一個幫脂肪組織恢復調度。標示「動物研究」的部分還需要更多人體研究。旁白為電腦合成語音，並附字幕。',
 };
